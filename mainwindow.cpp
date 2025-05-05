@@ -677,7 +677,7 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
     if(databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
 
     isChanged = true;
-    CreateDatabase *createNew = new CreateDatabase(this, &key);
+    CreateDatabase *createNew = new CreateDatabase(this, &key, databasePath);
     createNew->exec();
     delete createNew;
 
