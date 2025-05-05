@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/trash.png</file>
+        <file>icons/add.png</file>
+        <file>icons/edit.png</file>
+        <file>icons/key.png</file>
+        <file>icons/copy.png</file>
+        <file>icons/openUrl.png</file>
+        <file>icons/setting.png</file>
+        <file>icons/url.png</file>
+        <file>icons/user.png</file>
+        <file>icons/createNew.png</file>
+        <file>icons/open.png</file>
+        <file>icons/close.png</file>
+        <file>icons/entry.png</file>
+        <file>icons/colorScheme.png</file>
+        <file>icons/duplicate.png</file>
+        <file>icons/language.png</file>
+        <file>icons/TablesOrRows/bitcoin.png</file>
+        <file>icons/TablesOrRows/card.png</file>
+        <file>icons/TablesOrRows/game.png</file>
+        <file>icons/TablesOrRows/house.png</file>
+        <file>icons/TablesOrRows/money.png</file>
+        <file>icons/TablesOrRows/net.png</file>
+        <file>icons/TablesOrRows/pc.png</file>
+        <file>icons/TablesOrRows/programming.png</file>
+        <file>icons/TablesOrRows/key.png</file>
+        <file>icons/TablesOrRows/office.png</file>
+    </qresource>
+</RCC>
