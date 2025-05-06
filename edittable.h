@@ -45,6 +45,7 @@ public slots:
     void setConnections();
 private slots:
     void on_addTableButton_clicked();
+    void on_buttonCancel_clicked();
 };
 
 

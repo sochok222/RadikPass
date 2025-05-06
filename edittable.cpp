@@ -45,7 +45,7 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
     }
     for(QString el : iconNames)
     {
-        ui->comboBox->addItem(*icons->value(el), el);
+        ui->comboBox->addItem(*icons->value(el), "");
     }
 }
 
@@ -64,9 +64,18 @@ void EditTable::saveChanges()
 {
     QSqlQuery query(*db);
 
+    if(ui->nameEdit->text().size() <= 0)
+    {
+        QMessageBox msg;
+        msg.setText("Field must be not empty");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+        return;
+    }
+
     QString changeName("ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'");
     QString changeSettingsName("UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'");
-    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ui->comboBox->currentText()+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
+    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+iconNames[ui->comboBox->currentIndex()]+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
 
     DatabaseLoader::createBackup(db);
 
@@ -134,6 +143,12 @@ void EditTable::closeEvent(QCloseEvent *event)
 void EditTable::on_addTableButton_clicked()
 {
     saveChanges();
+    this->accept();
+}
+
+
+void EditTable::on_buttonCancel_clicked()
+{
     this->accept();
 }
 

@@ -49,6 +49,7 @@ bool checkIfTableExists(const std::vector<QString> allTables, const QString newT
 void AddTable::on_addTableButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
+    if(ui->nameEdit->text().size() >)
     QSqlQuery qry(*db);
 
     QString tableName = ui->nameEdit->text();

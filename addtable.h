@@ -13,6 +13,7 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QPointer>
+#include <qabstractitemdelegate.h>
 
 
 namespace Ui {
@@ -31,6 +32,8 @@ private slots:
     void on_addTableButton_clicked();
 
 
+    void on_buttonCancel_clicked();
+
 private:
     Ui::AddTable *ui;
     QSqlDatabase *db;
@@ -39,5 +42,6 @@ private:
     QMap<QString, QIcon*> *icons;
     QVector<QString> iconNames = {"entry", "trash", "key", "url", "user", "settings", "bitcoin", "card", "game", "house", "money", "net", "office", "pc", "programming"};
 };
+
 
 #endif // _H

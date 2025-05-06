@@ -667,6 +667,7 @@ void MainWindow::openDatabase()
         configureColumns();
     }
     configureColumns();
+    setIconsInListWidget();
 }
 
 void MainWindow::createDatabase() // This slot creates dialog to create new database
