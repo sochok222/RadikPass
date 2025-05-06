@@ -18,13 +18,29 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
         msg.exec();
         this->close();
     }
+    ui->linePassword->setMaxLength(50);
+    ui->lineRepeat->setMaxLength(50);
+
+    ui->checkBoxIsAsterisks->setToolTip("Show/Hide password using asterisks");
+    ui->linePassword->setToolTip("Password can contain letters, digits and special symbols only");
+    ui->labelRepeat->setToolTip("Password quality for now is based on lenght");
+
+
+    ui->checkBoxIsAsterisks->setChecked(true);
+
+    ui->linePassword->setEchoMode(QLineEdit::Password);
+    ui->lineRepeat->setEchoMode(QLineEdit::Password);
+
+    QRegularExpression rx(R"(^[a-zA-Zа-яА-Я0-9!@#$&().+,/-]*$)");
+    QValidator *validator = new QRegularExpressionValidator(rx, this);
+
+    ui->linePassword->setValidator(validator);
 }
 
 CreateDatabase::~CreateDatabase()
 {
     delete ui;
 }
-
 
 
 void CreateDatabase::on_saveButton_clicked()
@@ -36,26 +52,69 @@ void CreateDatabase::on_saveButton_clicked()
     }
 }
 
-
-void CreateDatabase::on_masterPassword_textChanged(const QString &arg1)
+void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
 {
-
-}
-
-
-void CreateDatabase::on_buttonIsAsterisks_clicked()
-{
-    if(ui->checkBoxIsAsterisks->isChecked())
+    switch(ui->linePassword->text().size())
     {
-        ui->checkBoxIsAsterisks->setChecked(false);
-        ui->lineRepeat->setEnabled(false);
-        ui->labelRepeat->setEnabled(false);
-    }else
-    {
-        ui->checkBoxIsAsterisks->setChecked(true);
-        ui->lineRepeat->setDisabled(false);
-        ui->labelRepeat->setDisabled(false);
+    case 1:
+        ui->labelPasswordQuality->setText("Weak");
+        break;
+    case 8:
+        ui->labelPasswordQuality->setText("Normal");
+        break;
+    case 16:
+        ui->labelPasswordQuality->setText("Strong");
+        break;
+    case 25:
+        ui->labelPasswordQuality->setText("Very Strong");
+        break;
     }
-
 }
+
+void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
+{
+    if(isPassHidden)
+    {
+        if(arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0)
+        {
+            QPalette lineRepeatPalette;
+            lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
+            ui->lineRepeat->setPalette(lineRepeatPalette);
+        }else
+        {
+            QPalette lineRepeatPalette;
+            ui->lineRepeat->setPalette(lineRepeatPalette);
+        }
+    }
+}
+
+void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
+{
+    switch(arg1)
+    {
+        case Qt::Checked:
+        {
+            ui->lineRepeat->setEchoMode(QLineEdit::Password);
+            ui->lineRepeat->setDisabled(false);
+            ui->labelRepeat->setDisabled(false);
+            isPassHidden = true;
+            break;
+        }
+        case Qt::Unchecked:
+        {
+            ui->linePassword->setEchoMode(QLineEdit::Normal);
+            ui->lineRepeat->clear();
+            ui->lineRepeat->setEnabled(false);
+            ui->labelRepeat->setEnabled(false);
+            isPassHidden = false;
+            break;
+        }
+        case Qt::PartiallyChecked:
+        {
+            break;
+        }
+    }
+}
+
+
 

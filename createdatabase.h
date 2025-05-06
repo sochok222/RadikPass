@@ -4,6 +4,9 @@
 #include <QDialog>
 #include <QByteArray>
 #include <QMessageBox>
+#include <QScopedPointer>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 
 namespace Ui {
 class CreateDatabase;
@@ -20,13 +23,16 @@ public:
 private slots:
     void on_saveButton_clicked();
 
-    void on_masterPassword_textChanged(const QString &arg1);
+    void on_linePassword_textChanged(const QString &arg1);
 
-    void on_buttonIsAsterisks_clicked();
+    void on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1);
+
+    void on_lineRepeat_textChanged(const QString &arg1);
 
 private:
     Ui::CreateDatabase *ui;
     QByteArray *key;
+    bool isPassHidden = true;
 };
 
 #endif // CREATEDATABASE_H

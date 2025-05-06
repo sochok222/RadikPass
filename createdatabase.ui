@@ -105,7 +105,7 @@
         </size>
        </property>
        <property name="text">
-        <string>PasswordQuality</string>
+        <string/>
        </property>
       </widget>
      </item>
