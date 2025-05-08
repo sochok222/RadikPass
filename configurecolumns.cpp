@@ -11,8 +11,8 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setRowCount(5);
     ui->tableWidget->setColumnCount(2);
 
-    QStringList horizontal = QList<QString>({"Is shown", "Is hiden by asterisk(*)"});
-    QStringList vertical = QList<QString>({"Title", "Username", "Password", "URL", "Notes"});
+    QStringList horizontal = QList<QString>({tr("Is shown"), tr("Is hiden by asterisk(*)")});
+    QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes")});
     ui->tableWidget->setVerticalHeaderLabels(vertical);
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
 

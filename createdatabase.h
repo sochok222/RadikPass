@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QByteArray>
 #include <QMessageBox>
+#include <QTranslator>
 #include <QScopedPointer>
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>

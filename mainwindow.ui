@@ -371,9 +371,9 @@
     <property name="title">
      <string>Language</string>
     </property>
-    <addaction name="actionEnglish"/>
-    <addaction name="actionUkrainian"/>
-    <addaction name="actionGerman"/>
+    <addaction name="actionLanguageEnglish"/>
+    <addaction name="actionLanguageUkrainian"/>
+    <addaction name="actionLanguageGerman"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEntry"/>
@@ -456,17 +456,17 @@
     <string>Copy Url</string>
    </property>
   </action>
-  <action name="actionEnglish">
+  <action name="actionLanguageEnglish">
    <property name="text">
     <string>English</string>
    </property>
   </action>
-  <action name="actionUkrainian">
+  <action name="actionLanguageUkrainian">
    <property name="text">
     <string>Ukrainian</string>
    </property>
   </action>
-  <action name="actionGerman">
+  <action name="actionLanguageGerman">
    <property name="text">
     <string>German</string>
    </property>

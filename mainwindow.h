@@ -31,6 +31,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QVBoxLayout>
+#include <QTranslator>
 #include "addtable.h"
 #include <windows.h>
 #include <QSettings>
@@ -81,6 +82,7 @@ private:
     QByteArray key = 0;
     CellDelegate *maskColumn = new CellDelegate;
     bool isChanged = false;
+    QTranslator translator;
 
 public slots:
     void customMenuRequested(QPoint pos);
@@ -102,6 +104,8 @@ public slots:
     void setIconsInListWidget();
     void duplicateEntry();
     void saveAll();
+    void setUkrainianLanguage();
+    void setEnglishLanguage();
 
 private: // Context menu
     QScopedPointer<QMenu> mainContextMenu;

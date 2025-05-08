@@ -27,7 +27,7 @@ void OpenDatabase::on_okButton_clicked()
         this->close();
     }else {
         QMessageBox msg;
-        msg.setText("Password line must be not empty");
+        msg.setText(tr("Password line must be not empty"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }

@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QDialog>
 #include <QVector>
+#include <QTranslator>
 
 namespace Ui {
 class ConfigureColumns;

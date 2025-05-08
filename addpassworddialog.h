@@ -7,6 +7,7 @@
 #include <QtSql/QSqlQuery>
 #include <QMessageBox>
 #include <QDateTime>
+#include <QTranslator>
 
 
 namespace Ui {

@@ -10,7 +10,7 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
 {
     ui->setupUi(this);
     ui->nameEdit->setMaxLength(15);
-    QRegularExpression rx(R"(^[a-zA-Z_]+(\s[a-zA-Z_]+)+$)");
+    QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ_]+(\s[a-zA-Zа-яА-ЯІіїЇ_]+)+$)");
     QValidator *validator = new QRegularExpressionValidator(rx, this);
 
     ui->nameEdit->setValidator(validator);
@@ -18,7 +18,7 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
     if(db == nullptr || tables == nullptr)
     {
         QMessageBox msg;
-        msg.setText("Can't add new table, probably you didn't opened database");
+        msg.setText(tr("Can't add new table, probably you didn't opened database"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         this->close();
@@ -53,7 +53,7 @@ void AddTable::on_addTableButton_clicked()
     if(ui->nameEdit->text().size() <= 0)
     {
         QMessageBox msg;
-        msg.setText("Field must be not empty");
+        msg.setText(tr("Field must be not empty"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -82,7 +82,7 @@ void AddTable::on_addTableButton_clicked()
         if(!query.exec(command))
         {
             QMessageBox msg;
-            msg.setText("Can't create table\nQuery error: " + query.lastError().text());
+            msg.setText(tr("Can't create table\nQuery error: ") + query.lastError().text());
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -92,7 +92,7 @@ void AddTable::on_addTableButton_clicked()
         if(!query.exec())
         {
             QMessageBox msg;
-            msg.setText("Can't create table\nQuery error: " + query.lastError().text());
+            msg.setText(tr("Can't create table\nQuery error: ") + query.lastError().text());
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -101,17 +101,13 @@ void AddTable::on_addTableButton_clicked()
         this->close();
     }else {
         QMessageBox msg;
-        msg.setText("Table with this name already exists\nTry another name");
+        msg.setText(tr("Table with this name already exists\nTry another name"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }
 }
 
-
-
-
 void AddTable::on_buttonCancel_clicked()
 {
     this->close();
 }
-

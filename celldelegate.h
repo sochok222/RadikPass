@@ -3,6 +3,7 @@
 
 #include <QStyledItemDelegate>
 #include <QPainter>
+#include <QTranslator>
 
 class CellDelegate : public QStyledItemDelegate
 {

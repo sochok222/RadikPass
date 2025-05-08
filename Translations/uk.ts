@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="uk" sourcelanguage="en">
+<TS version="2.1" language="uk_UA" sourcelanguage="en_US">
 <context>
     <name>AddPasswordDialog</name>
     <message>
@@ -51,6 +51,22 @@
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="56"/>
+        <source>Error: </source>
+        <translation>Помилка:</translation>
+    </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="56"/>
+        <source>
+Last query: </source>
+        <translation>Останній запит: </translation>
+    </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="64"/>
+        <source>At least one field must not be empty</source>
+        <translation>Щонайменше одне поле не має бути порожнім</translation>
+    </message>
 </context>
 <context>
     <name>AddTable</name>
@@ -84,6 +100,31 @@
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
+    <message>
+        <location filename="../addtable.cpp" line="21"/>
+        <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
+        <translation>Не можливо завантажити таблицю, скоріше всього база даних не відкрита</translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="56"/>
+        <source>Field must be not empty</source>
+        <translation>Поле не має бути порожнім</translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="85"/>
+        <location filename="../addtable.cpp" line="95"/>
+        <source>Can&apos;t create table
+Query error: </source>
+        <translation>Не вдалося створити таблицю.
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="104"/>
+        <source>Table with this name already exists
+Try another name</source>
+        <translation>Таблиця з цим ім&apos;ям вже існує.
+Спробуйте вказати інакше ім&apos;я.</translation>
+    </message>
 </context>
 <context>
     <name>ConfigureColumns</name>
@@ -98,6 +139,36 @@
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="81"/>
         <source>Save</source>
         <translation>Зберегти</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="14"/>
+        <source>Is shown</source>
+        <translation>Чи показано</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="14"/>
+        <source>Is hiden by asterisk(*)</source>
+        <translation>Чи приховано зірочками(*)</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Title</source>
+        <translation>Заголовок</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Username</source>
+        <translation>Ім&apos;я</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Notes</source>
+        <translation>Нотатки</translation>
     </message>
 </context>
 <context>
@@ -162,6 +233,46 @@
         <source>Path</source>
         <translation>Шлях</translation>
     </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="16"/>
+        <source>Can&apos;t load path</source>
+        <translation>Не вдалося завантажити шлях</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="24"/>
+        <source>Show/Hide password using asterisks</source>
+        <translation>Показати/Приховати пароль зірочками (*)</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="25"/>
+        <source>Password can contain letters, digits and special symbols only</source>
+        <translation>Пароль може містити тільки букви, цифри і спеціальні символи.</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="26"/>
+        <source>Password quality for now is based on lenght</source>
+        <translation>Надійність пароля залежить від його довжини</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="60"/>
+        <source>Weak</source>
+        <translation>Слабкий</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="63"/>
+        <source>Normal</source>
+        <translation>Середній</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="66"/>
+        <source>Strong</source>
+        <translation>Сильний</translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="69"/>
+        <source>Very Strong</source>
+        <translation>Дуже сильний</translation>
+    </message>
 </context>
 <context>
     <name>EditEntry</name>
@@ -213,6 +324,40 @@
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
+    <message>
+        <location filename="../editentry.cpp" line="27"/>
+        <source>Something went wrong</source>
+        <translation>Щось пішло не так</translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="39"/>
+        <location filename="../editentry.cpp" line="54"/>
+        <source>Can&apos;t load data from database</source>
+        <translation>Не вдалося завантажити данні з бази даних</translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="40"/>
+        <location filename="../editentry.cpp" line="55"/>
+        <source>Try again, please</source>
+        <translation>Спробуйте знову, будь ласка.</translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="113"/>
+        <source>Can&apos;t edit this row
+Error: </source>
+        <translation>Не можливо змінити цей рядок.
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="114"/>
+        <source>Failed to execute statement: </source>
+        <translation>Не вдалося виконати запит: </translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="124"/>
+        <source>At least one field must not be empty</source>
+        <translation>Щонайменше одне поле не має бути порожнім</translation>
+    </message>
 </context>
 <context>
     <name>EditTable</name>
@@ -245,6 +390,26 @@
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="124"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="37"/>
+        <source>Can&apos;t load listWidget</source>
+        <translation>Не вдалося завантажити віджет списку</translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="43"/>
+        <source>Can&apos;t find icons</source>
+        <translation>Не вдалося завантажити іконки.</translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="70"/>
+        <source>Field must be not empty</source>
+        <translation>Поле не має бути пустим.</translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="84"/>
+        <source>Line must be not empty</source>
+        <translation>Поле не має бути пустим.</translation>
     </message>
 </context>
 <context>
@@ -294,6 +459,7 @@
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
@@ -306,12 +472,16 @@
     <message>
         <location filename="../mainwindow.ui" line="401"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>Copy User Name</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="406"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
+        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="280"/>
         <source>Copy Password</source>
         <translation>Копіювати пароль</translation>
     </message>
@@ -393,6 +563,158 @@
         <source>German</source>
         <translation>Німецька</translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="169"/>
+        <source>Password is uncorrect or database file is damaged
+Try again, please</source>
+        <translation>Введений пароль не правильний або база даних пошкоджена.
+Спробуйте знову. будь ласка.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="214"/>
+        <source>Title copied</source>
+        <translation>Заголовок скопійовано</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="219"/>
+        <source>User Name copied</source>
+        <translation>І&apos;мя скопійовано.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="224"/>
+        <source>Password copied</source>
+        <translation>Пароль скопійований.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="229"/>
+        <source>Link opened</source>
+        <translation>Посилання скопійовано.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="234"/>
+        <source>Notes copied</source>
+        <translation>Нотатки скопійовані.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="245"/>
+        <location filename="../mainwindow.cpp" line="281"/>
+        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="324"/>
+        <source>Edit</source>
+        <translation>Редагувати</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="282"/>
+        <source>Add new</source>
+        <translation>Додати новий</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <source>Delete</source>
+        <translation>Видалити</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="284"/>
+        <source>Configure colums</source>
+        <translation>Налаштування таблиць</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <source>Copy</source>
+        <translation>Скопіювати</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="290"/>
+        <source>URL</source>
+        <translation>Посилання</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <source>Add Table</source>
+        <translation>Додати таблицю</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="426"/>
+        <location filename="../mainwindow.cpp" line="439"/>
+        <source>Can&apos;t get row id</source>
+        <translation>Не вдалося отримати номер рядку.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="386"/>
+        <location filename="../mainwindow.cpp" line="427"/>
+        <location filename="../mainwindow.cpp" line="440"/>
+        <source>Query error: </source>
+        <translation>Помилка запиту: </translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="385"/>
+        <source>Can&apos;t get data from database</source>
+        <translation>Не вдалося отримати дані з бази даних.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="472"/>
+        <source>Delete Table?</source>
+        <translation>Видалити таблицю?</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="493"/>
+        <source>Can`t delete this table</source>
+        <translation>Не вдалося видалити цю таблицю.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="498"/>
+        <source>At least one table must exists</source>
+        <translation>Щонайменше одна таблиця має існувати.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="515"/>
+        <source>Delete row?</source>
+        <translation>Видалити запис?</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="627"/>
+        <source>Save changes?</source>
+        <translation>Зберегти зміни?</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="647"/>
+        <source>Open encrypted database</source>
+        <translation>Відкрити зашифровану базу даних</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="660"/>
+        <source>Password is uncorrect</source>
+        <translation>Пароль введено не вірно.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="686"/>
+        <source>Create new database</source>
+        <translation>Створити нову базу даних.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="700"/>
+        <source>Can&apos;t create new database</source>
+        <translation>Не вдалося створити нову базу даних.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="779"/>
+        <source>Can&apos;t duplicate columns</source>
+        <translation>Не вдалося здублювати колонки.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="785"/>
+        <source>Entry duplicated</source>
+        <translation>Запис здубльовано.</translation>
+    </message>
 </context>
 <context>
     <name>OpenDatabase</name>
@@ -437,6 +759,11 @@
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="161"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
+    </message>
+    <message>
+        <location filename="../opendatabase.cpp" line="30"/>
+        <source>Password line must be not empty</source>
+        <translation>Поле з паролем не має бути пустим.</translation>
     </message>
 </context>
 </TS>

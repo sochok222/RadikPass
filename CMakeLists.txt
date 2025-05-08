@@ -16,9 +16,11 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql UiTools Lingu
 
 set(TS_FILES
   Translations/uk.ts
-  Translations/en.ts
   Translations/ge.ts
+  Translations/en.ts
 )
+
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 set(PROJECT_SOURCES
         main.cpp

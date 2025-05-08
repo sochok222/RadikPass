@@ -58,9 +58,19 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey)
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
     ui->setupUi(this);
 
+    if(!settings.value("Language").isNull() && settings.value("Language") != "")
+    {
+        if(settings.value("Language") == "uk")
+            setUkrainianLanguage();
+        else if(settings.value("Language") == "en")
+            setEnglishLanguage();
+    }else settings.setValue("Language", "en"); // Default language is english
+
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
+    connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
+    connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
 
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -156,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey)
         if(!DatabaseLoader::loadDb(settings.value("Last").toString(), key, &db, tables)) // Trying to load database
         {                                                                                // If not it seems that key is not right
             QMessageBox msg;                                                             // or file is broken or something else
-            msg.setText("Password is uncorrect or database file is damaged\nTry again, please");
+            msg.setText(tr("Password is uncorrect or database file is damaged\nTry again, please"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec(); // Showing message if can't open database
         }
@@ -201,27 +211,27 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
     if(pos.column() == 1)
     {
         copyText(pos.data().toString());
-        ui->statusbar->showMessage("Title copied", 3000);
+        ui->statusbar->showMessage(tr("Title copied"), 3000);
     }
     else if(pos.column() == 2)
     {
         copyText(pos.data().toString());
-        ui->statusbar->showMessage("User Name copied", 3000);
+        ui->statusbar->showMessage(tr("User Name copied"), 3000);
     }
     else if(pos.column() == 3)
     {
         copyText(pos.data().toString());
-        ui->statusbar->showMessage("Password copied", 3000);
+        ui->statusbar->showMessage(tr("Password copied"), 3000);
     }
     else if(pos.column() == 4)
     {
         QDesktopServices::openUrl(QUrl(pos.data().toString()));
-        ui->statusbar->showMessage("Link opened", 3000);
+        ui->statusbar->showMessage(tr("Link opened"), 3000);
     }
     else if(pos.column() == 5)
     {
         copyText(pos.data().toString());
-        ui->statusbar->showMessage("Notes copied", 3000);
+        ui->statusbar->showMessage(tr("Notes copied"), 3000);
     }
 }
 
@@ -230,18 +240,18 @@ void MainWindow::customMenuRequested(QPoint pos){
     if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) // If mouse cursor is on tableView and on row
     {
         mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
-        actionCopyUsername.reset(new QAction(*icons["user"], "Copy User Name", this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(*icons["key"], "Copy Password", this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(*icons["edit"], "Edit", this)); // Resetting QAction *actionEdit object
-        actionAdd.reset(new QAction(*icons["entry"], "Add new", this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(*icons["trash"], "Delete", this)); // Resetting QAction *actionDelete object
-        actionCfgColumns.reset(new QAction(*icons["settings"], "Configure colums", this));
+        actionCopyUsername.reset(new QAction(*icons["user"], tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
+        actionCopyPassword.reset(new QAction(*icons["key"], tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
+        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this)); // Resetting QAction *actionEdit object
+        actionAdd.reset(new QAction(*icons["entry"], tr("Add new"), this)); // Resetting QAction *actionAdd object
+        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this)); // Resetting QAction *actionDelete object
+        actionCfgColumns.reset(new QAction(*icons["settings"], tr("Configure colums"), this));
 
         // Setuping list of action to url
         subMenuUrl.reset(new QMenu("URL", this));
         subMenuUrl->setIcon(*icons["url"]);
-        actionCopyUrl.reset(new QAction(*icons["copy"], "Copy", this));
-        actionOpenUrl.reset(new QAction(*icons["openUrl"], "Open", this));
+        actionCopyUrl.reset(new QAction(*icons["copy"], tr("Copy"), this));
+        actionOpenUrl.reset(new QAction(*icons["openUrl"], tr("Open"), this));
         subMenuUrl->addAction(actionCopyUrl.data());
         subMenuUrl->addAction(actionOpenUrl.data());
 
@@ -266,18 +276,18 @@ void MainWindow::customMenuRequested(QPoint pos){
         mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     }else if(ui->tableView->underMouse()) {
         mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
-        actionCopyUsername.reset(new QAction(*icons["user"], "Copy User Name", this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(*icons["key"], "Copy Password", this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(*icons["edit"], "Edit", this)); // Resetting QAction *actionEdit object
-        actionAdd.reset(new QAction(*icons["entry"], "Add new", this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(*icons["trash"], "Delete", this)); // Resetting QAction *actionDelete object
-        actionCfgColumns.reset(new QAction(*icons["settings"], "Configure colums", this));
+        actionCopyUsername.reset(new QAction(*icons["user"], tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
+        actionCopyPassword.reset(new QAction(*icons["key"], tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
+        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this)); // Resetting QAction *actionEdit object
+        actionAdd.reset(new QAction(*icons["entry"], tr("Add new"), this)); // Resetting QAction *actionAdd object
+        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this)); // Resetting QAction *actionDelete object
+        actionCfgColumns.reset(new QAction(*icons["settings"], tr("Configure colums"), this));
         actionCopyUsername->setDisabled(true);
         actionCopyPassword->setDisabled(true);
         actionDelete->setDisabled(true);
         actionEdit->setDisabled(true);
 
-        subMenuUrl.reset(new QMenu("URL", this));
+        subMenuUrl.reset(new QMenu(tr("URL"), this));
         subMenuUrl->setDisabled(true);
 
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
@@ -294,9 +304,9 @@ void MainWindow::customMenuRequested(QPoint pos){
     }else if(ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) // If mouse cursor is at listWidget and not on tableView
     {
         mainContextMenu.reset(new QMenu(this));
-        actionDelete.reset(new QAction(*icons["trash"], "Delete", this));
-        actionAdd.reset(new QAction(*icons["add"], "Add Table", this));
-        actionEdit.reset(new QAction(*icons["edit"], "Edit", this));
+        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this));
+        actionAdd.reset(new QAction(*icons["add"], tr("Add Table"), this));
+        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this));
 
         connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable()));
@@ -309,9 +319,9 @@ void MainWindow::customMenuRequested(QPoint pos){
     }else if(ui->listWidget->underMouse())
     {
         mainContextMenu.reset(new QMenu(this));
-        actionDelete.reset(new QAction(*icons["trash"], "Delete", this));
-        actionAdd.reset(new QAction(*icons["add"], "Add Table", this));
-        actionEdit.reset(new QAction(*icons["edit"], "Edit", this));
+        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this));
+        actionAdd.reset(new QAction(*icons["add"], tr("Add Table"), this));
+        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this));
         actionDelete->setDisabled(true);
         actionEdit->setDisabled(true);
 
@@ -359,8 +369,8 @@ void MainWindow::copyUsername()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText("Can't get row id");
-        msg.setInformativeText("Query error: " + query.lastError().text());
+        msg.setText(tr("Can't get row id"));
+        msg.setInformativeText(tr("Query error: ") + query.lastError().text());
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -372,8 +382,8 @@ void MainWindow::copyUsername()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText("Can't get data from database");
-        msg.setInformativeText("Query error: " + query.lastError().text());
+        msg.setText(tr("Can't get data from database"));
+        msg.setInformativeText(tr("Query error: ") + query.lastError().text());
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -413,8 +423,8 @@ void MainWindow::copyPassword()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText("Can't get row id");
-        msg.setInformativeText("Query error: " + query.lastError().text());
+        msg.setText(tr("Can't get row id"));
+        msg.setInformativeText(tr("Query error: ") + query.lastError().text());
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -426,8 +436,8 @@ void MainWindow::copyPassword()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText("Can't get row id");
-        msg.setInformativeText("Query error: " + query.lastError().text());
+        msg.setText(tr("Can't get row id"));
+        msg.setInformativeText(tr("Query error: ") + query.lastError().text());
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -459,7 +469,7 @@ void MainWindow::deleteTable()
     int index = ui->listWidget->currentIndex().row();
 
     QMessageBox::StandardButton question = QMessageBox::question(
-        this, "RadiPass", "Delete Table?",
+        this, "RadiPass", tr("Delete Table?"),
         QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
     // If user clicks
     // Yes - delete row
@@ -480,12 +490,12 @@ void MainWindow::deleteTable()
             }else
             {
                 QMessageBox msg;
-                msg.setText("Can`t delete this table");
+                msg.setText(tr("Can`t delete this table"));
                 msg.button(QMessageBox::Ok);
                 msg.exec();
             }
         }else {
-            QMessageBox::StandardButton information = QMessageBox::information(this, "RadiPass", "At least one table must exists",
+            QMessageBox::StandardButton information = QMessageBox::information(this, "RadiPass", tr("At least one table must exists"),
                                                                                QMessageBox::Ok, QMessageBox::Ok);
         }
     }
@@ -502,7 +512,7 @@ void MainWindow::deleteRow()
     int index = ui->tableView->currentIndex().row(); // Index of selected row
 
     QMessageBox::StandardButton question = QMessageBox::question(
-        this, "RadiPass", "Delete row?",
+        this, "RadiPass", tr("Delete row?"),
         QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
     // If user clicks
     // Yes - delete row
@@ -534,7 +544,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if(isChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
-            this, "RadiPass", "Save changes?",
+            this, "RadiPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if(question == QMessageBox::Yes)
         {
@@ -614,7 +624,7 @@ void MainWindow::openDatabase()
     if(isChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
-            this, "RadiPass", "Save changes?",
+            this, "RadiPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         // If user clicks
         // Yes - must save changes
@@ -634,7 +644,7 @@ void MainWindow::openDatabase()
         }
     }
 
-    QString file = QFileDialog::getOpenFileName(this, "Open encrypted database",
+    QString file = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if(!file.isEmpty())
     {
@@ -647,7 +657,7 @@ void MainWindow::openDatabase()
         if(!DatabaseLoader::loadDb(file, key, &db, tables))
         {
             QMessageBox msg;
-            msg.setText("Password is uncorrect");
+            msg.setText(tr("Password is uncorrect"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -673,7 +683,7 @@ void MainWindow::openDatabase()
 void MainWindow::createDatabase() // This slot creates dialog to create new database
 {
     qDebug() << Q_FUNC_INFO;
-    QString databasePath = QFileDialog::getSaveFileName(this, "Create new database",
+    QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                                         QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if(databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
 
@@ -687,7 +697,7 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
         if(!DatabaseLoader::createAndFillDatabase(databasePath, key, &db))
         {
             QMessageBox msg;
-            msg.setText("Can't create new database");
+            msg.setText(tr("Can't create new database"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
             return;
@@ -766,13 +776,13 @@ void MainWindow::duplicateEntry()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText("Can't duplicate columns");
+        msg.setText(tr("Can't duplicate columns"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
     }
     isChanged = true;
-    ui->statusbar->showMessage("Entry duplicated", 3);
+    ui->statusbar->showMessage(tr("Entry duplicated"), 3);
     model->select();
     ui->tableView->update(); // Updating tableView
 }
@@ -793,4 +803,34 @@ bool MainWindow::hasSelectedRow()
         return false;
 
     return true;
+}
+
+void MainWindow::setUkrainianLanguage()
+{
+    qDebug() << Q_FUNC_INFO;
+    settings.setValue("Language", "uk");
+    qApp->removeTranslator(&translator); // remove the old translator
+
+    // load the new translator
+    QString path = QApplication::applicationDirPath();
+    path.append("/Translations/");
+    if(translator.load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+        qApp->installTranslator(&translator);
+    else
+    {
+        qDebug() << "Can't load ukrainian translation";
+        QMessageBox msg;
+        msg.setText("Can't load ukrainian translation");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+    }
+    ui->retranslateUi(this);
+}
+
+void MainWindow::setEnglishLanguage()
+{
+    qDebug() << Q_FUNC_INFO;
+    settings.setValue("Language", "en");
+    qApp->removeTranslator(&translator); // Just reset language, english language is native for this program
+    ui->retranslateUi(this);
 }

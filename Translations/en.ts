@@ -51,6 +51,22 @@
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="56"/>
+        <source>Error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="56"/>
+        <source>
+Last query: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addpassworddialog.cpp" line="64"/>
+        <source>At least one field must not be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddTable</name>
@@ -84,6 +100,29 @@
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../addtable.cpp" line="21"/>
+        <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="56"/>
+        <source>Field must be not empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="85"/>
+        <location filename="../addtable.cpp" line="95"/>
+        <source>Can&apos;t create table
+Query error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addtable.cpp" line="104"/>
+        <source>Table with this name already exists
+Try another name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigureColumns</name>
@@ -97,6 +136,36 @@
         <location filename="../configurecolumns.ui" line="59"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="81"/>
         <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="14"/>
+        <source>Is shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="14"/>
+        <source>Is hiden by asterisk(*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configurecolumns.cpp" line="15"/>
+        <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -162,6 +231,46 @@
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="16"/>
+        <source>Can&apos;t load path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="24"/>
+        <source>Show/Hide password using asterisks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="25"/>
+        <source>Password can contain letters, digits and special symbols only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="26"/>
+        <source>Password quality for now is based on lenght</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="60"/>
+        <source>Weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="63"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="66"/>
+        <source>Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../createdatabase.cpp" line="69"/>
+        <source>Very Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditEntry</name>
@@ -213,6 +322,39 @@
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../editentry.cpp" line="27"/>
+        <source>Something went wrong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="39"/>
+        <location filename="../editentry.cpp" line="54"/>
+        <source>Can&apos;t load data from database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="40"/>
+        <location filename="../editentry.cpp" line="55"/>
+        <source>Try again, please</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="113"/>
+        <source>Can&apos;t edit this row
+Error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="114"/>
+        <source>Failed to execute statement: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editentry.cpp" line="124"/>
+        <source>At least one field must not be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditTable</name>
@@ -244,6 +386,26 @@
         <location filename="../edittable.ui" line="120"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="124"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="37"/>
+        <source>Can&apos;t load listWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="43"/>
+        <source>Can&apos;t find icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="70"/>
+        <source>Field must be not empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../edittable.cpp" line="84"/>
+        <source>Line must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -294,6 +456,7 @@
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -306,12 +469,16 @@
     <message>
         <location filename="../mainwindow.ui" line="401"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>Copy User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="406"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
+        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="280"/>
         <source>Copy Password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -393,6 +560,157 @@
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="169"/>
+        <source>Password is uncorrect or database file is damaged
+Try again, please</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="214"/>
+        <source>Title copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="219"/>
+        <source>User Name copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="224"/>
+        <source>Password copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="229"/>
+        <source>Link opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="234"/>
+        <source>Notes copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="245"/>
+        <location filename="../mainwindow.cpp" line="281"/>
+        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="324"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="282"/>
+        <source>Add new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="284"/>
+        <source>Configure colums</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="290"/>
+        <source>URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="323"/>
+        <source>Add Table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="426"/>
+        <location filename="../mainwindow.cpp" line="439"/>
+        <source>Can&apos;t get row id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="386"/>
+        <location filename="../mainwindow.cpp" line="427"/>
+        <location filename="../mainwindow.cpp" line="440"/>
+        <source>Query error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="385"/>
+        <source>Can&apos;t get data from database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="472"/>
+        <source>Delete Table?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="493"/>
+        <source>Can`t delete this table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="498"/>
+        <source>At least one table must exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="515"/>
+        <source>Delete row?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="627"/>
+        <source>Save changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="647"/>
+        <source>Open encrypted database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="660"/>
+        <source>Password is uncorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="686"/>
+        <source>Create new database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="700"/>
+        <source>Can&apos;t create new database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="779"/>
+        <source>Can&apos;t duplicate columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="785"/>
+        <source>Entry duplicated</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenDatabase</name>
@@ -436,6 +754,11 @@
         <location filename="../opendatabase.ui" line="227"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="161"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../opendatabase.cpp" line="30"/>
+        <source>Password line must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

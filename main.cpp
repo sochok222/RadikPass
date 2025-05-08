@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
         qDebug() << "Can't find last used database";
     }
 
-
     MainWindow w(0, key);
     w.show();
     return a.exec();

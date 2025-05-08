@@ -14,6 +14,7 @@
 #include <QPushButton>
 #include <QPointer>
 #include <qabstractitemdelegate.h>
+#include <QTranslator>
 
 
 namespace Ui {

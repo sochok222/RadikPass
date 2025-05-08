@@ -8,6 +8,7 @@
 #include <QTemporaryFile>
 #include <openssl/rand.h>
 #include <openssl/evp.h>
+#include <QTranslator>
 #include <QMessageBox>
 #include <QTableView>
 #include <QString>

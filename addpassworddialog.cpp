@@ -53,7 +53,7 @@ void AddPasswordDialog::on_writeButton_clicked()
         {
             QMessageBox msg;
             msg.setIcon(QMessageBox::Critical);
-            msg.setText("Error: " + query.lastError().text() + "\nLast query: " + query.lastQuery());
+            msg.setText(tr("Error: ") + query.lastError().text() + tr("\nLast query: ") + query.lastQuery());
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -61,7 +61,7 @@ void AddPasswordDialog::on_writeButton_clicked()
     }else{
         QMessageBox msg;
         msg.setIcon(QMessageBox::Information);
-        msg.setText("At least one field must not be empty");
+        msg.setText(tr("At least one field must not be empty"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }

@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QSqlRecord>
+#include <QTranslator>
 
 namespace Ui {
 class EditEntry;

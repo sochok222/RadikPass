@@ -13,7 +13,7 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
         ui->labelPath->setText(path);
     }else {
         QMessageBox msg;
-        msg.setText("Can't load path");
+        msg.setText(tr("Can't load path"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         this->close();
@@ -21,9 +21,9 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
     ui->linePassword->setMaxLength(50);
     ui->lineRepeat->setMaxLength(50);
 
-    ui->checkBoxIsAsterisks->setToolTip("Show/Hide password using asterisks");
-    ui->linePassword->setToolTip("Password can contain letters, digits and special symbols only");
-    ui->labelRepeat->setToolTip("Password quality for now is based on lenght");
+    ui->checkBoxIsAsterisks->setToolTip(tr("Show/Hide password using asterisks"));
+    ui->linePassword->setToolTip(tr("Password can contain letters, digits and special symbols only"));
+    ui->labelRepeat->setToolTip(tr("Password quality for now is based on lenght"));
 
 
     ui->checkBoxIsAsterisks->setChecked(true);
@@ -57,16 +57,16 @@ void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
     switch(ui->linePassword->text().size())
     {
     case 1:
-        ui->labelPasswordQuality->setText("Weak");
+        ui->labelPasswordQuality->setText(tr("Weak"));
         break;
     case 8:
-        ui->labelPasswordQuality->setText("Normal");
+        ui->labelPasswordQuality->setText(tr("Normal"));
         break;
     case 16:
-        ui->labelPasswordQuality->setText("Strong");
+        ui->labelPasswordQuality->setText(tr("Strong"));
         break;
     case 25:
-        ui->labelPasswordQuality->setText("Very Strong");
+        ui->labelPasswordQuality->setText(tr("Very Strong"));
         break;
     }
 }

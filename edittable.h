@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QIcon>
+#include <QTranslator>
 #include <QSqlDatabase>
 #include <QListWidget>
 #include <QSqlQuery>

@@ -29,5 +29,7 @@
         <file>Translations/en.ts</file>
         <file>Translations/ge.ts</file>
         <file>Translations/uk.ts</file>
+        <file>Translations/uk.qm</file>
+        <file>Translations/en.qm</file>
     </qresource>
 </RCC>

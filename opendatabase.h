@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QByteArray>
 #include <QMessageBox>
+#include <QTranslator>
 
 namespace Ui {
 class OpenDatabase;

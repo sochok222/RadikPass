@@ -24,7 +24,7 @@ void EditEntry::setup()
     {
         QMessageBox msg;
         msg.setIcon(QMessageBox::Critical);
-        msg.setText("Something went wrong");
+        msg.setText(tr("Something went wrong"));
         msg.addButton(QMessageBox::Ok);
         msg.exec();
     }
@@ -36,8 +36,8 @@ void EditEntry::setup()
     if(!query.exec(getId))
     {
         QMessageBox msg;
-        msg.setInformativeText("Can't load data from database");
-        msg.setText("Try again, please");
+        msg.setInformativeText(tr("Can't load data from database"));
+        msg.setText(tr("Try again, please"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.setDefaultButton(QMessageBox::Ok);
         msg.exec();
@@ -51,8 +51,8 @@ void EditEntry::setup()
     if(!query.exec(loadData))
     {
         QMessageBox msg;
-        msg.setInformativeText("Can't load data from database");
-        msg.setText("Try again, please");
+        msg.setInformativeText(tr("Can't load data from database"));
+        msg.setText(tr("Try again, please"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.setDefaultButton(QMessageBox::Ok);
         msg.exec();
@@ -110,8 +110,8 @@ void EditEntry::on_writeButton_clicked()
         if(!query.exec())
         {
             QMessageBox msg;
-            msg.setText("Can't edit this row\nError: " + query.lastError().text());
-            qDebug() << "Failed to execute statement: " << query.lastQuery();
+            msg.setText(tr("Can't edit this row\nError: ") + query.lastError().text());
+            qDebug() << tr("Failed to execute statement: ") << query.lastQuery();
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -121,7 +121,7 @@ void EditEntry::on_writeButton_clicked()
     }else{
         QMessageBox msg;
         msg.setIcon(QMessageBox::Information);
-        msg.setText("At least one field must not be empty");
+        msg.setText(tr("At least one field must not be empty"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }

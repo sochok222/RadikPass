@@ -25,7 +25,7 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
     ui->comboBox->setCurrentIndex(iconNames.indexOf("bitcoin"));
 
     ui->nameEdit->setMaxLength(15);
-    QRegularExpression rx(R"(^[a-zA-Z_]+(\s[a-zA-Z_]+)+$)");
+    QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ_]+(\s[a-zA-Zа-яА-ЯІіїЇ_]+)+$)");
     QValidator *validator = new QRegularExpressionValidator(rx, this);
 
     ui->nameEdit->setValidator(validator);
@@ -34,13 +34,13 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
 
     if(listWidget == nullptr)
     {
-        showMsgBox("Can't load listWidget");
+        showMsgBox(tr("Can't load listWidget"));
         QTimer::singleShot(0, this, SLOT(close())); // TODO: this don't close the window
     }
 
     if(icons == nullptr)
     {
-        showMsgBox("Can't find icons");
+        showMsgBox(tr("Can't find icons"));
         QTimer::singleShot(0, this, SLOT(close())); // TODO: this don't close the window
     }
     for(QString el : iconNames)
@@ -67,7 +67,7 @@ void EditTable::saveChanges()
     if(ui->nameEdit->text().size() <= 0)
     {
         QMessageBox msg;
-        msg.setText("Field must be not empty");
+        msg.setText(tr("Field must be not empty"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;
@@ -81,7 +81,7 @@ void EditTable::saveChanges()
 
     if(ui->nameEdit->text().size() == 0)
     {
-        showMsgBox("Line must be not null!");
+        showMsgBox(tr("Line must be not empty"));
         return;
     }
 
