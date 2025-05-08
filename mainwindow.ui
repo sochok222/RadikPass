@@ -367,9 +367,18 @@
     <addaction name="separator"/>
     <addaction name="actionConfigure_Columns"/>
    </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="actionEnglish"/>
+    <addaction name="actionUkrainian"/>
+    <addaction name="actionGerman"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEntry"/>
    <addaction name="menuViev"/>
+   <addaction name="menuLanguage"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew">
@@ -445,6 +454,21 @@
   <action name="actionCopyUrl">
    <property name="text">
     <string>Copy Url</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionUkrainian">
+   <property name="text">
+    <string>Ukrainian</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="text">
+    <string>German</string>
    </property>
   </action>
  </widget>

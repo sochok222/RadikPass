@@ -26,5 +26,8 @@
         <file>icons/TablesOrRows/programming.png</file>
         <file>icons/TablesOrRows/key.png</file>
         <file>icons/TablesOrRows/office.png</file>
+        <file>Translations/en.ts</file>
+        <file>Translations/ge.ts</file>
+        <file>Translations/uk.ts</file>
     </qresource>
 </RCC>

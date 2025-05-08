@@ -49,6 +49,16 @@ bool checkIfTableExists(const std::vector<QString> allTables, const QString newT
 void AddTable::on_addTableButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
+
+    if(ui->nameEdit->text().size() <= 0)
+    {
+        QMessageBox msg;
+        msg.setText("Field must be not empty");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+        return;
+    }
+
     QSqlQuery qry(*db);
 
     QString tableName = ui->nameEdit->text();
