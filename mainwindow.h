@@ -57,7 +57,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "");
+    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr);
     ~MainWindow();
 
 private slots:
@@ -82,7 +82,7 @@ private:
     QByteArray key = 0;
     CellDelegate *maskColumn = new CellDelegate;
     bool isChanged = false;
-    QTranslator translator;
+    QTranslator *translator;
 
 public slots:
     void customMenuRequested(QPoint pos);

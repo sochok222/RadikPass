@@ -50,21 +50,14 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
 }
 
 
-MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey)
+MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , key(MasterKey)
+    , translator(translator)
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
     ui->setupUi(this);
-
-    if(!settings.value("Language").isNull() && settings.value("Language") != "")
-    {
-        if(settings.value("Language") == "uk")
-            setUkrainianLanguage();
-        else if(settings.value("Language") == "en")
-            setEnglishLanguage();
-    }else settings.setValue("Language", "en"); // Default language is english
 
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -809,13 +802,13 @@ void MainWindow::setUkrainianLanguage()
 {
     qDebug() << Q_FUNC_INFO;
     settings.setValue("Language", "uk");
-    qApp->removeTranslator(&translator); // remove the old translator
+    qApp->removeTranslator(translator); // remove the old translator
 
     // load the new translator
     QString path = QApplication::applicationDirPath();
     path.append("/Translations/");
-    if(translator.load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
-        qApp->installTranslator(&translator);
+    if(translator->load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+        qApp->installTranslator(translator);
     else
     {
         qDebug() << "Can't load ukrainian translation";
@@ -831,6 +824,6 @@ void MainWindow::setEnglishLanguage()
 {
     qDebug() << Q_FUNC_INFO;
     settings.setValue("Language", "en");
-    qApp->removeTranslator(&translator); // Just reset language, english language is native for this program
+    qApp->removeTranslator(translator); // Just reset language, english language is native for this program
     ui->retranslateUi(this);
 }

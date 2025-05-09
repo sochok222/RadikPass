@@ -6,6 +6,10 @@ OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result)
     , ui(new Ui::OpenDatabase)
 {
     ui->setupUi(this);
+
+    ui->helpButton->setAutoDefault(false);
+    ui->okButton->setDefault(true);
+
     ui->databasePathLabel->setText(settings.value("Last").toString());
     masterPassword = result;
     QSettings setting("AlexRadik", "RadiPass");

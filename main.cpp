@@ -26,7 +26,32 @@ int main(int argc, char *argv[])
     qDebug() << Q_FUNC_INFO;
     QApplication a(argc, argv);
 
+    QTranslator *translator = new QTranslator;
+
     QSettings settings = QSettings("AlexRadik", "RadiPass");
+
+    if(!settings.value("Language").isNull() && settings.value("Language") != "")
+    {
+        if(settings.value("Language") == "uk")
+        {
+            qApp->removeTranslator(translator); // remove the old translator
+
+            // load the new translator
+            QString path = QApplication::applicationDirPath();
+            path.append("/Translations/");
+            if(translator->load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+                qApp->installTranslator(translator);
+            else
+            {
+                qDebug() << "Can't load ukrainian translation";
+                QMessageBox msg;
+                msg.setText("Can't load ukrainian translation");
+                msg.setStandardButtons(QMessageBox::Ok);
+                msg.exec();
+            }
+        }
+    }else settings.setValue("Language", "en"); // Default language is english
+
 
     QByteArray key;
     if((!settings.value("Last").isNull() && settings.value("Last").toString() != ""))
@@ -51,7 +76,7 @@ int main(int argc, char *argv[])
         qDebug() << "Can't find last used database";
     }
 
-    MainWindow w(0, key);
+    MainWindow w(0, key, translator);
     w.show();
     return a.exec();
 }
