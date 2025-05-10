@@ -31,7 +31,7 @@ void EditEntry::setup()
     QSqlQuery query(*db);
 
     QString table = model->tableName();
-    QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(table).arg(tableView->currentIndex().row());
+    QString getId = QString("SELECT id FROM [%1] LIMIT 1 OFFSET %2").arg(table).arg(tableView->currentIndex().row());
 
     if(!query.exec(getId))
     {
@@ -47,7 +47,7 @@ void EditEntry::setup()
     if(query.next())
         id = query.value(0).toString();
 
-    QString loadData = QString("SELECT * FROM %1 WHERE id = %2").arg(table).arg(id);
+    QString loadData = QString("SELECT * FROM [%1] WHERE id = %2").arg(table).arg(id);
     if(!query.exec(loadData))
     {
         QMessageBox msg;
@@ -83,7 +83,7 @@ void EditEntry::on_writeButton_clicked()
         QSqlQuery query(*db);
         QString table = model->tableName();
 
-        QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(table).arg(tableView->currentIndex().row());
+        QString getId = QString("SELECT id FROM [%1] LIMIT 1 OFFSET %2").arg(table).arg(tableView->currentIndex().row());
         query.prepare(getId);
         if(!query.exec())
         {
@@ -93,7 +93,7 @@ void EditEntry::on_writeButton_clicked()
         QString id = query.value(0).toString();
 
 
-        QString statement = QString("UPDATE %1 SET Title = :title, "
+        QString statement = QString("UPDATE [%1] SET Title = :title, "
                                                     "[User Name] = :username, "
                                                     "Password = :password, "
                                                     "URL = :url, "
