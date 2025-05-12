@@ -5,6 +5,7 @@
 #include <QTableWidgetItem>
 #include <QPainter>
 #include <QStyledItemDelegate>
+#include <QTranslator>
 #include <qsqlrecord.h>
 
 DatabaseLoader::DatabaseLoader() {}
@@ -30,7 +31,7 @@ bool DatabaseLoader::createBackup(QSqlDatabase *db)
 
     if(!tmp.open())
     {
-        showMsgBox("Can't open temporary file\nFunc: " Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't open temporary file\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 
@@ -42,13 +43,13 @@ bool DatabaseLoader::createBackup(QSqlDatabase *db)
     query.bindValue(":path", backupPath);
     if(!query.exec())
     {
-        showMsgBox("Can't attach temporary file\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't attach temporary file\nError: ") + query.lastError().text() + QObject::tr("Can't load data to temporary file\nError: " ) + Q_FUNC_INFO);
         return false;
     }
 
     query.prepare("SELECT name, sql FROM main.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
     if (!query.exec()) {
-        showMsgBox("Can't load data to temporary file\nError: " + query.lastError().text() + "\nFunc: "+Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't load data to temporary file\nError: " ) + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 
@@ -59,13 +60,13 @@ bool DatabaseLoader::createBackup(QSqlDatabase *db)
 
         QSqlQuery createQry(*db);
         if (!createQry.exec(createSQL)) {
-            showMsgBox("Create query error\nDeleting backup file\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+            showMsgBox(QObject::tr("Create query error\nDeleting backup file\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
             return false;
         }
 
         QString copySQL = QString("INSERT INTO TempDb.[%1] SELECT * FROM [%1]").arg(tableName);
         if (!createQry.exec(copySQL)) {
-            showMsgBox("Failed to copy data\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+            showMsgBox(QObject::tr("Failed to copy data\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
         } else {
             qDebug() << "Table" << tableName << "copied.";
         }
@@ -76,7 +77,7 @@ bool DatabaseLoader::createBackup(QSqlDatabase *db)
     query.prepare("DETACH DATABASE TempDb");
     if(!query.exec())
     {
-        showMsgBox("Can't detach tempDb database\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't detach tempDb database\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
     }
     return true;
 }
@@ -89,13 +90,13 @@ bool DatabaseLoader::loadBackup(QSqlDatabase *db)
     query.bindValue(":path", backupPath);
     if(!query.exec())
     {
-        showMsgBox("Can't attach temporary file\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't attach temporary file\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 
     query.prepare("SELECT name, sql FROM TempDb.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
     if (!query.exec()) {
-        showMsgBox("Can't load data to temporary file\nError: " + query.lastError().text() + "\nFunc: "+Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't load data to temporary file\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") +Q_FUNC_INFO);
         return false;
     }
 
@@ -106,13 +107,13 @@ bool DatabaseLoader::loadBackup(QSqlDatabase *db)
 
         QSqlQuery createQry(*db);
         if (!createQry.exec(createSQL)) {
-            showMsgBox("Create query error\nDeleting backup file\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+            showMsgBox(QObject::tr("Create query error\nDeleting backup file\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
             return false;
         }
 
         QString copySQL = QString("INSERT INTO main.[%1] SELECT * FROM TempDb.[%1]").arg(tableName);
         if (!createQry.exec(copySQL)) {
-            showMsgBox("Failed to copy data\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+            showMsgBox(QObject::tr("Failed to copy data\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
         }
     }
 
@@ -121,7 +122,7 @@ bool DatabaseLoader::loadBackup(QSqlDatabase *db)
     query.prepare("DETACH DATABASE TempDb");
     if(!query.exec())
     {
-        showMsgBox("Can't detach tempDb database\nError: " + query.lastError().text() + "\nFunc: " + Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't detach tempDb database\nError: ") + query.lastError().text() + QObject::tr("\nFunc: ") + Q_FUNC_INFO);
     }
 
     return true;
@@ -134,20 +135,20 @@ bool DatabaseLoader::deleteBackup(QSqlDatabase *db)
 
     if(!file.open(QIODevice::WriteOnly))
     {
-        showMsgBox("Can't open temporary file\nFunc: " Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't open temporary file\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 
     if(!file.write(zeroes))
     {
-        showMsgBox("Can't write zeroes to temporary file\nFunc: " Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't write zeroes to temporary file\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 
     file.close();
     if(!file.remove())
     {
-        showMsgBox("Can't delete temporary file\nFunc: " Q_FUNC_INFO);
+        showMsgBox(QObject::tr("Can't delete temporary file\nFunc: ") + Q_FUNC_INFO);
         return false;
     }
 

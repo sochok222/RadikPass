@@ -25,7 +25,7 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
     ui->comboBox->setCurrentIndex(iconNames.indexOf("bitcoin"));
 
     ui->nameEdit->setMaxLength(15);
-    QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ_]+(\s[a-zA-Zа-яА-ЯІіїЇ_]+)+$)");
+    QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
     QValidator *validator = new QRegularExpressionValidator(rx, this);
 
     ui->nameEdit->setValidator(validator);

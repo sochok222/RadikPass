@@ -766,4 +766,86 @@ Try again, please</source>
         <translation>Поле з паролем не має бути пустим.</translation>
     </message>
 </context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../databaseloader.cpp" line="34"/>
+        <location filename="../databaseloader.cpp" line="138"/>
+        <source>Can&apos;t open temporary file
+Func: </source>
+        <translation>Не вдалося відкрити тимчасовий файл
+Функція: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="46"/>
+        <location filename="../databaseloader.cpp" line="93"/>
+        <source>Can&apos;t attach temporary file
+Error: </source>
+        <translation>Не вдалося причепити тимчасовий файл
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="46"/>
+        <location filename="../databaseloader.cpp" line="52"/>
+        <location filename="../databaseloader.cpp" line="99"/>
+        <source>Can&apos;t load data to temporary file
+Error: </source>
+        <translation>Не вдалося завантажити данны в тимчасовий файл
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="52"/>
+        <location filename="../databaseloader.cpp" line="63"/>
+        <location filename="../databaseloader.cpp" line="69"/>
+        <location filename="../databaseloader.cpp" line="80"/>
+        <location filename="../databaseloader.cpp" line="93"/>
+        <location filename="../databaseloader.cpp" line="99"/>
+        <location filename="../databaseloader.cpp" line="110"/>
+        <location filename="../databaseloader.cpp" line="116"/>
+        <location filename="../databaseloader.cpp" line="125"/>
+        <source>
+Func: </source>
+        <translation>
+Функція: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="63"/>
+        <location filename="../databaseloader.cpp" line="110"/>
+        <source>Create query error
+Deleting backup file
+Error: </source>
+        <translation>Не вдалося створити запит в базу даних
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="69"/>
+        <location filename="../databaseloader.cpp" line="116"/>
+        <source>Failed to copy data
+Error: </source>
+        <translation>Не вдалося скопіювати данні
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="80"/>
+        <location filename="../databaseloader.cpp" line="125"/>
+        <source>Can&apos;t detach tempDb database
+Error: </source>
+        <translation>Не вдалося відчипити тимчасову базу даних
+Помилка: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="144"/>
+        <source>Can&apos;t write zeroes to temporary file
+Func: </source>
+        <translation>Не вдалося перезаписати тимчасовий файл нулями
+Функція: </translation>
+    </message>
+    <message>
+        <location filename="../databaseloader.cpp" line="151"/>
+        <source>Can&apos;t delete temporary file
+Func: </source>
+        <translation>Не вдалося видалити тимчасовий файл
+Функція: </translation>
+    </message>
+</context>
 </TS>

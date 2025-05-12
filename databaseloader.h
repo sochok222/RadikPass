@@ -14,6 +14,7 @@
 #include <QString>
 #include <QDebug>
 #include <QFile>
+#include <QObject>
 #include <QDir>
 
 class DatabaseLoader
