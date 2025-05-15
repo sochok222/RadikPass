@@ -413,301 +413,326 @@ Error: </source>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="308"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="334"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="345"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="335"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="346"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="345"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="336"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="347"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="337"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="348"/>
         <source>Viev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="372"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="338"/>
+        <location filename="../mainwindow.ui" line="365"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="349"/>
+        <source>Color theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="377"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="350"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="386"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="309"/>
+        <location filename="../mainwindow.ui" line="391"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="391"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
-        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.ui" line="396"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="319"/>
+        <location filename="../mainwindow.cpp" line="274"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="396"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
+        <location filename="../mainwindow.ui" line="401"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="320"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="401"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
-        <location filename="../mainwindow.cpp" line="236"/>
-        <location filename="../mainwindow.cpp" line="272"/>
+        <location filename="../mainwindow.ui" line="406"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="321"/>
+        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="299"/>
         <source>Copy User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="406"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
-        <location filename="../mainwindow.cpp" line="237"/>
-        <location filename="../mainwindow.cpp" line="273"/>
+        <location filename="../mainwindow.ui" line="411"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="322"/>
+        <location filename="../mainwindow.cpp" line="264"/>
+        <location filename="../mainwindow.cpp" line="300"/>
         <source>Copy Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="411"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
+        <location filename="../mainwindow.ui" line="416"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="323"/>
         <source>Add Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="416"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
+        <location filename="../mainwindow.ui" line="421"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="324"/>
         <source>Edit Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="421"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
+        <location filename="../mainwindow.ui" line="426"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="325"/>
         <source>Delete Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="426"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
+        <location filename="../mainwindow.ui" line="431"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="326"/>
         <source>Duplicate Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="431"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
+        <location filename="../mainwindow.ui" line="436"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
         <source>Change Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="436"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="319"/>
-        <source>Change color scheme</source>
+        <location filename="../mainwindow.ui" line="476"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="335"/>
+        <location filename="../mainwindow.cpp" line="125"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="481"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="336"/>
+        <location filename="../mainwindow.cpp" line="126"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="486"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="337"/>
+        <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="441"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="320"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
         <source>Show Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="446"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="321"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="329"/>
         <source>Configure Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="451"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="322"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="330"/>
         <source>Open Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="323"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="331"/>
         <source>Copy Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="461"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="324"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="332"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="466"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="325"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="333"/>
         <source>Ukrainian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="471"/>
-        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="326"/>
+        <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="334"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="162"/>
+        <location filename="../mainwindow.cpp" line="124"/>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="189"/>
         <source>Password is uncorrect or database file is damaged
 Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="234"/>
         <source>Title copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="212"/>
+        <location filename="../mainwindow.cpp" line="239"/>
         <source>User Name copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="217"/>
+        <location filename="../mainwindow.cpp" line="244"/>
         <source>Password copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="222"/>
+        <location filename="../mainwindow.cpp" line="249"/>
         <source>Link opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="227"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Notes copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="238"/>
-        <location filename="../mainwindow.cpp" line="274"/>
-        <location filename="../mainwindow.cpp" line="302"/>
-        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="329"/>
+        <location filename="../mainwindow.cpp" line="344"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="239"/>
-        <location filename="../mainwindow.cpp" line="275"/>
+        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>Add new</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="240"/>
-        <location filename="../mainwindow.cpp" line="276"/>
-        <location filename="../mainwindow.cpp" line="300"/>
-        <location filename="../mainwindow.cpp" line="315"/>
+        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="342"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="241"/>
-        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="268"/>
+        <location filename="../mainwindow.cpp" line="304"/>
         <source>Configure colums</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="273"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="316"/>
+        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>Add Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="365"/>
-        <location filename="../mainwindow.cpp" line="419"/>
-        <location filename="../mainwindow.cpp" line="432"/>
+        <location filename="../mainwindow.cpp" line="392"/>
+        <location filename="../mainwindow.cpp" line="446"/>
+        <location filename="../mainwindow.cpp" line="459"/>
         <source>Can&apos;t get row id</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="366"/>
-        <location filename="../mainwindow.cpp" line="379"/>
-        <location filename="../mainwindow.cpp" line="420"/>
-        <location filename="../mainwindow.cpp" line="433"/>
+        <location filename="../mainwindow.cpp" line="393"/>
+        <location filename="../mainwindow.cpp" line="406"/>
+        <location filename="../mainwindow.cpp" line="447"/>
+        <location filename="../mainwindow.cpp" line="460"/>
         <source>Query error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="378"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>Can&apos;t get data from database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="465"/>
+        <location filename="../mainwindow.cpp" line="492"/>
         <source>Delete Table?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="486"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>Can`t delete this table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="491"/>
+        <location filename="../mainwindow.cpp" line="518"/>
         <source>At least one table must exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="535"/>
         <source>Delete row?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
-        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="567"/>
+        <location filename="../mainwindow.cpp" line="647"/>
         <source>Save changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="640"/>
+        <location filename="../mainwindow.cpp" line="667"/>
         <source>Open encrypted database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="653"/>
+        <location filename="../mainwindow.cpp" line="680"/>
         <source>Password is uncorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="679"/>
+        <location filename="../mainwindow.cpp" line="706"/>
         <source>Create new database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="693"/>
+        <location filename="../mainwindow.cpp" line="720"/>
         <source>Can&apos;t create new database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="772"/>
+        <location filename="../mainwindow.cpp" line="799"/>
         <source>Can&apos;t duplicate columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="778"/>
+        <location filename="../mainwindow.cpp" line="805"/>
         <source>Entry duplicated</source>
         <translation type="unfinished"></translation>
     </message>

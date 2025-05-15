@@ -116,9 +116,36 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     // View menu
     ui->actionChange_Language->setIcon(*icons["language"]);
-    ui->actionChange_color_scheme->setIcon(*icons["colorScheme"]);
+
+    ui->menuChange_color_theme->setIcon(*icons["colorScheme"]);
+
+    QActionGroup *colorSchemeGroup = new QActionGroup(this);
+
+    QAction *actionSystem = new QAction(tr("System"));
+    QAction *actionDark = new QAction(tr("Dark"));
+    QAction *actionLight = new QAction(tr("Light"));
+
+    colorSchemeGroup->addAction(actionSystem);
+    colorSchemeGroup->addAction(actionDark);
+    colorSchemeGroup->addAction(actionLight);
+
+    connect(actionSystem, SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
+    connect(actionDark, SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
+    connect(actionLight, SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
+
+    actionSystem->setCheckable(true);
+    actionLight->setCheckable(true);
+    actionDark->setCheckable(true);
+    actionDark->setChecked(true);
+
+    ui->menuChange_color_theme->addAction(actionSystem);
+    ui->menuChange_color_theme->addAction(actionDark);
+    ui->menuChange_color_theme->addAction(actionLight);
+
+
     ui->actionShow_Toolbar->setCheckable(true);
     ui->actionShow_Toolbar->setChecked(true);
+
     ui->actionConfigure_Columns->setIcon(*icons["settings"]);
 
     // Connecting File menu
@@ -826,4 +853,32 @@ void MainWindow::setEnglishLanguage()
     settings.setValue("Language", "en");
     qApp->removeTranslator(translator); // Just reset language, english language is native for this program
     ui->retranslateUi(this);
+}
+
+void MainWindow::setSystemColorTheme()
+{
+    qDebug() << Q_FUNC_INFO;
+
+}
+
+void MainWindow::setDarkColorTheme()
+{
+    qDebug() << Q_FUNC_INFO;
+
+    QFile  styleFile(":/themes/resources/palettes/MaterialDark.qss");
+    styleFile.open(QFile::ReadOnly);
+
+    QString  style(styleFile.readAll());
+    qApp->setStyleSheet(style);
+}
+
+void MainWindow::setLightColorTheme()
+{
+    qDebug() << Q_FUNC_INFO;
+
+    QFile  styleFile(":/themes/resources/palettes/Aqua.qss");
+    styleFile.open(QFile::ReadOnly);
+
+    QString  style(styleFile.readAll());
+    qApp->setStyleSheet(style);
 }

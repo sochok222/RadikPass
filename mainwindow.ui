@@ -360,9 +360,14 @@
     <property name="title">
      <string>Viev</string>
     </property>
+    <widget class="QMenu" name="menuChange_color_theme">
+     <property name="title">
+      <string>Color theme</string>
+     </property>
+    </widget>
     <addaction name="actionChange_Language"/>
     <addaction name="separator"/>
-    <addaction name="actionChange_color_scheme"/>
+    <addaction name="menuChange_color_theme"/>
     <addaction name="actionShow_Toolbar"/>
     <addaction name="separator"/>
     <addaction name="actionConfigure_Columns"/>
@@ -431,11 +436,6 @@
     <string>Change Language</string>
    </property>
   </action>
-  <action name="actionChange_color_scheme">
-   <property name="text">
-    <string>Change color scheme</string>
-   </property>
-  </action>
   <action name="actionShow_Toolbar">
    <property name="text">
     <string>Show Toolbar</string>
@@ -469,6 +469,21 @@
   <action name="actionLanguageGerman">
    <property name="text">
     <string>German</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDefault">
+   <property name="text">
+    <string>Default</string>
    </property>
   </action>
  </widget>

@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         icons.qrc
 
         edittable.h edittable.cpp edittable.ui
+        themes.qrc
 
     )
 # Define target properties for Android with Qt 6 as:

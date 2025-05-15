@@ -106,6 +106,9 @@ public slots:
     void saveAll();
     void setUkrainianLanguage();
     void setEnglishLanguage();
+    void setSystemColorTheme();
+    void setDarkColorTheme();
+    void setLightColorTheme();
 
 private: // Context menu
     QScopedPointer<QMenu> mainContextMenu;

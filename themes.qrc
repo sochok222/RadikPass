@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/themes">
+        <file>resources/palettes/AMOLED.qss</file>
+        <file>resources/palettes/Aqua.qss</file>
+        <file>resources/palettes/ConsoleStyle.qss</file>
+        <file>resources/palettes/ElegantDark.qss</file>
+        <file>resources/palettes/MacOS.qss</file>
+        <file>resources/palettes/ManjaroMix.qss</file>
+        <file>resources/palettes/MaterialDark.qss</file>
+        <file>resources/palettes/NeonButtons.qss</file>
+        <file>resources/palettes/Ubuntu.qss</file>
+    </qresource>
+</RCC>
