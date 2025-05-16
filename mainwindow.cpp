@@ -121,9 +121,9 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     QActionGroup *colorSchemeGroup = new QActionGroup(this);
 
-    QAction *actionSystem = new QAction(tr("System"));
-    QAction *actionDark = new QAction(tr("Dark"));
-    QAction *actionLight = new QAction(tr("Light"));
+    QAction *actionSystem = new QAction("System");
+    QAction *actionDark = new QAction("Dark");
+    QAction *actionLight = new QAction("Light");
 
     colorSchemeGroup->addAction(actionSystem);
     colorSchemeGroup->addAction(actionDark);
@@ -858,14 +858,13 @@ void MainWindow::setEnglishLanguage()
 void MainWindow::setSystemColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
-
 }
 
 void MainWindow::setDarkColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/palettes/MaterialDark.qss");
+    QFile  styleFile(":/themes/resources/palettes/darkstyle.qss");
     styleFile.open(QFile::ReadOnly);
 
     QString  style(styleFile.readAll());
@@ -876,9 +875,11 @@ void MainWindow::setLightColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/palettes/Aqua.qss");
+    QFile  styleFile(":/themes/resources/palettes/mylightstyle.qss");
     styleFile.open(QFile::ReadOnly);
 
     QString  style(styleFile.readAll());
     qApp->setStyleSheet(style);
+
+
 }

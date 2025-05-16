@@ -9,5 +9,8 @@
         <file>resources/palettes/MaterialDark.qss</file>
         <file>resources/palettes/NeonButtons.qss</file>
         <file>resources/palettes/Ubuntu.qss</file>
+        <file>resources/palettes/darkstyle.qss</file>
+        <file>resources/palettes/lightstyle.qss</file>
+        <file>resources/palettes/mylightstyle.qss</file>
     </qresource>
 </RCC>

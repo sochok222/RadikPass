@@ -524,14 +524,12 @@ Error: </source>
     <message>
         <location filename="../mainwindow.ui" line="476"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="335"/>
-        <location filename="../mainwindow.cpp" line="125"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="481"/>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="336"/>
-        <location filename="../mainwindow.cpp" line="126"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
@@ -586,11 +584,6 @@ Error: </source>
         <location filename="../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="334"/>
         <source>German</source>
         <translation>Німецька</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="124"/>
-        <source>System</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="189"/>

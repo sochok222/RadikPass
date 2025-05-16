@@ -20,7 +20,6 @@ set(TS_FILES
   Translations/en.ts
 )
 
-qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 set(PROJECT_SOURCES
         main.cpp
@@ -30,7 +29,7 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+
     qt_add_executable(fileEncryption
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
