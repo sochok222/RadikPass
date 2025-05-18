@@ -42,11 +42,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         editentry.h editentry.cpp editentry.ui
         celldelegate.h
         configurecolumns.h configurecolumns.cpp configurecolumns.ui
-        icons.qrc
+
 
         edittable.h edittable.cpp edittable.ui
-        themes.qrc
 
+        resources.qrc
+        iconloader.h iconloader.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET fileEncryption APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

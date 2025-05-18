@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
             // load the new translator
             QString path = QApplication::applicationDirPath();
             path.append("/Translations/");
-            if(translator->load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+            if(translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
                 qApp->installTranslator(translator);
             else
             {

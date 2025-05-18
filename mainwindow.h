@@ -22,6 +22,7 @@
 #include <QTemporaryFile>
 #include <QSqlTableModel>
 #include <openssl/evp.h>
+#include "iconloader.h"
 #include <QActionGroup>
 #include <QProgressBar>
 #include "editentry.h"
@@ -57,7 +58,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr);
+    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr, QString theme = "dark");
     ~MainWindow();
 
 private slots:
@@ -83,6 +84,7 @@ private:
     CellDelegate *maskColumn = new CellDelegate;
     bool isChanged = false;
     QTranslator *translator;
+    QString theme;
 
 public slots:
     void customMenuRequested(QPoint pos);

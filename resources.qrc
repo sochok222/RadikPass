@@ -1,0 +1,64 @@
+<RCC>
+    <qresource prefix="/icons/dark">
+        <file>resources/icons/dark/add.png</file>
+        <file>resources/icons/dark/card.png</file>
+        <file>resources/icons/dark/close.png</file>
+        <file>resources/icons/dark/color.png</file>
+        <file>resources/icons/dark/copy.png</file>
+        <file>resources/icons/dark/create.png</file>
+        <file>resources/icons/dark/crypto.png</file>
+        <file>resources/icons/dark/duplicate.png</file>
+        <file>resources/icons/dark/edit.png</file>
+        <file>resources/icons/dark/entry.png</file>
+        <file>resources/icons/dark/game.png</file>
+        <file>resources/icons/dark/house.png</file>
+        <file>resources/icons/dark/key.png</file>
+        <file>resources/icons/dark/language.png</file>
+        <file>resources/icons/dark/link.png</file>
+        <file>resources/icons/dark/money.png</file>
+        <file>resources/icons/dark/net.png</file>
+        <file>resources/icons/dark/office.png</file>
+        <file>resources/icons/dark/open.png</file>
+        <file>resources/icons/dark/openBrowser.png</file>
+        <file>resources/icons/dark/pc.png</file>
+        <file>resources/icons/dark/programming.png</file>
+        <file>resources/icons/dark/settings.png</file>
+        <file>resources/icons/dark/trash.png</file>
+        <file>resources/icons/dark/user.png</file>
+    </qresource>
+    <qresource prefix="/icons/light">
+        <file>resources/icons/light/add.png</file>
+        <file>resources/icons/light/bitcoin.png</file>
+        <file>resources/icons/light/card.png</file>
+        <file>resources/icons/light/close.png</file>
+        <file>resources/icons/light/colorScheme.png</file>
+        <file>resources/icons/light/copy.png</file>
+        <file>resources/icons/light/createNew.png</file>
+        <file>resources/icons/light/duplicate.png</file>
+        <file>resources/icons/light/edit.png</file>
+        <file>resources/icons/light/entry.png</file>
+        <file>resources/icons/light/game.png</file>
+        <file>resources/icons/light/house.png</file>
+        <file>resources/icons/light/key.png</file>
+        <file>resources/icons/light/language.png</file>
+        <file>resources/icons/light/money.png</file>
+        <file>resources/icons/light/net.png</file>
+        <file>resources/icons/light/office.png</file>
+        <file>resources/icons/light/open.png</file>
+        <file>resources/icons/light/openUrl.png</file>
+        <file>resources/icons/light/pc.png</file>
+        <file>resources/icons/light/programming.png</file>
+        <file>resources/icons/light/setting.png</file>
+        <file>resources/icons/light/trash.png</file>
+        <file>resources/icons/light/url.png</file>
+        <file>resources/icons/light/user.png</file>
+    </qresource>
+    <qresource prefix="/translations">
+        <file>resources/translations/en.qm</file>
+        <file>resources/translations/uk.qm</file>
+    </qresource>
+    <qresource prefix="/themes">
+        <file>resources/themes/dark.qss</file>
+        <file>resources/themes/light.qss</file>
+    </qresource>
+</RCC>

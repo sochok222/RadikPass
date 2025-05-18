@@ -50,11 +50,12 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
 }
 
 
-MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator)
+MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , key(MasterKey)
     , translator(translator)
+    , theme(theme)
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
     ui->setupUi(this);
@@ -71,11 +72,11 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->tableView->verticalHeader()->setVisible(false);
 
     // Setting icons to toolbar
-    ui->buttonOpen->setIcon(*icons["open"]);
-    ui->buttonNew->setIcon(*icons["createNew"]);
-    ui->buttonAddEntry->setIcon(*icons["add"]);
-    ui->buttonCopyUsername->setIcon(*icons["user"]);
-    ui->buttonCopyPassword->setIcon(*icons["key"]);
+    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
+    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
     ui->buttonDeleteEntry->setIcon(*icons["trash"]);
 
     // Setting hints to toolbar
@@ -834,7 +835,7 @@ void MainWindow::setUkrainianLanguage()
     // load the new translator
     QString path = QApplication::applicationDirPath();
     path.append("/Translations/");
-    if(translator->load(":/Translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+    if(translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
         qApp->installTranslator(translator);
     else
     {
@@ -864,10 +865,12 @@ void MainWindow::setDarkColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/palettes/darkstyle.qss");
+    QFile  styleFile(":/themes/resources/themes/dark.qss");
     styleFile.open(QFile::ReadOnly);
 
     QString  style(styleFile.readAll());
+    styleFile.close();
+
     qApp->setStyleSheet(style);
 }
 
@@ -875,11 +878,11 @@ void MainWindow::setLightColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/palettes/mylightstyle.qss");
+    QFile  styleFile(":/themes/resources/themes/light.qss");
     styleFile.open(QFile::ReadOnly);
 
     QString  style(styleFile.readAll());
+    styleFile.close();
+
     qApp->setStyleSheet(style);
-
-
 }
