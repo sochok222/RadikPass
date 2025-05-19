@@ -75,7 +75,7 @@ void MainWindow::loadIcons()
     ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
     ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
     ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
-    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::game, theme));
+    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::edit, theme));
     ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
     ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
 
@@ -898,6 +898,8 @@ void MainWindow::setSystemColorTheme()
         qApp->setStyleSheet(style);
     }
     settings.setValue("theme", "system");
+    setIconsInListWidget();
+    loadIcons();
 }
 
 void MainWindow::setDarkColorTheme()
