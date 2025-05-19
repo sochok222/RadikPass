@@ -29,7 +29,8 @@ enum class Icon {
     programming,
     settings,
     trash,
-    user
+    user,
+    save
 };
 
 class IconLoader

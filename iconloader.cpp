@@ -81,6 +81,9 @@ QIcon IconLoader::getIcon(const Icon &ico, const QString theme)
     case(Icon::user):
         type = "user";
         break;
+    case(Icon::save):
+        type = "save";
+        break;
     default:
         break;
     }

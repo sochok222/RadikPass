@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QStyleHints>
 #include <QFile>
 #include <QSettings>
 #include "opendatabase.h"
@@ -53,6 +54,58 @@ int main(int argc, char *argv[])
     }else settings.setValue("Language", "en"); // Default language is english
 
 
+    QString theme;
+    if(settings.value("theme") == "system" || (settings.value("theme").isNull() || settings.value("theme") == ""))
+    {
+        if(QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+        {
+            QFile  styleFile(":/themes/resources/themes/dark.qss");
+            styleFile.open(QFile::ReadOnly);
+
+            theme = "dark";
+
+            QString  style(styleFile.readAll());
+            styleFile.close();
+
+            qApp->setStyleSheet(style);
+        }else {
+            QFile  styleFile(":/themes/resources/themes/light.qss");
+            styleFile.open(QFile::ReadOnly);
+
+            theme = "light";
+
+            QString  style(styleFile.readAll());
+            styleFile.close();
+
+            qApp->setStyleSheet(style);
+        }
+    }else
+    {
+        if(settings.value("theme") == "dark")
+        {
+            QFile  styleFile(":/themes/resources/themes/dark.qss");
+            styleFile.open(QFile::ReadOnly);
+
+            theme = "dark";
+
+            QString  style(styleFile.readAll());
+            styleFile.close();
+
+            qApp->setStyleSheet(style);
+        }else {
+            QFile  styleFile(":/themes/resources/themes/light.qss");
+            styleFile.open(QFile::ReadOnly);
+
+            theme = "light";
+
+            QString  style(styleFile.readAll());
+            styleFile.close();
+
+            qApp->setStyleSheet(style);
+        }
+    }
+
+
     QByteArray key;
     if((!settings.value("Last").isNull() && settings.value("Last").toString() != ""))
     {
@@ -76,7 +129,7 @@ int main(int argc, char *argv[])
         qDebug() << "Can't find last used database";
     }
 
-    MainWindow w(0, key, translator);
+    MainWindow w(0, key, translator, theme);
     w.show();
     return a.exec();
 }

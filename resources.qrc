@@ -30,9 +30,10 @@
         <file>resources/icons/dark/openBrowser.png</file>
         <file>resources/icons/dark/pc.png</file>
         <file>resources/icons/dark/programming.png</file>
-        <file>resources/icons/dark/setting.png</file>
+        <file>resources/icons/dark/settings.png</file>
         <file>resources/icons/dark/trash.png</file>
         <file>resources/icons/dark/user.png</file>
+        <file>resources/icons/dark/save.png</file>
     </qresource>
     <qresource prefix="/icons/light">
         <file>resources/icons/light/add.png</file>
@@ -60,5 +61,6 @@
         <file>resources/icons/light/settings.png</file>
         <file>resources/icons/light/trash.png</file>
         <file>resources/icons/light/user.png</file>
+        <file>resources/icons/light/save.png</file>
     </qresource>
 </RCC>

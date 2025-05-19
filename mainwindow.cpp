@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <qstylehints.h>
 
 
 void MainWindow::configureColumns() // Showing or hiding columns in tableView according to settings
@@ -50,6 +51,41 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
 }
 
 
+void MainWindow::loadIcons()
+{
+    // Setting icons to toolbar
+    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::save, theme));
+    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
+    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
+    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+
+
+    // Setting icons to windows toolbar
+    // File menu
+    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
+    // Entry menu
+    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
+    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
+    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
+    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
+    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
+    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::game, theme));
+    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
+    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+
+    // View menu
+    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
+     ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
+    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
+}
+
+
 MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -71,13 +107,6 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->verticalHeader()->setVisible(false);
 
-    // Setting icons to toolbar
-    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
-    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
 
     // Setting hints to toolbar
     ui->buttonNew->setToolTip("New Database");
@@ -97,28 +126,11 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
     connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteRow()));
 
-    // Setting icons to windows toolbar
-    // File menu
-    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
-    // Entry menu
-    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
-    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
-    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
-    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
-    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::game, theme));
-    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
-    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+
 
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
 
-    // View menu
-    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
 
-    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
 
     QActionGroup *colorSchemeGroup = new QActionGroup(this);
 
@@ -137,7 +149,9 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     actionSystem->setCheckable(true);
     actionLight->setCheckable(true);
     actionDark->setCheckable(true);
-    actionDark->setChecked(true);
+    if(settings.value("theme") == "system") actionSystem->setChecked(true);
+    else if(settings.value("theme") == "dark") actionDark->setChecked(true);
+    else if(settings.value("theme") == "light") actionLight->setChecked(true);
 
     ui->menuChange_color_theme->addAction(actionSystem);
     ui->menuChange_color_theme->addAction(actionDark);
@@ -147,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->actionShow_Toolbar->setCheckable(true);
     ui->actionShow_Toolbar->setChecked(true);
 
-    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
+
 
     // Connecting File menu
     connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
@@ -174,9 +188,10 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
             SLOT(customMenuRequested(QPoint)));
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleclicked(QModelIndex)));
 
-
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // Settings cells in QTableView not editable
 
+
+    loadIcons();
 
 
     if(!key.isEmpty()) // If given key from database is not empty
@@ -859,6 +874,30 @@ void MainWindow::setEnglishLanguage()
 void MainWindow::setSystemColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
+
+    if(QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+    {
+        QFile  styleFile(":/themes/resources/themes/dark.qss");
+        styleFile.open(QFile::ReadOnly);
+
+        this->theme = "dark";
+
+        QString  style(styleFile.readAll());
+        styleFile.close();
+
+        qApp->setStyleSheet(style);
+    }else {
+        QFile  styleFile(":/themes/resources/themes/light.qss");
+        styleFile.open(QFile::ReadOnly);
+
+        this->theme = "light";
+
+        QString  style(styleFile.readAll());
+        styleFile.close();
+
+        qApp->setStyleSheet(style);
+    }
+    settings.setValue("theme", "system");
 }
 
 void MainWindow::setDarkColorTheme()
@@ -868,10 +907,16 @@ void MainWindow::setDarkColorTheme()
     QFile  styleFile(":/themes/resources/themes/dark.qss");
     styleFile.open(QFile::ReadOnly);
 
+    this->theme = "dark";
+    settings.setValue("theme", "dark");
+
     QString  style(styleFile.readAll());
     styleFile.close();
 
     qApp->setStyleSheet(style);
+
+    setIconsInListWidget();
+    loadIcons();
 }
 
 void MainWindow::setLightColorTheme()
@@ -882,6 +927,7 @@ void MainWindow::setLightColorTheme()
     styleFile.open(QFile::ReadOnly);
 
     this->theme = "light";
+    settings.setValue("theme", "light");
 
     QString  style(styleFile.readAll());
     styleFile.close();
@@ -889,4 +935,5 @@ void MainWindow::setLightColorTheme()
     qApp->setStyleSheet(style);
 
     setIconsInListWidget();
+    loadIcons();
 }

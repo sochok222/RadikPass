@@ -111,6 +111,7 @@ public slots:
     void setSystemColorTheme();
     void setDarkColorTheme();
     void setLightColorTheme();
+    void loadIcons();
 
 private: // Context menu
     QScopedPointer<QMenu> mainContextMenu;
