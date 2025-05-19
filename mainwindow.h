@@ -123,42 +123,6 @@ private: // Context menu
     QScopedPointer<QAction> actionEdit;
     QScopedPointer<QAction> actionAdd;
     QScopedPointer<QAction> actionCfgColumns;
-
-private: // Icons
-    QIcon *iconTrash = new QIcon(":/icons/trash.png");
-    QIcon *iconAdd = new QIcon(":/icons/add.png");
-    QIcon *iconEdit = new QIcon(":/icons/edit.png");
-    QIcon *iconKey = new QIcon(":/icons/key.png");
-    QIcon *iconCopy = new QIcon(":/icons/copy.png");
-    QIcon *iconUrl = new QIcon(":/icons/url.png");
-    QIcon *iconUser = new QIcon(":/icons/user.png");
-    QIcon *iconOpenUrl = new QIcon(":/icons/openUrl.png");
-    QIcon *iconSettings = new QIcon(":/icons/setting.png");
-    QIcon *iconOpen = new QIcon(":/icons/open.png");
-    QIcon *iconCreateNew = new QIcon(":/icons/createNew.png");
-    QIcon *iconClose = new QIcon(":/icons/close.png");
-    QIcon *iconEntry = new QIcon(":/icons/entry.png");
-    QIcon *iconLanguage = new QIcon(":/icons/language.png");
-    QIcon *iconColorScheme = new QIcon(":/icons/colorScheme.png");
-    QIcon *iconDuplicate = new QIcon(":/icons/duplicate.png");
-
-    QIcon *iconBitcoin = new QIcon(":/icons/TablesOrRows/bitcoin.png");
-    QIcon *iconCard = new QIcon(":/icons/TablesOrRows/card.png");
-    QIcon *iconGame = new QIcon(":/icons/TablesOrRows/game.png");
-    QIcon *iconHouse = new QIcon(":/icons/TablesOrRows/house.png");
-    QIcon *iconMoney = new QIcon(":/icons/TablesOrRows/money.png");
-    QIcon *iconNet = new QIcon(":/icons/TablesOrRows/net.png");
-    QIcon *iconOffice = new QIcon(":/icons/TablesOrRows/office.png");
-    QIcon *iconPc = new QIcon(":/icons/TablesOrRows/pc.png");
-    QIcon *iconProgramming = new QIcon(":/icons/TablesOrRows/programming.png");
-
-    QMap<QString, QIcon*> icons = {{"trash", iconTrash}, {"add", iconAdd}, {"edit", iconEdit}, {"key", iconKey}, {"copy", iconCopy},
-                                    {"url", iconUrl}, {"user", iconUser}, {"openUrl", iconOpenUrl}, {"settings", iconSettings},
-                                    {"open", iconOpen}, {"createNew", iconCreateNew}, {"close", iconClose}, {"entry", iconEntry},
-                                    {"language", iconLanguage}, {"colorScheme", iconColorScheme}, {"duplicate", iconDuplicate},
-                                    {"bitcoin", iconBitcoin}, {"card", iconCard}, {"game", iconGame}, {"house", iconHouse},
-                                    {"money", iconMoney}, {"net", iconNet}, {"office", iconOffice}, {"pc", iconPc},
-                                    {"programming", iconProgramming}};
 };
 
 

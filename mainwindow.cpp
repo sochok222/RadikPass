@@ -77,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
     ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
     ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->buttonDeleteEntry->setIcon(*icons["trash"]);
+    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
 
     // Setting hints to toolbar
     ui->buttonNew->setToolTip("New Database");
@@ -99,26 +99,26 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     // Setting icons to windows toolbar
     // File menu
-    ui->actionNew->setIcon(*icons["createNew"]);
-    ui->actionOpen->setIcon(*icons["open"]);
-    ui->actionClose->setIcon(*icons["close"]);
+    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
     // Entry menu
-    ui->actionCopy_User_Name->setIcon(*icons["user"]);
-    ui->actionCopy_Password->setIcon(*icons["key"]);
-    ui->menuUrl->setIcon(*icons["url"]);
-    ui->actionOpenUrl->setIcon(*icons["openUrl"]);
-    ui->actionCopyUrl->setIcon(*icons["copy"]);
-    ui->actionAdd_Entry->setIcon(*icons["entry"]);
-    ui->actionEdit_Entry->setIcon(*icons["edit"]);
-    ui->actionDuplicate_Entry->setIcon(*icons["duplicate"]);
-    ui->actionDelete_Entry->setIcon(*icons["trash"]);
+    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
+    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
+    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
+    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
+    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
+    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::game, theme));
+    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
+    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
 
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
 
     // View menu
-    ui->actionChange_Language->setIcon(*icons["language"]);
+    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
 
-    ui->menuChange_color_theme->setIcon(*icons["colorScheme"]);
+    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
 
     QActionGroup *colorSchemeGroup = new QActionGroup(this);
 
@@ -147,7 +147,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->actionShow_Toolbar->setCheckable(true);
     ui->actionShow_Toolbar->setChecked(true);
 
-    ui->actionConfigure_Columns->setIcon(*icons["settings"]);
+    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
 
     // Connecting File menu
     connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
@@ -261,18 +261,18 @@ void MainWindow::customMenuRequested(QPoint pos){
     if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) // If mouse cursor is on tableView and on row
     {
         mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
-        actionCopyUsername.reset(new QAction(*icons["user"], tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(*icons["key"], tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this)); // Resetting QAction *actionEdit object
-        actionAdd.reset(new QAction(*icons["entry"], tr("Add new"), this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this)); // Resetting QAction *actionDelete object
-        actionCfgColumns.reset(new QAction(*icons["settings"], tr("Configure colums"), this));
+        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
+        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
+        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this)); // Resetting QAction *actionEdit object
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
+        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this)); // Resetting QAction *actionDelete object
+        actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
 
         // Setuping list of action to url
         subMenuUrl.reset(new QMenu("URL", this));
-        subMenuUrl->setIcon(*icons["url"]);
-        actionCopyUrl.reset(new QAction(*icons["copy"], tr("Copy"), this));
-        actionOpenUrl.reset(new QAction(*icons["openUrl"], tr("Open"), this));
+        subMenuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
+        actionCopyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
+        actionOpenUrl.reset(new QAction(IconLoader::getIcon(Icon::openBrowser, theme), tr("Open"), this));
         subMenuUrl->addAction(actionCopyUrl.data());
         subMenuUrl->addAction(actionOpenUrl.data());
 
@@ -297,12 +297,12 @@ void MainWindow::customMenuRequested(QPoint pos){
         mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     }else if(ui->tableView->underMouse()) {
         mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
-        actionCopyUsername.reset(new QAction(*icons["user"], tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(*icons["key"], tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this)); // Resetting QAction *actionEdit object
-        actionAdd.reset(new QAction(*icons["entry"], tr("Add new"), this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this)); // Resetting QAction *actionDelete object
-        actionCfgColumns.reset(new QAction(*icons["settings"], tr("Configure colums"), this));
+        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
+        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
+        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this)); // Resetting QAction *actionEdit object
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
+        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this)); // Resetting QAction *actionDelete object
+        actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
         actionCopyUsername->setDisabled(true);
         actionCopyPassword->setDisabled(true);
         actionDelete->setDisabled(true);
@@ -325,9 +325,9 @@ void MainWindow::customMenuRequested(QPoint pos){
     }else if(ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) // If mouse cursor is at listWidget and not on tableView
     {
         mainContextMenu.reset(new QMenu(this));
-        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this));
-        actionAdd.reset(new QAction(*icons["add"], tr("Add Table"), this));
-        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this));
+        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
+        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
 
         connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable()));
@@ -340,9 +340,9 @@ void MainWindow::customMenuRequested(QPoint pos){
     }else if(ui->listWidget->underMouse())
     {
         mainContextMenu.reset(new QMenu(this));
-        actionDelete.reset(new QAction(*icons["trash"], tr("Delete"), this));
-        actionAdd.reset(new QAction(*icons["add"], tr("Add Table"), this));
-        actionEdit.reset(new QAction(*icons["edit"], tr("Edit"), this));
+        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
+        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
         actionDelete->setDisabled(true);
         actionEdit->setDisabled(true);
 
@@ -597,7 +597,7 @@ void MainWindow::createTable()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    AddTable *addTable = new AddTable(this, &db, &tables, &icons); // This dialog will create new table in QSqlDatabase object and append new table to tables list
+    AddTable *addTable = new AddTable(this, &db, &tables, theme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
     addTable->exec(); // Showing dialog
     delete addTable;
 
@@ -769,8 +769,8 @@ void MainWindow::setIconsInListWidget()
         if(!query.exec())
             qDebug() << query.lastError();
         query.next();
-        QString icon = query.value(0).toString();
-        ui->listWidget->item(i)->setIcon(*icons[icon]);
+
+        ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png"));
     }
 }
 
@@ -778,7 +778,7 @@ void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    EditTable *editTable = new EditTable(this, &db, &icons, ui->listWidget->currentItem()->text(), ui->listWidget);
+    EditTable *editTable = new EditTable(this, &db, nullptr, ui->listWidget->currentItem()->text(), ui->listWidget);
     editTable->exec();
     delete editTable;
     isChanged = true;
@@ -881,8 +881,12 @@ void MainWindow::setLightColorTheme()
     QFile  styleFile(":/themes/resources/themes/light.qss");
     styleFile.open(QFile::ReadOnly);
 
+    this->theme = "light";
+
     QString  style(styleFile.readAll());
     styleFile.close();
 
     qApp->setStyleSheet(style);
+
+    setIconsInListWidget();
 }

@@ -6,6 +6,9 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QDialog>
+#include "iconloader.h"
+#include <QDirIterator>
+#include <QStandardPaths>
 #include <QString>
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -15,6 +18,8 @@
 #include <QPointer>
 #include <qabstractitemdelegate.h>
 #include <QTranslator>
+#include <QDataWidgetMapper>
+#include <QStandardItemModel>
 
 
 namespace Ui {
@@ -26,7 +31,7 @@ class AddTable : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, QMap<QString, QIcon*> *icons = nullptr);
+    explicit AddTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, QString theme = "");
     ~AddTable();
 
 private slots:
@@ -39,9 +44,11 @@ private:
     Ui::AddTable *ui;
     QSqlDatabase *db;
     std::vector<QString> *tables;
-    QString icon = "key";
     QMap<QString, QIcon*> *icons;
-    QVector<QString> iconNames = {"entry", "trash", "key", "url", "user", "settings", "bitcoin", "card", "game", "house", "money", "net", "office", "pc", "programming"};
+    QString theme;
+    void loadIcons();
+    QDataWidgetMapper *mapper = new QDataWidgetMapper();
+    QStandardItemModel *model = new QStandardItemModel();
 };
 
 

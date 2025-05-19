@@ -1,12 +1,12 @@
 #include "addtable.h"
 #include "ui_addtable.h"
 
-AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, QMap<QString, QIcon*> *icons)
+AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, QString theme)
     : QDialog(parent)
     , ui(new Ui::AddTable)
     , tables(tables)
     , db(db)
-    , icons(icons)
+    , theme(theme)
 {
     ui->setupUi(this);
     ui->nameEdit->setMaxLength(15);
@@ -23,15 +23,41 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
         msg.exec();
         this->close();
     }
-    for(QString el : iconNames)
-    {
-        ui->comboBox->addItem(*icons->value(el), "");
-    }
+
+    loadIcons();
 }
+
 
 AddTable::~AddTable()
 {
     delete ui;
+}
+
+void AddTable::loadIcons()
+{
+    // Load system icons
+    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user"};
+
+    for(const QString &sysIcon : sysIcons)
+    {
+        QString icon = ":/icons/"+theme+"/resources/icons/"+theme+"/"+sysIcon+".png";
+        ui->comboBox->addItem(QIcon(icon), "");
+        model->appendRow(new QStandardItem(sysIcon));
+    }
+
+    QDirIterator it(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation),{"*.png"}, QDir::Files);
+
+    while(it.hasNext())
+    {
+        QString icon = it.next();
+
+        ui->comboBox->addItem(icon, "");
+        model->appendRow(new QStandardItem(icon));
+    }
+
+    mapper->setModel(model);
+    mapper->toFirst();
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
 
@@ -87,7 +113,8 @@ void AddTable::on_addTableButton_clicked()
             msg.exec();
         }
 
-        query.prepare("INSERT INTO TablesSettings ([Table], Icon) VALUES ('"+tableName+"', '"+iconNames[ui->comboBox->currentIndex()]+"')");
+        QString ico(mapper->model()->data(model->index(mapper->currentIndex(), 0)).toString());
+        query.prepare("INSERT INTO TablesSettings ([Table], Icon) VALUES ('"+tableName+"', '"+ico+"')");
 
         if(!query.exec())
         {
