@@ -7,6 +7,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     , ui(new Ui::ConfigureColumns)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Configure Columns");
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setRowCount(5);
     ui->tableWidget->setColumnCount(2);
@@ -15,6 +16,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes")});
     ui->tableWidget->setVerticalHeaderLabels(vertical);
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
 
     setup();

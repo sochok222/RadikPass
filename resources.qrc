@@ -63,4 +63,7 @@
         <file>resources/icons/light/user.png</file>
         <file>resources/icons/light/save.png</file>
     </qresource>
+    <qresource prefix="/programImages">
+        <file>resources/program_images/windowIcon.svg</file>
+    </qresource>
 </RCC>

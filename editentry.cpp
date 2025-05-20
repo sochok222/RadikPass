@@ -10,6 +10,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
     , model(model)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("Edit Entry"));
     setup();
 }
 

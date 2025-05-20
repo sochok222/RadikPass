@@ -2,90 +2,6 @@
 #include "./ui_mainwindow.h"
 #include <qstylehints.h>
 
-
-void MainWindow::configureColumns() // Showing or hiding columns in tableView according to settings
-{
-    // Bassically ui->tableView->setColumnHidden is false, so I don't need to set it to false if column is need to be shown
-    QStringList columnTitle = settings.value("columnTitle").toStringList();
-    QStringList columnUsername = settings.value("columnUsername").toStringList();
-    QStringList columnPassword = settings.value("columnPassword").toStringList();
-    QStringList columnURL = settings.value("columnURL").toStringList();
-    QStringList columnNotes = settings.value("columnNotes").toStringList();
-
-    ui->tableView->setColumnHidden(0,true); // Column with id of row is always hidden!
-
-    if(columnTitle.value(0) == "shown")
-        ui->tableView->setColumnHidden(1, false);
-    else ui->tableView->setColumnHidden(1, true);
-    if(columnTitle.value(1) == "unmasked")
-        ui->tableView->setItemDelegateForColumn(1, 0);
-    else ui->tableView->setItemDelegateForColumn(1, maskColumn);
-
-    if(columnUsername.value(0) == "shown")
-        ui->tableView->setColumnHidden(2, false);
-    else ui->tableView->setColumnHidden(2, true);
-    if(columnUsername.value(1) == "unmasked")
-        ui->tableView->setItemDelegateForColumn(2, 0);
-    else ui->tableView->setItemDelegateForColumn(2, maskColumn);
-
-    if(columnPassword.value(0) == "shown")
-        ui->tableView->setColumnHidden(3, false);
-    else ui->tableView->setColumnHidden(3, true);
-    if(columnPassword.value(1) == "unmasked")
-        ui->tableView->setItemDelegateForColumn(3, 0);
-    else ui->tableView->setItemDelegateForColumn(3, maskColumn);
-
-    if(columnURL.value(0) == "shown")
-        ui->tableView->setColumnHidden(4, false);
-    else ui->tableView->setColumnHidden(4, true);
-    if(columnURL.value(1) == "unmasked")
-        ui->tableView->setItemDelegateForColumn(4, 0);
-    else ui->tableView->setItemDelegateForColumn(4, maskColumn);
-
-    if(columnNotes.value(0) == "shown")
-        ui->tableView->setColumnHidden(5, false);
-    else ui->tableView->setColumnHidden(5, true);
-    if(columnNotes.value(1) == "unmasked")
-        ui->tableView->setItemDelegateForColumn(5, 0);
-    else ui->tableView->setItemDelegateForColumn(5, maskColumn);
-}
-
-
-void MainWindow::loadIcons()
-{
-    // Setting icons to toolbar
-    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::save, theme));
-    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
-    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
-
-
-    // Setting icons to windows toolbar
-    // File menu
-    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
-    // Entry menu
-    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
-    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
-    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
-    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
-    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::edit, theme));
-    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
-    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
-
-    // View menu
-    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
-     ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
-    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
-}
-
-
 MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -95,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
     ui->setupUi(this);
+
+    setWindowTitle("RadiPass");
 
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -134,9 +52,9 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     QActionGroup *colorSchemeGroup = new QActionGroup(this);
 
-    QAction *actionSystem = new QAction("System");
-    QAction *actionDark = new QAction("Dark");
-    QAction *actionLight = new QAction("Light");
+    QAction *actionSystem = new QAction(tr("System"));
+    QAction *actionDark = new QAction(tr("Dark"));
+    QAction *actionLight = new QAction(tr("Light"));
 
     colorSchemeGroup->addAction(actionSystem);
     colorSchemeGroup->addAction(actionDark);
@@ -224,10 +142,92 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     configureColumns();
     setIconsInListWidget();
 }
-
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::loadIcons()
+{
+    // Setting icons to toolbar
+    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::save, theme));
+    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
+    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
+    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+
+
+    // Setting icons to windows toolbar
+    // File menu
+    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
+    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
+    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
+    // Entry menu
+    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
+    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
+    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
+    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
+    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
+    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
+    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::edit, theme));
+    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
+    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+
+    // View menu
+    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
+    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
+    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
+}
+
+
+void MainWindow::configureColumns() // Showing or hiding columns in tableView according to settings
+{
+    // Bassically ui->tableView->setColumnHidden is false, so I don't need to set it to false if column is need to be shown
+    QStringList columnTitle = settings.value("columnTitle").toStringList();
+    QStringList columnUsername = settings.value("columnUsername").toStringList();
+    QStringList columnPassword = settings.value("columnPassword").toStringList();
+    QStringList columnURL = settings.value("columnURL").toStringList();
+    QStringList columnNotes = settings.value("columnNotes").toStringList();
+
+    ui->tableView->setColumnHidden(0,true); // Column with id of row is always hidden!
+
+    if(columnTitle.value(0) == "shown")
+        ui->tableView->setColumnHidden(1, false);
+    else ui->tableView->setColumnHidden(1, true);
+    if(columnTitle.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(1, 0);
+    else ui->tableView->setItemDelegateForColumn(1, maskColumn);
+
+    if(columnUsername.value(0) == "shown")
+        ui->tableView->setColumnHidden(2, false);
+    else ui->tableView->setColumnHidden(2, true);
+    if(columnUsername.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(2, 0);
+    else ui->tableView->setItemDelegateForColumn(2, maskColumn);
+
+    if(columnPassword.value(0) == "shown")
+        ui->tableView->setColumnHidden(3, false);
+    else ui->tableView->setColumnHidden(3, true);
+    if(columnPassword.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(3, 0);
+    else ui->tableView->setItemDelegateForColumn(3, maskColumn);
+
+    if(columnURL.value(0) == "shown")
+        ui->tableView->setColumnHidden(4, false);
+    else ui->tableView->setColumnHidden(4, true);
+    if(columnURL.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(4, 0);
+    else ui->tableView->setItemDelegateForColumn(4, maskColumn);
+
+    if(columnNotes.value(0) == "shown")
+        ui->tableView->setColumnHidden(5, false);
+    else ui->tableView->setColumnHidden(5, true);
+    if(columnNotes.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(5, 0);
+    else ui->tableView->setItemDelegateForColumn(5, maskColumn);
 }
 
 /// This function checks if file in given path exists
@@ -284,7 +284,7 @@ void MainWindow::customMenuRequested(QPoint pos){
         actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
 
         // Setuping list of action to url
-        subMenuUrl.reset(new QMenu("URL", this));
+        subMenuUrl.reset(new QMenu(tr("URL"), this));
         subMenuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
         actionCopyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
         actionOpenUrl.reset(new QAction(IconLoader::getIcon(Icon::openBrowser, theme), tr("Open"), this));

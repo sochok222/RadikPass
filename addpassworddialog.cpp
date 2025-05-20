@@ -9,6 +9,7 @@ AddPasswordDialog::AddPasswordDialog(QWidget *parent, const QSqlDatabase &db, QS
     , tableName(tableName)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("Add Entry"));
 }
 
 AddPasswordDialog::~AddPasswordDialog()

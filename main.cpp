@@ -25,11 +25,11 @@ bool isFileExists(const QString path)
 int main(int argc, char *argv[])
 {
     qDebug() << Q_FUNC_INFO;
+
     QApplication a(argc, argv);
-
     QTranslator *translator = new QTranslator;
-
     QSettings settings = QSettings("AlexRadik", "RadiPass");
+    qApp->setWindowIcon(QIcon(":/programImages/resources/program_images/windowIcon.svg")); // Set icon for all windows
 
     if(!settings.value("Language").isNull() && settings.value("Language") != "")
     {

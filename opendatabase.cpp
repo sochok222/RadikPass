@@ -6,7 +6,6 @@ OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result)
     , ui(new Ui::OpenDatabase)
 {
     ui->setupUi(this);
-
     ui->helpButton->setAutoDefault(false);
     ui->okButton->setDefault(true);
 
@@ -14,6 +13,7 @@ OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result)
     masterPassword = result;
     QSettings setting("AlexRadik", "RadiPass");
     ui->okButton->setAutoDefault(true);
+    this->setWindowTitle(tr("Open Database"));
 }
 
 OpenDatabase::~OpenDatabase()

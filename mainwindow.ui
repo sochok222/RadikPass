@@ -92,7 +92,7 @@ QAction{
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
       <item>
        <widget class="QPushButton" name="buttonNew">
@@ -185,13 +185,6 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="buttonAddEntry">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -216,13 +209,6 @@ QAction{
         </property>
         <property name="icon">
          <iconset theme="QIcon::ThemeIcon::MailAttachment"/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line_2">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -380,9 +366,7 @@ QAction{
      </property>
     </widget>
     <addaction name="actionChange_Language"/>
-    <addaction name="separator"/>
     <addaction name="menuChange_color_theme"/>
-    <addaction name="actionShow_Toolbar"/>
     <addaction name="separator"/>
     <addaction name="actionConfigure_Columns"/>
    </widget>

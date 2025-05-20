@@ -9,6 +9,7 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
     , theme(theme)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Add Table");
     ui->nameEdit->setMaxLength(15);
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
     QValidator *validator = new QRegularExpressionValidator(rx, this);

@@ -21,6 +21,7 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
     , listWidget(listWidget)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("Edit Table"));
     ui->nameEdit->setText(tableName);
     ui->comboBox->setCurrentIndex(iconNames.indexOf("bitcoin"));
 

@@ -7,6 +7,7 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
     , key(masterPassword)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("Create Database"));
 
     if(path != "")
     {

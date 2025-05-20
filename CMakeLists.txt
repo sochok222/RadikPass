@@ -15,9 +15,9 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql UiTools LinguisToo
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql UiTools LinguistTools Gui)
 
 set(TS_FILES
-  Translations/uk.ts
-  Translations/ge.ts
-  Translations/en.ts
+  resources/translations/uk.ts
+  resources/translations/ge.ts
+  resources/translations/en.ts
 )
 
 
@@ -29,7 +29,7 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-
+    # qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES}) !!!Uncomment only when updating translations, this causes build fails!!!
     qt_add_executable(fileEncryption
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
@@ -64,7 +64,6 @@ else()
     else()
         add_executable(fileEncryption
             ${PROJECT_SOURCES}
-            ${QM_FILES}
         )
     endif()
 endif()
