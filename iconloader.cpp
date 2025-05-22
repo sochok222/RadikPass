@@ -15,8 +15,8 @@ QIcon IconLoader::getIcon(const Icon &ico, const QString theme)
     case(Icon::close):
         type = "close";
         break;
-    case(Icon::colorScheme):
-        type = "colorScheme";
+    case(Icon::color):
+        type = "color";
         break;
     case(Icon::copy):
         type = "copy";

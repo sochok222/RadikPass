@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en" sourcelanguage="en">
 <context>
     <name>AddPasswordDialog</name>
     <message>
@@ -503,6 +503,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="409"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
+        <location filename="../../mainwindow.cpp" line="35"/>
         <location filename="../../mainwindow.cpp" line="280"/>
         <location filename="../../mainwindow.cpp" line="316"/>
         <source>Copy Password</source>
@@ -511,6 +512,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="414"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
+        <location filename="../../mainwindow.cpp" line="33"/>
         <source>Add Entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -523,6 +525,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="424"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
+        <location filename="../../mainwindow.cpp" line="36"/>
         <source>Delete Entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -543,14 +546,14 @@ Error: </source>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
         <location filename="../../mainwindow.cpp" line="56"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dark</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="479"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="329"/>
         <location filename="../../mainwindow.cpp" line="57"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Light</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="484"/>
@@ -671,9 +674,29 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="30"/>
+        <source>New Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="31"/>
+        <source>Open Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="32"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="34"/>
+        <source>Copy Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.cpp" line="55"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">System</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="344"/>
@@ -803,7 +826,7 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../opendatabase.cpp" line="9"/>
+        <location filename="../../opendatabase.cpp" line="16"/>
         <source>Open Database</source>
         <translation type="unfinished"></translation>
     </message>

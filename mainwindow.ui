@@ -365,7 +365,6 @@ QAction{
       <string>Color theme</string>
      </property>
     </widget>
-    <addaction name="actionChange_Language"/>
     <addaction name="menuChange_color_theme"/>
     <addaction name="separator"/>
     <addaction name="actionConfigure_Columns"/>

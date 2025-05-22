@@ -85,7 +85,7 @@ Last query: </source>
         <location filename="../../addtable.ui" line="40"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="120"/>
         <source>Name: </source>
-        <translation>Ім&apos;я:</translation>
+        <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="54"/>
@@ -386,7 +386,7 @@ Error: </source>
         <location filename="../../edittable.ui" line="40"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="121"/>
         <source>Name: </source>
-        <translation>Ім&apos;я:</translation>
+        <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="54"/>
@@ -506,6 +506,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="409"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
+        <location filename="../../mainwindow.cpp" line="35"/>
         <location filename="../../mainwindow.cpp" line="280"/>
         <location filename="../../mainwindow.cpp" line="316"/>
         <source>Copy Password</source>
@@ -514,6 +515,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="414"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
+        <location filename="../../mainwindow.cpp" line="33"/>
         <source>Add Entry</source>
         <translation>Створити запис</translation>
     </message>
@@ -526,6 +528,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="424"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
+        <location filename="../../mainwindow.cpp" line="36"/>
         <source>Delete Entry</source>
         <translation>Видалити запис</translation>
     </message>
@@ -679,6 +682,26 @@ Try again, please</source>
         <translation>Посилання</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="30"/>
+        <source>New Database</source>
+        <translation>Нова База Данних</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="31"/>
+        <source>Open Database</source>
+        <translation>Відкрити Базу Даних</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="32"/>
+        <source>Save</source>
+        <translation>Зберегти</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="34"/>
+        <source>Copy Username</source>
+        <translation>Копіювати ім&apos;я</translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.cpp" line="55"/>
         <source>System</source>
         <translation>Системний</translation>
@@ -811,7 +834,7 @@ Try again, please</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.cpp" line="9"/>
+        <location filename="../../opendatabase.cpp" line="16"/>
         <source>Open Database</source>
         <translation>Відкрити Базу Даних</translation>
     </message>

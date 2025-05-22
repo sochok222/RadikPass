@@ -8,7 +8,7 @@ enum class Icon {
     bitcoin,
     card,
     close,
-    colorScheme,
+    color,
     copy,
     create,
     crypto,

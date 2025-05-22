@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     setWindowTitle("RadiPass");
 
+    ui->actionLanguageGerman->setDisabled(true);
+
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
@@ -27,13 +29,13 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
 
     // Setting hints to toolbar
-    ui->buttonNew->setToolTip("New Database");
-    ui->buttonOpen->setToolTip("Open Database");
-    ui->buttonSave->setToolTip("Save");
-    ui->buttonAddEntry->setToolTip("Add Entry");
-    ui->buttonCopyUsername->setToolTip("Copy Username");
-    ui->buttonCopyPassword->setToolTip("Copy Password");
-    ui->buttonDeleteEntry->setToolTip("Delete Entry");
+    ui->buttonNew->setToolTip(tr("New Database"));
+    ui->buttonOpen->setToolTip(tr("Open Database"));
+    ui->buttonSave->setToolTip(tr("Save"));
+    ui->buttonAddEntry->setToolTip(tr("Add Entry"));
+    ui->buttonCopyUsername->setToolTip(tr("Copy Username"));
+    ui->buttonCopyPassword->setToolTip(tr("Copy Password"));
+    ui->buttonDeleteEntry->setToolTip(tr("Delete Entry"));
 
     // Connecting toolbar buttons to slots
     connect(ui->buttonNew, SIGNAL(clicked()), SLOT(createDatabase()));
@@ -50,15 +52,15 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
 
 
-    QActionGroup *colorSchemeGroup = new QActionGroup(this);
+    QActionGroup *colorThemeGroup = new QActionGroup(this);
 
     QAction *actionSystem = new QAction(tr("System"));
     QAction *actionDark = new QAction(tr("Dark"));
     QAction *actionLight = new QAction(tr("Light"));
 
-    colorSchemeGroup->addAction(actionSystem);
-    colorSchemeGroup->addAction(actionDark);
-    colorSchemeGroup->addAction(actionLight);
+    colorThemeGroup->addAction(actionSystem);
+    colorThemeGroup->addAction(actionDark);
+    colorThemeGroup->addAction(actionLight);
 
     connect(actionSystem, SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
     connect(actionDark, SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
@@ -179,7 +181,7 @@ void MainWindow::loadIcons()
     // View menu
     ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
     ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
-    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::colorScheme, theme));
+    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::color, theme));
 }
 
 
@@ -847,10 +849,7 @@ void MainWindow::setUkrainianLanguage()
     settings.setValue("Language", "uk");
     qApp->removeTranslator(translator); // remove the old translator
 
-    // load the new translator
-    QString path = QApplication::applicationDirPath();
-    path.append("/Translations/");
-    if(translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+    if(translator->load(":/translations/resources/translations/uk.qm"))
         qApp->installTranslator(translator);
     else
     {
@@ -867,7 +866,17 @@ void MainWindow::setEnglishLanguage()
 {
     qDebug() << Q_FUNC_INFO;
     settings.setValue("Language", "en");
-    qApp->removeTranslator(translator); // Just reset language, english language is native for this program
+    qApp->removeTranslator(translator);
+    if(translator->load(":/translations/resources/translations/en.qm"))
+        qApp->installTranslator(translator);
+    else
+    {
+        qDebug() << "Can't load ukrainian translation";
+        QMessageBox msg;
+        msg.setText("Can't load ukrainian translation");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+    }
     ui->retranslateUi(this);
 }
 
