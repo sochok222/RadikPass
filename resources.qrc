@@ -2,6 +2,7 @@
     <qresource prefix="/translations">
         <file>resources/translations/en.qm</file>
         <file>resources/translations/uk.qm</file>
+        <file>resources/translations/ge.qm</file>
     </qresource>
     <qresource prefix="/themes">
         <file>resources/themes/dark.qss</file>

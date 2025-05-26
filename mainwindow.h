@@ -86,6 +86,7 @@ private:
     QTranslator *translator;
     QString theme;
 
+
 public slots:
     void customMenuRequested(QPoint pos);
     void itemDoubleclicked(const QModelIndex &index);
@@ -108,6 +109,7 @@ public slots:
     void saveAll();
     void setUkrainianLanguage();
     void setEnglishLanguage();
+    void setGermanLanguage();
     void setSystemColorTheme();
     void setDarkColorTheme();
     void setLightColorTheme();

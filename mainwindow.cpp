@@ -14,13 +14,13 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     setWindowTitle("RadiPass");
 
-    ui->actionLanguageGerman->setDisabled(true);
-
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
     connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
+    connect(ui->actionLanguageGerman, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
+
 
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -49,8 +49,6 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
 
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
-
-
 
     QActionGroup *colorThemeGroup = new QActionGroup(this);
 
@@ -871,9 +869,27 @@ void MainWindow::setEnglishLanguage()
         qApp->installTranslator(translator);
     else
     {
-        qDebug() << "Can't load ukrainian translation";
+        qDebug() << "Can't load english translation";
         QMessageBox msg;
-        msg.setText("Can't load ukrainian translation");
+        msg.setText("Can't load english translation");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+    }
+    ui->retranslateUi(this);
+}
+
+void MainWindow::setGermanLanguage()
+{
+    qDebug() << Q_FUNC_INFO;
+    settings.setValue("Language", "ge");
+    qApp->removeTranslator(translator);
+    if(translator->load(":/translations/resources/translations/ge.qm"))
+        qApp->installTranslator(translator);
+    else
+    {
+        qDebug() << "Can't load german translation";
+        QMessageBox msg;
+        msg.setText("Can't load german translation");
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }

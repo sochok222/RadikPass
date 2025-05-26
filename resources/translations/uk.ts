@@ -6,48 +6,56 @@
     <message>
         <location filename="../../addpassworddialog.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="137"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="137"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="44"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="138"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="138"/>
         <source>User Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="51"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="139"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="139"/>
         <source>Titile: </source>
         <translation>Заголовок:</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="61"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="140"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="140"/>
         <source>URL: </source>
         <translation>Посилання:</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="68"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="141"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="141"/>
         <source>Notes:</source>
         <translation>Нотатки:</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="84"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="142"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="142"/>
         <source>Password: </source>
         <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="109"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="143"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="143"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../addpassworddialog.ui" line="116"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="144"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="144"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -78,30 +86,35 @@ Last query: </source>
     <message>
         <location filename="../../addtable.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="119"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addtable.h" line="119"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="40"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="120"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addtable.h" line="120"/>
         <source>Name: </source>
         <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="54"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="121"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addtable.h" line="121"/>
         <source>Icon: </source>
         <translation>Іконка:</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="110"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="122"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addtable.h" line="122"/>
         <source>Create</source>
         <translation>Створити</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="117"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addtable.h" line="123"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addtable.h" line="123"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -136,12 +149,14 @@ Try another name</source>
     <message>
         <location filename="../../configurecolumns.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="80"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_configurecolumns.h" line="80"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../configurecolumns.ui" line="59"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="81"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_configurecolumns.h" line="81"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
@@ -181,60 +196,70 @@ Try another name</source>
     <message>
         <location filename="../../createdatabase.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="168"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="168"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="55"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="169"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="169"/>
         <source>Help</source>
         <translation>Допомога</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="75"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="170"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="170"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="82"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="171"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="171"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="125"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="173"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="173"/>
         <source>Quality:</source>
         <translation>Надійність</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="142"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="174"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="174"/>
         <source>Repeat</source>
         <translation>Повторити:</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="161"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="175"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="175"/>
         <source>***</source>
         <translation>***</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="168"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="176"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="176"/>
         <source>Master password</source>
         <translation>Майстер-ключ:</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="196"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="177"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="177"/>
         <source>New Database</source>
         <translation>Нова База Данних</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="209"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="178"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="178"/>
         <source>Path</source>
         <translation>Шлях</translation>
     </message>
@@ -289,48 +314,56 @@ Try another name</source>
     <message>
         <location filename="../../editentry.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="137"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="137"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="38"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="138"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="138"/>
         <source>Titile: </source>
         <translation>Заголовок</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="48"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="139"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="139"/>
         <source>User Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="58"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="140"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="140"/>
         <source>Password: </source>
         <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="68"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="141"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="141"/>
         <source>URL: </source>
         <translation>Посилання:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="78"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="142"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="142"/>
         <source>Notes:</source>
         <translation>Нотатки:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="109"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="143"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="143"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="116"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_editentry.h" line="144"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_editentry.h" line="144"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -379,30 +412,35 @@ Error: </source>
     <message>
         <location filename="../../edittable.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="120"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="120"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="40"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="121"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="121"/>
         <source>Name: </source>
         <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="54"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="122"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="122"/>
         <source>Icon: </source>
         <translation>Іконка:</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="113"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="123"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="123"/>
         <source>Create</source>
         <translation>Створити</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="120"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="124"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="124"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -437,130 +475,150 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="14"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="309"/>
         <source>MainWindow</source>
         <translation>Головне Вікно</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="333"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="338"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="337"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="341"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="339"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="338"/>
         <source>Entry</source>
         <translation>Запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="345"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="340"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="339"/>
         <source>Url</source>
         <translation>Посилання</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="361"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="341"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="340"/>
         <source>Viev</source>
         <translation>Вигляд</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="365"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="342"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="341"/>
         <source>Color theme</source>
         <translation>Тема</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="375"/>
+        <location filename="../../mainwindow.ui" line="374"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="343"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="342"/>
         <source>Language</source>
         <translation>Мова</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="389"/>
+        <location filename="../../mainwindow.ui" line="388"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
         <source>New</source>
         <translation>Новий</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="394"/>
+        <location filename="../../mainwindow.ui" line="393"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
-        <location filename="../../mainwindow.cpp" line="290"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
+        <location filename="../../mainwindow.cpp" line="292"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="399"/>
+        <location filename="../../mainwindow.ui" line="398"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="404"/>
+        <location filename="../../mainwindow.ui" line="403"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
-        <location filename="../../mainwindow.cpp" line="279"/>
-        <location filename="../../mainwindow.cpp" line="315"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
+        <location filename="../../mainwindow.cpp" line="281"/>
+        <location filename="../../mainwindow.cpp" line="317"/>
         <source>Copy User Name</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="409"/>
+        <location filename="../../mainwindow.ui" line="408"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
-        <location filename="../../mainwindow.cpp" line="35"/>
-        <location filename="../../mainwindow.cpp" line="280"/>
-        <location filename="../../mainwindow.cpp" line="316"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
+        <location filename="../../mainwindow.cpp" line="39"/>
+        <location filename="../../mainwindow.cpp" line="282"/>
+        <location filename="../../mainwindow.cpp" line="318"/>
         <source>Copy Password</source>
         <translation>Копіювати пароль</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="414"/>
+        <location filename="../../mainwindow.ui" line="413"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
-        <location filename="../../mainwindow.cpp" line="33"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
+        <location filename="../../mainwindow.cpp" line="37"/>
         <source>Add Entry</source>
         <translation>Створити запис</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="419"/>
+        <location filename="../../mainwindow.ui" line="418"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
         <source>Edit Entry</source>
         <translation>Редагувати запис</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="424"/>
+        <location filename="../../mainwindow.ui" line="423"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
-        <location filename="../../mainwindow.cpp" line="36"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
+        <location filename="../../mainwindow.cpp" line="40"/>
         <source>Delete Entry</source>
         <translation>Видалити запис</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="429"/>
+        <location filename="../../mainwindow.ui" line="428"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="319"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
         <source>Duplicate Entry</source>
         <translation>Дублювати запис</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="434"/>
+        <location filename="../../mainwindow.ui" line="433"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="320"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="319"/>
         <source>Change Language</source>
         <translation>Змінити мову</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="474"/>
+        <location filename="../../mainwindow.ui" line="473"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
-        <location filename="../../mainwindow.cpp" line="56"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
+        <location filename="../../mainwindow.cpp" line="58"/>
         <source>Dark</source>
         <translation>Темна</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="479"/>
+        <location filename="../../mainwindow.ui" line="478"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="329"/>
-        <location filename="../../mainwindow.cpp" line="57"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
+        <location filename="../../mainwindow.cpp" line="59"/>
         <source>Light</source>
         <translation>Світла</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="484"/>
+        <location filename="../../mainwindow.ui" line="483"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="330"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="329"/>
         <source>Default</source>
         <translation>Системна</translation>
     </message>
@@ -569,222 +627,229 @@ Error: </source>
         <translation type="vanished">Змінити кольорову схему</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="439"/>
+        <location filename="../../mainwindow.ui" line="438"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="321"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="320"/>
         <source>Show Toolbar</source>
         <translation>Показувати панель інструментів</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="444"/>
+        <location filename="../../mainwindow.ui" line="443"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="322"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="321"/>
         <source>Configure Columns</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="448"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="323"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="322"/>
         <source>Open Url</source>
         <translation>Відкрити посилання</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="454"/>
+        <location filename="../../mainwindow.ui" line="453"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="324"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="323"/>
         <source>Copy Url</source>
         <translation>Скопіювати посилання</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="459"/>
+        <location filename="../../mainwindow.ui" line="458"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="325"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="324"/>
         <source>English</source>
         <translation>Англійська</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="464"/>
+        <location filename="../../mainwindow.ui" line="463"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="326"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="325"/>
         <source>Ukrainian</source>
         <translation>Українська</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="469"/>
+        <location filename="../../mainwindow.ui" line="468"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="326"/>
         <source>German</source>
         <translation>Німецька</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="123"/>
+        <location filename="../../mainwindow.cpp" line="125"/>
         <source>Password is uncorrect or database file is damaged
 Try again, please</source>
         <translation>Введений пароль не правильний або база даних пошкоджена.
 Спробуйте знову. будь ласка.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="250"/>
+        <location filename="../../mainwindow.cpp" line="252"/>
         <source>Title copied</source>
         <translation>Заголовок скопійовано</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="255"/>
+        <location filename="../../mainwindow.cpp" line="257"/>
         <source>User Name copied</source>
         <translation>І&apos;мя скопійовано.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="260"/>
+        <location filename="../../mainwindow.cpp" line="262"/>
         <source>Password copied</source>
         <translation>Пароль скопійований.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="265"/>
+        <location filename="../../mainwindow.cpp" line="267"/>
         <source>Link opened</source>
         <translation>Посилання скопійовано.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="270"/>
+        <location filename="../../mainwindow.cpp" line="272"/>
         <source>Notes copied</source>
         <translation>Нотатки скопійовані.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="281"/>
-        <location filename="../../mainwindow.cpp" line="317"/>
-        <location filename="../../mainwindow.cpp" line="345"/>
-        <location filename="../../mainwindow.cpp" line="360"/>
+        <location filename="../../mainwindow.cpp" line="283"/>
+        <location filename="../../mainwindow.cpp" line="319"/>
+        <location filename="../../mainwindow.cpp" line="347"/>
+        <location filename="../../mainwindow.cpp" line="362"/>
         <source>Edit</source>
         <translation>Редагувати</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="282"/>
-        <location filename="../../mainwindow.cpp" line="318"/>
+        <location filename="../../mainwindow.cpp" line="284"/>
+        <location filename="../../mainwindow.cpp" line="320"/>
         <source>Add new</source>
         <translation>Додати новий</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="283"/>
-        <location filename="../../mainwindow.cpp" line="319"/>
-        <location filename="../../mainwindow.cpp" line="343"/>
-        <location filename="../../mainwindow.cpp" line="358"/>
+        <location filename="../../mainwindow.cpp" line="285"/>
+        <location filename="../../mainwindow.cpp" line="321"/>
+        <location filename="../../mainwindow.cpp" line="345"/>
+        <location filename="../../mainwindow.cpp" line="360"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="284"/>
-        <location filename="../../mainwindow.cpp" line="320"/>
+        <location filename="../../mainwindow.cpp" line="286"/>
+        <location filename="../../mainwindow.cpp" line="322"/>
         <source>Configure colums</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="289"/>
+        <location filename="../../mainwindow.cpp" line="291"/>
         <source>Copy</source>
         <translation>Скопіювати</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="287"/>
-        <location filename="../../mainwindow.cpp" line="326"/>
+        <location filename="../../mainwindow.cpp" line="289"/>
+        <location filename="../../mainwindow.cpp" line="328"/>
         <source>URL</source>
         <translation>Посилання</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="30"/>
+        <location filename="../../mainwindow.cpp" line="34"/>
         <source>New Database</source>
         <translation>Нова База Данних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="31"/>
+        <location filename="../../mainwindow.cpp" line="35"/>
         <source>Open Database</source>
         <translation>Відкрити Базу Даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="32"/>
+        <location filename="../../mainwindow.cpp" line="36"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="34"/>
+        <location filename="../../mainwindow.cpp" line="38"/>
         <source>Copy Username</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="55"/>
+        <location filename="../../mainwindow.cpp" line="57"/>
         <source>System</source>
         <translation>Системний</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="344"/>
-        <location filename="../../mainwindow.cpp" line="359"/>
+        <location filename="../../mainwindow.cpp" line="346"/>
+        <location filename="../../mainwindow.cpp" line="361"/>
         <source>Add Table</source>
         <translation>Додати таблицю</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="408"/>
-        <location filename="../../mainwindow.cpp" line="462"/>
-        <location filename="../../mainwindow.cpp" line="475"/>
+        <location filename="../../mainwindow.cpp" line="410"/>
+        <location filename="../../mainwindow.cpp" line="464"/>
+        <location filename="../../mainwindow.cpp" line="477"/>
         <source>Can&apos;t get row id</source>
         <translation>Не вдалося отримати номер рядку.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="409"/>
-        <location filename="../../mainwindow.cpp" line="422"/>
-        <location filename="../../mainwindow.cpp" line="463"/>
-        <location filename="../../mainwindow.cpp" line="476"/>
+        <location filename="../../mainwindow.cpp" line="411"/>
+        <location filename="../../mainwindow.cpp" line="424"/>
+        <location filename="../../mainwindow.cpp" line="465"/>
+        <location filename="../../mainwindow.cpp" line="478"/>
         <source>Query error: </source>
         <translation>Помилка запиту: </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="421"/>
+        <location filename="../../mainwindow.cpp" line="423"/>
         <source>Can&apos;t get data from database</source>
         <translation>Не вдалося отримати дані з бази даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="508"/>
+        <location filename="../../mainwindow.cpp" line="510"/>
         <source>Delete Table?</source>
         <translation>Видалити таблицю?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="529"/>
+        <location filename="../../mainwindow.cpp" line="531"/>
         <source>Can`t delete this table</source>
         <translation>Не вдалося видалити цю таблицю.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="534"/>
+        <location filename="../../mainwindow.cpp" line="536"/>
         <source>At least one table must exists</source>
         <translation>Щонайменше одна таблиця має існувати.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="551"/>
+        <location filename="../../mainwindow.cpp" line="553"/>
         <source>Delete row?</source>
         <translation>Видалити запис?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="583"/>
-        <location filename="../../mainwindow.cpp" line="663"/>
+        <location filename="../../mainwindow.cpp" line="585"/>
+        <location filename="../../mainwindow.cpp" line="665"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="683"/>
+        <location filename="../../mainwindow.cpp" line="685"/>
         <source>Open encrypted database</source>
         <translation>Відкрити зашифровану базу даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="696"/>
+        <location filename="../../mainwindow.cpp" line="698"/>
         <source>Password is uncorrect</source>
         <translation>Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="722"/>
+        <location filename="../../mainwindow.cpp" line="724"/>
         <source>Create new database</source>
         <translation>Створити нову базу даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="736"/>
+        <location filename="../../mainwindow.cpp" line="738"/>
         <source>Can&apos;t create new database</source>
         <translation>Не вдалося створити нову базу даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="815"/>
+        <location filename="../../mainwindow.cpp" line="817"/>
         <source>Can&apos;t duplicate columns</source>
         <translation>Не вдалося здублювати колонки.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="821"/>
+        <location filename="../../mainwindow.cpp" line="823"/>
         <source>Entry duplicated</source>
         <translation>Запис здубльовано.</translation>
     </message>
@@ -794,42 +859,49 @@ Try again, please</source>
     <message>
         <location filename="../../opendatabase.ui" line="26"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="143"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="143"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="81"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="144"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="144"/>
         <source>Enter Master Key</source>
         <translation>Введіть майстер-ключ</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="109"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="145"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="145"/>
         <source>Path</source>
         <translation>Шлях</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="148"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="146"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="146"/>
         <source>Master Password</source>
         <translation>Майстер-ключ:</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="165"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="147"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="147"/>
         <source>Help</source>
         <translation>Допомога</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="187"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="148"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="148"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="194"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="149"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="149"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
