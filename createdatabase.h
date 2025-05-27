@@ -34,6 +34,7 @@ private:
     Ui::CreateDatabase *ui;
     QByteArray *key;
     bool isPassHidden = true;
+    QValidator *validator;
 };
 
 #endif // CREATEDATABASE_H

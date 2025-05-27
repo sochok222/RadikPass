@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QtSql/qsqldatabase.h>
-#include "addpassworddialog.h"
+#include "addentry.h"
 #include "configurecolumns.h"
 #include <QtSql/QSqlDatabase>
 #include <QContextMenuEvent>
-#include "databaseloader.h"
+#include "dbmanager.h"
 #include "createdatabase.h"
 #include <QDesktopServices>
 #include <QtSql/QSqlDriver>
@@ -39,6 +39,7 @@
 #include <QThread>
 #include <QAction>
 #include <QBuffer>
+#include <QOBject>
 #include <thread>
 #include <chrono>
 #include <QDebug>
@@ -85,6 +86,7 @@ private:
     bool isChanged = false;
     QTranslator *translator;
     QString theme;
+    void setColorThemeActions();
 
 
 public slots:
@@ -126,6 +128,12 @@ private: // Context menu
     QScopedPointer<QAction> actionEdit;
     QScopedPointer<QAction> actionAdd;
     QScopedPointer<QAction> actionCfgColumns;
+
+    // Color theme actions
+    QScopedPointer<QAction> actionSystem;
+    QScopedPointer<QAction> actionDark;
+    QScopedPointer<QAction> actionLight;
+    QScopedPointer<QActionGroup> colorThemeGroup;
 };
 
 

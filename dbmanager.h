@@ -1,5 +1,5 @@
-#ifndef DATABASELOADER_H
-#define DATABASELOADER_H
+#ifndef DBMANAGER_H
+#define DBMANAGER_H
 
 #include <QtSql/QSqlDatabase>
 #include <qsqltablemodel.h>
@@ -17,10 +17,10 @@
 #include <QObject>
 #include <QDir>
 
-class DatabaseLoader
+class DbManager
 {
 public:
-    DatabaseLoader();
+    DbManager();
 
     static bool getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId);
 
@@ -45,4 +45,4 @@ private:
     void handleError(const QString &errorMessage);
 };
 
-#endif // DATABASELOADER_H
+#endif // DBMANAGER_H

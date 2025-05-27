@@ -2,7 +2,7 @@
 #include "ui_edittable.h"
 #include <qsqlerror.h>
 
-#include "databaseloader.h"
+#include "dbmanager.h"
 
 void EditTable::showMsgBox(const QString text)
 {
@@ -78,7 +78,7 @@ void EditTable::saveChanges()
     QString changeSettingsName("UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'");
     QString setNewIcon("UPDATE TablesSettings SET Icon = '"+iconNames[ui->comboBox->currentIndex()]+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
 
-    DatabaseLoader::createBackup(db);
+    DbManager::createBackup(db);
 
     if(ui->nameEdit->text().size() == 0)
     {
@@ -90,15 +90,15 @@ void EditTable::saveChanges()
     {
         if(!query.exec(changeName))
         {
-            DatabaseLoader::loadBackup(db);
-            DatabaseLoader::deleteBackup(db);
+            DbManager::loadBackup(db);
+            DbManager::deleteBackup(db);
             return;
         }
 
         if(!query.exec(changeSettingsName))
         {
-            DatabaseLoader::loadBackup(db);
-            DatabaseLoader::deleteBackup(db);
+            DbManager::loadBackup(db);
+            DbManager::deleteBackup(db);
             return;
         }
     }
@@ -107,14 +107,14 @@ void EditTable::saveChanges()
     {
         if(!query.exec(setNewIcon))
         {
-            DatabaseLoader::loadBackup(db);
-            DatabaseLoader::deleteBackup(db);
+            DbManager::loadBackup(db);
+            DbManager::deleteBackup(db);
             return;
         }
     }
 
     listWidget->currentItem()->setText(ui->nameEdit->text());
-    DatabaseLoader::deleteBackup(db);
+    DbManager::deleteBackup(db);
 }
 
 

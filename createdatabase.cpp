@@ -33,7 +33,7 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
     ui->lineRepeat->setEchoMode(QLineEdit::Password);
 
     QRegularExpression rx(R"(^[a-zA-Zа-яА-Я0-9!@#$&().+,/-]*$)");
-    QValidator *validator = new QRegularExpressionValidator(rx, this);
+    validator = new QRegularExpressionValidator(rx, this);
 
     ui->linePassword->setValidator(validator);
 }
@@ -41,6 +41,7 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
 CreateDatabase::~CreateDatabase()
 {
     delete ui;
+    delete validator;
 }
 
 

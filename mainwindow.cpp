@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
     connect(ui->actionLanguageGerman, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
 
+    setColorThemeActions();
 
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -45,41 +46,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->buttonCopyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
     connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
     connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteRow()));
-
-
-
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
-
-    QActionGroup *colorThemeGroup = new QActionGroup(this);
-
-    QAction *actionSystem = new QAction(tr("System"));
-    QAction *actionDark = new QAction(tr("Dark"));
-    QAction *actionLight = new QAction(tr("Light"));
-
-    colorThemeGroup->addAction(actionSystem);
-    colorThemeGroup->addAction(actionDark);
-    colorThemeGroup->addAction(actionLight);
-
-    connect(actionSystem, SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
-    connect(actionDark, SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
-    connect(actionLight, SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
-
-    actionSystem->setCheckable(true);
-    actionLight->setCheckable(true);
-    actionDark->setCheckable(true);
-    if(settings.value("theme") == "system") actionSystem->setChecked(true);
-    else if(settings.value("theme") == "dark") actionDark->setChecked(true);
-    else if(settings.value("theme") == "light") actionLight->setChecked(true);
-
-    ui->menuChange_color_theme->addAction(actionSystem);
-    ui->menuChange_color_theme->addAction(actionDark);
-    ui->menuChange_color_theme->addAction(actionLight);
-
-
-    ui->actionShow_Toolbar->setCheckable(true);
-    ui->actionShow_Toolbar->setChecked(true);
-
-
 
     // Connecting File menu
     connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
@@ -117,10 +84,10 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
         // loadDb() loads selected database to QSqlDatabase object (&db)
         // Path to database is loaded from QSettings
         // tables is list of tables in database, loadDb() changes this list according to loaded database
-        if(!DatabaseLoader::loadDb(settings.value("Last").toString(), key, &db, tables)) // Trying to load database
+        if(!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) // Trying to load database
         {                                                                                // If not it seems that key is not right
             QMessageBox msg;                                                             // or file is broken or something else
-            msg.setText(tr("Password is uncorrect or database file is damaged\nTry again, please"));
+            msg.setText(tr("Password is incorrect or database file is damaged\nTry again, please"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec(); // Showing message if can't open database
         }
@@ -145,6 +112,33 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setColorThemeActions()
+{
+    actionSystem.reset(new QAction(tr("System")));
+    actionDark.reset(new QAction(tr("Dark")));
+    actionLight.reset(new QAction(tr("Light")));
+
+    colorThemeGroup.reset(new QActionGroup(this));
+    colorThemeGroup->addAction(actionSystem.data());
+    colorThemeGroup->addAction(actionDark.data());
+    colorThemeGroup->addAction(actionLight.data());
+
+    connect(actionSystem.data(), SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
+    connect(actionDark.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
+    connect(actionLight.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
+
+    actionSystem->setCheckable(true);
+    actionLight->setCheckable(true);
+    actionDark->setCheckable(true);
+    if(settings.value("theme") == "system") actionSystem->setChecked(true);
+    else if(settings.value("theme") == "dark") actionDark->setChecked(true);
+    else if(settings.value("theme") == "light") actionLight->setChecked(true);
+
+    ui->menuChange_color_theme->addAction(actionSystem.data());
+    ui->menuChange_color_theme->addAction(actionDark.data());
+    ui->menuChange_color_theme->addAction(actionLight.data());
 }
 
 
@@ -252,7 +246,7 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
     else if(pos.column() == 2)
     {
         copyText(pos.data().toString());
-        ui->statusbar->showMessage(tr("User Name copied"), 3000);
+        ui->statusbar->showMessage(tr("Username copied"), 3000);
     }
     else if(pos.column() == 3)
     {
@@ -514,7 +508,7 @@ void MainWindow::deleteTable()
     {
         if(tables.size() != 1)
         {
-            if(DatabaseLoader::deleteTable(&db, ui->listWidget->item(index)->text()))
+            if(DbManager::deleteTable(&db, ui->listWidget->item(index)->text()))
             {
                 isChanged = true;
                 tables.erase(tables.begin() + index);
@@ -584,7 +578,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if(question == QMessageBox::Yes)
         {
-            DatabaseLoader::uploadDb(settings.value("Last").toString(), key, &db);
+            DbManager::uploadDb(settings.value("Last").toString(), key, &db);
             event->accept();
         }else if(question == QMessageBox::No)
         {
@@ -641,7 +635,7 @@ void MainWindow::addEntry()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    AddPasswordDialog *dialog = new AddPasswordDialog(this, db, model->tableName()); // Create dialog that will add row to table
+    AddEntry *dialog = new AddEntry(this, db, model->tableName()); // Create dialog that will add row to table
     dialog->exec();    // Showing dialog
     delete dialog;
 
@@ -669,7 +663,7 @@ void MainWindow::openDatabase()
         if(question == QMessageBox::Yes)
         {
             qDebug() << "Clicked yes";
-            DatabaseLoader::uploadDb(settings.value("Last").toString(), key, &db);
+            DbManager::uploadDb(settings.value("Last").toString(), key, &db);
         }else if(question == QMessageBox::No)
         {
             qDebug() << "Clicked no";
@@ -690,10 +684,10 @@ void MainWindow::openDatabase()
 
     if (!key.isEmpty())
     {
-        if(!DatabaseLoader::loadDb(file, key, &db, tables))
+        if(!DbManager::loadDb(file, key, &db, tables))
         {
             QMessageBox msg;
-            msg.setText(tr("Password is uncorrect"));
+            msg.setText(tr("Password is incorrect"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec();
         }
@@ -730,7 +724,7 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
 
     if(key != "")
     {
-        if(!DatabaseLoader::createAndFillDatabase(databasePath, key, &db))
+        if(!DbManager::createAndFillDatabase(databasePath, key, &db))
         {
             QMessageBox msg;
             msg.setText(tr("Can't create new database"));
@@ -738,7 +732,7 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
             msg.exec();
             return;
         }
-        DatabaseLoader::loadDb(databasePath, key, &db, tables);
+        DbManager::loadDb(databasePath, key, &db, tables);
         settings.setValue("Last", databasePath);
         ui->listWidget->clear();
         for(int i = 0; i < tables.size(); i++)
@@ -825,7 +819,7 @@ void MainWindow::duplicateEntry()
 
 void MainWindow::saveAll()
 {
-    DatabaseLoader::uploadDb(settings.value("Last").toString(), key, &db);
+    DbManager::uploadDb(settings.value("Last").toString(), key, &db);
 }
 
 bool MainWindow::hasSelectedRow()
@@ -858,6 +852,7 @@ void MainWindow::setUkrainianLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
+    setColorThemeActions();
 }
 
 void MainWindow::setEnglishLanguage()
@@ -876,6 +871,7 @@ void MainWindow::setEnglishLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
+    setColorThemeActions();
 }
 
 void MainWindow::setGermanLanguage()
@@ -894,6 +890,7 @@ void MainWindow::setGermanLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
+    setColorThemeActions();
 }
 
 void MainWindow::setSystemColorTheme()

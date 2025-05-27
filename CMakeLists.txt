@@ -34,8 +34,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         ${QM_FILES}
-        addpassworddialog.h addpassworddialog.cpp addpassworddialog.ui
-        databaseloader.h databaseloader.cpp
+        addentry.h addentry.cpp addentry.ui
+        dbmanager.h dbmanager.cpp
         addtable.h addtable.cpp addtable.ui
         opendatabase.h opendatabase.cpp opendatabase.ui
         createdatabase.h createdatabase.cpp createdatabase.ui

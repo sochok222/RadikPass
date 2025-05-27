@@ -1,18 +1,18 @@
-#include "addpassworddialog.h"
+#include "addentry.h"
 #include "mainwindow.h"
-#include "ui_addpassworddialog.h"
+#include "ui_addentry.h"
 #include <qsqlerror.h>
 
-AddPasswordDialog::AddPasswordDialog(QWidget *parent, const QSqlDatabase &db, QString tableName)
+AddEntry::AddEntry(QWidget *parent, const QSqlDatabase &db, QString tableName)
     : QDialog(parent)
-    , ui(new Ui::AddPasswordDialog)
+    , ui(new Ui::AddEntry)
     , tableName(tableName)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Add Entry"));
 }
 
-AddPasswordDialog::~AddPasswordDialog()
+AddEntry::~AddEntry()
 {
     delete ui;
 }
@@ -20,7 +20,7 @@ AddPasswordDialog::~AddPasswordDialog()
 
 
 
-bool AddPasswordDialog::atLeastOneNotEmpty()
+bool AddEntry::atLeastOneNotEmpty()
 {
     if(!ui->title->text().isEmpty() || !ui->username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->url->text().isEmpty() || !ui->notes->toPlainText().isEmpty())
         return true;
@@ -29,7 +29,7 @@ bool AddPasswordDialog::atLeastOneNotEmpty()
 
 
 
-void AddPasswordDialog::on_writeButton_clicked()
+void AddEntry::on_writeButton_clicked()
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 

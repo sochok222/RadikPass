@@ -1,4 +1,4 @@
-#include "databaseloader.h"
+#include "dbmanager.h"
 #include <qsqldriver.h>
 #include <QList>
 #include <QModelIndex>
@@ -8,11 +8,11 @@
 #include <QTranslator>
 #include <qsqlrecord.h>
 
-DatabaseLoader::DatabaseLoader() {}
+DbManager::DbManager() {}
 
-QString DatabaseLoader::backupPath = "";
+QString DbManager::backupPath = "";
 
-void DatabaseLoader::showMsgBox(const QString text)
+void DbManager::showMsgBox(const QString text)
 {
     qDebug() << Q_FUNC_INFO;
     QMessageBox msg;
@@ -21,7 +21,7 @@ void DatabaseLoader::showMsgBox(const QString text)
     msg.exec();
 }
 
-bool DatabaseLoader::createBackup(QSqlDatabase *db)
+bool DbManager::createBackup(QSqlDatabase *db)
 {
     qDebug() << Q_FUNC_INFO;
     backupPath.clear();
@@ -82,7 +82,7 @@ bool DatabaseLoader::createBackup(QSqlDatabase *db)
     return true;
 }
 
-bool DatabaseLoader::loadBackup(QSqlDatabase *db)
+bool DbManager::loadBackup(QSqlDatabase *db)
 {
     QSqlQuery query(*db);
 
@@ -128,7 +128,7 @@ bool DatabaseLoader::loadBackup(QSqlDatabase *db)
     return true;
 }
 
-bool DatabaseLoader::deleteBackup(QSqlDatabase *db)
+bool DbManager::deleteBackup(QSqlDatabase *db)
 {
     QFile file(backupPath);
     QByteArray zeroes = QByteArray(file.size(), 0);
@@ -155,7 +155,7 @@ bool DatabaseLoader::deleteBackup(QSqlDatabase *db)
     return true;
 }
 
-void DatabaseLoader::handleError(const QString &errorMessage)
+void DbManager::handleError(const QString &errorMessage)
 {
     qDebug() << Q_FUNC_INFO;
     QMessageBox msg;
@@ -165,7 +165,7 @@ void DatabaseLoader::handleError(const QString &errorMessage)
     exit(EXIT_FAILURE);
 }
 
-bool DatabaseLoader::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId)
+bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId)
 {
     QSqlQuery query(*db);
 
@@ -180,7 +180,7 @@ bool DatabaseLoader::getRowId(QSqlTableModel *model, QTableView *tableView, QSql
     return true;
 }
 
-bool DatabaseLoader::deleteTable(QSqlDatabase *db, const QString tablename)
+bool DbManager::deleteTable(QSqlDatabase *db, const QString tablename)
 {
     qDebug() << Q_FUNC_INFO;
     QSqlQuery query(*db);
@@ -205,7 +205,7 @@ bool DatabaseLoader::deleteTable(QSqlDatabase *db, const QString tablename)
 }
 
 
-QByteArray* DatabaseLoader::encryptData(QByteArray *data, const QByteArray &key)
+QByteArray* DbManager::encryptData(QByteArray *data, const QByteArray &key)
 {
     qDebug() << Q_FUNC_INFO;
     if (key.size() < 32) return {}; // AES-256 вимагає 32-байтний ключ
@@ -256,7 +256,7 @@ QByteArray* DatabaseLoader::encryptData(QByteArray *data, const QByteArray &key)
     return ret; // Повертаємо IV + зашифровані дані
 }
 
-QByteArray* DatabaseLoader::decryptData(QByteArray *encryptedData, const QByteArray &key)
+QByteArray* DbManager::decryptData(QByteArray *encryptedData, const QByteArray &key)
 {
     qDebug() << Q_FUNC_INFO;
     if (encryptedData->size() < 16 || key.size() < 32) return {};
@@ -297,7 +297,7 @@ QByteArray* DatabaseLoader::decryptData(QByteArray *encryptedData, const QByteAr
     return decrypted;
 }
 
-bool DatabaseLoader::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables)
+bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables)
 {
     qDebug() << Q_FUNC_INFO;
 
@@ -353,7 +353,7 @@ bool DatabaseLoader::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std:
     return true;
 }
 
-bool DatabaseLoader::checkMasterKey(QByteArray &masterKey)
+bool DbManager::checkMasterKey(QByteArray &masterKey)
 {
     qDebug() << Q_FUNC_INFO;
     // If masterKey has less bytes than it must have, this will append zeroes to fill it
@@ -372,7 +372,7 @@ bool DatabaseLoader::checkMasterKey(QByteArray &masterKey)
 }
 
 template<typename T>
-bool DatabaseLoader::deleteTemporaryFile(T &file)
+bool DbManager::deleteTemporaryFile(T &file)
 {
     qDebug() << Q_FUNC_INFO;
     // Opening file and reading content from it
@@ -405,7 +405,7 @@ bool DatabaseLoader::deleteTemporaryFile(T &file)
     return true;
 }
 
-bool DatabaseLoader::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db, std::vector<QString> &tables)
+bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db, std::vector<QString> &tables)
 {
     qDebug() << Q_FUNC_INFO;
     // Setting master-key
@@ -462,7 +462,7 @@ bool DatabaseLoader::loadDb(const QString encryptedDatabase, QByteArray &key, QS
     return true;
 }
 
-bool DatabaseLoader::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db)
+bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db)
 {
     qDebug() << Q_FUNC_INFO;
     // Creating temporary file to save changes
@@ -533,7 +533,7 @@ bool DatabaseLoader::uploadDb(const QString encryptedDatabase, QByteArray &key, 
 
     // This function checks lengh of master-key, it lengh must be 32 bytes, if it less we need to append zeroes
     // Else removes extra bytes
-    DatabaseLoader::checkMasterKey(key);
+    DbManager::checkMasterKey(key);
 
     QByteArray *data = new QByteArray(tmp.readAll());
     // Writing encrypted changes to encrypted file
@@ -554,7 +554,7 @@ bool DatabaseLoader::uploadDb(const QString encryptedDatabase, QByteArray &key, 
     return true;
 }
 
-bool DatabaseLoader::createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db)
+bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db)
 {
     qDebug() << Q_FUNC_INFO;
     checkMasterKey(key);
