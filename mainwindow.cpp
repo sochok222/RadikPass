@@ -744,6 +744,7 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
         model->select();
     }
     configureColumns();
+    setIconsInListWidget();
 }
 
 void MainWindow::configureEntryMenu()
@@ -802,7 +803,7 @@ void MainWindow::duplicateEntry()
     QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 0); // 0 column is column of id
     QString id = model->data(idx).toString();
 
-    query.prepare("INSERT INTO "+model->tableName()+" (Title, [User Name], Password, URL, Notes) SELECT Title, [User Name], Password, URL, Notes FROM "+model->tableName()+" WHERE id = "+id);
+    query.prepare("INSERT INTO "+model->tableName()+" (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM "+model->tableName()+" WHERE id = "+id);
     if(!query.exec())
     {
         QMessageBox msg;

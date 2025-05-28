@@ -208,17 +208,14 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tablename)
 QByteArray* DbManager::encryptData(QByteArray *data, const QByteArray &key)
 {
     qDebug() << Q_FUNC_INFO;
-    if (key.size() < 32) return {}; // AES-256 вимагає 32-байтний ключ
+    if (key.size() < 32) return {};
 
-    // Генеруємо IV (16 байт для AES-CBC)
     QByteArray *iv = new QByteArray(16, 0);
     RAND_bytes(reinterpret_cast<unsigned char*>(iv->data()), iv->size());
 
-    // Контекст OpenSSL
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     if (!ctx) return {};
 
-    // Ініціалізація AES-256-CBC
     if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
                            reinterpret_cast<const unsigned char*>(key.data()),
                            reinterpret_cast<const unsigned char*>(iv->data())) != 1) {
@@ -226,7 +223,6 @@ QByteArray* DbManager::encryptData(QByteArray *data, const QByteArray &key)
         return {};
     }
 
-    // Буфер для шифрованих даних
     QByteArray *encrypted = new QByteArray;
     encrypted->resize(data->size() + EVP_CIPHER_block_size(EVP_aes_256_cbc()));
 
@@ -247,13 +243,11 @@ QByteArray* DbManager::encryptData(QByteArray *data, const QByteArray &key)
     encrypted->resize(totalLen);
     EVP_CIPHER_CTX_free(ctx);
 
-    qDebug() << encrypted->size();
-    qDebug() << encrypted->data();
     QByteArray *ret = new QByteArray;
     ret->append(*iv + *encrypted);
     delete iv;
     delete encrypted;
-    return ret; // Повертаємо IV + зашифровані дані
+    return ret;
 }
 
 QByteArray* DbManager::decryptData(QByteArray *encryptedData, const QByteArray &key)
@@ -606,7 +600,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
     query.prepare(R"(
     CREATE TABLE TempDb.TablesSettings (
         [Table] TEXT,
-        [Icon] TEXT NOT NULL DEFAULT 'key'
+        [Icon] TEXT NOT NULL DEFAULT 'entry'
     );
     )");
 

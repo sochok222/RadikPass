@@ -39,8 +39,8 @@ void AddEntry::on_writeButton_clicked()
 
     if(atLeastOneNotEmpty())
     {
-        QString insertData = QString("INSERT INTO [%1] (Title, [User Name], Password, URL, Notes, [Creation Time]) VALUES ("
-                                     ":title, :username, :password, :url, :notes, :time"
+        QString insertData = QString("INSERT INTO [%1] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) VALUES ("
+                                     ":title, :username, :password, :url, :notes, :creationTime, :lastChanged"
                                      ")").arg(tableName);
         qDebug() << "query: " << insertData;
         query.prepare(insertData);
@@ -49,7 +49,8 @@ void AddEntry::on_writeButton_clicked()
         query.bindValue(":password", ui->password->text());
         query.bindValue(":url", ui->url->text());
         query.bindValue(":notes", ui->notes->toPlainText());
-        query.bindValue(":time", QDateTime::currentDateTime());
+        query.bindValue(":creationTime", QDateTime::currentDateTime().toString("H:m dd/MM/yyyy"));
+        query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:m dd/MM/yyyy"));
         if(!query.exec())
         {
             QMessageBox msg;

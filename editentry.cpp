@@ -1,5 +1,6 @@
 #include "editentry.h"
 #include "ui_editentry.h"
+#include <qdatetime.h>
 #include <qsqlerror.h>
 
 EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, QSqlTableModel *model)
@@ -98,7 +99,8 @@ void EditEntry::on_writeButton_clicked()
                                                     "[User Name] = :username, "
                                                     "Password = :password, "
                                                     "URL = :url, "
-                                                    "Notes = :notes "
+                                                    "Notes = :notes,"
+                                                    "[Last Changed] = :lastChanged "
                                                     "WHERE id == %2").arg(table).arg(id);
 
         query.prepare(statement);
@@ -107,6 +109,7 @@ void EditEntry::on_writeButton_clicked()
         query.bindValue(":password", ui->password->text());
         query.bindValue(":url", ui->url->text());
         query.bindValue(":notes", ui->notes->toPlainText());
+        query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:m dd/MM/yyyy"));
 
         if(!query.exec())
         {

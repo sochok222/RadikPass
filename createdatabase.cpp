@@ -11,7 +11,7 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, cons
 
     if(path != "")
     {
-        ui->labelPath->setText(path);
+        ui->labelPath->setText("Path: " + path);
     }else {
         QMessageBox msg;
         msg.setText(tr("Can't load path"));
@@ -99,6 +99,8 @@ void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckSta
             ui->lineRepeat->setEchoMode(QLineEdit::Password);
             ui->lineRepeat->setDisabled(false);
             ui->labelRepeat->setDisabled(false);
+            ui->lineRepeat->show();
+            ui->labelRepeat->show();
             isPassHidden = true;
             break;
         }
@@ -108,6 +110,8 @@ void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckSta
             ui->lineRepeat->clear();
             ui->lineRepeat->setEnabled(false);
             ui->labelRepeat->setEnabled(false);
+            ui->lineRepeat->hide();
+            ui->labelRepeat->hide();
             isPassHidden = false;
             break;
         }

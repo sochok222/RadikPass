@@ -37,7 +37,7 @@ AddTable::~AddTable()
 void AddTable::loadIcons()
 {
     // Load system icons
-    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user"};
+    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
 
     for(const QString &sysIcon : sysIcons)
     {
