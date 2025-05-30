@@ -23,14 +23,13 @@ class EditTable : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QMap<QString, QIcon *> *icons = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr);
+    explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr);
     ~EditTable();
 
 private:
     Ui::EditTable *ui;
     void closeEvent(QCloseEvent *event) override;
     QSqlDatabase *db;
-    QMap<QString, QIcon *> *icons;
     QVector<QString> iconNames = {"entry", "trash", "key", "url", "user", "settings", "bitcoin", "card", "game", "house", "money", "net", "office", "pc", "programming"};
     bool isNameChanged = false;
     bool isIconChanged = false;

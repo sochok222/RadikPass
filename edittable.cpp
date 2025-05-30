@@ -12,11 +12,10 @@ void EditTable::showMsgBox(const QString text)
     msg.exec();
 }
 
-EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *icons, const QString tableName, QListWidget *listWidget)
+EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget)
     : QDialog(parent)
     , ui(new Ui::EditTable)
     , db(db)
-    , icons(icons)
     , tableName(tableName)
     , listWidget(listWidget)
 {
@@ -36,14 +35,10 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, QMap<QString, QIcon *> *
     if(listWidget == nullptr)
     {
         showMsgBox(tr("Can't load listWidget"));
-        QTimer::singleShot(0, this, SLOT(close())); // TODO: this don't close the window
+        QTimer::singleShot(0, this, SLOT(close()));
     }
 
-    if(icons == nullptr)
-    {
-        showMsgBox(tr("Can't find icons"));
-        QTimer::singleShot(0, this, SLOT(close())); // TODO: this don't close the window
-    }
+
     for(QString el : iconNames)
     {
         ui->comboBox->addItem(*icons->value(el), "");
