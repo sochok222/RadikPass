@@ -5,6 +5,7 @@
 #include <QSettings>
 #include "opendatabase.h"
 
+
 bool isFileExists(const QString path)
 {
     QFile file(path);

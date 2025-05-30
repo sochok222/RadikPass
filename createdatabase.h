@@ -30,6 +30,8 @@ private slots:
 
     void on_lineRepeat_textChanged(const QString &arg1);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::CreateDatabase *ui;
     QByteArray *key;

@@ -123,4 +123,8 @@ void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckSta
 }
 
 
+void CreateDatabase::on_pushButton_clicked()
+{
+    this->reject();
+}
 

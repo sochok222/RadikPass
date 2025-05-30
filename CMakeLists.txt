@@ -13,13 +13,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql UiTools LinguisTools Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql UiTools LinguistTools Gui)
+add_library(cryptopp STATIC IMPORTED GLOBAL)
+set_property(TARGET cryptopp APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(cryptopp PROPERTIES
+        IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+        IMPORTED_LOCATION_DEBUG "C:/programming/c++/qt/fileEncryption/cryptopp/cryptlib.lib")
 
 set(TS_FILES
   resources/translations/uk.ts
   resources/translations/ge.ts
   resources/translations/en.ts
 )
-
 
 set(PROJECT_SOURCES
         main.cpp
@@ -68,12 +72,15 @@ else()
     endif()
 endif()
 
+set(CRYPTOPP_LIBRARIES "C:/programming/c++/qt/fileEncryption/cryptopp/cryptlib.lib")
+
 target_link_libraries(fileEncryption PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
     Qt${QT_VERSION_MAJOR}::UiTools
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::GuiPrivate
+    cryptopp
 )
 
 

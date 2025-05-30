@@ -710,21 +710,21 @@ void MainWindow::openDatabase()
     setIconsInListWidget();
 }
 
-void MainWindow::createDatabase() // This slot creates dialog to create new database
+// When user clicks button that must create new database this func will be called
+void MainWindow::createDatabase()
 {
     qDebug() << Q_FUNC_INFO;
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
-                                                        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
+                                            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if(databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
 
-    isChanged = true;
-    CreateDatabase *createNew = new CreateDatabase(this, &key, databasePath);
+    CreateDatabase *createNew = new CreateDatabase(this, &key, databasePath); // Creating window where user can set password to new database
     createNew->exec();
     delete createNew;
 
-    if(key != "")
+    if(key != "") // If key is empty this means that user closed createNew dialog
     {
-        if(!DbManager::createAndFillDatabase(databasePath, key, &db))
+        if(!DbManager::createAndFillDatabase(databasePath, key, &db)) // This must create new .db file and encrypt it
         {
             QMessageBox msg;
             msg.setText(tr("Can't create new database"));
@@ -732,25 +732,30 @@ void MainWindow::createDatabase() // This slot creates dialog to create new data
             msg.exec();
             return;
         }
-        DbManager::loadDb(databasePath, key, &db, tables);
-        settings.setValue("Last", databasePath);
-        ui->listWidget->clear();
-        for(int i = 0; i < tables.size(); i++)
+
+        DbManager::loadDb(databasePath, key, &db, tables); // Loads database to to the QSqlDatabase instance
+        settings.setValue("Last", databasePath); // Setting last used database path to recently created
+
+        ui->listWidget->clear(); // Clears listWidget that holds all tables
+
+        for(int i = 0; i < tables.size(); i++) // Loading all tables that avaible to user from tables vector
         {
             ui->listWidget->addItem(tables[i]);
         }
+
         if(tables.size() > 0)
-            model->setTable(tables[tables.size() - 1]);
-        model->select();
+            model->setTable(tables[tables.size() - 1]); // Load last table to TableView model
+        model->select(); // This applies selected table in model
     }
-    configureColumns();
-    setIconsInListWidget();
+
+    configureColumns(); // Showing or hiding columns in TableView according to settings
+    setIconsInListWidget(); // Loading icons to ListWidget with tables
 }
 
-void MainWindow::configureEntryMenu()
+void MainWindow::configureEntryMenu() // This function will disable or enable actions in View menu in toolbar
 {
     qDebug() << Q_FUNC_INFO;
-    if(!ui->tableView->selectionModel()->hasSelection())
+    if(!ui->tableView->selectionModel()->hasSelection()) // If row is not selected in TableView this will disable actions and vise versa
     {
         ui->actionCopy_User_Name->setDisabled(true);
         ui->actionCopy_Password->setDisabled(true);
@@ -769,29 +774,32 @@ void MainWindow::configureEntryMenu()
     }
 }
 
-void MainWindow::setIconsInListWidget()
+void MainWindow::setIconsInListWidget() // This will load icons to ListWidget,
 {
-    for(int i = 0; i < ui->listWidget->count(); i++)
+    QSqlQuery query(db); // New query to read data from database
+    for(int i = 0; i < ui->listWidget->count(); i++) // For every item in ListWidget(table)
     {
-        QSqlQuery query(db);
-        query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name");
+        query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name"); // Loading name of icon from TablesSettings
         query.bindValue(":name", ui->listWidget->item(i)->text());
         if(!query.exec())
             qDebug() << query.lastError();
-        query.next();
 
-        ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png"));
+        query.next();
+        ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
     }
 }
 
+// When user wants to edit row in table
 void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    EditTable *editTable = new EditTable(this, &db, nullptr, ui->listWidget->currentItem()->text(), ui->listWidget);
+    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget); // Creating EditTable object that will ask user to make some changes in row
     editTable->exec();
     delete editTable;
+
     isChanged = true;
+
     setIconsInListWidget();
 }
 
