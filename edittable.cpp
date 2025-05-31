@@ -12,17 +12,21 @@ void EditTable::showMsgBox(const QString text)
     msg.exec();
 }
 
-EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget)
+EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget, QString theme)
     : QDialog(parent)
     , ui(new Ui::EditTable)
     , db(db)
     , tableName(tableName)
     , listWidget(listWidget)
+    , theme(theme)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Table"));
     ui->nameEdit->setText(tableName);
     ui->comboBox->setCurrentIndex(iconNames.indexOf("bitcoin"));
+
+    model = new QStandardItemModel;
+    mapper = new QDataWidgetMapper;
 
     ui->nameEdit->setMaxLength(15);
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
@@ -37,17 +41,44 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName,
         showMsgBox(tr("Can't load listWidget"));
         QTimer::singleShot(0, this, SLOT(close()));
     }
-
-
-    for(QString el : iconNames)
+    if(theme == "")
     {
-        ui->comboBox->addItem(*icons->value(el), "");
+        showMsgBox(tr("Can't load current theme"));
+        QTimer::singleShot(0, this, SLOT(close()));
     }
+    loadIcons();
 }
 
 EditTable::~EditTable()
 {
     delete ui;
+}
+
+void EditTable::loadIcons()
+{
+    // Load system icons
+    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
+
+    for(const QString &sysIcon : sysIcons)
+    {
+        QString icon = ":/icons/"+theme+"/resources/icons/"+theme+"/"+sysIcon+".png";
+        ui->comboBox->addItem(QIcon(icon), "");
+        model->appendRow(new QStandardItem(sysIcon));
+    }
+
+    // QDirIterator it(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation),{"*.png"}, QDir::Files);
+
+    // while(it.hasNext())
+    // {
+    //     QString icon = it.next();
+
+    //     ui->comboBox->addItem(icon, "");
+    //     model->appendRow(new QStandardItem(icon));
+    // }
+
+    mapper->setModel(model);
+    mapper->toFirst();
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
 void EditTable::setConnections()
@@ -71,7 +102,8 @@ void EditTable::saveChanges()
 
     QString changeName("ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'");
     QString changeSettingsName("UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'");
-    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+iconNames[ui->comboBox->currentIndex()]+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
+    QString ico(mapper->model()->data(model->index(mapper->currentIndex(), 0)).toString());
+    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ico+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
 
     DbManager::createBackup(db);
 

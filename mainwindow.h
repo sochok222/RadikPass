@@ -62,7 +62,7 @@ public:
     MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr, QString theme = "dark");
     ~MainWindow();
 
-private slots:
+public slots:
     void on_listWidget_currentTextChanged(const QString &currentText);
 
 private:

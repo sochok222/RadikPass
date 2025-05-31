@@ -13,6 +13,11 @@
 #include <QSqlQuery>
 #include <QValidator>
 #include <QRegularExpressionValidator>
+#include <QStandardItemModel>
+#include <QDataWidgetMapper>
+#include <QStandardPaths>
+#include <QDirIterator>
+#include <QStandardItem>
 
 namespace Ui {
 class EditTable;
@@ -23,7 +28,7 @@ class EditTable : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr);
+    explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, QString theme = "");
     ~EditTable();
 
 private:
@@ -36,8 +41,11 @@ private:
     void saveChanges();
     QString tableName;
     QListWidget *listWidget;
-
+    void loadIcons();
     void showMsgBox(const QString text);
+    QStandardItemModel *model;
+    QDataWidgetMapper *mapper;
+    QString theme;
 
 public slots:
     void iconChanged() {isIconChanged = true;};

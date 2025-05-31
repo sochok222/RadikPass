@@ -49,8 +49,8 @@ void AddEntry::on_writeButton_clicked()
         query.bindValue(":password", ui->password->text());
         query.bindValue(":url", ui->url->text());
         query.bindValue(":notes", ui->notes->toPlainText());
-        query.bindValue(":creationTime", QDateTime::currentDateTime().toString("H:m dd/MM/yyyy"));
-        query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:m dd/MM/yyyy"));
+        query.bindValue(":creationTime", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));
+        query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));
         if(!query.exec())
         {
             QMessageBox msg;

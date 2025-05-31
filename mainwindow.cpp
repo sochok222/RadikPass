@@ -744,8 +744,7 @@ void MainWindow::createDatabase()
         }
 
         if(tables.size() > 0)
-            model->setTable(tables[tables.size() - 1]); // Load last table to TableView model
-        model->select(); // This applies selected table in model
+            ui->listWidget->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
     }
 
     configureColumns(); // Showing or hiding columns in TableView according to settings
@@ -782,7 +781,10 @@ void MainWindow::setIconsInListWidget() // This will load icons to ListWidget,
         query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name"); // Loading name of icon from TablesSettings
         query.bindValue(":name", ui->listWidget->item(i)->text());
         if(!query.exec())
-            qDebug() << query.lastError();
+        {
+            qDebug() << query.lastError(); // TODO: handle this in QMessageBox to show user error
+            break;
+        }
 
         query.next();
         ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
@@ -794,13 +796,13 @@ void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget); // Creating EditTable object that will ask user to make some changes in row
+    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme); // Creating EditTable object that will ask user to make some changes in row
     editTable->exec();
     delete editTable;
 
-    isChanged = true;
+    isChanged = true; // If user makes some changes needs to set this to true
 
-    setIconsInListWidget();
+    setIconsInListWidget(); // Loading icons to ListWidget with tables
 }
 
 void MainWindow::duplicateEntry()
@@ -808,8 +810,7 @@ void MainWindow::duplicateEntry()
     qDebug() << Q_FUNC_INFO;
 
     QSqlQuery query(db);
-    QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 0); // 0 column is column of id
-    QString id = model->data(idx).toString();
+    QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // id - this is id of row which needs to be duplicated
 
     query.prepare("INSERT INTO "+model->tableName()+" (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM "+model->tableName()+" WHERE id = "+id);
     if(!query.exec())

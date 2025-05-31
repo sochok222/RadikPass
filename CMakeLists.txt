@@ -13,11 +13,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql UiTools LinguisTools Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql UiTools LinguistTools Gui)
-add_library(cryptopp STATIC IMPORTED GLOBAL)
-set_property(TARGET cryptopp APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(cryptopp PROPERTIES
-        IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-        IMPORTED_LOCATION_DEBUG "C:/programming/c++/qt/fileEncryption/cryptopp/cryptlib.lib")
 
 set(TS_FILES
   resources/translations/uk.ts
@@ -98,12 +93,10 @@ set_target_properties(fileEncryption PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-# Вкажи Qt-шну версію OpenSSL
 set(OPENSSL_ROOT_DIR "C:/Qt/Tools/OpenSSLv3/Win_x64")
 set(OPENSSL_LIBRARIES "${OPENSSL_ROOT_DIR}/lib")
 set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
 
-# Якщо використовується OpenSSL, знайдемо та підключимо
 find_package(OpenSSL)
 if(OPENSSL_FOUND)
     target_link_libraries(fileEncryption PRIVATE OpenSSL::SSL OpenSSL::Crypto)
@@ -112,7 +105,6 @@ else()
     message(WARNING "Openssl is not found!")
 endif()
 
-# Додаткові прапорці для MinGW (якщо потрібно)
 if(MINGW)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static-libgcc")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc")
