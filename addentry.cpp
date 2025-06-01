@@ -29,7 +29,7 @@ bool AddEntry::atLeastOneNotEmpty()
 
 
 
-void AddEntry::on_writeButton_clicked()
+void AddEntry::on_okButton_clicked()
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 

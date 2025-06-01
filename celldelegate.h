@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QTranslator>
 
+// This is custom delegate that replaces text in hided coumns by * that repeated in text length
 class CellDelegate : public QStyledItemDelegate
 {
 public:
@@ -12,9 +13,7 @@ public:
 
     QString displayText(const QVariant &value, const QLocale &locale) const override
     {
-        Q_UNUSED(locale);
-        QString text = value.toString();
-        return QString("*").repeated(text.length());
+        return QString("*").repeated(value.toString().size());
     }
 };
 

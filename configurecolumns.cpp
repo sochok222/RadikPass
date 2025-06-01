@@ -36,6 +36,8 @@ void ConfigureColumns::loadSettings()
     QStringList columnPassword = settings.value("columnPassword").toStringList();
     QStringList columnURL = settings.value("columnURL").toStringList();
     QStringList columnNotes = settings.value("columnNotes").toStringList();
+    QStringList columnCreationTime = settings.value("creationTime").toStringList();
+    QStringList columnLastChanged = settings.value("lastChanged").toStringList();
 
     // Basic value is unchecked, so I don't need to set Unchecked to item if column is not showing
     if(columnTitle[0] == "shown")
@@ -62,6 +64,16 @@ void ConfigureColumns::loadSettings()
         ui->tableWidget->item(4,0)->setCheckState(Qt::Checked);
     if(columnNotes[1] == "masked")
         ui->tableWidget->item(4,1)->setCheckState(Qt::Checked);
+
+    if(columnCreationTime[0] == "shown")
+        ui->tableWidget->item(5,0)->setCheckState(Qt::Checked);
+    if(columnCreationTime[1] == "masked")
+        ui->tableWidget->item(5,1)->setCheckState(Qt::Checked);
+
+    if(columnLastChanged[0] == "shown")
+        ui->tableWidget->item(6,0)->setCheckState(Qt::Checked);
+    if(columnLastChanged[1] == "masked")
+        ui->tableWidget->item(6,1)->setCheckState(Qt::Checked);
 }
 
 
@@ -73,8 +85,10 @@ void ConfigureColumns::setup()
         {isPasswordShown, isPasswordAsterisks},
         {isURLShown, isURLAsterisks},
         {isNotesShown, isNotesAsterisks},
+        {isCreationTimeShown, isCreationTimeAsterisks},
+        {isLastChangedShown, isLastChangedAsterisks}
     };
-    // Setting all items like it is checkbox
+
     int row = 0;
     for(QPair<QTableWidgetItem*, QTableWidgetItem*> &el : rows)
     {
@@ -88,20 +102,22 @@ void ConfigureColumns::setup()
 
 void ConfigureColumns::on_saveButton_clicked()
 {
-    QSettings settings("AlexRadik", "RadiPass");
+    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
 
+    // QStringList to store two values in one QSettings field
     QStringList columnTitle = QStringList() << "" << "";
     QStringList columnUsername = QStringList() << "" << "";
     QStringList columnPassword = QStringList() << "" << "";
     QStringList columnURL = QStringList() << "" << "";
     QStringList columnNotes = QStringList() << "" << "";
+    QStringList columnCreationTime = QStringList() << "" << "";
+    QStringList columnLastChanged = QStringList() << "" << "";
 
-    // First values is show/hide column setting, second value is mask/unmask column setting
-    //////////////////////////////////////////////////////////
+
+    // Setting values from first column in TableView
     if(ui->tableWidget->item(0,0)->checkState() == Qt::Checked)
         columnTitle[0] = "shown";
     else columnTitle[0] = "hidden";
-
 
     if(ui->tableWidget->item(1,0)->checkState() == Qt::Checked)
         columnUsername[0] = "shown";
@@ -118,7 +134,20 @@ void ConfigureColumns::on_saveButton_clicked()
     if(ui->tableWidget->item(4,0)->checkState() == Qt::Checked)
         columnNotes[0] = "shown";
     else columnNotes[0] = "hidden";
-    //////////////////////////////////////////////////////////
+
+    if(ui->tableWidget->item(5,0)->checkState() == Qt::Checked)
+        columnCreationTime[0] = "shown";
+    else columnCreationTime[0] = "hidden";
+
+    if(ui->tableWidget->item(6,0)->checkState() == Qt::Checked)
+        columnLastChanged[0] = "shown";
+    else columnLastChanged[0] = "hidden";
+
+    // Setting values from second column in TableView
+    if(ui->tableWidget->item(5,0)->checkState() == Qt::Checked)
+        columnNotes[0] = "shown";
+    else columnNotes[0] = "hidden";
+
     if(ui->tableWidget->item(0,1)->checkState() == Qt::Checked)
         columnTitle[1] = "masked";
     else columnTitle[1] = "unmasked";
@@ -138,12 +167,24 @@ void ConfigureColumns::on_saveButton_clicked()
     if(ui->tableWidget->item(4,1)->checkState() == Qt::Checked)
         columnNotes[1] = "masked";
     else columnNotes[1] = "unmasked";
-    //////////////////////////////////////////////////////////
+
+    if(ui->tableWidget->item(5,1)->checkState() == Qt::Checked)
+        columnCreationTime[1] = "shown";
+    else columnCreationTime[1] = "hidden";
+
+    if(ui->tableWidget->item(6,1)->checkState() == Qt::Checked)
+        columnLastChanged[1] = "shown";
+    else columnLastChanged[1] = "hidden";
+
+    // Loading that values to QSettings
     settings.setValue("columnTitle", columnTitle);
     settings.setValue("columnUsername", columnUsername);
     settings.setValue("columnPassword", columnPassword);
     settings.setValue("columnURL", columnURL);
     settings.setValue("columnNotes", columnNotes);
-    this->close();
+    settings.setValue("columnCreationTime", columnCreationTime);
+    settings.setValue("columnLastChanged", columnLastChanged);
+
+    this->accept(); // Closing this window
 }
 

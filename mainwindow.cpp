@@ -9,9 +9,8 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     , translator(translator)
     , theme(theme)
 {
-    qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qDebug() << Q_FUNC_INFO;
     ui->setupUi(this);
-
     setWindowTitle("RadiPass");
 
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);

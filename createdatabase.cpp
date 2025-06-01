@@ -1,10 +1,10 @@
 #include "createdatabase.h"
 #include "ui_createdatabase.h"
 
-CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *masterPassword, const QString path)
+CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *key, const QString path)
     : QDialog(parent)
     , ui(new Ui::CreateDatabase)
-    , key(masterPassword)
+    , key(key)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Create Database"));
@@ -123,7 +123,7 @@ void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckSta
 }
 
 
-void CreateDatabase::on_pushButton_clicked()
+void CreateDatabase::on_cancelButton_clicked()
 {
     this->reject();
 }
