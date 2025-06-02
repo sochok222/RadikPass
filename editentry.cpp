@@ -12,7 +12,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
-    setup();
+    fillData();
 }
 
 EditEntry::~EditEntry()
@@ -20,7 +20,7 @@ EditEntry::~EditEntry()
     delete ui;
 }
 
-void EditEntry::setup()
+void EditEntry::fillData()
 {
     if(tableView == nullptr || db == nullptr)
     {
@@ -78,7 +78,7 @@ bool EditEntry::atLeastOneNotEmpty()
 }
 
 
-void EditEntry::on_writeButton_clicked()
+void EditEntry::on_okButton_clicked()
 {
     if(atLeastOneNotEmpty())
     {
@@ -130,3 +130,9 @@ void EditEntry::on_writeButton_clicked()
         msg.exec();
     }
 }
+
+void EditEntry::on_cancelButton_clicked()
+{
+
+}
+

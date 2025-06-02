@@ -12,23 +12,28 @@
 namespace Ui {
 class OpenDatabase;
 }
-
+// This class will create window to allow user open database.
 class OpenDatabase : public QDialog
 {
     Q_OBJECT
 
 public:
+    // *result to reutrn master-key.
     explicit OpenDatabase(QWidget *parent = nullptr, QByteArray *result = nullptr);
     ~OpenDatabase();
 
 private slots:
-    void on_okButton_clicked();
+    void on_okButton_clicked(); // When user clicks Ok button.
 
-    void on_cancelButton_clicked();
+    void on_cancelButton_clicked(); // When user clicks Cancel button.
 
 private:
     Ui::OpenDatabase *ui;
+
+    // Loading settings.
     QSettings settings = QSettings("AlexRadik", "RadiPass");
+
+    // Storing master-key.
     QByteArray *masterPassword;
 };
 

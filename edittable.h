@@ -23,37 +23,58 @@ namespace Ui {
 class EditTable;
 }
 
+// This class will create window when user wants to edit table (name or icon of table).
 class EditTable : public QDialog
 {
     Q_OBJECT
 
 public:
+    // *db to write changes, tableName to know which table user wants to edit,
+    // *listWidget stores rows with tables(names and icons) in MainWindow, this class will change values in listWidget by pointer.
+    // theme to load icons according to current theme.
     explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, QString theme = "");
     ~EditTable();
 
 private:
     Ui::EditTable *ui;
-    void closeEvent(QCloseEvent *event) override;
+
+    // Values from class constructor.
     QSqlDatabase *db;
-    QVector<QString> iconNames = {"entry", "trash", "key", "url", "user", "settings", "bitcoin", "card", "game", "house", "money", "net", "office", "pc", "programming"};
-    bool isNameChanged = false;
-    bool isIconChanged = false;
-    void saveChanges();
     QString tableName;
     QListWidget *listWidget;
-    void loadIcons();
-    void showMsgBox(const QString text);
-    QStandardItemModel *model;
-    QDataWidgetMapper *mapper;
     QString theme;
 
+    // This will catch close event, and if user maked some changes needs to ask if user wants to save changes.
+    void closeEvent(QCloseEvent *event) override;
+
+    // To check if icon or name was changed.
+    bool isNameChanged = false;
+    bool isIconChanged = false;
+
+    // Loads icon to QComboBox according to current theme.
+    void loadIcons();
+
+    // This will write changes to database.
+    void saveChanges();
+
+    // This fuction shows user MessageBox if error occurs.
+    void showMsgBox(const QString text);
+
+    // For mapping QComboBox to QStandardItemModel, to know which icon user chosed.
+    QStandardItemModel *model;
+    QDataWidgetMapper *mapper;
+
 public slots:
+    // Catch changes.
     void iconChanged() {isIconChanged = true;};
     void textChanged() {isNameChanged = true;};
+
+    // Connecting iconChanged() and textChanged() to signals that emits on changing.
     void setConnections();
+
 private slots:
-    void on_addTableButton_clicked();
-    void on_buttonCancel_clicked();
+    void on_buttonSave_clicked(); // When user clicks Save button.
+    void on_buttonCancel_clicked(); // When user clicks Cancel button.
 };
 
 

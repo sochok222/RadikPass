@@ -180,25 +180,25 @@ bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatab
     return true;
 }
 
-bool DbManager::deleteTable(QSqlDatabase *db, const QString tablename)
+bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
 {
     qDebug() << Q_FUNC_INFO;
     QSqlQuery query(*db);
 
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
-    query.bindValue(":name", tablename);
+    query.bindValue(":name", tableName);
     if(!query.exec())
     {
         qDebug() << "Can't execute query";
         return false;
     }
 
-    QString command = QString("DROP TABLE [%1]").arg(tablename);
+    QString command = QString("DROP TABLE [%1]").arg(tableName);
 
     if(!query.exec(command))
     {
         qDebug() << "Can't execute query";
-        query.exec("INSERT INTO TablesSettings ([Table]) VALUES ('"+tablename+"')");
+        query.exec("INSERT INTO TablesSettings ([Table]) VALUES ('"+tableName+"')");
         return false;
     }
     return true;

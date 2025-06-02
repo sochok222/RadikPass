@@ -268,7 +268,7 @@ void MainWindow::customMenuRequested(QPoint pos){
     qDebug() << Q_FUNC_INFO;
     if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) // If mouse cursor is on tableView and on row
     {
-        mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
+        mainContextMenu.reset(new QMenu(this)); // Resetting QMenuenu object
         actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
         actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
         actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this)); // Resetting QAction *actionEdit object
@@ -480,7 +480,7 @@ void MainWindow::editRow()
 {
     qDebug() << Q_FUNC_INFO;
 
-    if(!hasSelectedRow()) // If user selected no row, do
+    if(!hasSelectedRow()) // If user has no selected row return.
         return;
 
     EditEntry *editEntry = new EditEntry(this, ui->tableView, &db, model);

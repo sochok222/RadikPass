@@ -23,7 +23,6 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName,
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Table"));
     ui->nameEdit->setText(tableName);
-    ui->comboBox->setCurrentIndex(iconNames.indexOf("bitcoin"));
 
     model = new QStandardItemModel;
     mapper = new QDataWidgetMapper;
@@ -52,6 +51,8 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName,
 EditTable::~EditTable()
 {
     delete ui;
+    delete mapper;
+    delete model;
 }
 
 void EditTable::loadIcons()
@@ -168,7 +169,7 @@ void EditTable::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void EditTable::on_addTableButton_clicked()
+void EditTable::on_buttonSave_clicked()
 {
     saveChanges();
     this->accept();

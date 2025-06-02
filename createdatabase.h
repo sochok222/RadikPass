@@ -30,7 +30,7 @@ private slots:
 
     void on_lineRepeat_textChanged(const QString &arg1); // When text in repeat line changed
 
-    void on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1); // When user want to hide/unhide password in line
+    void on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1); // When user want to hide/show password in line
 
     void on_cancelButton_clicked(); // When user cancels action
 
