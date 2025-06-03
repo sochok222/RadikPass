@@ -17,6 +17,7 @@
 #include <QObject>
 #include <QDir>
 
+// This class used to manage db.
 class DbManager
 {
 public:

@@ -14,14 +14,38 @@ bool isFileExists(const QString path)
     return false;
 }
 
-/// Settings
-// columnId
-// columnTitle
-// columnUserName
-// columnPassword
-// columnUrl
-// columnNotes
-// Last - last used database
+void setStandardCfgColumns()
+{
+    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
+
+    // QStringList to store two values in one QSettings field
+    QStringList columnTitle = QStringList() << "" << "";
+    QStringList columnUsername = QStringList() << "" << "";
+    QStringList columnPassword = QStringList() << "" << "";
+    QStringList columnURL = QStringList() << "" << "";
+    QStringList columnNotes = QStringList() << "" << "";
+    QStringList columnCreationTime = QStringList() << "" << "";
+    QStringList columnLastChanged = QStringList() << "" << "";
+
+    // Set standard values
+    columnTitle[0] = "shown"; columnTitle[1] = "unmasked";
+    columnUsername[0] = "shown"; columnUsername[1] = "unmasked";
+    columnPassword[0] = "shown"; columnPassword[1] = "masked";
+    columnURL[0] = "shown"; columnURL[1] = "unmasked";
+    columnNotes[0] = "shown"; columnNotes[1] = "unmasked";
+    columnCreationTime[0] = "shown"; columnCreationTime[1] = "unmasked";
+    columnLastChanged[0] = "shown"; columnLastChanged[1] = "unmasked";
+
+    // Applying settings
+    settings.setValue("columnTitle", columnTitle);
+    settings.setValue("columnUsername", columnUsername);
+    settings.setValue("columnPassword", columnPassword);
+    settings.setValue("columnURL", columnURL);
+    settings.setValue("columnNotes", columnNotes);
+    settings.setValue("columnCreationTime", columnCreationTime);
+    settings.setValue("columnLastChanged", columnLastChanged);
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +55,17 @@ int main(int argc, char *argv[])
     QTranslator *translator = new QTranslator;
     QSettings settings = QSettings("AlexRadik", "RadiPass");
     qApp->setWindowIcon(QIcon(":/programImages/resources/program_images/windowIcon.svg")); // Set icon for all windows
+
+    // Checking if the fields that used to configure columns exists.
+
+    QVector<QString> cfgColumnsFields = {"columnTitle", "columnUsername", "columnPassword", "columnURL", "columnNotes", "columnCreationTime", "columnLastChanged"};
+    for(QString &field : cfgColumnsFields)
+    {
+        if (settings.value(field).toStringList().size() != 2) // Set standard values if user launches program for first time.
+        {
+            setStandardCfgColumns();
+        }
+    }
 
     if(!settings.value("Language").isNull() && settings.value("Language") != "")
     {

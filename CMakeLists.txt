@@ -67,7 +67,6 @@ else()
     endif()
 endif()
 
-set(CRYPTOPP_LIBRARIES "C:/programming/c++/qt/fileEncryption/cryptopp/cryptlib.lib")
 
 target_link_libraries(fileEncryption PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -75,7 +74,6 @@ target_link_libraries(fileEncryption PRIVATE
     Qt${QT_VERSION_MAJOR}::UiTools
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::GuiPrivate
-    cryptopp
 )
 
 
