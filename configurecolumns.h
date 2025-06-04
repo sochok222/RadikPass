@@ -31,6 +31,8 @@ private:
 
     void loadSettings();
 
+    void fixRegistry();
+
     // This QTableWidgetItems are cells that will be loaded to tableView.
     QTableWidgetItem *isTitleShown = new QTableWidgetItem("");
     QTableWidgetItem *isUsernameShown = new QTableWidgetItem("");

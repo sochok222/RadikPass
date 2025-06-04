@@ -1,5 +1,6 @@
 #include "configurecolumns.h"
 #include <QTableWidget>
+#include <qmessagebox.h>
 #include "ui_configurecolumns.h"
 
 ConfigureColumns::ConfigureColumns(QWidget *parent)
@@ -9,11 +10,12 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Configure Columns");
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setRowCount(5);
+    ui->tableWidget->setRowCount(7);
     ui->tableWidget->setColumnCount(2);
 
     QStringList horizontal = QList<QString>({tr("Is shown"), tr("Is hiden by asterisk(*)")});
-    QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes")});
+    QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes"),
+                                           tr("Creation Time"), tr("Last Changed")});
     ui->tableWidget->setVerticalHeaderLabels(vertical);
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
@@ -27,6 +29,47 @@ ConfigureColumns::~ConfigureColumns()
     delete ui;
 }
 
+void ConfigureColumns::fixRegistry()
+{
+    qDebug() << "Cant load settings from registry, fixing it.";
+
+    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
+
+    // QStringList to store two values in one QSettings field
+    QStringList columnTitle = QStringList() << "" << "";
+    QStringList columnUsername = QStringList() << "" << "";
+    QStringList columnPassword = QStringList() << "" << "";
+    QStringList columnURL = QStringList() << "" << "";
+    QStringList columnNotes = QStringList() << "" << "";
+    QStringList columnCreationTime = QStringList() << "" << "";
+    QStringList columnLastChanged = QStringList() << "" << "";
+
+    // Set standard values
+    columnTitle[0] = "shown"; columnTitle[1] = "unmasked";
+    columnUsername[0] = "shown"; columnUsername[1] = "unmasked";
+    columnPassword[0] = "shown"; columnPassword[1] = "masked";
+    columnURL[0] = "shown"; columnURL[1] = "unmasked";
+    columnNotes[0] = "shown"; columnNotes[1] = "unmasked";
+    columnCreationTime[0] = "shown"; columnCreationTime[1] = "unmasked";
+    columnLastChanged[0] = "shown"; columnLastChanged[1] = "unmasked";
+
+    // Applying settings
+    settings.setValue("columnTitle", columnTitle);
+    settings.setValue("columnUsername", columnUsername);
+    settings.setValue("columnPassword", columnPassword);
+    settings.setValue("columnURL", columnURL);
+    settings.setValue("columnNotes", columnNotes);
+    settings.setValue("columnCreationTime", columnCreationTime);
+    settings.setValue("columnLastChanged", columnLastChanged);
+
+    QMessageBox msg;
+    msg.setText("An error occured.\nTry again.");
+    msg.setStandardButtons(QMessageBox::Ok);
+    msg.setIcon(QMessageBox::Critical);
+    msg.exec();
+    this->close();
+}
+
 void ConfigureColumns::loadSettings()
 {
     // Loading settings from QSettings
@@ -36,8 +79,20 @@ void ConfigureColumns::loadSettings()
     QStringList columnPassword = settings.value("columnPassword").toStringList();
     QStringList columnURL = settings.value("columnURL").toStringList();
     QStringList columnNotes = settings.value("columnNotes").toStringList();
-    QStringList columnCreationTime = settings.value("creationTime").toStringList();
-    QStringList columnLastChanged = settings.value("lastChanged").toStringList();
+    QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
+    QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
+
+    // Creting list to check if every value from registry has size of 2.
+    QVector<QStringList> lists = {columnTitle, columnUsername, columnPassword, columnURL,
+                                  columnNotes, columnCreationTime, columnLastChanged};
+
+    // Iterating through every value.
+    for(QStringList &list : lists)
+    {
+        if(list.size() != 2)
+            fixRegistry();
+    }
+
 
     // Basic value is unchecked, so I don't need to set Unchecked to item if column is not showing
     if(columnTitle[0] == "shown")

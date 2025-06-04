@@ -64,6 +64,7 @@ int main(int argc, char *argv[])
         if (settings.value(field).toStringList().size() != 2) // Set standard values if user launches program for first time.
         {
             setStandardCfgColumns();
+            break;
         }
     }
 
