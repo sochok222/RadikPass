@@ -650,7 +650,7 @@ void MainWindow::addEntry()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    AddEntry *dialog = new AddEntry(this, db, model->tableName()); // Create dialog that will add row to table
+    AddEntry *dialog = new AddEntry(this, &db, model->tableName()); // Create dialog that will add row to table
     dialog->exec();    // Showing dialog
     delete dialog;
 

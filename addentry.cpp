@@ -2,12 +2,22 @@
 #include "ui_addentry.h"
 #include <qsqlerror.h>
 
-AddEntry::AddEntry(QWidget *parent, const QSqlDatabase &db, QString tableName)
+AddEntry::AddEntry(QWidget *parent, QSqlDatabase *db, QString tableName)
     : QDialog(parent)
     , ui(new Ui::AddEntry)
     , tableName(tableName)
+    , db(db)
 {
     ui->setupUi(this);
+
+    if(db == nullptr)
+    {
+        QMessageBox msg;
+        msg.setText("Can't open database");
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+        this->close();
+    }
 
     // Set window name.
     this->setWindowTitle(tr("Add Entry"));
@@ -35,7 +45,7 @@ void AddEntry::on_okButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QSqlQuery query(db); // QSqlQuery to access QSqlDatabase db.
+    QSqlQuery query(*db); // QSqlQuery to access QSqlDatabase db.
 
     // Check if at least one field not empty
     if(atLeastOneNotEmpty())

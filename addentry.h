@@ -19,8 +19,8 @@ class AddEntry : public QDialog
     Q_OBJECT
 
 public:
-    // QSqlDatabase &db to write changes in opened database and tableName to know in which table.
-    explicit AddEntry(QWidget *parent = nullptr, const QSqlDatabase &db = QSqlDatabase::addDatabase("QSQLITE"), QString tableName = "");
+    // QSqlDatabase *db to write changes in opened database, tableName to know in which table.
+    explicit AddEntry(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString tableName = "");
     ~AddEntry();
 
 private slots:
@@ -31,7 +31,7 @@ private:
 
     bool atLeastOneNotEmpty(); // Function that checks that al leas one field is not emtpy
 
-    QSqlDatabase db; // Storing database that passed to the class constructor
+    QSqlDatabase *db; // Storing database that passed to the class constructor
     QString tableName; // Storing Name of current table that passed to the class constructor
 };
 
