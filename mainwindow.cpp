@@ -184,6 +184,8 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
     QStringList columnPassword = settings.value("columnPassword").toStringList();
     QStringList columnURL = settings.value("columnURL").toStringList();
     QStringList columnNotes = settings.value("columnNotes").toStringList();
+    QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
+    QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
 
     ui->tableView->setColumnHidden(0,true); // Column with id of row is always hidden!
 
@@ -221,6 +223,20 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
     if(columnNotes.value(1) == "unmasked")
         ui->tableView->setItemDelegateForColumn(5, 0);
     else ui->tableView->setItemDelegateForColumn(5, maskColumn);
+
+    if(columnCreationTime.value(0) == "shown")
+        ui->tableView->setColumnHidden(6, false);
+    else ui->tableView->setColumnHidden(6, true);
+    if(columnCreationTime.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(6, 0);
+    else ui->tableView->setItemDelegateForColumn(6, maskColumn);
+
+    if(columnLastChanged.value(0) == "shown")
+        ui->tableView->setColumnHidden(7, false);
+    else ui->tableView->setColumnHidden(7, true);
+    if(columnLastChanged.value(1) == "unmasked")
+        ui->tableView->setItemDelegateForColumn(7, 0);
+    else ui->tableView->setItemDelegateForColumn(7, maskColumn);
 }
 
 /// This function checks if file in given path exists

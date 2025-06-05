@@ -20,8 +20,8 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
-
     setup();
+    loadSettings();
 }
 
 ConfigureColumns::~ConfigureColumns()
@@ -29,46 +29,6 @@ ConfigureColumns::~ConfigureColumns()
     delete ui;
 }
 
-void ConfigureColumns::fixRegistry()
-{
-    qDebug() << "Cant load settings from registry, fixing it.";
-
-    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
-
-    // QStringList to store two values in one QSettings field
-    QStringList columnTitle = QStringList() << "" << "";
-    QStringList columnUsername = QStringList() << "" << "";
-    QStringList columnPassword = QStringList() << "" << "";
-    QStringList columnURL = QStringList() << "" << "";
-    QStringList columnNotes = QStringList() << "" << "";
-    QStringList columnCreationTime = QStringList() << "" << "";
-    QStringList columnLastChanged = QStringList() << "" << "";
-
-    // Set standard values
-    columnTitle[0] = "shown"; columnTitle[1] = "unmasked";
-    columnUsername[0] = "shown"; columnUsername[1] = "unmasked";
-    columnPassword[0] = "shown"; columnPassword[1] = "masked";
-    columnURL[0] = "shown"; columnURL[1] = "unmasked";
-    columnNotes[0] = "shown"; columnNotes[1] = "unmasked";
-    columnCreationTime[0] = "shown"; columnCreationTime[1] = "unmasked";
-    columnLastChanged[0] = "shown"; columnLastChanged[1] = "unmasked";
-
-    // Applying settings
-    settings.setValue("columnTitle", columnTitle);
-    settings.setValue("columnUsername", columnUsername);
-    settings.setValue("columnPassword", columnPassword);
-    settings.setValue("columnURL", columnURL);
-    settings.setValue("columnNotes", columnNotes);
-    settings.setValue("columnCreationTime", columnCreationTime);
-    settings.setValue("columnLastChanged", columnLastChanged);
-
-    QMessageBox msg;
-    msg.setText("An error occured.\nTry again.");
-    msg.setStandardButtons(QMessageBox::Ok);
-    msg.setIcon(QMessageBox::Critical);
-    msg.exec();
-    this->close();
-}
 
 void ConfigureColumns::loadSettings()
 {
@@ -86,15 +46,8 @@ void ConfigureColumns::loadSettings()
     QVector<QStringList> lists = {columnTitle, columnUsername, columnPassword, columnURL,
                                   columnNotes, columnCreationTime, columnLastChanged};
 
-    // Iterating through every value.
-    for(QStringList &list : lists)
-    {
-        if(list.size() != 2)
-            fixRegistry();
-    }
 
-
-    // Basic value is unchecked, so I don't need to set Unchecked to item if column is not showing
+    // Applying settings that got from QSettings to tableView.
     if(columnTitle[0] == "shown")
         ui->tableWidget->item(0,0)->setCheckState(Qt::Checked);
     if(columnTitle[1] == "masked")
@@ -134,6 +87,7 @@ void ConfigureColumns::loadSettings()
 
 void ConfigureColumns::setup()
 {
+    // Creating cells.
     QVector<QPair<QTableWidgetItem*, QTableWidgetItem*>> rows = {
         {isTitleShown, isTitleAsterisks},
         {isUsernameShown, isUsernameAsterisks},
@@ -144,6 +98,7 @@ void ConfigureColumns::setup()
         {isLastChangedShown, isLastChangedAsterisks}
     };
 
+    // Filling tableView with cells.
     int row = 0;
     for(QPair<QTableWidgetItem*, QTableWidgetItem*> &el : rows)
     {
@@ -151,8 +106,6 @@ void ConfigureColumns::setup()
         ui->tableWidget->setItem(row, 0, el.first); ui->tableWidget->setItem(row, 1, el.second);
         row++;
     }
-
-    loadSettings();
 }
 
 void ConfigureColumns::on_saveButton_clicked()

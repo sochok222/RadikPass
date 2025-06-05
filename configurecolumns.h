@@ -22,16 +22,16 @@ public:
     ~ConfigureColumns();
 
 private slots:
-    void on_saveButton_clicked();
+    void on_saveButton_clicked(); // When user clicks Ok button
 
 private:
     Ui::ConfigureColumns *ui;
 
+    // Fills tableView.
     void setup();
 
+    // Loads current settings from registry using QSettigns.
     void loadSettings();
-
-    void fixRegistry();
 
     // This QTableWidgetItems are cells that will be loaded to tableView.
     QTableWidgetItem *isTitleShown = new QTableWidgetItem("");
