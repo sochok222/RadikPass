@@ -89,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
             msg.setText(tr("Password is incorrect or database file is damaged\nTry again, please"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec(); // Showing message if can't open database
+            key = 0;
         }
 
         for(int i = 0; i < tables.size(); i++) // Adding tables to listWidget in screen
@@ -105,7 +106,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     }
     model->select();
     ui->tableView->setModel(model); // Loading model to QTableView
-    configureColumns();
+    configureColumns(); // Showing columns according to settings.
     setIconsInListWidget();
 }
 MainWindow::~MainWindow()
@@ -282,6 +283,11 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
 
 void MainWindow::customMenuRequested(QPoint pos){
     qDebug() << Q_FUNC_INFO;
+
+    if(ui->listWidget->count() == 0) // Checking if at leas one row in listWidget exists.
+        return;
+
+
     if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) // If mouse cursor is on tableView and on row
     {
         mainContextMenu.reset(new QMenu(this)); // Resetting QMenuenu object
@@ -759,29 +765,40 @@ void MainWindow::createDatabase()
             ui->listWidget->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
     }
 
-    configureColumns(); // Showing or hiding columns in TableView according to settings
-    setIconsInListWidget(); // Loading icons to ListWidget with tables
+    configureColumns(); // Showing columns according to settings.
+    setIconsInListWidget(); // Loading icons to ListWidget with tables.
 }
 
 void MainWindow::configureEntryMenu() // This function will disable or enable actions in View menu in toolbar
 {
     qDebug() << Q_FUNC_INFO;
-    if(!ui->tableView->selectionModel()->hasSelection()) // If row is not selected in TableView this will disable actions and vise versa
+
+
+    if(ui->tableView->selectionModel()->hasSelection()) // If row is not selected in TableView this will disable actions and vise versa
     {
-        ui->actionCopy_User_Name->setDisabled(true);
-        ui->actionCopy_Password->setDisabled(true);
-        ui->menuUrl->setDisabled(true);
-        ui->actionEdit_Entry->setDisabled(true);
-        ui->actionDuplicate_Entry->setDisabled(true);
-        ui->actionDelete_Entry->setDisabled(true);
-    }else
+        ui->actionCopy_User_Name->setEnabled(true);
+        ui->actionCopy_Password->setEnabled(true);
+        ui->menuUrl->setEnabled(true);
+        ui->actionEdit_Entry->setEnabled(true);
+        ui->actionDuplicate_Entry->setEnabled(true);
+        ui->actionDelete_Entry->setEnabled(true);
+    }else if (ui->listWidget->count() > 0) // Checking if at least one table exists.
     {
-        ui->actionCopy_User_Name->setDisabled(false);
-        ui->actionCopy_Password->setDisabled(false);
-        ui->menuUrl->setDisabled(false);
-        ui->actionEdit_Entry->setDisabled(false);
-        ui->actionDuplicate_Entry->setDisabled(false);
-        ui->actionDelete_Entry->setDisabled(false);
+        ui->actionCopy_User_Name->setEnabled(false);
+        ui->actionCopy_Password->setEnabled(false);
+        ui->menuUrl->setEnabled(false);
+        ui->actionEdit_Entry->setEnabled(false);
+        ui->actionDuplicate_Entry->setEnabled(false);
+        ui->actionDelete_Entry->setEnabled(false);
+        ui->actionAdd_Entry->setEnabled(true);
+    } else {
+        ui->actionCopy_User_Name->setEnabled(false);
+        ui->actionCopy_Password->setEnabled(false);
+        ui->menuUrl->setEnabled(false);
+        ui->actionEdit_Entry->setEnabled(false);
+        ui->actionDuplicate_Entry->setEnabled(false);
+        ui->actionDelete_Entry->setEnabled(false);
+        ui->actionAdd_Entry->setEnabled(false);
     }
 }
 
@@ -812,13 +829,14 @@ void MainWindow::editTable()
     editTable->exec();
     delete editTable;
 
+    // Selecting in table model table that user was editing.
     model->setTable(ui->listWidget->currentItem()->text());
     model->select();
 
     isChanged = true; // If user makes some changes needs to set this to true
 
     setIconsInListWidget(); // Loading icons to ListWidget with tables
-    configureColumns();
+    configureColumns(); // Showing columns according to settings.
 }
 
 void MainWindow::duplicateEntry()
