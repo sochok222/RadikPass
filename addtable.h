@@ -44,6 +44,9 @@ private slots:
 private:
     Ui::AddTable *ui;
 
+    // Function checks if table that user wants to create is already existing, if table exists returns true, otherwise return false.
+    bool checkIfTableExists(std::vector<QString> &tables, const QString newTable);
+
     // Storing parameters that passed to class constructor
     QSqlDatabase *db;
     std::vector<QString> *tables;
@@ -55,6 +58,9 @@ private:
     // *mapper and *model to know which icon the user selected
     QDataWidgetMapper *mapper = new QDataWidgetMapper();
     QStandardItemModel *model = new QStandardItemModel();
+
+    // validator to limit user input.
+    QValidator *validator;
 };
 
 

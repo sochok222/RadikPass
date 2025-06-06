@@ -43,7 +43,7 @@ bool AddEntry::atLeastOneNotEmpty()
 
 void AddEntry::on_okButton_clicked()
 {
-    qDebug() << Q_FUNC_INFO;
+        qDebug() << Q_FUNC_INFO;
 
     QSqlQuery query(*db); // QSqlQuery to access QSqlDatabase db.
 

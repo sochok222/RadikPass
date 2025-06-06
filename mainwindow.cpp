@@ -663,9 +663,6 @@ void MainWindow::addEntry()
 
 void MainWindow::openDatabase()
 {
-    qDebug() << Q_FUNC_INFO;
-
-
     if(isChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
@@ -815,9 +812,13 @@ void MainWindow::editTable()
     editTable->exec();
     delete editTable;
 
+    model->setTable(ui->listWidget->currentItem()->text());
+    model->select();
+
     isChanged = true; // If user makes some changes needs to set this to true
 
     setIconsInListWidget(); // Loading icons to ListWidget with tables
+    configureColumns();
 }
 
 void MainWindow::duplicateEntry()
