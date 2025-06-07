@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->buttonAddEntry, SIGNAL(clicked()), SLOT(addEntry()));
     connect(ui->buttonCopyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
     connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
-    connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteRow()));
+    connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteEntry()));
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
 
     // Connecting File menu
@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->actionAdd_Entry, SIGNAL(triggered()), SLOT(addEntry()));
     connect(ui->actionEdit_Entry, SIGNAL(triggered()), SLOT(editRow()));
     connect(ui->actionDuplicate_Entry, SIGNAL(triggered()), SLOT(duplicateEntry()));
-    connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteRow()));
+    connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteEntry()));
     // Connect View menu actions
     connect(ui->actionConfigure_Columns, SIGNAL(triggered()), SLOT(cfgColumns()));
 
@@ -310,7 +310,7 @@ void MainWindow::customMenuRequested(QPoint pos){
         connect(actionCopyUsername.data(), SIGNAL(triggered()), SLOT(copyUsername()));
         connect(actionCopyPassword.data(), SIGNAL(triggered()), SLOT(copyPassword()));
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
-        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteRow())); // Connecting signal of delete button to deleteRow slot
+        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteEntry())); // Connecting signal of delete button to deleteRow slot
         connect(actionEdit.data(), SIGNAL(triggered()), SLOT(editRow()));
         connect(actionCopyUrl.data(), SIGNAL(triggered()), SLOT(copyUrl()));
         connect(actionOpenUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
@@ -442,6 +442,8 @@ void MainWindow::copyUsername()
     query.next();
 
     copyText(query.value(0).toString());
+
+    ui->statusbar->showMessage(tr("Username copied."), 30000);
 }
 
 
@@ -496,6 +498,8 @@ void MainWindow::copyPassword()
     query.next();
 
     copyText(query.value(0).toString());
+
+    ui->statusbar->showMessage(tr("Password copied."), 3000);
 }
 
 void MainWindow::editRow()
@@ -538,6 +542,7 @@ void MainWindow::deleteTable()
                 model->select();
                 ui->tableView->update();
                 configureColumns();
+                ui->statusbar->showMessage(tr("Table deleted."), 3000);
             }else
             {
                 QMessageBox msg;
@@ -553,7 +558,7 @@ void MainWindow::deleteTable()
     configureColumns();
 }
 
-void MainWindow::deleteRow()
+void MainWindow::deleteEntry()
 {
     qDebug() << Q_FUNC_INFO;
 
@@ -574,6 +579,7 @@ void MainWindow::deleteRow()
         model->select();
         ui->tableView->setModel(model);
         isChanged = true;
+        ui->statusbar->showMessage(tr("Entry deleted."), 30000);
     }
 }
 

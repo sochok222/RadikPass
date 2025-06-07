@@ -9,7 +9,6 @@
 #include "dbmanager.h"
 #include "createdatabase.h"
 #include <QDesktopServices>
-#include <QtSql/QSqlDriver>
 #include "ui_mainwindow.h"
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
@@ -29,7 +28,6 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QFileDialog>
-#include <QVBoxLayout>
 #include <QTranslator>
 #include "addtable.h"
 #include <windows.h>
@@ -130,7 +128,7 @@ public slots:
     void editTable();
 
     // Deleting selected row.
-    void deleteRow();
+    void deleteEntry();
 
     // Copies link from selected row.
     void copyUrl();
