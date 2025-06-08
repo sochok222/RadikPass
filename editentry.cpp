@@ -12,6 +12,17 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
+
+    if(tableView == nullptr || db == nullptr || !db->isOpen())
+    {
+        QMessageBox msg;
+        msg.setIcon(QMessageBox::Critical);
+        msg.setText(tr("Something went wrong"));
+        msg.addButton(QMessageBox::Ok);
+        msg.exec();
+        this->close();
+    }
+
     fillData();
 }
 
@@ -22,14 +33,6 @@ EditEntry::~EditEntry()
 
 void EditEntry::fillData()
 {
-    if(tableView == nullptr || db == nullptr)
-    {
-        QMessageBox msg;
-        msg.setIcon(QMessageBox::Critical);
-        msg.setText(tr("Something went wrong"));
-        msg.addButton(QMessageBox::Ok);
-        msg.exec();
-    }
     QSqlQuery query(*db);
 
     QString table = model->tableName();

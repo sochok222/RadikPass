@@ -23,8 +23,8 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
     // Applyint validator to nameEdit
     ui->nameEdit->setValidator(validator);
 
-    // Checking if db or tables is nullptr, if one of those is nullptr this means that something went wrong.
-    if(db == nullptr || tables == nullptr)
+    // Check if database is opened.
+    if(db == nullptr || !db->isOpen() || tables == nullptr)
     {
         QMessageBox msg;
         msg.setText(tr("Can't add new table, probably you didn't opened database"));

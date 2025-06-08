@@ -24,6 +24,16 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName,
     this->setWindowTitle(tr("Edit Table"));
     ui->nameEdit->setText(tableName);
 
+    if(db == nullptr || !db->isOpen())
+    {
+        QMessageBox msg;
+        msg.setIcon(QMessageBox::Critical);
+        msg.setText(tr("Can`t open database"));
+        msg.addButton(QMessageBox::Ok);
+        msg.exec();
+        this->close();
+    }
+
     model = new QStandardItemModel;
     mapper = new QDataWidgetMapper;
 

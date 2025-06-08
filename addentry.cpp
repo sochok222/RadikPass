@@ -10,7 +10,8 @@ AddEntry::AddEntry(QWidget *parent, QSqlDatabase *db, QString tableName)
 {
     ui->setupUi(this);
 
-    if(db == nullptr)
+    // Check if database is open
+    if(db == nullptr || !db->isOpen())
     {
         QMessageBox msg;
         msg.setText("Can't open database");
