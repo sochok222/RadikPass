@@ -49,14 +49,36 @@ QToolBar {
 }
 
 /* Toolbar drop-down menus */
-QMenu, QMenuBar::item {
+QMenuBar::item {
     color: #222222;
-
+    background-color: #f3f4f6;
     padding: 6px 12px;
+    spacing: 20px;
+    border: 1px solid transparent;
+}
+
+QMenu{
+    color: #222222;
+    background-color: #f3f4f6;
+    border: 1px solid rgb(65, 65, 65); 
+}
+
+
+
+QMenu::item {
+    color: #222222;
+    background-color:  #f3f4f6;
+    border: 1px solid transparent;
+    padding: 3px 10px;
+    margin-left: 0px;
 }
 QMenu::item:selected, QMenuBar::item:selected {
-    background-color: #e3f0ff;
-    color: #222222;
+    border-color: rgb(164, 164, 164);
+    background-color:rgb(215, 215, 215);
+    color: #222222;     
+}
+QMenu::item::disabled {
+    color:rgb(107, 107, 107);
 }
 
 /* Toolbar buttons */
@@ -128,24 +150,44 @@ QListView, QTableView, QTreeView {
 QTableView::item:selected {
     background-color:rgb(232, 244, 255); /* Windows 10 selection blue */
     color: #222222;
+    selection-background-color: transparent;
 }
 
 
 /* Scrollbars */
-QScrollBar:vertical, QScrollBar:horizontal {
-    background: #f3f4f6;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    width: 12px;
+QScrollBar {
+    selection-color: transparent;
 }
-QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
-    background: #e5e7eb;
-    border-radius: 6px;
+
+QScrollBar:horizontal {
+    border: 2px solid grey;
+    background:rgb(255, 255, 255);
+    
+    selection-color: transparent;
+    height: 15px;
+    margin: 0px 20px 0 20px;
 }
-QScrollBar::add-line, QScrollBar::sub-line {
-    background: none;
-    border: none;
+QScrollBar::handle:horizontal {
+    background: white;
+    min-width: 20px;
 }
+QScrollBar::add-line:horizontal {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
+
+
 
 /* Tooltips */
 QToolTip {
