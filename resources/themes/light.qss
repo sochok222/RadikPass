@@ -155,37 +155,54 @@ QTableView::item:selected {
 
 
 /* Scrollbars */
-QScrollBar {
-    selection-color: transparent;
-}
-
 QScrollBar:horizontal {
-    border: 2px solid grey;
-    background:rgb(255, 255, 255);
-    
-    selection-color: transparent;
+    border: 2px solid #d1d5db;
+    background:  #ffffff;
     height: 15px;
-    margin: 0px 20px 0 20px;
 }
 QScrollBar::handle:horizontal {
-    background: white;
+    border-radius: 5px;
+    background:  #d1d5db;
     min-width: 20px;
 }
 QScrollBar::add-line:horizontal {
-    border: 2px solid grey;
-    background: #32CC99;
-    width: 20px;
-    subcontrol-position: right;
-    subcontrol-origin: margin;
+    width: 0px;
 }
 
 QScrollBar::sub-line:horizontal {
-    border: 2px solid grey;
-    background: #32CC99;
-    width: 20px;
-    subcontrol-position: left;
-    subcontrol-origin: margin;
+    width: 0px;
 }
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background-color: transparent;
+}
+
+/* Vertical */
+QScrollBar:vertical {
+    border: 2px solid #d1d5db;
+    background:  #ffffff;
+    width: 15px;
+}
+QScrollBar::handle:vertical {
+    border-radius: 5px;
+    background:  #d1d5db;
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background-color: transparent;
+}
+
+
+
+
 
 
 
