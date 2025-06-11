@@ -157,6 +157,7 @@ QTableView::item:selected {
 /* Scrollbars */
 QScrollBar:horizontal {
     border: 2px solid #d1d5db;
+    border-radius: 7px;
     background:  #ffffff;
     height: 15px;
 }
@@ -180,6 +181,7 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
 /* Vertical */
 QScrollBar:vertical {
     border: 2px solid #d1d5db;
+    border-radius: 7px;
     background:  #ffffff;
     width: 15px;
 }
@@ -198,7 +200,7 @@ QScrollBar::sub-line:vertical {
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
 QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
     background-color: transparent;
-}
+}   
 
 
 

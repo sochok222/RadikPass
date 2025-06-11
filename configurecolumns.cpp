@@ -177,12 +177,12 @@ void ConfigureColumns::on_saveButton_clicked()
     else columnNotes[1] = "unmasked";
 
     if(ui->tableWidget->item(5,1)->checkState() == Qt::Checked)
-        columnCreationTime[1] = "shown";
-    else columnCreationTime[1] = "hidden";
+        columnCreationTime[1] = "masked";
+    else columnCreationTime[1] = "unmasked";
 
     if(ui->tableWidget->item(6,1)->checkState() == Qt::Checked)
-        columnLastChanged[1] = "shown";
-    else columnLastChanged[1] = "hidden";
+        columnLastChanged[1] = "masked";
+    else columnLastChanged[1] = "unmasked";
 
     // Loading that values to QSettings
     settings.setValue("columnTitle", columnTitle);
