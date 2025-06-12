@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->setupUi(this);
     setWindowTitle("RadiPass");
 
+    // Shortcuts initialization
+    setupShortcuts();
+
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
@@ -113,6 +116,25 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void::MainWindow::setupShortcuts()
+{
+    // Creating shortcuts.
+    shortcutOpen.reset(new QShortcut(QKeySequence::Open, this));
+    shortcutClose.reset(new QShortcut(QKeySequence::Close, this));
+    shortcutDuplicate.reset(new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_D), this));
+    shortcutDelete.reset(new QShortcut(QKeySequence::Delete, this));
+    shortcutNewDatabase.reset(new QShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N), this));
+    shortcutAddEntry.reset(new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_N), this));
+
+    // Connecting shortcuts to slots.
+    connect(shortcutOpen.data(), SIGNAL(activated()), SLOT(openDatabase()));
+    connect(shortcutClose.data(), SIGNAL(activated()), this, SLOT(close()));
+    connect(shortcutDuplicate.data(), SIGNAL(activated()), this, SLOT(duplicateEntry()));
+    connect(shortcutDelete.data(), SIGNAL(activated()), this, SLOT(deleteEntry()));
+    connect(shortcutNewDatabase.data(), SIGNAL(activated()), this, SLOT(createDatabase()));
+    connect(shortcutAddEntry.data(), SIGNAL(activated()), this, SLOT(addEntry()));
 }
 
 void MainWindow::setColorThemeActions()
@@ -850,6 +872,9 @@ void MainWindow::duplicateEntry()
 {
     qDebug() << Q_FUNC_INFO;
 
+    if(!hasSelectedRow())
+        return;
+
     QSqlQuery query(db);
     QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // id - this is id of row which needs to be duplicated
 
@@ -857,7 +882,7 @@ void MainWindow::duplicateEntry()
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText(tr("Can't duplicate columns"));
+        msg.setText(tr("Can't duplicate entry"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;

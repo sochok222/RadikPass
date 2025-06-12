@@ -22,6 +22,7 @@
 #include <openssl/evp.h>
 #include "iconloader.h"
 #include <QActionGroup>
+#include <QKeySequence>
 #include "editentry.h"
 #include "edittable.h"
 #include <QCloseEvent>
@@ -30,8 +31,9 @@
 #include <QFileDialog>
 #include <QTranslator>
 #include "addtable.h"
-#include <windows.h>
+#include <QShortcut>
 #include <QSettings>
+#include <windows.h>
 #include <QAction>
 #include <QOBject>
 #include <QDebug>
@@ -59,6 +61,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+
+    // Setting up shortcuts
+    void setupShortcuts();
 
     // Catch close event to ask if user wants save changes or not (if isChanged = true).
     void closeEvent(QCloseEvent *event) override;
@@ -179,6 +184,7 @@ public slots:
     // This function loads icons in interface according to current theme.
     void loadIcons();
 
+
 private:
     // Context menu menus and actions.
     QScopedPointer<QMenu> mainContextMenu;
@@ -197,6 +203,15 @@ private:
     QScopedPointer<QAction> actionDark;
     QScopedPointer<QAction> actionLight;
     QScopedPointer<QActionGroup> colorThemeGroup;
+
+
+    // Shortcuts
+    QScopedPointer<QShortcut> shortcutOpen;
+    QScopedPointer<QShortcut> shortcutClose;
+    QScopedPointer<QShortcut> shortcutDuplicate;
+    QScopedPointer<QShortcut> shortcutDelete;
+    QScopedPointer<QShortcut> shortcutAddEntry;
+    QScopedPointer<QShortcut> shortcutNewDatabase;
 };
 
 
