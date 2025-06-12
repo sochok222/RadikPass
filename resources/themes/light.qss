@@ -142,16 +142,23 @@ QListView, QTableView, QTreeView {
     alternate-background-color: #f3f4f6;
     border: 1px solid #d1d5db;
     border-radius: 6px;
+    outline: none;
 }
-
 
 
 /* QTableView selection effect */
 QTableView::item:selected {
-    background-color:rgb(232, 244, 255); /* Windows 10 selection blue */
+    border: 1px solid #d1d5db;
+    background-color: rgb(232, 244, 255);
     color: #222222;
-    selection-background-color: transparent;
 }
+
+QTableView::item:hover {
+    border: 1px solid  rgb(219, 219, 219);
+}
+
+
+
 
 
 /* Scrollbars */
