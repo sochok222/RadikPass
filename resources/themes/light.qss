@@ -6,6 +6,11 @@ QWidget {
     color: #222222;
 }
 
+QCheckBox::indicator::unchecked {
+    border: 1px solid  #cccccc;
+    border-radius: 5px;
+}
+
 /* Buttons */
 QPushButton {
     background-color: #e0e0e0;
@@ -30,6 +35,7 @@ QTableWidget::item:selected {
     background-color: #e3f0ff;
     color: #222222;
 }
+
 
 /* Table header */
 QHeaderView::section {

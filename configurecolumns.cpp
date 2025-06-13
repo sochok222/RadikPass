@@ -10,7 +10,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Configure Columns");
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setRowCount(7);
+    ui->tableWidget->setRowCount(8);
     ui->tableWidget->setColumnCount(2);
 
     QStringList horizontal = QList<QString>({tr("Is shown"), tr("Is hiden by asterisk(*)")});
@@ -27,6 +27,37 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
 ConfigureColumns::~ConfigureColumns()
 {
     delete ui;
+
+    delete isTitleShown;
+    delete isUsernameShown;
+    delete isPasswordShown;
+    delete isURLShown;
+    delete isNotesShown;
+    delete isCreationTimeShown;
+    delete isLastChangedShown;
+
+    delete isTitleAsterisks;
+    delete isUsernameAsterisks;
+    delete isPasswordAsterisks;
+    delete isURLAsterisks;
+    delete isNotesAsterisks;
+    delete isCreationTimeAsterisks;
+    delete isLastChangedAsterisks;
+}
+
+
+void ConfigureColumns::addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox)
+{
+        // Create a widget that will contain a checkbox
+    QWidget *checkBoxWidget = new QWidget();
+    QHBoxLayout *layoutCheckBox = new QHBoxLayout(checkBoxWidget); // create a layer with reference to the widget
+    layoutCheckBox->addWidget(checkBox);            // Set the checkbox in the layer
+    layoutCheckBox->setAlignment(Qt::AlignCenter);  // Center the checkbox
+    layoutCheckBox->setContentsMargins(0,0,0,0);    // Set the zero padding
+
+    checkBox->setCheckState(Qt::Unchecked);
+
+    ui->tableWidget->setCellWidget(row_number,column_number, checkBoxWidget);
 }
 
 
@@ -42,53 +73,38 @@ void ConfigureColumns::loadSettings()
     QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
     QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
 
-    // Creting list to check if every value from registry has size of 2.
-    QVector<QStringList> lists = {columnTitle, columnUsername, columnPassword, columnURL,
-                                  columnNotes, columnCreationTime, columnLastChanged};
+    QVector<QStringList> settingsList = {
+                        columnTitle, columnUsername, columnPassword, columnURL, columnNotes, columnCreationTime, columnLastChanged};
 
+    // Cells
+    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
+        {isTitleShown, isTitleAsterisks},
+        {isUsernameShown, isUsernameAsterisks},
+        {isPasswordShown, isPasswordAsterisks},
+        {isURLShown, isURLAsterisks},
+        {isNotesShown, isNotesAsterisks},
+        {isCreationTimeShown, isCreationTimeAsterisks},
+        {isLastChangedShown, isLastChangedAsterisks}
+    };
 
-    // Applying settings that got from QSettings to tableView.
-    if(columnTitle[0] == "shown")
-        ui->tableWidget->item(0,0)->setCheckState(Qt::Checked);
-    if(columnTitle[1] == "masked")
-        ui->tableWidget->item(0,1)->setCheckState(Qt::Checked);
-
-    if(columnUsername[0] == "shown")
-        ui->tableWidget->item(1,0)->setCheckState(Qt::Checked);
-    if(columnUsername[1] == "masked")
-        ui->tableWidget->item(1,1)->setCheckState(Qt::Checked);
-
-    if(columnPassword[0] == "shown")
-        ui->tableWidget->item(2,0)->setCheckState(Qt::Checked);
-    if(columnPassword[1] == "masked")
-        ui->tableWidget->item(2,1)->setCheckState(Qt::Checked);
-
-    if(columnURL[0] == "shown")
-        ui->tableWidget->item(3,0)->setCheckState(Qt::Checked);
-    if(columnURL[1] == "masked")
-        ui->tableWidget->item(3,1)->setCheckState(Qt::Checked);
-
-    if(columnNotes[0] == "shown")
-        ui->tableWidget->item(4,0)->setCheckState(Qt::Checked);
-    if(columnNotes[1] == "masked")
-        ui->tableWidget->item(4,1)->setCheckState(Qt::Checked);
-
-    if(columnCreationTime[0] == "shown")
-        ui->tableWidget->item(5,0)->setCheckState(Qt::Checked);
-    if(columnCreationTime[1] == "masked")
-        ui->tableWidget->item(5,1)->setCheckState(Qt::Checked);
-
-    if(columnLastChanged[0] == "shown")
-        ui->tableWidget->item(6,0)->setCheckState(Qt::Checked);
-    if(columnLastChanged[1] == "masked")
-        ui->tableWidget->item(6,1)->setCheckState(Qt::Checked);
+    for(int i = 0; i < settingsList.size(); i++)
+    {
+        if(settingsList[i][0] == "shown")
+        {
+            rows[i].first->setCheckState(Qt::Checked);
+        }
+        if(settingsList[i][1] == "masked")
+        {
+            rows[i].second->setCheckState(Qt::Checked);
+        }
+    }
 }
 
 
 void ConfigureColumns::setup()
 {
     // Creating cells.
-    QVector<QPair<QTableWidgetItem*, QTableWidgetItem*>> rows = {
+    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
         {isTitleShown, isTitleAsterisks},
         {isUsernameShown, isUsernameAsterisks},
         {isPasswordShown, isPasswordAsterisks},
@@ -100,10 +116,10 @@ void ConfigureColumns::setup()
 
     // Filling tableView with cells.
     int row = 0;
-    for(QPair<QTableWidgetItem*, QTableWidgetItem*> &el : rows)
+    for(QPair<QCheckBox*, QCheckBox*> &el : rows)
     {
         el.first->setCheckState(Qt::Unchecked); el.second->setCheckState(Qt::Unchecked);
-        ui->tableWidget->setItem(row, 0, el.first); ui->tableWidget->setItem(row, 1, el.second);
+        addCheckBoxAt(row, 0, el.first); addCheckBoxAt(row, 1, el.second);
         row++;
     }
 }
@@ -113,7 +129,7 @@ void ConfigureColumns::on_saveButton_clicked()
     QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
 
     // QStringList to store two values in one QSettings field
-    QStringList columnTitle = QStringList() << "" << "";
+    QStringList columnTitle = QStringList() << "asd" << "asdf";
     QStringList columnUsername = QStringList() << "" << "";
     QStringList columnPassword = QStringList() << "" << "";
     QStringList columnURL = QStringList() << "" << "";
@@ -121,68 +137,33 @@ void ConfigureColumns::on_saveButton_clicked()
     QStringList columnCreationTime = QStringList() << "" << "";
     QStringList columnLastChanged = QStringList() << "" << "";
 
+    QVector<QStringList*> settingsList = {
+                        &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
-    // Setting values from first column in TableView
-    if(ui->tableWidget->item(0,0)->checkState() == Qt::Checked)
-        columnTitle[0] = "shown";
-    else columnTitle[0] = "hidden";
 
-    if(ui->tableWidget->item(1,0)->checkState() == Qt::Checked)
-        columnUsername[0] = "shown";
-    else columnUsername[0] = "hidden";
+    // Cells
+    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
+        {isTitleShown, isTitleAsterisks},
+        {isUsernameShown, isUsernameAsterisks},
+        {isPasswordShown, isPasswordAsterisks},
+        {isURLShown, isURLAsterisks},
+        {isNotesShown, isNotesAsterisks},
+        {isCreationTimeShown, isCreationTimeAsterisks},
+        {isLastChangedShown, isLastChangedAsterisks}
+    };
 
-    if(ui->tableWidget->item(2,0)->checkState() == Qt::Checked)
-        columnPassword[0] = "shown";
-    else columnPassword[0] = "hidden";
+    for(int i = 0; i < settingsList.size(); i++)
+    {
+        if(rows[i].first->checkState())
+        {
+            (*settingsList[i])[0] = "shown";
+        }else (*settingsList[i])[0] = "hidden";
+        if(rows[i].second->checkState() == Qt::Checked)
+        {
+            (*settingsList[i])[1] = "masked";
+        }else (*settingsList[i])[1] = "unmasked";
 
-    if(ui->tableWidget->item(3,0)->checkState() == Qt::Checked)
-        columnURL[0] = "shown";
-    else columnURL[0] = "hidden";
-
-    if(ui->tableWidget->item(4,0)->checkState() == Qt::Checked)
-        columnNotes[0] = "shown";
-    else columnNotes[0] = "hidden";
-
-    if(ui->tableWidget->item(5,0)->checkState() == Qt::Checked)
-        columnCreationTime[0] = "shown";
-    else columnCreationTime[0] = "hidden";
-
-    if(ui->tableWidget->item(6,0)->checkState() == Qt::Checked)
-        columnLastChanged[0] = "shown";
-    else columnLastChanged[0] = "hidden";
-
-    // Setting values from second column in TableView
-    if(ui->tableWidget->item(5,0)->checkState() == Qt::Checked)
-        columnNotes[0] = "shown";
-    else columnNotes[0] = "hidden";
-
-    if(ui->tableWidget->item(0,1)->checkState() == Qt::Checked)
-        columnTitle[1] = "masked";
-    else columnTitle[1] = "unmasked";
-
-    if(ui->tableWidget->item(1,1)->checkState() == Qt::Checked)
-        columnUsername[1] = "masked";
-    else columnUsername[1] = "unmasked";
-
-    if(ui->tableWidget->item(2,1)->checkState() == Qt::Checked)
-        columnPassword[1] = "masked";
-    else columnPassword[1] = "unmasked";
-
-    if(ui->tableWidget->item(3,1)->checkState() == Qt::Checked)
-        columnURL[1] = "masked";
-    else columnURL[1] = "unmasked";
-
-    if(ui->tableWidget->item(4,1)->checkState() == Qt::Checked)
-        columnNotes[1] = "masked";
-    else columnNotes[1] = "unmasked";
-
-    if(ui->tableWidget->item(5,1)->checkState() == Qt::Checked)
-        columnCreationTime[1] = "masked";
-    else columnCreationTime[1] = "unmasked";
-
-    if(ui->tableWidget->item(6,1)->checkState() == Qt::Checked)
-        columnLastChanged[1] = "masked";
-    else columnLastChanged[1] = "unmasked";
+    }
 
     // Loading that values to QSettings
     settings.setValue("columnTitle", columnTitle);

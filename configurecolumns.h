@@ -1,7 +1,6 @@
 #ifndef CONFIGURECOLUMNS_H
 #define CONFIGURECOLUMNS_H
 
-#include <QTableWidgetItem>
 #include <QCheckBox>
 #include <QSettings>
 #include <QDialog>
@@ -27,28 +26,48 @@ private slots:
 private:
     Ui::ConfigureColumns *ui;
 
+    // Adds checkbox to tableWidget
+    void addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox);
+
     // Fills tableView.
     void setup();
 
     // Loads current settings from registry using QSettigns.
     void loadSettings();
 
-    // This QTableWidgetItems are cells that will be loaded to tableView.
-    QTableWidgetItem *isTitleShown = new QTableWidgetItem("");
-    QTableWidgetItem *isUsernameShown = new QTableWidgetItem("");
-    QTableWidgetItem *isPasswordShown = new QTableWidgetItem("");
-    QTableWidgetItem *isURLShown = new QTableWidgetItem("");
-    QTableWidgetItem *isNotesShown = new QTableWidgetItem("");
-    QTableWidgetItem *isCreationTimeShown = new QTableWidgetItem("");
-    QTableWidgetItem *isLastChangedShown = new QTableWidgetItem("");
+    // This QCheckBoxs are cells that will be loaded to tableView.
+    // QCheckBox *isTitleShown = new QCheckBox("");
+    // QCheckBox *isUsernameShown = new QCheckBox("");
+    // QCheckBox *isPasswordShown = new QCheckBox("");
+    // QCheckBox *isURLShown = new QCheckBox("");
+    // QCheckBox *isNotesShown = new QCheckBox("");
+    // QCheckBox *isCreationTimeShown = new QCheckBox("");
+    // QCheckBox *isLastChangedShown = new QCheckBox("");
 
-    QTableWidgetItem *isTitleAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isUsernameAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isPasswordAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isURLAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isNotesAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isCreationTimeAsterisks = new QTableWidgetItem("");
-    QTableWidgetItem *isLastChangedAsterisks = new QTableWidgetItem("");
+    // QCheckBox *isTitleAsterisks = new QCheckBox("");
+    // QCheckBox *isUsernameAsterisks = new QCheckBox("");
+    // QCheckBox *isPasswordAsterisks = new QCheckBox("");
+    // QCheckBox *isURLAsterisks = new QCheckBox("");
+    // QCheckBox *isNotesAsterisks = new QCheckBox("");
+    // QCheckBox *isCreationTimeAsterisks = new QCheckBox("");
+    // QCheckBox *isLastChangedAsterisks = new QCheckBox("");
+
+    QCheckBox *isTitleShown = new QCheckBox("");
+    QCheckBox *isUsernameShown = new QCheckBox("");
+    QCheckBox *isPasswordShown = new QCheckBox("");
+    QCheckBox *isURLShown = new QCheckBox("");
+    QCheckBox *isNotesShown = new QCheckBox("");
+    QCheckBox *isCreationTimeShown = new QCheckBox("");
+    QCheckBox *isLastChangedShown = new QCheckBox("");
+
+    QCheckBox *isTitleAsterisks = new QCheckBox("");
+    QCheckBox *isUsernameAsterisks = new QCheckBox("");
+    QCheckBox *isPasswordAsterisks = new QCheckBox("");
+    QCheckBox *isURLAsterisks = new QCheckBox("");
+    QCheckBox *isNotesAsterisks = new QCheckBox("");
+    QCheckBox *isCreationTimeAsterisks = new QCheckBox("");
+    QCheckBox *isLastChangedAsterisks = new QCheckBox("");
+
 };
 
 #endif // CONFIGURECOLUMNS_H

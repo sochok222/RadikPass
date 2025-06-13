@@ -50,7 +50,7 @@ void setStandardCfgColumns()
 int main(int argc, char *argv[])
 {
     qDebug() << Q_FUNC_INFO;
-
+    setStandardCfgColumns();
     QApplication a(argc, argv);
     QTranslator *translator = new QTranslator;
     QSettings settings = QSettings("AlexRadik", "RadiPass");
