@@ -20,6 +20,16 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
+    rows = {
+        {isTitleShown, isTitleAsterisks},
+        {isUsernameShown, isUsernameAsterisks},
+        {isPasswordShown, isPasswordAsterisks},
+        {isURLShown, isURLAsterisks},
+        {isNotesShown, isNotesAsterisks},
+        {isCreationTimeShown, isCreationTimeAsterisks},
+        {isLastChangedShown, isLastChangedAsterisks}
+    };
+
     setup();
     loadSettings();
 }
@@ -73,27 +83,16 @@ void ConfigureColumns::loadSettings()
     QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
     QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
 
-    QVector<QStringList> settingsList = {
-                        columnTitle, columnUsername, columnPassword, columnURL, columnNotes, columnCreationTime, columnLastChanged};
-
-    // Cells
-    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
-        {isTitleShown, isTitleAsterisks},
-        {isUsernameShown, isUsernameAsterisks},
-        {isPasswordShown, isPasswordAsterisks},
-        {isURLShown, isURLAsterisks},
-        {isNotesShown, isNotesAsterisks},
-        {isCreationTimeShown, isCreationTimeAsterisks},
-        {isLastChangedShown, isLastChangedAsterisks}
-    };
+    QVector<QStringList*> settingsList = {
+                &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if(settingsList[i][0] == "shown")
+        if((*settingsList[i])[0] == "shown")
         {
             rows[i].first->setCheckState(Qt::Checked);
         }
-        if(settingsList[i][1] == "masked")
+        if((*settingsList[i])[1] == "masked")
         {
             rows[i].second->setCheckState(Qt::Checked);
         }
@@ -103,17 +102,6 @@ void ConfigureColumns::loadSettings()
 
 void ConfigureColumns::setup()
 {
-    // Creating cells.
-    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
-        {isTitleShown, isTitleAsterisks},
-        {isUsernameShown, isUsernameAsterisks},
-        {isPasswordShown, isPasswordAsterisks},
-        {isURLShown, isURLAsterisks},
-        {isNotesShown, isNotesAsterisks},
-        {isCreationTimeShown, isCreationTimeAsterisks},
-        {isLastChangedShown, isLastChangedAsterisks}
-    };
-
     // Filling tableView with cells.
     int row = 0;
     for(QPair<QCheckBox*, QCheckBox*> &el : rows)

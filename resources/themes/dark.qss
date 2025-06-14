@@ -6,6 +6,11 @@ QWidget {
     color: #f5f5f5;
 }
 
+QCheckBox::indicator::unchecked {
+    border: 1px solid  #444950;
+    border-radius: 5px;
+}
+
 /* Buttons */
 QPushButton {
     background-color: #2d323b;

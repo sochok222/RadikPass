@@ -68,6 +68,8 @@ private:
     QCheckBox *isCreationTimeAsterisks = new QCheckBox("");
     QCheckBox *isLastChangedAsterisks = new QCheckBox("");
 
+    // Vector with checkboxes
+    QVector<QPair<QCheckBox*, QCheckBox*>> rows;
 };
 
 #endif // CONFIGURECOLUMNS_H
