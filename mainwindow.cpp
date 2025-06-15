@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
     connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
@@ -30,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
 
     // Setting hints to toolbar

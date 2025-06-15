@@ -36,7 +36,6 @@ bool AddEntry::atLeastOneNotEmpty()
     // Check if at least one field is not empty and return true if it is.
    if(!ui->title->text().isEmpty() || !ui->username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->url->text().isEmpty() || !ui->notes->toPlainText().isEmpty())
         return true;
-
     return false;
 }
 
@@ -44,7 +43,7 @@ bool AddEntry::atLeastOneNotEmpty()
 
 void AddEntry::on_okButton_clicked()
 {
-        qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
 
     QSqlQuery query(*db); // QSqlQuery to access QSqlDatabase db.
 

@@ -76,14 +76,18 @@ void AddTable::loadIcons()
 }
 
 
-bool AddTable::checkIfTableExists(std::vector<QString> &allTables, const QString newTable)
+AddTable::isExists AddTable::checkIfTableExists(const QString newTable)
 {
-    for(int i = 0; i < allTables.size(); i++)
-    {
-        if(allTables[i] == newTable)
-            return true;
-    }
-    return false;
+    if(newTable == "TablesSettings" || newTable == "sqlite_master" || newTable == "main")
+        return isExists::cantBeUsed;
+
+    QSqlQuery query(*db);
+    query.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=:name");
+    query.bindValue(":name", newTable);
+    query.exec();
+    while(query.next())
+        return isExists::exists;
+    return isExists::notExists;
 }
 
 
@@ -107,8 +111,11 @@ void AddTable::on_addTableButton_clicked()
     // Name of table that user wants to create.
     QString tableName = ui->nameEdit->text();
 
+
+    isExists ifExists = checkIfTableExists(tableName);
+
     // Checking if database is already exists.
-    if(!checkIfTableExists(*tables, ui->nameEdit->text()))
+    if(ifExists == isExists::notExists)
     {
         // Statement that will create table.
         QString command = QString(R"(
@@ -155,10 +162,16 @@ void AddTable::on_addTableButton_clicked()
 
         // Closing window.
         this->close();
-    }else {
+    }else if (ifExists == isExists::exists){
         // Showing error if table is already exists.
         QMessageBox msg;
         msg.setText(tr("Table with this name already exists\nTry another name"));
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+    }else if(ifExists == isExists::cantBeUsed)
+    {
+        QMessageBox msg;
+        msg.setText(tr("Can't create table with this name.\nTry another name."));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }

@@ -152,20 +152,13 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="footerLayout" stretch="0,0,0">
+    <layout class="QHBoxLayout" name="footerLayout" stretch="0,0">
      <property name="leftMargin">
       <number>5</number>
      </property>
      <property name="rightMargin">
       <number>5</number>
      </property>
-     <item>
-      <widget class="QPushButton" name="helpButton">
-       <property name="text">
-        <string>Help</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
