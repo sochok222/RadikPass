@@ -10,20 +10,20 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
 {
     ui->setupUi(this);
 
-    // Setting name of window.
-    this->setWindowTitle("Add Table");
+    // Setting name of window
+    this->setWindowTitle(tr("Add Table"));
 
-    // Maximum length is 15.
+    // Maximum length is 15
     ui->nameEdit->setMaxLength(15);
 
-    // Limmitation of user input by QRegularExpression.
+    // Limmitation of user input by QRegularExpression
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
-    // Setting expression to validator.
+    // Setting expression to validator
     validator = new QRegularExpressionValidator(rx, this);
     // Applyint validator to nameEdit
     ui->nameEdit->setValidator(validator);
 
-    // Check if database is opened.
+    // Check if database is opened
     if(db == nullptr || !db->isOpen() || tables == nullptr)
     {
         QMessageBox msg;
@@ -33,7 +33,7 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
         this->close();
     }
 
-    // Loading icons to QComboBox.
+    // Loading icons to QComboBox
     loadIcons();
 }
 
@@ -46,7 +46,7 @@ AddTable::~AddTable()
 
 void AddTable::loadIcons()
 {
-    // Vector with names of icons.
+    // Vector with names of icons
     QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
 
     // Iterating through vector to load icons to comboBox and QStandardItemModel.
@@ -76,18 +76,26 @@ void AddTable::loadIcons()
 }
 
 
-AddTable::isExists AddTable::checkIfTableExists(const QString newTable)
+AddTable::rtrnCodes AddTable::checkIfTableExists(const QString newTable)
 {
+    // Checking if name of new table isn't name that can't be used.
     if(newTable == "TablesSettings" || newTable == "sqlite_master" || newTable == "main")
-        return isExists::cantBeUsed;
+        return rtrnCodes::cantBeUsed;
 
-    QSqlQuery query(*db);
+    QSqlQuery query(*db); // New query to execute database commands.
+
+    // Selecting all names from sqlite_master to search if table exists.
     query.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=:name");
+    // Binding value of new table.
     query.bindValue(":name", newTable);
+    // Executing
     query.exec();
+
+    // If at least one value exists returning that table already existing
     while(query.next())
-        return isExists::exists;
-    return isExists::notExists;
+        return rtrnCodes::exists;
+    // else returning that table is not existing
+    return rtrnCodes::notExists;
 }
 
 
@@ -112,10 +120,10 @@ void AddTable::on_addTableButton_clicked()
     QString tableName = ui->nameEdit->text();
 
 
-    isExists ifExists = checkIfTableExists(tableName);
+    rtrnCodes ifExists = checkIfTableExists(tableName);
 
     // Checking if database is already exists.
-    if(ifExists == isExists::notExists)
+    if(ifExists == rtrnCodes::notExists)
     {
         // Statement that will create table.
         QString command = QString(R"(
@@ -162,13 +170,12 @@ void AddTable::on_addTableButton_clicked()
 
         // Closing window.
         this->close();
-    }else if (ifExists == isExists::exists){
-        // Showing error if table is already exists.
+    }else if (ifExists == rtrnCodes::exists){ // Showing error if table is already exists.
         QMessageBox msg;
         msg.setText(tr("Table with this name already exists\nTry another name"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
-    }else if(ifExists == isExists::cantBeUsed)
+    }else if(ifExists == rtrnCodes::cantBeUsed) // Showing error if table can't be used.
     {
         QMessageBox msg;
         msg.setText(tr("Can't create table with this name.\nTry another name."));

@@ -8,18 +8,28 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     , ui(new Ui::ConfigureColumns)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Configure Columns");
+    // Setting window name
+    this->setWindowTitle(tr("Configure Columns"));
+
+    // Disabling editing in tableWidget
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // Disabling selection in tableWidget
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+
+    // Creating rows in tableWidget
     ui->tableWidget->setRowCount(8);
     ui->tableWidget->setColumnCount(2);
 
+    // List with header names
     QStringList horizontal = QList<QString>({tr("Is shown"), tr("Is hiden by asterisk(*)")});
     QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes"),
                                            tr("Creation Time"), tr("Last Changed")});
+
+    // Adding headers to tableWidget
     ui->tableWidget->setVerticalHeaderLabels(vertical);
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
-    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
+    // Rows vector initialization
     rows = {
         {isTitleShown, isTitleAsterisks},
         {isUsernameShown, isUsernameAsterisks},
@@ -30,7 +40,9 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
         {isLastChangedShown, isLastChangedAsterisks}
     };
 
+    // Filling cells in tableWidget
     setup();
+    // Loading current settings
     loadSettings();
 }
 

@@ -44,14 +44,14 @@ private slots:
 private:
     Ui::AddTable *ui;
 
-    enum class isExists{
+    enum class rtrnCodes{
         exists,
         notExists,
         cantBeUsed
     };
 
     // Function checks if table that user wants to create is already existing, if table exists returns true, otherwise return false.
-    isExists checkIfTableExists(const QString newTable);
+    rtrnCodes checkIfTableExists(const QString newTable);
 
     // Storing parameters that passed to class constructor
     QSqlDatabase *db;

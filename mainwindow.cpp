@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 {
     qDebug() << Q_FUNC_INFO;
     ui->setupUi(this);
-    setWindowTitle("RadiPass");
+    setWindowTitle(tr("RadiPass"));
 
     // Shortcuts initialization
     setupShortcuts();
