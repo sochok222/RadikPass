@@ -6,70 +6,78 @@
     <message>
         <location filename="../../addentry.ui" line="32"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="137"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="137"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="44"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="138"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="138"/>
         <source>User Name:</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="51"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="139"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="139"/>
         <source>Titile: </source>
         <translation>Titel:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="61"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="140"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="140"/>
         <source>URL: </source>
         <translation>URL:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="68"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="141"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="141"/>
         <source>Notes:</source>
         <translation>Notizen:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="84"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="142"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="142"/>
         <source>Password: </source>
         <translation>Passwort:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="109"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="143"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="143"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="116"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addentry.h" line="144"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addentry.h" line="144"/>
         <source>Cancel</source>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../../addentry.cpp" line="12"/>
+        <location filename="../../addentry.cpp" line="24"/>
         <source>Add Entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../addentry.cpp" line="57"/>
+        <location filename="../../addentry.cpp" line="75"/>
         <source>Error: </source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../../addentry.cpp" line="57"/>
+        <location filename="../../addentry.cpp" line="75"/>
         <source>
 Last query: </source>
         <translation>
 Letzte Abfrage: </translation>
     </message>
     <message>
-        <location filename="../../addentry.cpp" line="65"/>
+        <location filename="../../addentry.cpp" line="86"/>
         <source>At least one field must not be empty</source>
         <translation>Mindestens ein Feld darf nicht leer sein</translation>
     </message>
@@ -77,52 +85,36 @@ Letzte Abfrage: </translation>
 <context>
     <name>AddPasswordDialog</name>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="137"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="137"/>
         <source>Dialog</source>
-        <translation>Eintrag hinzufügen</translation>
+        <translation type="vanished">Eintrag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="138"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="138"/>
         <source>User Name:</source>
-        <translation>Benutzername:</translation>
+        <translation type="vanished">Benutzername:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="139"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="139"/>
         <source>Titile: </source>
-        <translation>Titel:</translation>
+        <translation type="vanished">Titel:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="140"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="140"/>
         <source>URL: </source>
-        <translation>URL:</translation>
+        <translation type="vanished">URL:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="141"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="141"/>
         <source>Notes:</source>
-        <translation>Notizen:</translation>
+        <translation type="vanished">Notizen:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="142"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="142"/>
         <source>Password: </source>
-        <translation>Passwort:</translation>
+        <translation type="vanished">Passwort:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="143"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="143"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="vanished">Ok</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_addpassworddialog.h" line="144"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_addpassworddialog.h" line="144"/>
         <source>Cancel</source>
-        <translation>Stornieren</translation>
+        <translation type="vanished">Stornieren</translation>
     </message>
     <message>
         <source>Add Entry</source>
@@ -181,29 +173,40 @@ Letzte Abfrage: </translation>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../../addtable.cpp" line="22"/>
+        <location filename="../../addtable.cpp" line="14"/>
+        <source>Add Table</source>
+        <translation type="unfinished">Tabelle hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../../addtable.cpp" line="30"/>
         <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
         <translation>Neue Tabelle kann nicht hinzugefügt werden, wahrscheinlich haben Sie die Datenbank nicht geöffnet</translation>
     </message>
     <message>
-        <location filename="../../addtable.cpp" line="83"/>
+        <location filename="../../addtable.cpp" line="110"/>
         <source>Field must be not empty</source>
         <translation>Das Feld darf nicht leer sein</translation>
     </message>
     <message>
-        <location filename="../../addtable.cpp" line="112"/>
-        <location filename="../../addtable.cpp" line="123"/>
+        <location filename="../../addtable.cpp" line="146"/>
+        <location filename="../../addtable.cpp" line="163"/>
         <source>Can&apos;t create table
 Query error: </source>
         <translation>Tabelle kann nicht erstellt werden.
 Abfragefehler:</translation>
     </message>
     <message>
-        <location filename="../../addtable.cpp" line="132"/>
+        <location filename="../../addtable.cpp" line="175"/>
         <source>Table with this name already exists
 Try another name</source>
         <translation>Tabelle mit diesem Namen existiert bereits.
 Versuchen Sie einen anderen Namen.</translation>
+    </message>
+    <message>
+        <location filename="../../addtable.cpp" line="181"/>
+        <source>Can&apos;t create table with this name.
+Try another name.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -223,105 +226,115 @@ Versuchen Sie einen anderen Namen.</translation>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="15"/>
+        <location filename="../../configurecolumns.cpp" line="12"/>
+        <source>Configure Columns</source>
+        <translation type="unfinished">Spalten konfigurieren</translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Is shown</source>
         <translation>Wird angezeigt</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="15"/>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Is hiden by asterisk(*)</source>
         <translation>Ist durch ein Sternchen (*) verborgen</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="16"/>
+        <location filename="../../configurecolumns.cpp" line="25"/>
         <source>Title</source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="16"/>
+        <location filename="../../configurecolumns.cpp" line="25"/>
         <source>Username</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="16"/>
+        <location filename="../../configurecolumns.cpp" line="25"/>
         <source>Password</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="16"/>
+        <location filename="../../configurecolumns.cpp" line="25"/>
         <source>Notes</source>
         <translation>Notizen:</translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="26"/>
+        <source>Creation Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="26"/>
+        <source>Last Changed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CreateDatabase</name>
     <message>
         <location filename="../../createdatabase.ui" line="32"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="168"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="168"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="156"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="162"/>
         <source>Dialog</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="55"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="169"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="169"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="163"/>
         <source>Help</source>
         <translation>Helfen</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="75"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="170"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="170"/>
+        <location filename="../../createdatabase.ui" line="74"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="157"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="164"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="82"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="171"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="171"/>
+        <location filename="../../createdatabase.ui" line="81"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="158"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="165"/>
         <source>Cancel</source>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="125"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="173"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="173"/>
+        <location filename="../../createdatabase.ui" line="150"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="161"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="168"/>
         <source>Quality:</source>
         <translation>Qualität:</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="142"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="174"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="174"/>
+        <location filename="../../createdatabase.ui" line="183"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="164"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="171"/>
         <source>Repeat</source>
         <translation>Wiederholen: </translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="161"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="175"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="175"/>
+        <location filename="../../createdatabase.ui" line="169"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="162"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="169"/>
         <source>***</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="168"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="176"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="176"/>
+        <location filename="../../createdatabase.ui" line="176"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="163"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="170"/>
         <source>Master password</source>
         <translation>Master-Passwort:</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="196"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="177"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="177"/>
         <source>New Database</source>
-        <translation>Neue Datenbank</translation>
+        <translation type="vanished">Neue Datenbank</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.ui" line="209"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="178"/>
-        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="178"/>
+        <location filename="../../createdatabase.ui" line="107"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="159"/>
+        <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_createdatabase.h" line="166"/>
         <source>Path</source>
         <translation>Weg</translation>
     </message>
@@ -430,41 +443,41 @@ Versuchen Sie einen anderen Namen.</translation>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="13"/>
+        <location filename="../../editentry.cpp" line="14"/>
         <source>Edit Entry</source>
         <translation>Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="28"/>
+        <location filename="../../editentry.cpp" line="20"/>
         <source>Something went wrong</source>
         <translation>Etwas ist schief gelaufen</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="40"/>
-        <location filename="../../editentry.cpp" line="55"/>
+        <location filename="../../editentry.cpp" line="44"/>
+        <location filename="../../editentry.cpp" line="59"/>
         <source>Can&apos;t load data from database</source>
         <translation>Daten können nicht aus der Datenbank geladen werden</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="41"/>
-        <location filename="../../editentry.cpp" line="56"/>
+        <location filename="../../editentry.cpp" line="45"/>
+        <location filename="../../editentry.cpp" line="60"/>
         <source>Try again, please</source>
         <translation>Versuchen Sie es bitte noch einmal</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="114"/>
+        <location filename="../../editentry.cpp" line="120"/>
         <source>Can&apos;t edit this row
 Error: </source>
         <translation>Diese Zeile kann nicht bearbeitet werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="115"/>
+        <location filename="../../editentry.cpp" line="121"/>
         <source>Failed to execute statement: </source>
         <translation>Die Anweisung konnte nicht ausgeführt werden:</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="125"/>
+        <location filename="../../editentry.cpp" line="131"/>
         <source>At least one field must not be empty</source>
         <translation>Mindestens ein Feld darf nicht leer sein</translation>
     </message>
@@ -496,8 +509,12 @@ Fehler:</translation>
         <location filename="../../edittable.ui" line="113"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_edittable.h" line="123"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_edittable.h" line="123"/>
+        <source>Save</source>
+        <translation type="unfinished">Speichern</translation>
+    </message>
+    <message>
         <source>Create</source>
-        <translation>Erstellen</translation>
+        <translation type="vanished">Erstellen</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="120"/>
@@ -512,22 +529,31 @@ Fehler:</translation>
         <translation>Tabelle bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="38"/>
+        <location filename="../../edittable.cpp" line="31"/>
+        <source>Can`t open database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edittable.cpp" line="50"/>
         <source>Can&apos;t load listWidget</source>
         <translation>ListWidget kann nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="44"/>
-        <source>Can&apos;t find icons</source>
-        <translation>Ich kann keine Symbole finden</translation>
+        <location filename="../../edittable.cpp" line="55"/>
+        <source>Can&apos;t load current theme</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="71"/>
+        <source>Can&apos;t find icons</source>
+        <translation type="vanished">Ich kann keine Symbole finden</translation>
+    </message>
+    <message>
+        <location filename="../../edittable.cpp" line="108"/>
         <source>Field must be not empty</source>
         <translation>Das Feld darf nicht leer sein</translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="85"/>
+        <location filename="../../edittable.cpp" line="123"/>
         <source>Line must be not empty</source>
         <translation>Das Feld darf nicht leer sein</translation>
     </message>
@@ -594,7 +620,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="393"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
-        <location filename="../../mainwindow.cpp" line="284"/>
+        <location filename="../../mainwindow.cpp" line="331"/>
         <source>Open</source>
         <translation>Offen</translation>
     </message>
@@ -609,8 +635,8 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="403"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
-        <location filename="../../mainwindow.cpp" line="273"/>
-        <location filename="../../mainwindow.cpp" line="309"/>
+        <location filename="../../mainwindow.cpp" line="320"/>
+        <location filename="../../mainwindow.cpp" line="356"/>
         <source>Copy User Name</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
@@ -618,9 +644,9 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="408"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
-        <location filename="../../mainwindow.cpp" line="38"/>
-        <location filename="../../mainwindow.cpp" line="274"/>
-        <location filename="../../mainwindow.cpp" line="310"/>
+        <location filename="../../mainwindow.cpp" line="44"/>
+        <location filename="../../mainwindow.cpp" line="321"/>
+        <location filename="../../mainwindow.cpp" line="357"/>
         <source>Copy Password</source>
         <translation>Passwort kopieren</translation>
     </message>
@@ -628,7 +654,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="413"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
-        <location filename="../../mainwindow.cpp" line="36"/>
+        <location filename="../../mainwindow.cpp" line="42"/>
         <source>Add Entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
@@ -643,7 +669,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="423"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
-        <location filename="../../mainwindow.cpp" line="39"/>
+        <location filename="../../mainwindow.cpp" line="45"/>
         <source>Delete Entry</source>
         <translation>Eintrag löschen</translation>
     </message>
@@ -714,7 +740,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="473"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
-        <location filename="../../mainwindow.cpp" line="120"/>
+        <location filename="../../mainwindow.cpp" line="146"/>
         <source>Dark</source>
         <translation>Dunkel</translation>
     </message>
@@ -722,7 +748,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="478"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
-        <location filename="../../mainwindow.cpp" line="121"/>
+        <location filename="../../mainwindow.cpp" line="147"/>
         <source>Light</source>
         <translation>Licht</translation>
     </message>
@@ -734,27 +760,27 @@ Fehler:</translation>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="33"/>
+        <location filename="../../mainwindow.cpp" line="39"/>
         <source>New Database</source>
         <translation>Neue Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="34"/>
+        <location filename="../../mainwindow.cpp" line="40"/>
         <source>Open Database</source>
         <translation>Datenbank öffnen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="35"/>
+        <location filename="../../mainwindow.cpp" line="41"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="37"/>
+        <location filename="../../mainwindow.cpp" line="43"/>
         <source>Copy Username</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="119"/>
+        <location filename="../../mainwindow.cpp" line="145"/>
         <source>System</source>
         <translation>System</translation>
     </message>
@@ -765,7 +791,7 @@ Try again, please</source>
 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="244"/>
+        <location filename="../../mainwindow.cpp" line="286"/>
         <source>Title copied</source>
         <translation>Titel kopiert</translation>
     </message>
@@ -774,154 +800,183 @@ Try again, please</source>
         <translation type="vanished">Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="90"/>
+        <location filename="../../mainwindow.cpp" line="15"/>
+        <source>RadiPass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="96"/>
         <source>Password is incorrect or database file is damaged
 Try again, please</source>
         <translation>Das Passwort ist falsch oder die Datenbankdatei ist beschädigt. 
 Bitte versuchen Sie es erneut.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="249"/>
+        <location filename="../../mainwindow.cpp" line="291"/>
         <source>Username copied</source>
         <translation>Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="254"/>
+        <location filename="../../mainwindow.cpp" line="296"/>
         <source>Password copied</source>
         <translation>Passwort kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="259"/>
+        <location filename="../../mainwindow.cpp" line="301"/>
         <source>Link opened</source>
         <translation>Link geöffnet</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="264"/>
+        <location filename="../../mainwindow.cpp" line="306"/>
         <source>Notes copied</source>
         <translation>Notizen kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="275"/>
-        <location filename="../../mainwindow.cpp" line="311"/>
-        <location filename="../../mainwindow.cpp" line="339"/>
-        <location filename="../../mainwindow.cpp" line="354"/>
+        <location filename="../../mainwindow.cpp" line="322"/>
+        <location filename="../../mainwindow.cpp" line="358"/>
+        <location filename="../../mainwindow.cpp" line="386"/>
+        <location filename="../../mainwindow.cpp" line="401"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="276"/>
-        <location filename="../../mainwindow.cpp" line="312"/>
+        <location filename="../../mainwindow.cpp" line="323"/>
+        <location filename="../../mainwindow.cpp" line="359"/>
         <source>Add new</source>
         <translation>Neu hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="277"/>
-        <location filename="../../mainwindow.cpp" line="313"/>
-        <location filename="../../mainwindow.cpp" line="337"/>
-        <location filename="../../mainwindow.cpp" line="352"/>
+        <location filename="../../mainwindow.cpp" line="324"/>
+        <location filename="../../mainwindow.cpp" line="360"/>
+        <location filename="../../mainwindow.cpp" line="384"/>
+        <location filename="../../mainwindow.cpp" line="399"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="278"/>
-        <location filename="../../mainwindow.cpp" line="314"/>
+        <location filename="../../mainwindow.cpp" line="325"/>
+        <location filename="../../mainwindow.cpp" line="361"/>
         <source>Configure colums</source>
         <translation>Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="281"/>
-        <location filename="../../mainwindow.cpp" line="320"/>
+        <location filename="../../mainwindow.cpp" line="328"/>
+        <location filename="../../mainwindow.cpp" line="367"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="283"/>
+        <location filename="../../mainwindow.cpp" line="330"/>
         <source>Copy</source>
         <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="338"/>
-        <location filename="../../mainwindow.cpp" line="353"/>
+        <location filename="../../mainwindow.cpp" line="385"/>
+        <location filename="../../mainwindow.cpp" line="400"/>
         <source>Add Table</source>
         <translation>Tabelle hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="402"/>
-        <location filename="../../mainwindow.cpp" line="456"/>
-        <location filename="../../mainwindow.cpp" line="469"/>
+        <location filename="../../mainwindow.cpp" line="449"/>
+        <location filename="../../mainwindow.cpp" line="505"/>
+        <location filename="../../mainwindow.cpp" line="518"/>
         <source>Can&apos;t get row id</source>
         <translation>Zeilen-ID kann nicht abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="403"/>
-        <location filename="../../mainwindow.cpp" line="416"/>
-        <location filename="../../mainwindow.cpp" line="457"/>
-        <location filename="../../mainwindow.cpp" line="470"/>
+        <location filename="../../mainwindow.cpp" line="450"/>
+        <location filename="../../mainwindow.cpp" line="463"/>
+        <location filename="../../mainwindow.cpp" line="506"/>
+        <location filename="../../mainwindow.cpp" line="519"/>
         <source>Query error: </source>
         <translation>Abfragefehler:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="415"/>
+        <location filename="../../mainwindow.cpp" line="462"/>
         <source>Can&apos;t get data from database</source>
         <translation>Daten können nicht aus der Datenbank abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="502"/>
+        <location filename="../../mainwindow.cpp" line="472"/>
+        <source>Username copied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="528"/>
+        <source>Password copied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="553"/>
         <source>Delete Table?</source>
         <translation>Tabelle löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="523"/>
+        <location filename="../../mainwindow.cpp" line="571"/>
+        <source>Table deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="575"/>
         <source>Can`t delete this table</source>
         <translation>Diese Tabelle kann nicht gelöscht werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="528"/>
+        <location filename="../../mainwindow.cpp" line="580"/>
         <source>At least one table must exists</source>
         <translation>Mindestens eine Tabelle muss vorhanden sein</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="545"/>
+        <location filename="../../mainwindow.cpp" line="597"/>
         <source>Delete row?</source>
         <translation>Zeile löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="577"/>
-        <location filename="../../mainwindow.cpp" line="657"/>
+        <location filename="../../mainwindow.cpp" line="608"/>
+        <source>Entry deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="630"/>
+        <location filename="../../mainwindow.cpp" line="707"/>
         <source>Save changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="677"/>
+        <location filename="../../mainwindow.cpp" line="727"/>
         <source>Open encrypted database</source>
         <translation>Öffnen Sie eine verschlüsselte Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="690"/>
+        <location filename="../../mainwindow.cpp" line="740"/>
         <source>Password is incorrect</source>
         <translation>Das Passwort ist falsch</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="888"/>
+        <source>Can&apos;t duplicate entry</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password is uncorrect</source>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="716"/>
+        <location filename="../../mainwindow.cpp" line="767"/>
         <source>Create new database</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="730"/>
+        <location filename="../../mainwindow.cpp" line="780"/>
         <source>Can&apos;t create new database</source>
         <translation>Neue Datenbank kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="809"/>
         <source>Can&apos;t duplicate columns</source>
-        <translation>Spalten können nicht dupliziert werden</translation>
+        <translation type="vanished">Spalten können nicht dupliziert werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="815"/>
+        <location filename="../../mainwindow.cpp" line="894"/>
         <source>Entry duplicated</source>
         <translation>Eintrag dupliziert</translation>
     </message>
@@ -930,60 +985,58 @@ Bitte versuchen Sie es erneut.</translation>
     <name>OpenDatabase</name>
     <message>
         <location filename="../../opendatabase.ui" line="26"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="143"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="137"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="143"/>
         <source>Dialog</source>
         <translation>Datenbank öffnen</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="81"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="144"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="138"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="144"/>
         <source>Enter Master Key</source>
         <translation>Geben Sie den Hauptschlüssel ein</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="109"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="145"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="139"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="145"/>
         <source>Path</source>
         <translation>Weg</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="148"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="146"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="140"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="146"/>
         <source>Master Password</source>
         <translation>Master-Passwort:</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.ui" line="165"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="147"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="147"/>
         <source>Help</source>
         <translation>Helfen</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.ui" line="187"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="148"/>
+        <location filename="../../opendatabase.ui" line="180"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="141"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="148"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.ui" line="194"/>
-        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="149"/>
+        <location filename="../../opendatabase.ui" line="187"/>
+        <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="142"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_opendatabase.h" line="149"/>
         <source>Cancel</source>
         <translation>Stornieren</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.cpp" line="16"/>
+        <location filename="../../opendatabase.cpp" line="15"/>
         <source>Open Database</source>
         <translation>Datenbank öffnen</translation>
     </message>
     <message>
-        <location filename="../../opendatabase.cpp" line="34"/>
+        <location filename="../../opendatabase.cpp" line="33"/>
         <source>Password line must be not empty</source>
         <translation>Die Kennwortzeile darf nicht leer sein</translation>
     </message>

@@ -17,7 +17,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
     // Creating rows in tableWidget
-    ui->tableWidget->setRowCount(8);
+    ui->tableWidget->setRowCount(7);
     ui->tableWidget->setColumnCount(2);
 
     // List with header names

@@ -28,7 +28,7 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    # qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES}) !!!Uncomment only when updating translations, this causes build fails!!!
+    qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
     qt_add_executable(fileEncryption
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
