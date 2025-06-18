@@ -79,8 +79,8 @@ QMenu::item {
     margin-left: 0px;
 }
 QMenu::item:selected, QMenuBar::item:selected, QMenu::item::hover, QMenuBar::item::hover {
-    border-color: rgb(0, 0, 0);
-    background-color:rgb(35, 46, 66);
+    border-color: #444950;
+    background-color: #393e46;
     color: #f5f5f5;     
 }
 QMenu::item::disabled {

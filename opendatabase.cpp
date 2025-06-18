@@ -1,14 +1,14 @@
 #include "opendatabase.h"
 #include "ui_opendatabase.h"
 
-OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result)
+OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result, const QString &path)
     : QDialog(parent)
     , ui(new Ui::OpenDatabase)
 {
     ui->setupUi(this);
     ui->okButton->setDefault(true);
 
-    ui->databasePathLabel->setText(settings.value("Last").toString());
+    ui->databasePathLabel->setText(path);
     masterPassword = result;
     QSettings setting("AlexRadik", "RadiPass");
     ui->okButton->setAutoDefault(true);

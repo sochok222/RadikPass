@@ -19,7 +19,7 @@ class OpenDatabase : public QDialog
 
 public:
     // *result to reutrn master-key.
-    explicit OpenDatabase(QWidget *parent = nullptr, QByteArray *result = nullptr);
+    explicit OpenDatabase(QWidget *parent = nullptr, QByteArray *result = nullptr, const QString &path = "");
     ~OpenDatabase();
 
 private slots:

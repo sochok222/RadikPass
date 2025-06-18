@@ -30,6 +30,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QTranslator>
+#include <QScrollBar>
 #include "addtable.h"
 #include <QShortcut>
 #include <QSettings>
@@ -63,7 +64,7 @@ private:
     Ui::MainWindow *ui;
 
     // Setting up shortcuts
-    void setupShortcuts();
+    void setShortcuts();
 
     // Catch close event to ask if user wants save changes or not (if isChanged = true).
     void closeEvent(QCloseEvent *event) override;
@@ -110,6 +111,18 @@ private:
     // For some reason program do not translates actions that allows user to switch color theme.
     // To fix that, every time when user wants to translate program needs to manually reset actions.
     void setColorThemeActions();
+
+    // Setting tooltips to buttons
+    void setTooltips();
+
+    // This function loads icons in interface according to current theme.
+    void loadIcons();
+
+    // Connecting buttons to slots
+    void connectButtons();
+
+    // Connecting actions in toolbar to slots
+    void connectActions();
 
 public slots:
     // When user clicks on right button of the mouse.
@@ -163,7 +176,7 @@ public slots:
     void configureEntryMenu();
 
     // This function will set icons in listWidget according to current theme.
-    void setIconsInListWidget();
+    void loadIconsToListWidget();
 
     // This function will duplicate selected row in tableView.
     void duplicateEntry();
@@ -180,10 +193,6 @@ public slots:
     void setSystemColorTheme();
     void setDarkColorTheme();
     void setLightColorTheme();
-
-    // This function loads icons in interface according to current theme.
-    void loadIcons();
-
 
 private:
     // Context menu menus and actions.

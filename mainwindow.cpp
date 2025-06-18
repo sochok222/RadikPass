@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <qstylehints.h>
-#include <QScrollBar>
+
+
 
 MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
     : QMainWindow(parent)
@@ -14,18 +15,21 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->setupUi(this);
     setWindowTitle(tr("RadiPass"));
 
-    // Shortcuts initialization
-    setupShortcuts();
+    // Binding shortcuts
+    setShortcuts();
+
+    // Setting tooltips
+    setTooltips();
+
+    // Connecting buttons and actions to slots
+    connectButtons();
+    connectActions();
 
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
-    connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
-    connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
-    connect(ui->actionLanguageGerman, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
 
-    setColorThemeActions();
 
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -33,44 +37,10 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     ui->tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
-    // Setting hints to toolbar
-    ui->buttonNew->setToolTip(tr("New Database"));
-    ui->buttonOpen->setToolTip(tr("Open Database"));
-    ui->buttonSave->setToolTip(tr("Save"));
-    ui->buttonAddEntry->setToolTip(tr("Add Entry"));
-    ui->buttonCopyUsername->setToolTip(tr("Copy Username"));
-    ui->buttonCopyPassword->setToolTip(tr("Copy Password"));
-    ui->buttonDeleteEntry->setToolTip(tr("Delete Entry"));
 
-    // Connecting toolbar buttons to slots
-    connect(ui->buttonNew, SIGNAL(clicked()), SLOT(createDatabase()));
-    connect(ui->buttonOpen, SIGNAL(clicked()), SLOT(openDatabase()));
-    connect(ui->buttonSave, SIGNAL(clicked()), SLOT(saveAll()));
-    connect(ui->buttonAddEntry, SIGNAL(clicked()), SLOT(addEntry()));
-    connect(ui->buttonCopyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
-    connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
-    connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteEntry()));
-    connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
-
-    // Connecting File menu
-    connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
-    connect(ui->actionNew, SIGNAL(triggered()), this, SLOT(createDatabase()));
-    connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openDatabase()));
-
-    // Connecting Entry menu actions
-    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
-    connect(ui->actionCopy_Password, SIGNAL(triggered()), SLOT(copyPassword()));
-    connect(ui->actionOpenUrl, SIGNAL(triggered()), SLOT(openUrl()));
-    connect(ui->actionCopyUrl, SIGNAL(triggered()), SLOT(copyUrl()));
-    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
-    connect(ui->actionAdd_Entry, SIGNAL(triggered()), SLOT(addEntry()));
-    connect(ui->actionEdit_Entry, SIGNAL(triggered()), SLOT(editRow()));
-    connect(ui->actionDuplicate_Entry, SIGNAL(triggered()), SLOT(duplicateEntry()));
-    connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteEntry()));
-    // Connect View menu actions
-    connect(ui->actionConfigure_Columns, SIGNAL(triggered()), SLOT(cfgColumns()));
 
 
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),
@@ -79,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
             SLOT(customMenuRequested(QPoint)));
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleclicked(QModelIndex)));
 
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // Settings cells in QTableView not editable
+
 
 
     loadIcons();
@@ -114,14 +84,64 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     model->select();
     ui->tableView->setModel(model); // Loading model to QTableView
     configureColumns(); // Showing columns according to settings.
-    setIconsInListWidget();
+    loadIconsToListWidget();
 }
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-void::MainWindow::setupShortcuts()
+void MainWindow::connectActions() {
+    // File menu actions
+    connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
+    connect(ui->actionNew, SIGNAL(triggered()), this, SLOT(createDatabase()));
+    connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openDatabase()));
+
+    // Entry menu actions
+    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
+    connect(ui->actionCopy_Password, SIGNAL(triggered()), SLOT(copyPassword()));
+    connect(ui->actionOpenUrl, SIGNAL(triggered()), SLOT(openUrl()));
+    connect(ui->actionCopyUrl, SIGNAL(triggered()), SLOT(copyUrl()));
+    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
+    connect(ui->actionAdd_Entry, SIGNAL(triggered()), SLOT(addEntry()));
+    connect(ui->actionEdit_Entry, SIGNAL(triggered()), SLOT(editRow()));
+    connect(ui->actionDuplicate_Entry, SIGNAL(triggered()), SLOT(duplicateEntry()));
+    connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteEntry()));
+    // View menu actions
+    connect(ui->actionConfigure_Columns, SIGNAL(triggered()), SLOT(cfgColumns()));
+
+    // Language menu actions
+    connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
+    connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
+    connect(ui->actionLanguageGerman, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
+
+    setColorThemeActions(); // setting actions in "Color Theme" menu
+}
+
+void MainWindow::connectButtons() {
+    // Connecting buttons to slots
+    connect(ui->buttonNew, SIGNAL(clicked()), SLOT(createDatabase()));
+    connect(ui->buttonOpen, SIGNAL(clicked()), SLOT(openDatabase()));
+    connect(ui->buttonSave, SIGNAL(clicked()), SLOT(saveAll()));
+    connect(ui->buttonAddEntry, SIGNAL(clicked()), SLOT(addEntry()));
+    connect(ui->buttonCopyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
+    connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
+    connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteEntry()));
+    connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
+}
+
+void MainWindow::setTooltips() {
+    // Setting hints to toolbar
+    ui->buttonNew->setToolTip(tr("New Database"));
+    ui->buttonOpen->setToolTip(tr("Open Database"));
+    ui->buttonSave->setToolTip(tr("Save"));
+    ui->buttonAddEntry->setToolTip(tr("Add Entry"));
+    ui->buttonCopyUsername->setToolTip(tr("Copy Username"));
+    ui->buttonCopyPassword->setToolTip(tr("Copy Password"));
+    ui->buttonDeleteEntry->setToolTip(tr("Delete Entry"));
+}
+
+void MainWindow::setShortcuts()
 {
     // Creating shortcuts.
     shortcutOpen.reset(new QShortcut(QKeySequence::Open, this));
@@ -678,7 +698,7 @@ void MainWindow::createTable()
         ui->tableView->setModel(model);
     }
     configureColumns();
-    setIconsInListWidget();
+    loadIconsToListWidget();
 }
 
 /// When user hits "Add data" button this function executes
@@ -728,7 +748,7 @@ void MainWindow::openDatabase()
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if(!file.isEmpty())
     {
-        OpenDatabase *openDb = new OpenDatabase(this, &key);
+        OpenDatabase *openDb = new OpenDatabase(this, &key, file);
         openDb->exec();
     } else return;
 
@@ -757,7 +777,7 @@ void MainWindow::openDatabase()
         configureColumns();
     }
     configureColumns();
-    setIconsInListWidget();
+    loadIconsToListWidget();
 }
 
 // When user clicks button that must create new database this func will be called
@@ -798,7 +818,7 @@ void MainWindow::createDatabase()
     }
 
     configureColumns(); // Showing columns according to settings.
-    setIconsInListWidget(); // Loading icons to ListWidget with tables.
+    loadIconsToListWidget(); // Loading icons to ListWidget with tables.
 }
 
 void MainWindow::configureEntryMenu() // This function will disable or enable actions in View menu in toolbar
@@ -834,7 +854,7 @@ void MainWindow::configureEntryMenu() // This function will disable or enable ac
     }
 }
 
-void MainWindow::setIconsInListWidget() // This will load icons to ListWidget,
+void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
 {
     QSqlQuery query(db); // New query to read data from database
     for(int i = 0; i < ui->listWidget->count(); i++) // For every item in ListWidget(table)
@@ -867,7 +887,7 @@ void MainWindow::editTable()
 
     isChanged = true; // If user makes some changes needs to set this to true
 
-    setIconsInListWidget(); // Loading icons to ListWidget with tables
+    loadIconsToListWidget(); // Loading icons to ListWidget with tables
     configureColumns(); // Showing columns according to settings.
 }
 
@@ -931,7 +951,9 @@ void MainWindow::setUkrainianLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
-    setColorThemeActions();
+
+    setColorThemeActions(); // Retranslating actions
+    setTooltips();// Retranslating tooltips
 }
 
 void MainWindow::setEnglishLanguage()
@@ -950,7 +972,9 @@ void MainWindow::setEnglishLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
-    setColorThemeActions();
+
+    setColorThemeActions(); // Retranslating actions
+    setTooltips();// Retranslating tooltips
 }
 
 void MainWindow::setGermanLanguage()
@@ -969,7 +993,9 @@ void MainWindow::setGermanLanguage()
         msg.exec();
     }
     ui->retranslateUi(this);
-    setColorThemeActions();
+
+    setColorThemeActions(); // Retranslating actions
+    setTooltips();// Retranslating tooltips
 }
 
 void MainWindow::setSystemColorTheme()
@@ -999,8 +1025,9 @@ void MainWindow::setSystemColorTheme()
         qApp->setStyleSheet(style);
     }
     settings.setValue("theme", "system");
-    setIconsInListWidget();
-    loadIcons();
+
+    loadIconsToListWidget(); // Loading icons to listWidget
+    loadIcons(); // Loading icons to program
 }
 
 void MainWindow::setDarkColorTheme()
@@ -1018,7 +1045,7 @@ void MainWindow::setDarkColorTheme()
 
     qApp->setStyleSheet(style);
 
-    setIconsInListWidget();
+    loadIconsToListWidget();
     loadIcons();
 }
 
@@ -1037,6 +1064,6 @@ void MainWindow::setLightColorTheme()
 
     qApp->setStyleSheet(style);
 
-    setIconsInListWidget();
+    loadIconsToListWidget();
     loadIcons();
 }
