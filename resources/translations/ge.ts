@@ -620,7 +620,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="393"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
-        <location filename="../../mainwindow.cpp" line="351"/>
+        <location filename="../../mainwindow.cpp" line="345"/>
         <source>Open</source>
         <translation>Offen</translation>
     </message>
@@ -635,8 +635,8 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="403"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
-        <location filename="../../mainwindow.cpp" line="340"/>
-        <location filename="../../mainwindow.cpp" line="376"/>
+        <location filename="../../mainwindow.cpp" line="334"/>
+        <location filename="../../mainwindow.cpp" line="370"/>
         <source>Copy User Name</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
@@ -644,9 +644,9 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="408"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
-        <location filename="../../mainwindow.cpp" line="140"/>
-        <location filename="../../mainwindow.cpp" line="341"/>
-        <location filename="../../mainwindow.cpp" line="377"/>
+        <location filename="../../mainwindow.cpp" line="132"/>
+        <location filename="../../mainwindow.cpp" line="335"/>
+        <location filename="../../mainwindow.cpp" line="371"/>
         <source>Copy Password</source>
         <translation>Passwort kopieren</translation>
     </message>
@@ -654,7 +654,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="413"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
-        <location filename="../../mainwindow.cpp" line="138"/>
+        <location filename="../../mainwindow.cpp" line="130"/>
         <source>Add Entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
@@ -669,7 +669,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="423"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
-        <location filename="../../mainwindow.cpp" line="141"/>
+        <location filename="../../mainwindow.cpp" line="133"/>
         <source>Delete Entry</source>
         <translation>Eintrag löschen</translation>
     </message>
@@ -740,7 +740,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="473"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
-        <location filename="../../mainwindow.cpp" line="166"/>
+        <location filename="../../mainwindow.cpp" line="158"/>
         <source>Dark</source>
         <translation>Dunkel</translation>
     </message>
@@ -748,7 +748,7 @@ Fehler:</translation>
         <location filename="../../mainwindow.ui" line="478"/>
         <location filename="../../build/Desktop-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
         <location filename="../../build/Desktop-Release/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
-        <location filename="../../mainwindow.cpp" line="167"/>
+        <location filename="../../mainwindow.cpp" line="159"/>
         <source>Light</source>
         <translation>Licht</translation>
     </message>
@@ -760,27 +760,27 @@ Fehler:</translation>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="135"/>
+        <location filename="../../mainwindow.cpp" line="127"/>
         <source>New Database</source>
         <translation>Neue Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="136"/>
+        <location filename="../../mainwindow.cpp" line="128"/>
         <source>Open Database</source>
         <translation>Datenbank öffnen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="137"/>
+        <location filename="../../mainwindow.cpp" line="129"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="139"/>
+        <location filename="../../mainwindow.cpp" line="131"/>
         <source>Copy Username</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="165"/>
+        <location filename="../../mainwindow.cpp" line="157"/>
         <source>System</source>
         <translation>System</translation>
     </message>
@@ -791,7 +791,7 @@ Try again, please</source>
 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="306"/>
+        <location filename="../../mainwindow.cpp" line="300"/>
         <source>Title copied</source>
         <translation>Titel kopiert</translation>
     </message>
@@ -800,161 +800,181 @@ Try again, please</source>
         <translation type="vanished">Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="16"/>
+        <location filename="../../mainwindow.cpp" line="14"/>
         <source>RadiPass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="66"/>
+        <location filename="../../mainwindow.cpp" line="55"/>
         <source>Password is incorrect or database file is damaged
 Try again, please</source>
         <translation>Das Passwort ist falsch oder die Datenbankdatei ist beschädigt. 
 Bitte versuchen Sie es erneut.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="311"/>
+        <location filename="../../mainwindow.cpp" line="305"/>
         <source>Username copied</source>
         <translation>Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="316"/>
+        <location filename="../../mainwindow.cpp" line="310"/>
         <source>Password copied</source>
         <translation>Passwort kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="321"/>
+        <location filename="../../mainwindow.cpp" line="315"/>
         <source>Link opened</source>
         <translation>Link geöffnet</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="326"/>
+        <location filename="../../mainwindow.cpp" line="320"/>
         <source>Notes copied</source>
         <translation>Notizen kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="342"/>
-        <location filename="../../mainwindow.cpp" line="378"/>
-        <location filename="../../mainwindow.cpp" line="406"/>
-        <location filename="../../mainwindow.cpp" line="421"/>
+        <location filename="../../mainwindow.cpp" line="336"/>
+        <location filename="../../mainwindow.cpp" line="372"/>
+        <location filename="../../mainwindow.cpp" line="400"/>
+        <location filename="../../mainwindow.cpp" line="415"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="343"/>
-        <location filename="../../mainwindow.cpp" line="379"/>
+        <location filename="../../mainwindow.cpp" line="337"/>
+        <location filename="../../mainwindow.cpp" line="373"/>
         <source>Add new</source>
         <translation>Neu hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="344"/>
-        <location filename="../../mainwindow.cpp" line="380"/>
-        <location filename="../../mainwindow.cpp" line="404"/>
-        <location filename="../../mainwindow.cpp" line="419"/>
+        <location filename="../../mainwindow.cpp" line="338"/>
+        <location filename="../../mainwindow.cpp" line="374"/>
+        <location filename="../../mainwindow.cpp" line="398"/>
+        <location filename="../../mainwindow.cpp" line="413"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="345"/>
-        <location filename="../../mainwindow.cpp" line="381"/>
+        <location filename="../../mainwindow.cpp" line="339"/>
+        <location filename="../../mainwindow.cpp" line="375"/>
         <source>Configure colums</source>
         <translation>Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="348"/>
-        <location filename="../../mainwindow.cpp" line="387"/>
+        <location filename="../../mainwindow.cpp" line="342"/>
+        <location filename="../../mainwindow.cpp" line="381"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="350"/>
+        <location filename="../../mainwindow.cpp" line="344"/>
         <source>Copy</source>
         <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="405"/>
-        <location filename="../../mainwindow.cpp" line="420"/>
+        <location filename="../../mainwindow.cpp" line="399"/>
+        <location filename="../../mainwindow.cpp" line="414"/>
         <source>Add Table</source>
         <translation>Tabelle hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="469"/>
-        <location filename="../../mainwindow.cpp" line="525"/>
-        <location filename="../../mainwindow.cpp" line="538"/>
+        <location filename="../../mainwindow.cpp" line="463"/>
+        <location filename="../../mainwindow.cpp" line="519"/>
+        <location filename="../../mainwindow.cpp" line="532"/>
         <source>Can&apos;t get row id</source>
         <translation>Zeilen-ID kann nicht abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="470"/>
-        <location filename="../../mainwindow.cpp" line="483"/>
-        <location filename="../../mainwindow.cpp" line="526"/>
-        <location filename="../../mainwindow.cpp" line="539"/>
+        <location filename="../../mainwindow.cpp" line="464"/>
+        <location filename="../../mainwindow.cpp" line="477"/>
+        <location filename="../../mainwindow.cpp" line="520"/>
+        <location filename="../../mainwindow.cpp" line="533"/>
         <source>Query error: </source>
         <translation>Abfragefehler:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="482"/>
+        <location filename="../../mainwindow.cpp" line="476"/>
         <source>Can&apos;t get data from database</source>
         <translation>Daten können nicht aus der Datenbank abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="492"/>
+        <location filename="../../mainwindow.cpp" line="486"/>
         <source>Username copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="548"/>
+        <location filename="../../mainwindow.cpp" line="542"/>
         <source>Password copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="573"/>
+        <location filename="../../mainwindow.cpp" line="567"/>
         <source>Delete Table?</source>
         <translation>Tabelle löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="591"/>
+        <location filename="../../mainwindow.cpp" line="585"/>
         <source>Table deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="595"/>
+        <location filename="../../mainwindow.cpp" line="589"/>
         <source>Can`t delete this table</source>
         <translation>Diese Tabelle kann nicht gelöscht werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="600"/>
+        <location filename="../../mainwindow.cpp" line="594"/>
         <source>At least one table must exists</source>
         <translation>Mindestens eine Tabelle muss vorhanden sein</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="617"/>
+        <location filename="../../mainwindow.cpp" line="611"/>
         <source>Delete row?</source>
         <translation>Zeile löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="628"/>
+        <location filename="../../mainwindow.cpp" line="622"/>
         <source>Entry deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="650"/>
-        <location filename="../../mainwindow.cpp" line="727"/>
+        <location filename="../../mainwindow.cpp" line="644"/>
+        <location filename="../../mainwindow.cpp" line="721"/>
         <source>Save changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="747"/>
+        <location filename="../../mainwindow.cpp" line="741"/>
         <source>Open encrypted database</source>
         <translation>Öffnen Sie eine verschlüsselte Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="760"/>
+        <location filename="../../mainwindow.cpp" line="754"/>
         <source>Password is incorrect</source>
         <translation>Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="908"/>
+        <location filename="../../mainwindow.cpp" line="861"/>
+        <source>Can&apos;t load icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="905"/>
         <source>Can&apos;t duplicate entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="948"/>
+        <source>Can&apos;t load ukrainian translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="974"/>
+        <source>Can&apos;t load english translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="1000"/>
+        <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -962,12 +982,12 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="787"/>
+        <location filename="../../mainwindow.cpp" line="781"/>
         <source>Create new database</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="800"/>
+        <location filename="../../mainwindow.cpp" line="794"/>
         <source>Can&apos;t create new database</source>
         <translation>Neue Datenbank kann nicht erstellt werden</translation>
     </message>
@@ -976,7 +996,7 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Spalten können nicht dupliziert werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="914"/>
+        <location filename="../../mainwindow.cpp" line="911"/>
         <source>Entry duplicated</source>
         <translation>Eintrag dupliziert</translation>
     </message>

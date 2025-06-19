@@ -7,7 +7,8 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *key, const QString p
     , key(key)
 {
     ui->setupUi(this);
-    this->setWindowTitle(tr("Create Database"));
+
+    this->setWindowTitle(tr("Create Database")); // Setting window title
 
     if(path != "")
     {

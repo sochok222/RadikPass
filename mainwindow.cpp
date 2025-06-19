@@ -2,8 +2,6 @@
 #include "./ui_mainwindow.h"
 #include <qstylehints.h>
 
-
-
 MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -25,35 +23,26 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connectButtons();
     connectActions();
 
-    ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    // Setting listWidget
+    ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
+    ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection); // User can select only one row
+    ui->listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel); // Enabling smooth scrolling
 
+    // Setting tableView
+    ui->tableView->verticalHeader()->setVisible(false); // Disabling vertical headers
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); // User can select only rows
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); // User can select only single row
+    ui->tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel); // Enabling smooth horizontal scrolling
+    ui->tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel); // Enabling smooth vertical scrolling
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // Disabling cell editing
 
+    // Connecting tableView to slots
+    connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint))); // Context menu slot
+    connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), SLOT(itemDoubleclicked(QModelIndex))); // Doubleclicked slot
 
-    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableView->verticalHeader()->setVisible(false);
-    ui->tableView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-    ui->tableView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
-
-
-
-    connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),
-            SLOT(customMenuRequested(QPoint)));
-    connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)),
-            SLOT(customMenuRequested(QPoint)));
-    connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleclicked(QModelIndex)));
-
-
-
-
-    loadIcons();
-
+    // Connecting listWidget to context menu slot
+    connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
     if(!key.isEmpty()) // If given key from database is not empty
     {
@@ -62,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
         // tables is list of tables in database, loadDb() changes this list according to loaded database
         if(!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) // Trying to load database
         {                                                                                // If not it seems that key is not right
-            QMessageBox msg;                                                             // or file is broken or something else
+            QMessageBox msg;                                                             // or file is damaged or something else
             msg.setText(tr("Password is incorrect or database file is damaged\nTry again, please"));
             msg.setStandardButtons(QMessageBox::Ok);
             msg.exec(); // Showing message if can't open database
@@ -83,8 +72,11 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     }
     model->select();
     ui->tableView->setModel(model); // Loading model to QTableView
+
     configureColumns(); // Showing columns according to settings.
-    loadIconsToListWidget();
+
+    // Loading icons according to current color theme
+    loadIcons();
 }
 MainWindow::~MainWindow()
 {
@@ -190,7 +182,11 @@ void MainWindow::setColorThemeActions()
 
 void MainWindow::loadIcons()
 {
-    // Setting icons to toolbar
+    // If database is opened needs to load icons to listWidget also
+    if(ui->listWidget->count() == 0)
+        loadIconsToListWidget();
+
+    // Loading icons to buttons
     ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
     ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
     ui->buttonSave->setIcon(IconLoader::getIcon(Icon::save, theme));
@@ -199,8 +195,7 @@ void MainWindow::loadIcons()
     ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
     ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
 
-
-    // Setting icons to windows toolbar
+    // Loading icons to windows toolbar
     // File menu
     ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
     ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
@@ -215,7 +210,6 @@ void MainWindow::loadIcons()
     ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::edit, theme));
     ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
     ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
-
     // View menu
     ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
     ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
@@ -330,7 +324,7 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
 void MainWindow::customMenuRequested(QPoint pos){
     qDebug() << Q_FUNC_INFO;
 
-    if(ui->listWidget->count() == 0) // Checking if at leas one row in listWidget exists.
+    if(ui->listWidget->count() == 0) // Checking if database is opened.
         return;
 
 
@@ -834,7 +828,7 @@ void MainWindow::configureEntryMenu() // This function will disable or enable ac
         ui->actionEdit_Entry->setEnabled(true);
         ui->actionDuplicate_Entry->setEnabled(true);
         ui->actionDelete_Entry->setEnabled(true);
-    }else if (ui->listWidget->count() > 0) // Checking if at least one table exists.
+    }else if (ui->listWidget->count() == 0) // Checking if database is opened
     {
         ui->actionCopy_User_Name->setEnabled(false);
         ui->actionCopy_Password->setEnabled(false);
@@ -863,11 +857,14 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
         query.bindValue(":name", ui->listWidget->item(i)->text());
         if(!query.exec())
         {
-            qDebug() << query.lastError(); // TODO: handle this in QMessageBox to show user error
-            break;
+            QMessageBox msg;
+            msg.setText(tr("Can't load icon"));
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.exec();
         }
 
-        query.next();
+        query.next(); // Loading value to query
         ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
     }
 }
@@ -937,20 +934,24 @@ bool MainWindow::hasSelectedRow()
 void MainWindow::setUkrainianLanguage()
 {
     qDebug() << Q_FUNC_INFO;
-    settings.setValue("Language", "uk");
-    qApp->removeTranslator(translator); // remove the old translator
 
-    if(translator->load(":/translations/resources/translations/uk.qm"))
+    settings.setValue("Language", "uk"); // Changing value in settings
+
+    qApp->removeTranslator(translator); // removing the old translator
+
+    if(translator->load(":/translations/resources/translations/uk.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else
+    else // If it fails:
     {
-        qDebug() << "Can't load ukrainian translation";
+        // Showing error message to user
         QMessageBox msg;
-        msg.setText("Can't load ukrainian translation");
+        msg.setText(tr("Can't load ukrainian translation"));
+        msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }
-    ui->retranslateUi(this);
+
+    ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
@@ -959,19 +960,24 @@ void MainWindow::setUkrainianLanguage()
 void MainWindow::setEnglishLanguage()
 {
     qDebug() << Q_FUNC_INFO;
-    settings.setValue("Language", "en");
-    qApp->removeTranslator(translator);
-    if(translator->load(":/translations/resources/translations/en.qm"))
+
+    settings.setValue("Language", "en"); // Changing value in settings
+
+    qApp->removeTranslator(translator); // removing the old translator
+
+    if(translator->load(":/translations/resources/translations/en.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else
+    else // If it fails:
     {
-        qDebug() << "Can't load english translation";
+        // Showing error message to user
         QMessageBox msg;
-        msg.setText("Can't load english translation");
+        msg.setText(tr("Can't load english translation"));
+        msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }
-    ui->retranslateUi(this);
+
+    ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
@@ -980,19 +986,23 @@ void MainWindow::setEnglishLanguage()
 void MainWindow::setGermanLanguage()
 {
     qDebug() << Q_FUNC_INFO;
-    settings.setValue("Language", "ge");
-    qApp->removeTranslator(translator);
-    if(translator->load(":/translations/resources/translations/ge.qm"))
+
+    settings.setValue("Language", "ge"); // Changing value in settings
+
+    qApp->removeTranslator(translator); // removing the old translator
+
+    if(translator->load(":/translations/resources/translations/ge.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else
+    else // If it fails:
     {
-        qDebug() << "Can't load german translation";
+        // Showing error message to user
         QMessageBox msg;
-        msg.setText("Can't load german translation");
+        msg.setText(tr("Can't load german translation"));
+        msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
     }
-    ui->retranslateUi(this);
+    ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
@@ -1004,29 +1014,30 @@ void MainWindow::setSystemColorTheme()
 
     if(QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
     {
-        QFile  styleFile(":/themes/resources/themes/dark.qss");
-        styleFile.open(QFile::ReadOnly);
+        // Finding .qss style file
+        QFile styleFile(":/themes/resources/themes/dark.qss");
+        styleFile.open(QFile::ReadOnly); // Openning file
 
-        this->theme = "dark";
+        this->theme = "dark"; // Setting theme value
 
-        QString  style(styleFile.readAll());
-        styleFile.close();
+        QString style(styleFile.readAll()); // Reading theme from resource
+        styleFile.close(); // Closing file
 
-        qApp->setStyleSheet(style);
+        qApp->setStyleSheet(style); // Applying style to program
     }else {
-        QFile  styleFile(":/themes/resources/themes/light.qss");
-        styleFile.open(QFile::ReadOnly);
+        // Finding .qss style file
+        QFile styleFile(":/themes/resources/themes/light.qss");
+        styleFile.open(QFile::ReadOnly); // Openning file
 
-        this->theme = "light";
+        this->theme = "light"; // Setting theme value
 
-        QString  style(styleFile.readAll());
-        styleFile.close();
+        QString style(styleFile.readAll()); // Reading theme from resource
+        styleFile.close(); // Closing file
 
-        qApp->setStyleSheet(style);
+        qApp->setStyleSheet(style); // Applying style to program
     }
     settings.setValue("theme", "system");
 
-    loadIconsToListWidget(); // Loading icons to listWidget
     loadIcons(); // Loading icons to program
 }
 
@@ -1034,36 +1045,36 @@ void MainWindow::setDarkColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/themes/dark.qss");
-    styleFile.open(QFile::ReadOnly);
+    // Finding .qss style file
+    QFile styleFile(":/themes/resources/themes/dark.qss");
+    styleFile.open(QFile::ReadOnly); // Openning file
 
-    this->theme = "dark";
+    this->theme = "dark"; // Setting theme value
     settings.setValue("theme", "dark");
 
-    QString  style(styleFile.readAll());
-    styleFile.close();
+    QString style(styleFile.readAll()); // Reading theme from resource
+    styleFile.close(); // Closing file
 
-    qApp->setStyleSheet(style);
+    qApp->setStyleSheet(style); // Applying style to program
 
-    loadIconsToListWidget();
-    loadIcons();
+    loadIcons(); // Loading icons
 }
 
 void MainWindow::setLightColorTheme()
 {
     qDebug() << Q_FUNC_INFO;
 
-    QFile  styleFile(":/themes/resources/themes/light.qss");
-    styleFile.open(QFile::ReadOnly);
+    // Finding .qss style file
+    QFile styleFile(":/themes/resources/themes/light.qss");
+    styleFile.open(QFile::ReadOnly); // Openning file
 
-    this->theme = "light";
+    this->theme = "light"; // Setting theme value
     settings.setValue("theme", "light");
 
-    QString  style(styleFile.readAll());
-    styleFile.close();
+    QString style(styleFile.readAll()); // Reading theme from resource
+    styleFile.close(); // Closing file
 
-    qApp->setStyleSheet(style);
+    qApp->setStyleSheet(style); // Applying style to program
 
-    loadIconsToListWidget();
-    loadIcons();
+    loadIcons(); // Loading icons
 }
