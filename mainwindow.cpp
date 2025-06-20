@@ -589,7 +589,7 @@ void MainWindow::deleteTable()
                 msg.exec();
             }
         }else {
-            QMessageBox::StandardButton information = QMessageBox::information(this, "RadiPass", tr("At least one table must exists"),
+            QMessageBox::information(this, "RadiPass", tr("At least one table must exists"),
                                                                                QMessageBox::Ok, QMessageBox::Ok);
         }
     }

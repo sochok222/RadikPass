@@ -149,14 +149,14 @@ void ConfigureColumns::on_saveButton_clicked()
         {
             (*settingsList[i])[0] = "shown"; // Saving value "shown"
         }else (*settingsList[i])[0] = "hidden"; // Otherwise saving value "hidden"
-        if(rows[i].second->checkState() == Qt::Checked)
+        if(rows[i].second->checkState() == Qt::Checked) // Same for this
         {
             (*settingsList[i])[1] = "masked";
         }else (*settingsList[i])[1] = "unmasked";
 
     }
 
-    // Loading that values to QSettings
+    // Saving settings to QSettings
     settings.setValue("columnTitle", columnTitle);
     settings.setValue("columnUsername", columnUsername);
     settings.setValue("columnPassword", columnPassword);
