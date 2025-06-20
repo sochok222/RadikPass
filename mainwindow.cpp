@@ -182,9 +182,7 @@ void MainWindow::setColorThemeActions()
 
 void MainWindow::loadIcons()
 {
-    // If database is opened needs to load icons to listWidget also
-    if(ui->listWidget->count() == 0)
-        loadIconsToListWidget();
+    loadIconsToListWidget();
 
     // Loading icons to buttons
     ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
@@ -771,7 +769,7 @@ void MainWindow::openDatabase()
         configureColumns();
     }
     configureColumns();
-    loadIconsToListWidget();
+    loadIcons();
 }
 
 // When user clicks button that must create new database this func will be called
