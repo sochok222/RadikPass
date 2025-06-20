@@ -95,16 +95,17 @@ void ConfigureColumns::loadSettings()
     QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
     QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
 
+    // Initializing list of settings
     QVector<QStringList*> settingsList = {
                 &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if((*settingsList[i])[0] == "shown")
+        if((*settingsList[i])[0] == "shown") // If setting value is "shown" set checked state to CheckBox in first row
         {
             rows[i].first->setCheckState(Qt::Checked);
         }
-        if((*settingsList[i])[1] == "masked")
+        if((*settingsList[i])[1] == "masked") // If setting value is "masked" set checked state to CheckBox in second row
         {
             rows[i].second->setCheckState(Qt::Checked);
         }
@@ -118,8 +119,8 @@ void ConfigureColumns::setup()
     int row = 0;
     for(QPair<QCheckBox*, QCheckBox*> &el : rows)
     {
-        el.first->setCheckState(Qt::Unchecked); el.second->setCheckState(Qt::Unchecked);
-        addCheckBoxAt(row, 0, el.first); addCheckBoxAt(row, 1, el.second);
+        el.first->setCheckState(Qt::Unchecked); el.second->setCheckState(Qt::Unchecked); // Settings unchecked state as default
+        addCheckBoxAt(row, 0, el.first); addCheckBoxAt(row, 1, el.second); // Adding CheckBoxes to cells
         row++;
     }
 }
@@ -128,8 +129,8 @@ void ConfigureColumns::on_saveButton_clicked()
 {
     QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
 
-    // QStringList to store two values in one QSettings field
-    QStringList columnTitle = QStringList() << "asd" << "asdf";
+    // Storing new settings in QStringList
+    QStringList columnTitle = QStringList() << "" << "";
     QStringList columnUsername = QStringList() << "" << "";
     QStringList columnPassword = QStringList() << "" << "";
     QStringList columnURL = QStringList() << "" << "";
@@ -137,27 +138,17 @@ void ConfigureColumns::on_saveButton_clicked()
     QStringList columnCreationTime = QStringList() << "" << "";
     QStringList columnLastChanged = QStringList() << "" << "";
 
+    // Creating list to iterate through it
     QVector<QStringList*> settingsList = {
                         &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
 
-    // Cells
-    QVector<QPair<QCheckBox*, QCheckBox*>> rows = {
-        {isTitleShown, isTitleAsterisks},
-        {isUsernameShown, isUsernameAsterisks},
-        {isPasswordShown, isPasswordAsterisks},
-        {isURLShown, isURLAsterisks},
-        {isNotesShown, isNotesAsterisks},
-        {isCreationTimeShown, isCreationTimeAsterisks},
-        {isLastChangedShown, isLastChangedAsterisks}
-    };
-
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if(rows[i].first->checkState())
+        if(rows[i].first->checkState()) // If state is checked in first row
         {
-            (*settingsList[i])[0] = "shown";
-        }else (*settingsList[i])[0] = "hidden";
+            (*settingsList[i])[0] = "shown"; // Saving value "shown"
+        }else (*settingsList[i])[0] = "hidden"; // Otherwise saving value "hidden"
         if(rows[i].second->checkState() == Qt::Checked)
         {
             (*settingsList[i])[1] = "masked";
