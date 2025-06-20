@@ -898,11 +898,12 @@ void MainWindow::duplicateEntry()
     QSqlQuery query(db);
     QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // id - this is id of row which needs to be duplicated
 
-    query.prepare("INSERT INTO "+model->tableName()+" (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM "+model->tableName()+" WHERE id = "+id);
+    query.prepare("INSERT INTO ["+model->tableName()+"] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM ["+model->tableName()+"] WHERE id = "+id);
     if(!query.exec())
     {
         QMessageBox msg;
-        msg.setText(tr("Can't duplicate entry"));
+        qDebug() << "Query: " << query.lastQuery();
+        msg.setText(tr("Can't duplicate entry\nQuery error: ").append(query.lastError().text()));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;

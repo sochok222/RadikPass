@@ -279,47 +279,47 @@ Try another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="10"/>
+        <location filename="../../createdatabase.cpp" line="11"/>
         <source>Create Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="17"/>
+        <location filename="../../createdatabase.cpp" line="18"/>
         <source>Can&apos;t load path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="25"/>
+        <location filename="../../createdatabase.cpp" line="26"/>
         <source>Show/Hide password using asterisks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="26"/>
+        <location filename="../../createdatabase.cpp" line="27"/>
         <source>Password can contain letters, digits and special symbols only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="27"/>
+        <location filename="../../createdatabase.cpp" line="28"/>
         <source>Password quality for now is based on lenght</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="62"/>
+        <location filename="../../createdatabase.cpp" line="63"/>
         <source>Weak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="65"/>
+        <location filename="../../createdatabase.cpp" line="66"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="68"/>
+        <location filename="../../createdatabase.cpp" line="69"/>
         <source>Strong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="71"/>
+        <location filename="../../createdatabase.cpp" line="72"/>
         <source>Very Strong</source>
         <translation type="unfinished"></translation>
     </message>
@@ -878,22 +878,17 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="905"/>
-        <source>Can&apos;t duplicate entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="948"/>
+        <location filename="../../mainwindow.cpp" line="949"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="974"/>
+        <location filename="../../mainwindow.cpp" line="975"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1000"/>
+        <location filename="../../mainwindow.cpp" line="1001"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -908,7 +903,13 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="911"/>
+        <location filename="../../mainwindow.cpp" line="906"/>
+        <source>Can&apos;t duplicate entry
+Query error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="912"/>
         <source>Entry duplicated</source>
         <translation type="unfinished"></translation>
     </message>
