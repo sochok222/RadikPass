@@ -8,15 +8,13 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     , ui(new Ui::ConfigureColumns)
 {
     ui->setupUi(this);
-    // Setting window name
-    this->setWindowTitle(tr("Configure Columns"));
 
-    // Disabling editing in tableWidget
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    // Disabling selection in tableWidget
-    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
+    this->setWindowTitle(tr("Configure Columns")); // Setting window title
 
-    // Creating rows in tableWidget
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // Disabling editing in tableWidget
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection); // Disabling selection in tableWidget
+
+    // Creating rows and columns in tableWidget
     ui->tableWidget->setRowCount(7);
     ui->tableWidget->setColumnCount(2);
 
@@ -29,7 +27,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setVerticalHeaderLabels(vertical);
     ui->tableWidget->setHorizontalHeaderLabels(horizontal);
 
-    // Rows vector initialization
+    // Initialization of vector of QComboBoxes(cells)
     rows = {
         {isTitleShown, isTitleAsterisks},
         {isUsernameShown, isUsernameAsterisks},
@@ -40,10 +38,8 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
         {isLastChangedShown, isLastChangedAsterisks}
     };
 
-    // Filling cells in tableWidget
-    setup();
-    // Loading current settings
-    loadSettings();
+    setup(); // Filling cells in tableWidget
+    loadSettings(); // Loading current settings
 }
 
 ConfigureColumns::~ConfigureColumns()

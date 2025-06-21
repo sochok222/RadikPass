@@ -10,33 +10,38 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *key, const QString p
 
     this->setWindowTitle(tr("Create Database")); // Setting window title
 
-    if(path != "")
+    if(path != "") // If path is not empty
     {
-        ui->labelPath->setText("Path: " + path);
-    }else {
+        ui->labelPath->setText("Path: " + path); // Writing path to window
+    }else { // Else showing error to user
         QMessageBox msg;
         msg.setText(tr("Can't load path"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         this->close();
     }
+
+    // Setting maximum length to password lines
     ui->linePassword->setMaxLength(50);
     ui->lineRepeat->setMaxLength(50);
 
+    // Setting tooltips
     ui->checkBoxIsAsterisks->setToolTip(tr("Show/Hide password using asterisks"));
     ui->linePassword->setToolTip(tr("Password can contain letters, digits and special symbols only"));
     ui->labelRepeat->setToolTip(tr("Password quality for now is based on lenght"));
 
+    ui->checkBoxIsAsterisks->setChecked(true); // Set checked as default
 
-    ui->checkBoxIsAsterisks->setChecked(true);
-
+    // Setting echo mode to password lines
     ui->linePassword->setEchoMode(QLineEdit::Password);
     ui->lineRepeat->setEchoMode(QLineEdit::Password);
 
+    // Creating validator for password
     QRegularExpression rx(R"(^[a-zA-Zа-яА-Я0-9!@#$&().+,/-]*$)");
     validator = new QRegularExpressionValidator(rx, this);
-
+    // Setting validator for password lines
     ui->linePassword->setValidator(validator);
+    ui->lineRepeat->setValidator(validator);
 }
 
 CreateDatabase::~CreateDatabase()
@@ -48,17 +53,14 @@ CreateDatabase::~CreateDatabase()
 
 void CreateDatabase::on_saveButton_clicked()
 {
-    if(true)
-    {
-        *key = ui->linePassword->text().toUtf8();
-        this->close();
-    }
+    *key = ui->linePassword->text().toUtf8(); // Returning key that user entered
+    this->close(); // Closing window
 }
 
 void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
 {
-    switch(ui->linePassword->text().size())
-    {
+    // Checking password quality depending on length
+    switch(ui->linePassword->text().size()) {
     case 1:
         ui->labelPasswordQuality->setText(tr("Weak"));
         break;
@@ -76,15 +78,15 @@ void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
 
 void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
 {
-    if(isPassHidden)
-    {
-        if(arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0)
-        {
+    // If password is hidden
+    if(isPassHidden) {
+        if(arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0) { // If password in repeat line is not the same as in password line
+            // Setting red palette to repeat line
             QPalette lineRepeatPalette;
             lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
             ui->lineRepeat->setPalette(lineRepeatPalette);
-        }else
-        {
+        }else {
+            // Else set default palette
             QPalette lineRepeatPalette;
             ui->lineRepeat->setPalette(lineRepeatPalette);
         }
@@ -93,8 +95,7 @@ void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
 
 void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
 {
-    switch(arg1)
-    {
+    switch(arg1) {
         case Qt::Checked:
         {
             ui->lineRepeat->setEchoMode(QLineEdit::Password);
