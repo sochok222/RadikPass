@@ -231,42 +231,42 @@ Try another name.</source>
         <translation type="unfinished">Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="22"/>
         <source>Is shown</source>
         <translation>Wird angezeigt</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="22"/>
         <source>Is hiden by asterisk(*)</source>
         <translation>Ist durch ein Sternchen (*) verborgen</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Title</source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Username</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Password</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Notes</source>
         <translation>Notizen:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Creation Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Last Changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -349,37 +349,37 @@ Try another name.</source>
         <translation>Pfad kann nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="26"/>
+        <location filename="../../createdatabase.cpp" line="29"/>
         <source>Show/Hide password using asterisks</source>
         <translation>Passwort mit Sternchen anzeigen/ausblenden</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="27"/>
+        <location filename="../../createdatabase.cpp" line="30"/>
         <source>Password can contain letters, digits and special symbols only</source>
         <translation>Das Passwort darf nur Buchstaben, Ziffern und Sonderzeichen enthalten</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="28"/>
+        <location filename="../../createdatabase.cpp" line="31"/>
         <source>Password quality for now is based on lenght</source>
         <translation>Die Passwortqualität basiert derzeit auf der Länge</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="63"/>
+        <location filename="../../createdatabase.cpp" line="65"/>
         <source>Weak</source>
         <translation>Schwach</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="66"/>
+        <location filename="../../createdatabase.cpp" line="68"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="69"/>
+        <location filename="../../createdatabase.cpp" line="71"/>
         <source>Strong</source>
         <translation>Stark</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="72"/>
+        <location filename="../../createdatabase.cpp" line="74"/>
         <source>Very Strong</source>
         <translation>Sehr stark</translation>
     </message>
@@ -544,6 +544,17 @@ Fehler:</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../edittable.cpp" line="130"/>
+        <location filename="../../edittable.cpp" line="138"/>
+        <source>Unable to change name of table, try to reopen database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edittable.cpp" line="150"/>
+        <source>Unable to change icon of table, try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Can&apos;t find icons</source>
         <translation type="vanished">Ich kann keine Symbole finden</translation>
     </message>
@@ -553,7 +564,7 @@ Fehler:</translation>
         <translation>Das Feld darf nicht leer sein</translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="123"/>
+        <location filename="../../edittable.cpp" line="122"/>
         <source>Line must be not empty</source>
         <translation>Das Feld darf nicht leer sein</translation>
     </message>
@@ -1065,84 +1076,60 @@ Query error: </source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../dbmanager.cpp" line="34"/>
-        <location filename="../../dbmanager.cpp" line="138"/>
         <source>Can&apos;t open temporary file
 Func: </source>
-        <translation>Temporäre Datei kann nicht geöffnet werden.
+        <translation type="vanished">Temporäre Datei kann nicht geöffnet werden.
 Funktion:
 </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="46"/>
-        <location filename="../../dbmanager.cpp" line="93"/>
         <source>Can&apos;t attach temporary file
 Error: </source>
-        <translation>Temporäre Datei kann nicht angehängt werden.
+        <translation type="vanished">Temporäre Datei kann nicht angehängt werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="46"/>
-        <location filename="../../dbmanager.cpp" line="52"/>
-        <location filename="../../dbmanager.cpp" line="99"/>
         <source>Can&apos;t load data to temporary file
 Error: </source>
-        <translation>Daten können nicht in die temporäre Datei geladen werden.
+        <translation type="vanished">Daten können nicht in die temporäre Datei geladen werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="52"/>
-        <location filename="../../dbmanager.cpp" line="63"/>
-        <location filename="../../dbmanager.cpp" line="69"/>
-        <location filename="../../dbmanager.cpp" line="80"/>
-        <location filename="../../dbmanager.cpp" line="93"/>
-        <location filename="../../dbmanager.cpp" line="99"/>
-        <location filename="../../dbmanager.cpp" line="110"/>
-        <location filename="../../dbmanager.cpp" line="116"/>
-        <location filename="../../dbmanager.cpp" line="125"/>
         <source>
 Func: </source>
-        <translation>
+        <translation type="vanished">
 Funktion:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="63"/>
-        <location filename="../../dbmanager.cpp" line="110"/>
         <source>Create query error
 Deleting backup file
 Error: </source>
-        <translation>Abfragefehler erstellen
+        <translation type="vanished">Abfragefehler erstellen
 Sicherungsdatei wird gelöscht
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="69"/>
-        <location filename="../../dbmanager.cpp" line="116"/>
         <source>Failed to copy data
 Error: </source>
-        <translation>Daten konnten nicht kopiert werden.
+        <translation type="vanished">Daten konnten nicht kopiert werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="80"/>
-        <location filename="../../dbmanager.cpp" line="125"/>
         <source>Can&apos;t detach tempDb database
 Error: </source>
-        <translation>TempDb-Datenbank kann nicht getrennt werden.
+        <translation type="vanished">TempDb-Datenbank kann nicht getrennt werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="144"/>
         <source>Can&apos;t write zeroes to temporary file
 Func: </source>
-        <translation>Nullen können nicht in die temporäre Datei geschrieben werden.
+        <translation type="vanished">Nullen können nicht in die temporäre Datei geschrieben werden.
 Funktion:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="151"/>
         <source>Can&apos;t delete temporary file
 Func: </source>
-        <translation>Temporäre Datei kann nicht gelöscht werden.
+        <translation type="vanished">Temporäre Datei kann nicht gelöscht werden.
 Funktion:</translation>
     </message>
     <message>

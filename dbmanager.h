@@ -27,7 +27,7 @@ public:
     static bool getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId);
 
     // Showing QMessageBox to warn user if an error occurs.
-    static void showMsgBox(const QString text);
+    static void showMsgBox(const QString &text);
 
     // Loading encrypted datbase from encryptedDatabase path, decrypting it by key
     // Loaind it to *db, and pushing tables tables that are avaible to user in vector &tables
@@ -61,22 +61,6 @@ public:
     // Before removing it will rewrite content of file by zeroes, and then delete file.
     template<typename T>
     static bool deleteTemporaryFile(T &file);
-
-    // This function will create backup of database *db at backupPath that statically stored in this class.
-    static bool createBackup(QSqlDatabase *db);
-
-    // Function loads backup to *db from backupPath.
-    static bool loadBackup(QSqlDatabase *db);
-
-    // Function will safely delete backup file.
-    static bool deleteBackup(QSqlDatabase *db);
-
-    // Path to backup.
-    static QString backupPath;
-
-private:
-    // This function will display QMessageBox with &errorMessage.
-    void handleError(const QString &errorMessage);
 };
 
 #endif // DBMANAGER_H

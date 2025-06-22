@@ -230,42 +230,42 @@ Try another name.</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="22"/>
         <source>Is shown</source>
         <translation>Чи показано</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="22"/>
         <source>Is hiden by asterisk(*)</source>
         <translation>Чи приховано зірочками(*)</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Username</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="25"/>
+        <location filename="../../configurecolumns.cpp" line="23"/>
         <source>Notes</source>
         <translation>Нотатки</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Creation Time</source>
         <translation>Час створення</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
+        <location filename="../../configurecolumns.cpp" line="24"/>
         <source>Last Changed</source>
         <translation>Остання зміна</translation>
     </message>
@@ -348,37 +348,37 @@ Try another name.</source>
         <translation>Не вдалося завантажити шлях</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="26"/>
+        <location filename="../../createdatabase.cpp" line="29"/>
         <source>Show/Hide password using asterisks</source>
         <translation>Показати/Приховати пароль зірочками (*)</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="27"/>
+        <location filename="../../createdatabase.cpp" line="30"/>
         <source>Password can contain letters, digits and special symbols only</source>
         <translation>Пароль може містити тільки букви, цифри і спеціальні символи.</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="28"/>
+        <location filename="../../createdatabase.cpp" line="31"/>
         <source>Password quality for now is based on lenght</source>
         <translation>Надійність пароля залежить від його довжини</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="63"/>
+        <location filename="../../createdatabase.cpp" line="65"/>
         <source>Weak</source>
         <translation>Слабкий</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="66"/>
+        <location filename="../../createdatabase.cpp" line="68"/>
         <source>Normal</source>
         <translation>Середній</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="69"/>
+        <location filename="../../createdatabase.cpp" line="71"/>
         <source>Strong</source>
         <translation>Сильний</translation>
     </message>
     <message>
-        <location filename="../../createdatabase.cpp" line="72"/>
+        <location filename="../../createdatabase.cpp" line="74"/>
         <source>Very Strong</source>
         <translation>Дуже сильний</translation>
     </message>
@@ -543,6 +543,17 @@ Error: </source>
         <translation>Не вдається завантажити поточну тему.</translation>
     </message>
     <message>
+        <location filename="../../edittable.cpp" line="130"/>
+        <location filename="../../edittable.cpp" line="138"/>
+        <source>Unable to change name of table, try to reopen database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edittable.cpp" line="150"/>
+        <source>Unable to change icon of table, try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Can&apos;t find icons</source>
         <translation type="vanished">Не вдалося завантажити іконки.</translation>
     </message>
@@ -552,7 +563,7 @@ Error: </source>
         <translation>Поле не має бути пустим.</translation>
     </message>
     <message>
-        <location filename="../../edittable.cpp" line="123"/>
+        <location filename="../../edittable.cpp" line="122"/>
         <source>Line must be not empty</source>
         <translation>Поле не має бути пустим.</translation>
     </message>
@@ -1072,82 +1083,58 @@ Query error: </source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../dbmanager.cpp" line="34"/>
-        <location filename="../../dbmanager.cpp" line="138"/>
         <source>Can&apos;t open temporary file
 Func: </source>
-        <translation>Не вдалося відкрити тимчасовий файл
+        <translation type="vanished">Не вдалося відкрити тимчасовий файл
 Функція: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="46"/>
-        <location filename="../../dbmanager.cpp" line="93"/>
         <source>Can&apos;t attach temporary file
 Error: </source>
-        <translation>Не вдалося причепити тимчасовий файл
+        <translation type="vanished">Не вдалося причепити тимчасовий файл
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="46"/>
-        <location filename="../../dbmanager.cpp" line="52"/>
-        <location filename="../../dbmanager.cpp" line="99"/>
         <source>Can&apos;t load data to temporary file
 Error: </source>
-        <translation>Не вдалося завантажити данны в тимчасовий файл
+        <translation type="vanished">Не вдалося завантажити данны в тимчасовий файл
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="52"/>
-        <location filename="../../dbmanager.cpp" line="63"/>
-        <location filename="../../dbmanager.cpp" line="69"/>
-        <location filename="../../dbmanager.cpp" line="80"/>
-        <location filename="../../dbmanager.cpp" line="93"/>
-        <location filename="../../dbmanager.cpp" line="99"/>
-        <location filename="../../dbmanager.cpp" line="110"/>
-        <location filename="../../dbmanager.cpp" line="116"/>
-        <location filename="../../dbmanager.cpp" line="125"/>
         <source>
 Func: </source>
-        <translation>
+        <translation type="vanished">
 Функція: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="63"/>
-        <location filename="../../dbmanager.cpp" line="110"/>
         <source>Create query error
 Deleting backup file
 Error: </source>
-        <translation>Не вдалося створити запит в базу даних
+        <translation type="vanished">Не вдалося створити запит в базу даних
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="69"/>
-        <location filename="../../dbmanager.cpp" line="116"/>
         <source>Failed to copy data
 Error: </source>
-        <translation>Не вдалося скопіювати данні
+        <translation type="vanished">Не вдалося скопіювати данні
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="80"/>
-        <location filename="../../dbmanager.cpp" line="125"/>
         <source>Can&apos;t detach tempDb database
 Error: </source>
-        <translation>Не вдалося відчипити тимчасову базу даних
+        <translation type="vanished">Не вдалося відчипити тимчасову базу даних
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="144"/>
         <source>Can&apos;t write zeroes to temporary file
 Func: </source>
-        <translation>Не вдалося перезаписати тимчасовий файл нулями
+        <translation type="vanished">Не вдалося перезаписати тимчасовий файл нулями
 Функція: </translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="151"/>
         <source>Can&apos;t delete temporary file
 Func: </source>
-        <translation>Не вдалося видалити тимчасовий файл
+        <translation type="vanished">Не вдалося видалити тимчасовий файл
 Функція: </translation>
     </message>
     <message>

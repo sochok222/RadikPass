@@ -96,37 +96,48 @@ void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
 void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
 {
     switch(arg1) {
-        case Qt::Checked:
-        {
-            ui->lineRepeat->setEchoMode(QLineEdit::Password);
-            ui->lineRepeat->setDisabled(false);
-            ui->labelRepeat->setDisabled(false);
-            ui->lineRepeat->show();
-            ui->labelRepeat->show();
-            isPassHidden = true;
-            break;
-        }
-        case Qt::Unchecked:
-        {
-            ui->linePassword->setEchoMode(QLineEdit::Normal);
-            ui->lineRepeat->clear();
-            ui->lineRepeat->setEnabled(false);
-            ui->labelRepeat->setEnabled(false);
-            ui->lineRepeat->hide();
-            ui->labelRepeat->hide();
-            isPassHidden = false;
-            break;
-        }
-        case Qt::PartiallyChecked:
-        {
-            break;
-        }
+    case Qt::Checked: // If QCheckBox is checked
+    {
+        ui->linePassword->setEchoMode(QLineEdit::Password); // Setting password echo mode to password line
+        ui->lineRepeat->setEchoMode(QLineEdit::Password); // Setting password echo mode to repeat password line
+
+        ui->lineRepeat->setEnabled(true); // Enabling repeat password line
+        ui->labelRepeat->setEnabled(true); // Enabling label near repeat password line
+
+        ui->lineRepeat->show(); // Showing repeat password line
+        ui->labelRepeat->show(); // Showing label near repeat password line
+
+        isPassHidden = true; // isPassHidden used to check if needs to check repeat line
+
+        break;
+    }
+    case Qt::Unchecked:
+    {
+        ui->linePassword->setEchoMode(QLineEdit::Normal); // Setting normal mode to password line
+
+        ui->lineRepeat->clear(); // Clearing repeat password line
+
+        // Disabling repeat password line and label near it
+        ui->lineRepeat->setEnabled(false);
+        ui->labelRepeat->setEnabled(false);
+        // Hiding
+        ui->lineRepeat->hide();
+        ui->labelRepeat->hide();
+
+        isPassHidden = false; // isPassHidden used to check if needs to check repeat line
+
+        break;
+    }
+    case Qt::PartiallyChecked:
+    {
+        break;
+    }
     }
 }
 
 
 void CreateDatabase::on_cancelButton_clicked()
 {
-    this->reject();
+    this->reject(); // Closing window
 }
 

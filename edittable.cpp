@@ -111,12 +111,11 @@ void EditTable::saveChanges()
         return;
     }
 
-    QString changeName("ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'");
-    QString changeSettingsName("UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'");
+    QString changeName = "ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'";
+    QString restoreName = "ALTER TABLE '"+ui->nameEdit->text()+"' RENAME TO '"+tableName+"'";
+    QString changeSettingName = "UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'";
     QString ico(mapper->model()->data(model->index(mapper->currentIndex(), 0)).toString());
     QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ico+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
-
-    DbManager::createBackup(db);
 
     if(ui->nameEdit->text().size() == 0)
     {
@@ -126,17 +125,19 @@ void EditTable::saveChanges()
 
     if(isNameChanged)
     {
-        if(!query.exec(changeName))
-        {
-            DbManager::loadBackup(db);
-            DbManager::deleteBackup(db);
+        if(!query.exec(changeName)) {
+            QMessageBox msg;
+            msg.setText(tr("Unable to change name of table, try to reopen database."));
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.exec();
             return;
         }
-
-        if(!query.exec(changeSettingsName))
-        {
-            DbManager::loadBackup(db);
-            DbManager::deleteBackup(db);
+        if(!query.exec(changeSettingName)) {
+            query.exec(restoreName);
+            QMessageBox msg;
+            msg.setText(tr("Unable to change name of table, try to reopen database."));
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.exec();
             return;
         }
     }
@@ -145,14 +146,14 @@ void EditTable::saveChanges()
     {
         if(!query.exec(setNewIcon))
         {
-            DbManager::loadBackup(db);
-            DbManager::deleteBackup(db);
-            return;
+            QMessageBox msg;
+            msg.setText(tr("Unable to change icon of table, try again."));
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.exec();
         }
     }
 
     listWidget->currentItem()->setText(ui->nameEdit->text());
-    DbManager::deleteBackup(db);
 }
 
 
