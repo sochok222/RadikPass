@@ -23,20 +23,23 @@ bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatab
 {
     QSqlQuery query(*db);
 
+    // Creating a query that will find id of row and executing it
     QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(tableView->currentIndex().row());
-    query.prepare(getId);
-    if(!query.exec())
+    if(!query.exec(getId))
     {
-        return false;
+        return false; // If unable to execute needs to return false
     }
-    query.next();
-    rowId = query.value(0).toInt();
+
+    query.next(); // Retrieving found value
+    rowId = query.value(0).toInt(); // Putting value to rowId
+
     return true;
 }
 
 bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
 {
     qDebug() << Q_FUNC_INFO;
+
     QSqlQuery query(*db);
 
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
@@ -405,11 +408,14 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
 bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db)
 {
     qDebug() << Q_FUNC_INFO;
-    checkMasterKey(key);
+
+    checkMasterKey(key); // If key length is less than 32 this function will append zeroes to key
+
+    // Creating a temporary file and trying to open it
     QTemporaryFile tmp;
     if(!tmp.open())
     {
-        qDebug() << "Can't open temporary file";
+        showMsgBox("Can't open temporary file");
         return false;
     }
 

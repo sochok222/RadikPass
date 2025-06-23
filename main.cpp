@@ -5,7 +5,6 @@
 #include <QSettings>
 #include "opendatabase.h"
 
-
 bool isFileExists(const QString path)
 {
     QFile file(path);
@@ -14,9 +13,27 @@ bool isFileExists(const QString path)
     return false;
 }
 
+void myLogMessageHandler(const QtMsgType type, const QMessageLogContext& context, const QString& msg)
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/log.txt";
+    QDir dir(path);
+    if(!dir.exists(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)))
+        dir.mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    QFile logFile(path);
+    if (logFile.open(QIODevice::WriteOnly | QIODevice::Append))
+    {
+        logFile.write(qUtf8Printable(qFormatLogMessage(type, context, msg) + "\n"));
+    }
+}
+
 void setStandardCfgColumns()
 {
     QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
+
+    // Installing log messge handler
+    qInstallMessageHandler(myLogMessageHandler);
+    // Install custom log message pattern
+    qSetMessagePattern("%{time yyyy-MM-dd hh:mm} [%{type}]: %{message}");
 
     // QStringList to store two values in one QSettings field
     QStringList columnTitle = QStringList() << "" << "";
