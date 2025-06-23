@@ -11,6 +11,10 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
 
     this->setWindowTitle(tr("Configure Columns")); // Setting window title
 
+    // Setting smooth scroll mode
+    ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // Disabling editing in tableWidget
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection); // Disabling selection in tableWidget
 

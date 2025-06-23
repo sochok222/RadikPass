@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QStyleHints>
 #include <QFile>
+#include <iostream>
 #include <QSettings>
 #include "opendatabase.h"
 
@@ -15,6 +16,7 @@ bool isFileExists(const QString path)
 
 void myLogMessageHandler(const QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
+    std::cout << msg.toStdString() << std::endl;
     QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/log.txt";
     QDir dir(path);
     if(!dir.exists(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)))
