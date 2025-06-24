@@ -584,7 +584,7 @@ void MainWindow::deleteTable()
             }else
             {
                 QMessageBox msg;
-                msg.setText(tr("Can`t delete this table"));
+                msg.setText(tr("Can`t delete table."));
                 msg.button(QMessageBox::Ok);
                 msg.exec();
             }

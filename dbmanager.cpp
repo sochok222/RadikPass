@@ -19,14 +19,12 @@ void DbManager::showMsgBox(const QString &text) {
 }
 
 
-bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId)
-{
+bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId) {
     QSqlQuery query(*db);
 
     // Creating a query that will find id of row and executing it
     QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(tableView->currentIndex().row());
-    if(!query.exec(getId))
-    {
+    if(!query.exec(getId)) {
         return false; // If unable to execute needs to return false
     }
 
@@ -42,64 +40,86 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
 
     QSqlQuery query(*db);
 
+    // Preparing and executing a query that will delete the row with table and icon from the TablesSettings
+    qInfo() << "Preparing query that will delete row from TablesSettings...";
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
     query.bindValue(":name", tableName);
-    if(!query.exec())
-    {
-        qDebug() << "Can't execute query";
+    if(!query.exec()) {
+        qCritical() << "Query execution failed, error: " << query.lastError();
         return false;
-    }
+    } qInfo() << "Successfully executed";
 
+    // Preparingand executing a query that will delete the table from the database
+    qInfo() << "Preparing 'DROP TABLE' query...";
     QString command = QString("DROP TABLE [%1]").arg(tableName);
-
-    if(!query.exec(command))
-    {
-        qDebug() << "Can't execute query";
+    if(!query.exec(command)) {
+        qCritical() << "Query execution failed, error: " << query.lastError();
         query.exec("INSERT INTO TablesSettings ([Table]) VALUES ('"+tableName+"')");
         return false;
-    }
+    }qInfo() << "Successfully executed";
+
     return true;
 }
 
 
-QByteArray* DbManager::encryptData(QByteArray *data, const QByteArray &key)
-{
+QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     qDebug() << Q_FUNC_INFO;
-    if (key.size() < 32) return {};
 
+    qInfo() << "Checking master key length...";
+    if(!checkMasterKey(key)) {
+        qInfo() << "Appended zeroes to key";
+    }
+
+    qInfo() << "Encrypting data...";
+
+    // Creating iv with size of 16 bytes and filling it with random bytes
     QByteArray *iv = new QByteArray(16, 0);
     RAND_bytes(reinterpret_cast<unsigned char*>(iv->data()), iv->size());
 
+    // Allocating cipher context
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
-    if (!ctx) return {};
+    if (!ctx){
+        qCritical() << "Encryption failed, cipher context allocation failed.";
+        return {};
+    }
 
+    // Setting up cipher context
     if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
                            reinterpret_cast<const unsigned char*>(key.data()),
                            reinterpret_cast<const unsigned char*>(iv->data())) != 1) {
         EVP_CIPHER_CTX_free(ctx);
+        qCritical() << "Encryption failed, cant setup cipher context";
         return {};
     }
 
+    // Creating byte array in which encrypted datbase will be written
     QByteArray *encrypted = new QByteArray;
     encrypted->resize(data->size() + EVP_CIPHER_block_size(EVP_aes_256_cbc()));
 
+    // Encrypting
     int len = 0, totalLen = 0;
     if (EVP_EncryptUpdate(ctx,
                           reinterpret_cast<unsigned char*>(encrypted->data()), &len,
                           reinterpret_cast<const unsigned char*>(data->data()), data->size()) != 1) {
         EVP_CIPHER_CTX_free(ctx);
+        qCritical() << "Encryption failed, unable to encrypt data.";
         return {};
     }
     totalLen += len;
 
+    // Encrypting final data
     if (EVP_EncryptFinal_ex(ctx, reinterpret_cast<unsigned char*>(encrypted->data()) + totalLen, &len) != 1) {
         EVP_CIPHER_CTX_free(ctx);
+        qCritical() << "Encryption failed, unable to encrypt final data";
         return {};
     }
     totalLen += len;
     encrypted->resize(totalLen);
     EVP_CIPHER_CTX_free(ctx);
 
+    qInfo() << "Successfully encrypted";
+
+    // Returning data
     QByteArray *ret = new QByteArray;
     ret->append(*iv + *encrypted);
     delete iv;
@@ -207,14 +227,13 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
 bool DbManager::checkMasterKey(QByteArray &masterKey)
 {
     qDebug() << Q_FUNC_INFO;
-    // If masterKey has less bytes than it must have, this will append zeroes to fill it
-    // Else it will remove excrescent bytes
-    if(masterKey.size() < 32)
+
+    if(masterKey.size() < 32) // If key size is less than 32 needs to append zeroes
     {
         QByteArray toAppend(32-masterKey.size(), '0');
         masterKey.append(toAppend);
         return false;
-    }else if(masterKey.size() > 32)
+    }else if(masterKey.size() > 32) // Else needs to remove zeroes
     {
         masterKey.remove(32, masterKey.size());
         return false;

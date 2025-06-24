@@ -51,7 +51,7 @@ public:
     static QByteArray* decryptData(QByteArray *encryptedData, const QByteArray &key);
 
     // Return encrypted data array, *data this is data that will be encrypted using &key as master-key.
-    static QByteArray* encryptData(QByteArray *data, const QByteArray &key);
+    static QByteArray* encryptData(QByteArray *data, QByteArray &key);
 
     // This will check and correct &masterKey to correct lengh, for aes 256 this is key that has lengh of 32 bytes,
     // if key is shorter than 32 bytes it will append zeroes
