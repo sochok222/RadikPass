@@ -175,42 +175,42 @@ Try another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="22"/>
+        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="22"/>
+        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is hiden by asterisk(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="28"/>
         <source>Creation Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="28"/>
         <source>Last Changed</source>
         <translation type="unfinished"></translation>
     </message>

@@ -230,42 +230,42 @@ Try another name.</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="22"/>
+        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is shown</source>
         <translation>Чи показано</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="22"/>
+        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is hiden by asterisk(*)</source>
         <translation>Чи приховано зірочками(*)</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Username</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="23"/>
+        <location filename="../../configurecolumns.cpp" line="27"/>
         <source>Notes</source>
         <translation>Нотатки</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="28"/>
         <source>Creation Time</source>
         <translation>Час створення</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="24"/>
+        <location filename="../../configurecolumns.cpp" line="28"/>
         <source>Last Changed</source>
         <translation>Остання зміна</translation>
     </message>
