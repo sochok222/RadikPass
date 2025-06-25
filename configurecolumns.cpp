@@ -113,8 +113,7 @@ void ConfigureColumns::loadSettings()
 }
 
 
-void ConfigureColumns::setup()
-{
+void ConfigureColumns::setup() {
     // Filling tableView with cells.
     int row = 0;
     for(QPair<QCheckBox*, QCheckBox*> &el : rows)

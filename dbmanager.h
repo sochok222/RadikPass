@@ -48,7 +48,7 @@ public:
 
     // Returns decrypted data array, *encryptedData this is QByteArray that was red from encrypted database,
     // &key this is key with wich *encryptedData will be decrypted
-    static QByteArray* decryptData(QByteArray *encryptedData, const QByteArray &key);
+    static QByteArray* decryptData(QByteArray *encryptedData, QByteArray &key);
 
     // Return encrypted data array, *data this is data that will be encrypted using &key as master-key.
     static QByteArray* encryptData(QByteArray *data, QByteArray &key);

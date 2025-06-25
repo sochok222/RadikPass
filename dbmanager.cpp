@@ -34,9 +34,8 @@ bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatab
     return true;
 }
 
-bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
-{
-    qDebug() << Q_FUNC_INFO;
+bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
+    qInfo() << Q_FUNC_INFO;
 
     QSqlQuery query(*db);
 
@@ -47,7 +46,7 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
     if(!query.exec()) {
         qCritical() << "Query execution failed, error: " << query.lastError();
         return false;
-    } qInfo() << "Successfully executed";
+    } qDebug() << "Successfully executed";
 
     // Preparingand executing a query that will delete the table from the database
     qInfo() << "Preparing 'DROP TABLE' query...";
@@ -56,21 +55,19 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName)
         qCritical() << "Query execution failed, error: " << query.lastError();
         query.exec("INSERT INTO TablesSettings ([Table]) VALUES ('"+tableName+"')");
         return false;
-    }qInfo() << "Successfully executed";
+    }qDebug() << "Successfully executed";
 
     return true;
 }
 
 
 QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     qInfo() << "Checking master key length...";
     if(!checkMasterKey(key)) {
-        qInfo() << "Appended zeroes to key";
+        qDebug() << "Appended zeroes to key";
     }
-
-    qInfo() << "Encrypting data...";
 
     // Creating iv with size of 16 bytes and filling it with random bytes
     QByteArray *iv = new QByteArray(16, 0);
@@ -80,7 +77,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     if (!ctx){
         qCritical() << "Encryption failed, cipher context allocation failed.";
-        return {};
+        return nullptr;
     }
 
     // Setting up cipher context
@@ -89,7 +86,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
                            reinterpret_cast<const unsigned char*>(iv->data())) != 1) {
         EVP_CIPHER_CTX_free(ctx);
         qCritical() << "Encryption failed, cant setup cipher context";
-        return {};
+        return nullptr;
     }
 
     // Creating byte array in which encrypted datbase will be written
@@ -103,7 +100,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
                           reinterpret_cast<const unsigned char*>(data->data()), data->size()) != 1) {
         EVP_CIPHER_CTX_free(ctx);
         qCritical() << "Encryption failed, unable to encrypt data.";
-        return {};
+        return nullptr;
     }
     totalLen += len;
 
@@ -111,7 +108,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     if (EVP_EncryptFinal_ex(ctx, reinterpret_cast<unsigned char*>(encrypted->data()) + totalLen, &len) != 1) {
         EVP_CIPHER_CTX_free(ctx);
         qCritical() << "Encryption failed, unable to encrypt final data";
-        return {};
+        return nullptr;
     }
     totalLen += len;
     encrypted->resize(totalLen);
@@ -127,39 +124,57 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     return ret;
 }
 
-QByteArray* DbManager::decryptData(QByteArray *encryptedData, const QByteArray &key)
-{
-    qDebug() << Q_FUNC_INFO;
-    if (encryptedData->size() < 16 || key.size() < 32) return {};
+QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
+    qInfo() << Q_FUNC_INFO;
 
+    qDebug() << "Got key with size of " << key.size() << " bytes.";
+
+    // Fixing key size
+    qInfo() << "Checking key length...";
+    if(!checkMasterKey(key)) {
+        qInfo() << "Fixed key size";
+    }
+
+    // Reading iv and cipher data from encrypted byte array
     QByteArray iv = encryptedData->left(16);
     QByteArray cipherText = encryptedData->mid(16);
 
+    // Allocating ciper context
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
-    if (!ctx) return {};
+    if (!ctx){
+        qCritical() << "Decryption failed, can't allocate cipher context";
+        return nullptr;
+    }
 
+    // Initializing decryption
     if (EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
                            reinterpret_cast<const unsigned char*>(key.data()),
                            reinterpret_cast<const unsigned char*>(iv.data())) != 1) {
+        qCritical() << "Decryption failed, can't init decryption";
         EVP_CIPHER_CTX_free(ctx);
-        return {};
+        return nullptr;
     }
 
+    // Initializating and resizing byte array for decrypted data
     QByteArray *decrypted = new QByteArray;
     decrypted->resize(cipherText.size());
 
+    // Creating decrypted data buffer
     int len = 0, totalLen = 0;
     if (EVP_DecryptUpdate(ctx,
                           reinterpret_cast<unsigned char*>(decrypted->data()), &len,
                           reinterpret_cast<const unsigned char*>(cipherText.data()), cipherText.size()) != 1) {
+        qCritical() << "Decryption failed, can't create the buffer for decrypted data";
         EVP_CIPHER_CTX_free(ctx);
-        return {};
+        return nullptr;
     }
     totalLen += len;
 
+    // Decryption
     if (EVP_DecryptFinal_ex(ctx, reinterpret_cast<unsigned char*>(decrypted->data()) + totalLen, &len) != 1) {
+        qCritical() << "Decrypt failed, final decryption returned error";
         EVP_CIPHER_CTX_free(ctx);
-        return {};
+        return nullptr;
     }
     totalLen += len;
     decrypted->resize(totalLen);
@@ -168,73 +183,83 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, const QByteArray &
     return decrypted;
 }
 
-bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables)
-{
-    qDebug() << Q_FUNC_INFO;
+bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables) {
+    qInfo() << Q_FUNC_INFO;
 
-    // Connecting database to memory
+    // Connecting database to RAM
     db.setDatabaseName(":memory:");
+
     // Returning false if can`t open datatbase
-    if(!db.open())
-        return false;
-    QSqlQuery qry(db);
-    // Executing query that attaching temporary database as tempDb
-    qry.prepare("ATTACH DATABASE :path as tempDb");
-    qry.bindValue(":path", path);
-    if(!qry.exec())
-    {
-        qDebug() << "Can`t attach temporary database, query error: " << qry.lastError().text();
+    if(!db.open()) {
+        qCritical() << "Can't open database";
         return false;
     }
 
-    qry.prepare("SELECT name, sql FROM tempDb.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
-    if (!qry.exec()) {
-        qDebug() << "Can't get create SQLs:" << qry.lastError().text();
+    QSqlQuery query(db);
+
+    // Executing query that will attach the temporary database as tempDb
+    query.prepare("ATTACH DATABASE :path as tempDb");
+    query.bindValue(":path", path); // Binding path as :path
+    if(!query.exec()) {
+        qCritical() << "Can`t attach temporary database, query error: " << query.lastError().text();
+        return false;
+    }
+
+    // Copying 'create table' queries and names of that tables
+    query.prepare("SELECT name, sql FROM tempDb.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
+    if (!query.exec()) {
+        qDebug() << "Can't execute query that will copy queries and tables, error: " << query.lastError().text();
         return false;
     }
 
     tables.clear(); // Clearing list of tables
-    while (qry.next()) {
-        QString tableName = qry.value(0).toString();
-        QString createSQL = qry.value(1).toString();
+
+    // While query has values
+    while (query.next()) {
+        QString tableName = query.value(0).toString(); // Name of table
+        QString createSQL = query.value(1).toString(); // 'create table' sql query
 
         qDebug() << "Creating table:" << tableName;
-        QSqlQuery createQry(db);
-        if (!createQry.exec(createSQL)) {
-            qDebug() << "Create table failed:" << createQry.lastError().text();
+
+        // Creating table in :memory: database
+        QSqlQuery createquery(db);
+        if (!createquery.exec(createSQL)) {
+            qCritical() << "Create table failed:" << createquery.lastError().text();
+            showMsgBox("Can't copy table: " + tableName + ".\nPlease try again.");
             continue;
         }
 
+        // Copying data from the temporary datbase to the :memory: database
         QString copySQL = QString("INSERT INTO [%1] SELECT * FROM tempDb.[%1]").arg(tableName);
-        if (!createQry.exec(copySQL)) {
-            qDebug() << "Insert failed:" << createQry.lastError().text();
+        if (!createquery.exec(copySQL)) {
+            qCritical() << "Insert failed:" << createquery.lastError().text();
+            showMsgBox("Can't copy content of table: " + tableName + ".\nPlease try again.");
         } else {
-
+            // The "TablesSetting" is table that is not available to user
             if(tableName != "TablesSettings")tables.push_back(tableName);
         }
     }
 
-    qry.prepare("DETACH DATABASE tempDb");
-    if(!qry.exec())
-    {
-        qDebug() << "Can`t detach temporary database, query error: " <<  qry.lastError().text();
+    // This query will detach database
+    query.prepare("DETACH DATABASE tempDb");
+    if(!query.exec()) {
+        qDebug() << "Can`t detach temporary database, query error: " <<  query.lastError().text();
         return false;
     }
-    // Func. returns true if it executes to the end
+
     return true;
 }
 
-bool DbManager::checkMasterKey(QByteArray &masterKey)
-{
+bool DbManager::checkMasterKey(QByteArray &masterKey) {
     qDebug() << Q_FUNC_INFO;
 
-    if(masterKey.size() < 32) // If key size is less than 32 needs to append zeroes
-    {
+    if(masterKey.size() < 32) { // If key size is less than 32 needs to append zeroes
+        qInfo() << "Appending " << 32-masterKey.size() << " zeroes to key...";
         QByteArray toAppend(32-masterKey.size(), '0');
         masterKey.append(toAppend);
         return false;
-    }else if(masterKey.size() > 32) // Else needs to remove zeroes
-    {
+    }else if(masterKey.size() > 32) {// Else needs to remove zeroes
+        qInfo() << "Removing redundant bytes from key...";
         masterKey.remove(32, masterKey.size());
         return false;
     }
@@ -278,8 +303,6 @@ bool DbManager::deleteTemporaryFile(T &file)
 bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db, std::vector<QString> &tables)
 {
     qDebug() << Q_FUNC_INFO;
-    // Setting master-key
-    if(!checkMasterKey(key)) qDebug() << "Your master-key lenght was incorrect, now it is correct";
 
     // Setting database path
     QFile encrypted(encryptedDatabase);
