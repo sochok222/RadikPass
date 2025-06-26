@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     }
 
     model = new QSqlTableModel(this, db); // Creating model with all tables in it
+    connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     if(tables.size() > 0) // If one or more table exists we select current first table
     {
         model->setTable(tables[0]);
@@ -75,10 +76,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     configureColumns(); // Showing columns according to settings.
 
-    // Loading icons according to current color theme
-    loadIcons();
-
-    setHeaders();
+    loadIcons(); // Loading icons according to current color theme
 }
 
 MainWindow::~MainWindow()
@@ -86,9 +84,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::setHeaders() {
-    model->setHeaderData(1, Qt::Horizontal, "");
-    QVector<QString> headers = {tr("Title"), tr("User Name"), tr("Password"), tr("URL"), tr("Notes"), tr("Creation Time"), tr("Last Changed")};
+    QVector<QString> headers = {tr("Title"), tr("User Name"),
+                                tr("Password"), tr("URL"),
+                                tr("Notes"), tr("Creation Time"), tr("Last Changed")};
 
     for(int i = 0; i < headers.size(); i++) {
         model->setHeaderData(i+1, Qt::Horizontal, headers[i]);
@@ -564,6 +564,7 @@ void MainWindow::editRow()
     delete editEntry;
     isChanged = true;
     model->select();
+
     ui->tableView->update();
     configureColumns();
 }
@@ -605,6 +606,7 @@ void MainWindow::deleteTable()
                                                                                QMessageBox::Ok, QMessageBox::Ok);
         }
     }
+
     configureColumns();
 }
 
@@ -630,6 +632,8 @@ void MainWindow::deleteEntry()
         ui->tableView->setModel(model);
         isChanged = true;
         ui->statusbar->showMessage(tr("Entry deleted."), 30000);
+
+
     }
 }
 
@@ -643,6 +647,8 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText)
     model->select();
     ui->tableView->setModel(model);
     configureColumns();
+
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -703,6 +709,8 @@ void MainWindow::createTable()
     }
     configureColumns();
     loadIconsToListWidget();
+
+
 }
 
 /// When user hits "Add data" button this function executes
@@ -721,6 +729,8 @@ void MainWindow::addEntry()
     model->select();
     ui->tableView->update();
     configureColumns();
+
+
 }
 
 void MainWindow::openDatabase()
@@ -778,9 +788,9 @@ void MainWindow::openDatabase()
         }
         model->select();
         ui->tableView->update();
-        configureColumns();
     }
     configureColumns();
+
     loadIcons();
 }
 
@@ -896,6 +906,7 @@ void MainWindow::editTable()
 
     loadIconsToListWidget(); // Loading icons to ListWidget with tables
     configureColumns(); // Showing columns according to settings.
+
 }
 
 void MainWindow::duplicateEntry()
@@ -921,7 +932,9 @@ void MainWindow::duplicateEntry()
     isChanged = true;
     ui->statusbar->showMessage(tr("Entry duplicated"), 3);
     model->select();
-    ui->tableView->update(); // Updating tableView
+    ui->tableView->update();
+
+
 }
 
 void MainWindow::saveAll()
@@ -966,6 +979,7 @@ void MainWindow::setUkrainianLanguage()
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
+    setHeaders();
 }
 
 void MainWindow::setEnglishLanguage()
@@ -992,6 +1006,7 @@ void MainWindow::setEnglishLanguage()
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
+    setHeaders();
 }
 
 void MainWindow::setGermanLanguage()
@@ -1017,6 +1032,7 @@ void MainWindow::setGermanLanguage()
 
     setColorThemeActions(); // Retranslating actions
     setTooltips();// Retranslating tooltips
+    setHeaders();
 }
 
 void MainWindow::setSystemColorTheme()

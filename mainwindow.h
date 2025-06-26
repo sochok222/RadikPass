@@ -124,9 +124,6 @@ private:
     // Connecting actions in toolbar to slots
     void connectActions();
 
-    // Setting horizontal headers of columns in the tableView
-    void setHeaders();
-
 public slots:
     // When user clicks on right button of the mouse.
     // This fuction olso check checks where user clicked.
@@ -186,6 +183,9 @@ public slots:
 
     // This function saves all changes to encrypted database.
     void saveAll();
+
+    // Setting horizontal headers of columns in the tableView
+    void setHeaders();
 
     // This functions are performing change of language in program.
     void setUkrainianLanguage();

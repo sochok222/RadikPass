@@ -837,7 +837,7 @@ Try again, please</source>
         <translation>Скопіювати</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="90"/>
         <location filename="../../mainwindow.cpp" line="352"/>
         <location filename="../../mainwindow.cpp" line="391"/>
         <source>URL</source>
@@ -881,17 +881,17 @@ Try again, please</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="89"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="89"/>
         <source>User Name</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="90"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
@@ -952,17 +952,17 @@ Try again, please</source>
         <translation>Пароль скопійовано</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="577"/>
+        <location filename="../../mainwindow.cpp" line="578"/>
         <source>Delete Table?</source>
         <translation>Видалити таблицю?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="595"/>
+        <location filename="../../mainwindow.cpp" line="596"/>
         <source>Table deleted.</source>
         <translation>Таблицю видалено</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="599"/>
+        <location filename="../../mainwindow.cpp" line="600"/>
         <source>Can`t delete table.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -971,43 +971,43 @@ Try again, please</source>
         <translation type="vanished">Не вдалося видалити цю таблицю.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="604"/>
+        <location filename="../../mainwindow.cpp" line="605"/>
         <source>At least one table must exists</source>
         <translation>Щонайменше одна таблиця має існувати.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="621"/>
+        <location filename="../../mainwindow.cpp" line="623"/>
         <source>Delete row?</source>
         <translation>Видалити запис?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="632"/>
+        <location filename="../../mainwindow.cpp" line="634"/>
         <source>Entry deleted.</source>
         <translation>Запис видалено</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="654"/>
-        <location filename="../../mainwindow.cpp" line="731"/>
+        <location filename="../../mainwindow.cpp" line="660"/>
+        <location filename="../../mainwindow.cpp" line="741"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="751"/>
+        <location filename="../../mainwindow.cpp" line="761"/>
         <source>Open encrypted database</source>
         <translation>Відкрити зашифровану базу даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="764"/>
+        <location filename="../../mainwindow.cpp" line="774"/>
         <source>Password is incorrect</source>
         <translation>Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="871"/>
+        <location filename="../../mainwindow.cpp" line="881"/>
         <source>Can&apos;t load icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="916"/>
+        <location filename="../../mainwindow.cpp" line="927"/>
         <source>Can&apos;t duplicate entry
 Query error: </source>
         <translation type="unfinished"></translation>
@@ -1017,17 +1017,17 @@ Query error: </source>
         <translation type="vanished">Не вдається створити копію запису.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="959"/>
+        <location filename="../../mainwindow.cpp" line="972"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="985"/>
+        <location filename="../../mainwindow.cpp" line="999"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1011"/>
+        <location filename="../../mainwindow.cpp" line="1026"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1036,12 +1036,12 @@ Query error: </source>
         <translation type="vanished">Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="791"/>
+        <location filename="../../mainwindow.cpp" line="801"/>
         <source>Create new database</source>
         <translation>Створити нову базу даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="804"/>
+        <location filename="../../mainwindow.cpp" line="814"/>
         <source>Can&apos;t create new database</source>
         <translation>Не вдалося створити нову базу даних.</translation>
     </message>
@@ -1050,7 +1050,7 @@ Query error: </source>
         <translation type="vanished">Не вдалося здублювати колонки.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="922"/>
+        <location filename="../../mainwindow.cpp" line="933"/>
         <source>Entry duplicated</source>
         <translation>Запис здубльовано.</translation>
     </message>
@@ -1183,6 +1183,34 @@ Func: </source>
     <message>
         <source>Light</source>
         <translation type="vanished">Світла</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="vanished">Заголовок</translation>
+    </message>
+    <message>
+        <source>User Name</source>
+        <translation type="vanished">Ім&apos;я</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="vanished">Пароль</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="vanished">Посилання</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="vanished">Нотатки</translation>
+    </message>
+    <message>
+        <source>Creation Time</source>
+        <translation type="vanished">Час створення</translation>
+    </message>
+    <message>
+        <source>Last Changed</source>
+        <translation type="vanished">Остання зміна</translation>
     </message>
 </context>
 </TS>
