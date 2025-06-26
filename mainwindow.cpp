@@ -77,10 +77,22 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     // Loading icons according to current color theme
     loadIcons();
+
+    setHeaders();
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setHeaders() {
+    model->setHeaderData(1, Qt::Horizontal, "");
+    QVector<QString> headers = {tr("Title"), tr("User Name"), tr("Password"), tr("URL"), tr("Notes"), tr("Creation Time"), tr("Last Changed")};
+
+    for(int i = 0; i < headers.size(); i++) {
+        model->setHeaderData(i+1, Qt::Horizontal, headers[i]);
+    }
 }
 
 void MainWindow::connectActions() {
