@@ -39,8 +39,9 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
 
     QSqlQuery query(*db);
 
-    // Preparing and executing a query that will delete the row with table and icon from the TablesSettings
     qInfo() << "Preparing query that will delete row from TablesSettings...";
+
+    // Preparing and executing a query that will delete the row with table and icon from the TablesSettings
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
     query.bindValue(":name", tableName);
     if(!query.exec()) {
@@ -48,8 +49,9 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
         return false;
     } qDebug() << "Successfully executed";
 
-    // Preparingand executing a query that will delete the table from the database
     qInfo() << "Preparing 'DROP TABLE' query...";
+
+    // Preparingand executing a query that will delete the table from the database
     QString command = QString("DROP TABLE [%1]").arg(tableName);
     if(!query.exec(command)) {
         qCritical() << "Query execution failed, error: " << query.lastError();
@@ -180,7 +182,7 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
     decrypted->resize(totalLen);
     EVP_CIPHER_CTX_free(ctx);
 
-    return decrypted;
+    return decrypted; // Returning decrypted byte array
 }
 
 bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables) {
@@ -269,33 +271,38 @@ bool DbManager::checkMasterKey(QByteArray &masterKey) {
 template<typename T>
 bool DbManager::deleteTemporaryFile(T &file)
 {
-    qDebug() << Q_FUNC_INFO;
-    // Opening file and reading content from it
-    qDebug() << "File size: " << file.size();
+    qInfo() << Q_FUNC_INFO;
+
     // Creating an QByteArray with zeroes in size of temporary file
     QByteArray *array = new QByteArray(file.size(), '0');
-    // Trying to open file
+
+    // Openning file
     if(!file.open())
     {
-        qDebug() << "Can`t open file";
+        qCritical() << "Can`t open file";
         delete array;
         return false;
     }
+    // Writing zeroes to file
     if(!file.write(*array))
     {
-        qDebug() << "Can`t write data to file";
+        qCritical() << "Can't fill file with zeroes";
         file.close();
         file.remove();
         delete array;
         return false;
     }
+
     file.close();
+
+    // Removing file
     if(!file.remove())
     {
-        qDebug() << "Can`t delete file";
+        qCritical() << "Can`t delete file";
         delete array;
         return false;
     }
+
     delete array;
     return true;
 }
@@ -304,13 +311,13 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
 {
     qDebug() << Q_FUNC_INFO;
 
-    // Setting database path
+    // Creating QFile with the path to encrypted database
     QFile encrypted(encryptedDatabase);
 
-    // Encrypting and writing that content to encrypted database
+    // Opening file
     encrypted.open(QIODevice::ReadWrite);
 
-    // Than I need to create QTemporaryFile and write decrypted data to it
+    // Creating the temporary file
     QTemporaryFile temp;
     temp.setAutoRemove(false);
     if(!temp.open())
@@ -319,33 +326,37 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
         return false;
     }
 
-    // Trying to write decrypted data
-    encrypted.seek(0);
-    QByteArray *encData = new QByteArray(encrypted.readAll());
-    encData = decryptData(encData, key);
+    encrypted.seek(0); // Moving the cursor to the start of file
+
+    QByteArray *encData = new QByteArray(encrypted.readAll()); // Reading the content of the encrypted file
+
+    encData = decryptData(encData, key); // Decrypting that data
+
     if(encData == nullptr || encData->size() == 0)
     {
         return false;
-        qDebug() << "decryptData returned nullptr";
+        qCritical() << "Decrypted data is nullptr or has size of zero";
     }
+
+    // Writing decrypted array to the temporary file
     if(!temp.write(*encData))
     {
         qDebug("Can`t write decrypted data to temporary file");
         return false;
     }
-    delete encData;
-    temp.close();
+    delete encData; // Deleting encData
+    temp.close(); // Closing file
 
     // Copying database path to QString
     QString databasePath(temp.fileName());
-    qDebug() << "Temporary database path: " << databasePath;
 
-    // Trying to load temporary database to :memory database, and then safety delete temporary file
+    // Loading temporary database to :memory: database
     if(!loadTemporaryDatabase(*db, databasePath, tables))
     {
-        qDebug("Can`t load temporary database to :memory:");
+        qCritical("Can`t load temporary database to :memory:");
         return false;
     }
+    // Deleting temporary file
     if(!deleteTemporaryFile(temp))
     {
         qDebug("Can`t delete temporary database");

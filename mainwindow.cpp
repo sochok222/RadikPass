@@ -873,7 +873,8 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
     QSqlQuery query(db); // New query to read data from database
     for(int i = 0; i < ui->listWidget->count(); i++) // For every item in ListWidget(table)
     {
-        query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name"); // Loading name of icon from TablesSettings
+        // Loading name of icon from TablesSettings
+        query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name");
         query.bindValue(":name", ui->listWidget->item(i)->text());
         if(!query.exec())
         {
@@ -894,7 +895,8 @@ void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme); // Creating EditTable object that will ask user to make some changes in row
+    // Creating EditTable window where user can edit row
+    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
     editTable->exec();
     delete editTable;
 
@@ -913,12 +915,13 @@ void MainWindow::duplicateEntry()
 {
     qDebug() << Q_FUNC_INFO;
 
-    if(!hasSelectedRow())
+    if(!hasSelectedRow()) // If no rows are selected
         return;
 
     QSqlQuery query(db);
-    QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // id - this is id of row which needs to be duplicated
+    QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // Getting id of row which needs to be duplicated
 
+    // Duplicating row
     query.prepare("INSERT INTO ["+model->tableName()+"] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM ["+model->tableName()+"] WHERE id = "+id);
     if(!query.exec())
     {
@@ -929,27 +932,25 @@ void MainWindow::duplicateEntry()
         msg.exec();
         return;
     }
-    isChanged = true;
-    ui->statusbar->showMessage(tr("Entry duplicated"), 3);
+
+    isChanged = true; // Setting isChanged state to true to mark that user done some changes in database
+
+    ui->statusbar->showMessage(tr("Entry duplicated"), 3); // Showing message to statusbar
+
+    // Updating tableView
     model->select();
     ui->tableView->update();
-
-
 }
 
 void MainWindow::saveAll()
 {
+    // Writing changes to file
     DbManager::uploadDb(settings.value("Last").toString(), key, &db);
 }
 
 bool MainWindow::hasSelectedRow()
 {
-    // Get selected rows count
-    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
-    int selected = selectionModel->selectedRows().size();
-
-
-    if(selected <= 0) // If user selected no row
+    if(ui->tableView->selectionModel()->selectedRows().size() == 0) // If count of selected rows equals to zero
         return false;
 
     return true;
@@ -972,14 +973,14 @@ void MainWindow::setUkrainianLanguage()
         msg.setText(tr("Can't load ukrainian translation"));
         msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+        msg.exec(); // Retranslating headers in tableView
     }
 
     ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
-    setTooltips();// Retranslating tooltips
-    setHeaders();
+    setTooltips(); // Retranslating tooltips
+    setHeaders(); // Retranslating headers in tableView
 }
 
 void MainWindow::setEnglishLanguage()
@@ -1005,8 +1006,8 @@ void MainWindow::setEnglishLanguage()
     ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
-    setTooltips();// Retranslating tooltips
-    setHeaders();
+    setTooltips(); // Retranslating tooltips
+    setHeaders(); // Retranslating headers in tableView
 }
 
 void MainWindow::setGermanLanguage()
@@ -1031,8 +1032,8 @@ void MainWindow::setGermanLanguage()
     ui->retranslateUi(this); // Retranslating program
 
     setColorThemeActions(); // Retranslating actions
-    setTooltips();// Retranslating tooltips
-    setHeaders();
+    setTooltips(); // Retranslating tooltips
+    setHeaders(); // Retranslating headers in tableView
 }
 
 void MainWindow::setSystemColorTheme()
@@ -1065,7 +1066,7 @@ void MainWindow::setSystemColorTheme()
     }
     settings.setValue("theme", "system");
 
-    loadIcons(); // Loading icons to program
+    loadIcons(); // Updating icons
 }
 
 void MainWindow::setDarkColorTheme()
@@ -1084,7 +1085,7 @@ void MainWindow::setDarkColorTheme()
 
     qApp->setStyleSheet(style); // Applying style to program
 
-    loadIcons(); // Loading icons
+    loadIcons(); // Updating icons
 }
 
 void MainWindow::setLightColorTheme()
@@ -1103,5 +1104,5 @@ void MainWindow::setLightColorTheme()
 
     qApp->setStyleSheet(style); // Applying style to program
 
-    loadIcons(); // Loading icons
+    loadIcons(); // Updating icons
 }
