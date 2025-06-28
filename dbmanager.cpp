@@ -341,7 +341,7 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
     // Writing decrypted array to the temporary file
     if(!temp.write(*encData))
     {
-        qDebug("Can`t write decrypted data to temporary file");
+        qCritical   ("Can`t write decrypted data to temporary file");
         return false;
     }
     delete encData; // Deleting encData
@@ -359,7 +359,7 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
     // Deleting temporary file
     if(!deleteTemporaryFile(temp))
     {
-        qDebug("Can`t delete temporary database");
+        qCritical("Can`t delete temporary database");
         return false;
     }
 
@@ -369,31 +369,31 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
 bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db)
 {
     qDebug() << Q_FUNC_INFO;
-    // Creating temporary file to save changes
+
+    // Creating temporary file
     QTemporaryFile tmp;
     tmp.setAutoRemove(false);
     if(!tmp.open())
     {
-        qDebug() << "Error in: " << Q_FUNC_INFO;
-        qDebug("Can`t open temporary file to write new database");
+        qCritical("Can`t open temporary file to write new database");
         return false;
     }
 
     QSqlQuery qry(*db);
 
-    // This code will attach database that stored in :path as tempDb
+    // Attaching temporary database
     qry.prepare("ATTACH DATABASE :path as tempDb");
     qry.bindValue(":path", tmp.fileName());
     if(!qry.exec())
     {
-        qDebug() << "Error in: " << Q_FUNC_INFO;
-        qDebug() << "Can`t attach temporary database, query error: " << qry.lastError().text();
+        qCritical() << "Can`t attach temporary database, query error: " << qry.lastError().text();
         return false;
     }
 
+    // Selecting tables
     qry.prepare("SELECT name, sql FROM main.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
     if (!qry.exec()) {
-        qDebug() << "Can't get create SQLs:" << qry.lastError().text();
+        qCritical() << "Can't execute the query that selects tables: " << qry.lastError().text();
         return false;
     }
 
@@ -402,10 +402,10 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
         QString createSQL = qry.value(1).toString();
         createSQL.replace("CREATE TABLE ", "CREATE TABLE TempDb.");
 
-        qDebug() << "Creating table:" << tableName;
         QSqlQuery createQry(*db);
         if (!createQry.exec(createSQL)) {
-            qDebug() << "Create table failed:" << createQry.lastError().text();
+            showMsgBox(QObject::tr("Can't copy table ") + tableName);
+            qCritical() << "Create table failed:" << createQry.lastError().text() << "\n Name of table: " << tableName;
             continue;
         }
 
