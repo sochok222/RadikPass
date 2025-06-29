@@ -926,8 +926,8 @@ void MainWindow::duplicateEntry()
     if(!query.exec())
     {
         QMessageBox msg;
-        qDebug() << "Query: " << query.lastQuery();
-        msg.setText(tr("Can't duplicate entry\nQuery error: ").append(query.lastError().text()));
+        qCritical() << "Can't duplicate entry, last query: " << query.lastQuery();
+        msg.setText(tr("Can't duplicate entry"));
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         return;

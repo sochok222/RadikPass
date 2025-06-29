@@ -435,9 +435,6 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
         return false;
     }
 
-    // This function checks lengh of master-key, it lengh must be 32 bytes, if it less we need to append zeroes
-    // Else removes extra bytes
-    DbManager::checkMasterKey(key);
 
     QByteArray *data = new QByteArray(tmp.readAll());
     // Writing encrypted changes to encrypted file
@@ -448,6 +445,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
         return false;
     }
     delete data;
+
     // Safe delete of temporary file
     if(!deleteTemporaryFile(tmp))
     {
