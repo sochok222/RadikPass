@@ -900,6 +900,11 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="930"/>
+        <source>Can&apos;t duplicate entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Can`t delete this table</source>
         <translation type="vanished">Diese Tabelle kann nicht gelöscht werden</translation>
     </message>
@@ -937,12 +942,6 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../../mainwindow.cpp" line="882"/>
         <source>Can&apos;t load icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="930"/>
-        <source>Can&apos;t duplicate entry
-Query error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -944,13 +944,8 @@ Try again, please</source>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="930"/>
-        <source>Can&apos;t duplicate entry
-Query error: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Can&apos;t duplicate entry</source>
-        <translation type="vanished">Не вдається створити копію запису.</translation>
+        <translation>Не вдається створити копію запису.</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="973"/>

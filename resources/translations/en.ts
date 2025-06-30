@@ -847,6 +847,11 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="930"/>
+        <source>Can&apos;t duplicate entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.cpp" line="973"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
@@ -874,12 +879,6 @@ Try again, please</source>
     <message>
         <location filename="../../mainwindow.cpp" line="814"/>
         <source>Can&apos;t create new database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="930"/>
-        <source>Can&apos;t duplicate entry
-Query error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
