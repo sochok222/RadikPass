@@ -91,7 +91,7 @@ private:
     std::vector<QString> tables;
 
     // Loading settings.
-    QSettings settings = QSettings("AlexRadik", "RadiPass");
+    QSettings settings = QSettings("AlexRadik", "RadikPass");
 
     // Key with which database will be decrypted/encrypted
     QByteArray key = 0;

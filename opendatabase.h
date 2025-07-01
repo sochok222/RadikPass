@@ -31,7 +31,7 @@ private:
     Ui::OpenDatabase *ui;
 
     // Loading settings.
-    QSettings settings = QSettings("AlexRadik", "RadiPass");
+    QSettings settings = QSettings("AlexRadik", "RadikPass");
 
     // Storing master-key.
     QByteArray *masterPassword;

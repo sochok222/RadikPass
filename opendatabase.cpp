@@ -10,7 +10,7 @@ OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result, const QString &p
 
     ui->databasePathLabel->setText(path);
     masterPassword = result;
-    QSettings setting("AlexRadik", "RadiPass");
+    QSettings setting("AlexRadik", "RadikPass");
     ui->okButton->setAutoDefault(true);
     this->setWindowTitle(tr("Open Database"));
 }

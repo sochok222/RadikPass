@@ -163,7 +163,7 @@ void EditTable::closeEvent(QCloseEvent *event)
     if(isIconChanged || isNameChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
-            this, "RadiPass", "Save changes?",
+            this, "RadikPass", "Save changes?",
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if(question == QMessageBox::Yes)
         {

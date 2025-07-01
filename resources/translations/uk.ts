@@ -534,10 +534,14 @@ Error: </source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../mainwindow.ui" line="14"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="309"/>
         <source>MainWindow</source>
         <translation>Головне Вікно</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="14"/>
+        <source>RadikPass</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="333"/>
@@ -598,23 +602,21 @@ Error: </source>
         <location filename="../../mainwindow.ui" line="403"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
         <location filename="../../mainwindow.cpp" line="344"/>
-        <location filename="../../mainwindow.cpp" line="380"/>
         <source>Copy User Name</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="408"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
-        <location filename="../../mainwindow.cpp" line="144"/>
+        <location filename="../../mainwindow.cpp" line="143"/>
         <location filename="../../mainwindow.cpp" line="345"/>
-        <location filename="../../mainwindow.cpp" line="381"/>
         <source>Copy Password</source>
         <translation>Копіювати пароль</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="413"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
-        <location filename="../../mainwindow.cpp" line="142"/>
+        <location filename="../../mainwindow.cpp" line="141"/>
         <source>Add Entry</source>
         <translation>Створити запис</translation>
     </message>
@@ -627,7 +629,7 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="423"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
-        <location filename="../../mainwindow.cpp" line="145"/>
+        <location filename="../../mainwindow.cpp" line="144"/>
         <source>Delete Entry</source>
         <translation>Видалити запис</translation>
     </message>
@@ -646,14 +648,14 @@ Error: </source>
     <message>
         <location filename="../../mainwindow.ui" line="473"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
-        <location filename="../../mainwindow.cpp" line="170"/>
+        <location filename="../../mainwindow.cpp" line="169"/>
         <source>Dark</source>
         <translation>Темна</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="478"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
-        <location filename="../../mainwindow.cpp" line="171"/>
+        <location filename="../../mainwindow.cpp" line="170"/>
         <source>Light</source>
         <translation>Світла</translation>
     </message>
@@ -716,7 +718,7 @@ Try again, please</source>
 Спробуйте знову. будь ласка.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="310"/>
+        <location filename="../../mainwindow.cpp" line="309"/>
         <source>Title copied</source>
         <translation>Заголовок скопійовано</translation>
     </message>
@@ -725,39 +727,35 @@ Try again, please</source>
         <translation type="vanished">І&apos;мя скопійовано.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="320"/>
+        <location filename="../../mainwindow.cpp" line="319"/>
         <source>Password copied</source>
         <translation>Пароль скопійований.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="325"/>
+        <location filename="../../mainwindow.cpp" line="324"/>
         <source>Link opened</source>
         <translation>Посилання скопійовано.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="330"/>
+        <location filename="../../mainwindow.cpp" line="329"/>
         <source>Notes copied</source>
         <translation>Нотатки скопійовані.</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="346"/>
-        <location filename="../../mainwindow.cpp" line="382"/>
-        <location filename="../../mainwindow.cpp" line="410"/>
-        <location filename="../../mainwindow.cpp" line="425"/>
+        <location filename="../../mainwindow.cpp" line="403"/>
         <source>Edit</source>
         <translation>Редагувати</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="347"/>
-        <location filename="../../mainwindow.cpp" line="383"/>
+        <location filename="../../mainwindow.cpp" line="384"/>
         <source>Add new</source>
         <translation>Додати новий</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="348"/>
-        <location filename="../../mainwindow.cpp" line="384"/>
-        <location filename="../../mainwindow.cpp" line="408"/>
-        <location filename="../../mainwindow.cpp" line="423"/>
+        <location filename="../../mainwindow.cpp" line="401"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
@@ -773,132 +771,126 @@ Try again, please</source>
         <translation>Скопіювати</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="90"/>
+        <location filename="../../mainwindow.cpp" line="89"/>
         <location filename="../../mainwindow.cpp" line="352"/>
-        <location filename="../../mainwindow.cpp" line="391"/>
         <source>URL</source>
         <translation>Посилання</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="139"/>
+        <location filename="../../mainwindow.cpp" line="138"/>
         <source>New Database</source>
         <translation>Нова База Данних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="140"/>
+        <location filename="../../mainwindow.cpp" line="139"/>
         <source>Open Database</source>
         <translation>Відкрити Базу Даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="141"/>
+        <location filename="../../mainwindow.cpp" line="140"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="143"/>
+        <location filename="../../mainwindow.cpp" line="142"/>
         <source>Copy Username</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="169"/>
+        <location filename="../../mainwindow.cpp" line="168"/>
         <source>System</source>
         <translation>Системна</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="55"/>
+        <location filename="../../mainwindow.cpp" line="54"/>
         <source>Password is incorrect or database file is damaged
 Try again, please</source>
         <translation>Введений пароль не правильний або база даних пошкоджена.
 Спробуйте знову. будь ласка.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="14"/>
-        <source>RadiPass</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="89"/>
+        <location filename="../../mainwindow.cpp" line="88"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="89"/>
+        <location filename="../../mainwindow.cpp" line="88"/>
         <source>User Name</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="90"/>
+        <location filename="../../mainwindow.cpp" line="89"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="90"/>
         <source>Notes</source>
         <translation>Нотатки</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="90"/>
         <source>Creation Time</source>
         <translation>Час створення</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="90"/>
         <source>Last Changed</source>
         <translation>Остання зміна</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="315"/>
+        <location filename="../../mainwindow.cpp" line="314"/>
         <source>Username copied</source>
         <translation>І&apos;мя скопійовано.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="409"/>
-        <location filename="../../mainwindow.cpp" line="424"/>
+        <location filename="../../mainwindow.cpp" line="402"/>
+        <location filename="../../mainwindow.cpp" line="420"/>
         <source>Add Table</source>
         <translation>Додати таблицю</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="473"/>
-        <location filename="../../mainwindow.cpp" line="529"/>
-        <location filename="../../mainwindow.cpp" line="542"/>
+        <location filename="../../mainwindow.cpp" line="465"/>
+        <location filename="../../mainwindow.cpp" line="521"/>
+        <location filename="../../mainwindow.cpp" line="534"/>
         <source>Can&apos;t get row id</source>
         <translation>Не вдалося отримати номер рядку.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="474"/>
-        <location filename="../../mainwindow.cpp" line="487"/>
-        <location filename="../../mainwindow.cpp" line="530"/>
-        <location filename="../../mainwindow.cpp" line="543"/>
+        <location filename="../../mainwindow.cpp" line="466"/>
+        <location filename="../../mainwindow.cpp" line="479"/>
+        <location filename="../../mainwindow.cpp" line="522"/>
+        <location filename="../../mainwindow.cpp" line="535"/>
         <source>Query error: </source>
         <translation>Помилка запиту: </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="486"/>
+        <location filename="../../mainwindow.cpp" line="478"/>
         <source>Can&apos;t get data from database</source>
         <translation>Не вдалося отримати дані з бази даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="496"/>
+        <location filename="../../mainwindow.cpp" line="488"/>
         <source>Username copied.</source>
         <translation>Ім&apos;я скопійовано</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="552"/>
+        <location filename="../../mainwindow.cpp" line="544"/>
         <source>Password copied.</source>
         <translation>Пароль скопійовано</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="578"/>
+        <location filename="../../mainwindow.cpp" line="570"/>
         <source>Delete Table?</source>
         <translation>Видалити таблицю?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="596"/>
+        <location filename="../../mainwindow.cpp" line="588"/>
         <source>Table deleted.</source>
         <translation>Таблицю видалено</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="600"/>
+        <location filename="../../mainwindow.cpp" line="592"/>
         <source>Can`t delete table.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -907,58 +899,58 @@ Try again, please</source>
         <translation type="vanished">Не вдалося видалити цю таблицю.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="605"/>
+        <location filename="../../mainwindow.cpp" line="597"/>
         <source>At least one table must exists</source>
         <translation>Щонайменше одна таблиця має існувати.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="623"/>
+        <location filename="../../mainwindow.cpp" line="615"/>
         <source>Delete row?</source>
         <translation>Видалити запис?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="634"/>
+        <location filename="../../mainwindow.cpp" line="626"/>
         <source>Entry deleted.</source>
         <translation>Запис видалено</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="660"/>
-        <location filename="../../mainwindow.cpp" line="741"/>
+        <location filename="../../mainwindow.cpp" line="652"/>
+        <location filename="../../mainwindow.cpp" line="733"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="761"/>
+        <location filename="../../mainwindow.cpp" line="753"/>
         <source>Open encrypted database</source>
         <translation>Відкрити зашифровану базу даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="774"/>
+        <location filename="../../mainwindow.cpp" line="766"/>
         <source>Password is incorrect</source>
         <translation>Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="882"/>
+        <location filename="../../mainwindow.cpp" line="874"/>
         <source>Can&apos;t load icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="930"/>
+        <location filename="../../mainwindow.cpp" line="922"/>
         <source>Can&apos;t duplicate entry</source>
         <translation>Не вдається створити копію запису.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="973"/>
+        <location filename="../../mainwindow.cpp" line="965"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1000"/>
+        <location filename="../../mainwindow.cpp" line="992"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1027"/>
+        <location filename="../../mainwindow.cpp" line="1019"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -967,12 +959,12 @@ Try again, please</source>
         <translation type="vanished">Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="801"/>
+        <location filename="../../mainwindow.cpp" line="793"/>
         <source>Create new database</source>
         <translation>Створити нову базу даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="814"/>
+        <location filename="../../mainwindow.cpp" line="806"/>
         <source>Can&apos;t create new database</source>
         <translation>Не вдалося створити нову базу даних.</translation>
     </message>
@@ -981,7 +973,7 @@ Try again, please</source>
         <translation type="vanished">Не вдалося здублювати колонки.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="938"/>
+        <location filename="../../mainwindow.cpp" line="930"/>
         <source>Entry duplicated</source>
         <translation>Запис здубльовано.</translation>
     </message>

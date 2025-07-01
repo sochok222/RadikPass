@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 {
     qDebug() << Q_FUNC_INFO;
     ui->setupUi(this);
-    setWindowTitle(tr("RadiPass"));
 
     // Binding shortcuts
     setShortcuts();
@@ -338,17 +337,18 @@ void MainWindow::customMenuRequested(QPoint pos){
         return;
 
 
-    if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) // If mouse cursor is on tableView and on row
-    {
-        mainContextMenu.reset(new QMenu(this)); // Resetting QMenuenu object
-        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this)); // Resetting QAction *actionEdit object
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this)); // Resetting QAction *actionDelete object
+    if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) { // If mouse cursor is hover tableView and entry
+        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
+
+        // Resetting actions for context menu
+        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this));
+        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this));
+        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this));
+        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
         actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
 
-        // Setuping list of action to url
+        // Resseting url menu and adding actions to it
         subMenuUrl.reset(new QMenu(tr("URL"), this));
         subMenuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
         actionCopyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
@@ -356,17 +356,17 @@ void MainWindow::customMenuRequested(QPoint pos){
         subMenuUrl->addAction(actionCopyUrl.data());
         subMenuUrl->addAction(actionOpenUrl.data());
 
-
+        // Connecting actions
         connect(actionCopyUsername.data(), SIGNAL(triggered()), SLOT(copyUsername()));
         connect(actionCopyPassword.data(), SIGNAL(triggered()), SLOT(copyPassword()));
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
-        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteEntry())); // Connecting signal of delete button to deleteRow slot
+        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteEntry()));
         connect(actionEdit.data(), SIGNAL(triggered()), SLOT(editRow()));
         connect(actionCopyUrl.data(), SIGNAL(triggered()), SLOT(copyUrl()));
         connect(actionOpenUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
         connect(actionCfgColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
 
-
+        // Adding actions to context menu
         mainContextMenu->addAction(actionCopyUsername.data());
         mainContextMenu->addAction(actionCopyPassword.data());
         mainContextMenu->addMenu(subMenuUrl.data());
@@ -374,76 +374,68 @@ void MainWindow::customMenuRequested(QPoint pos){
         mainContextMenu->addAction(actionDelete.data());
         mainContextMenu->addAction(actionAdd.data());
         mainContextMenu->addAction(actionCfgColumns.data());
-        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
-    }else if(ui->tableView->underMouse()) {
-        mainContextMenu.reset(new QMenu(this)); // Resetting QMenu *menu object
-        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this)); // Resetting QAction *actionCopyUsername object
-        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this)); // Resetting QAction *actionCopyPass object
-        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this)); // Resetting QAction *actionEdit object
+
+        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+    }
+    else if(ui->tableView->underMouse()) { // If mouse cursor is hovers only tableView
+        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
+
+        // Resetting actions
         actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
-        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this)); // Resetting QAction *actionDelete object
         actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
-        actionCopyUsername->setDisabled(true);
-        actionCopyPassword->setDisabled(true);
-        actionDelete->setDisabled(true);
-        actionEdit->setDisabled(true);
 
-        subMenuUrl.reset(new QMenu(tr("URL"), this));
-        subMenuUrl->setDisabled(true);
-
+        // Connecting actions
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
         connect(actionCfgColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
 
-        mainContextMenu->addAction(actionCopyUsername.data());
-        mainContextMenu->addAction(actionCopyPassword.data());
-        mainContextMenu->addMenu(subMenuUrl.data());
-        mainContextMenu->addAction(actionEdit.data());
-        mainContextMenu->addAction(actionDelete.data());
+        // Adding actions to context menu
         mainContextMenu->addAction(actionAdd.data());
         mainContextMenu->addAction(actionCfgColumns.data());
-        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
-    }else if(ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) // If mouse cursor is at listWidget and not on tableView
-    {
-        mainContextMenu.reset(new QMenu(this));
+
+        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+    }
+    else if(ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) { // If mouse cursor is hovering listWidget and his row
+        mainContextMenu.reset(new QMenu(this)); // Resetting actions
+
+        // Resetting actions
         actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
         actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
         actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
 
+        // Connecting actions
         connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
         connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable()));
         connect(actionEdit.data(), SIGNAL(triggered()), SLOT(editTable()));
 
+        // Adding actions to context menu
         mainContextMenu->addAction(actionAdd.data());
         mainContextMenu->addAction(actionEdit.data());
         mainContextMenu->addAction(actionDelete.data());
-        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
-    }else if(ui->listWidget->underMouse())
-    {
-        mainContextMenu.reset(new QMenu(this));
-        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
-        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
-        actionDelete->setDisabled(true);
-        actionEdit->setDisabled(true);
 
-        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable()));
+        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+    }
+    else if(ui->listWidget->underMouse()) { // If cursor hovers only listWidget
+        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
 
-        mainContextMenu->addAction(actionAdd.data());
-        mainContextMenu->addAction(actionEdit.data());
-        mainContextMenu->addAction(actionDelete.data());
-        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
+        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this)); // Resetting add action
+
+        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
+
+        mainContextMenu->addAction(actionAdd.data()); // Adding action to context menu
+
+        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
 }
 
-void MainWindow::copyUrl()
-{
+void MainWindow::copyUrl(){
     qDebug() << Q_FUNC_INFO;
 
     if(!hasSelectedRow()) // If user selected no row, do
         return;
 
     QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4); // 4 - is column of url
-    copyText(idx.data().toString());
+
+    copyText(idx.data().toString()); // Copying text to clipboard
 }
 
 void MainWindow::openUrl()
@@ -575,7 +567,7 @@ void MainWindow::deleteTable()
     int index = ui->listWidget->currentIndex().row();
 
     QMessageBox::StandardButton question = QMessageBox::question(
-        this, "RadiPass", tr("Delete Table?"),
+        this, "RadikPass", tr("Delete Table?"),
         QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
     // If user clicks
     // Yes - delete row
@@ -602,7 +594,7 @@ void MainWindow::deleteTable()
                 msg.exec();
             }
         }else {
-            QMessageBox::information(this, "RadiPass", tr("At least one table must exists"),
+            QMessageBox::information(this, "RadikPass", tr("At least one table must exists"),
                                                                                QMessageBox::Ok, QMessageBox::Ok);
         }
     }
@@ -620,7 +612,7 @@ void MainWindow::deleteEntry()
     int index = ui->tableView->currentIndex().row(); // Index of selected row
 
     QMessageBox::StandardButton question = QMessageBox::question(
-        this, "RadiPass", tr("Delete row?"),
+        this, "RadikPass", tr("Delete row?"),
         QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
     // If user clicks
     // Yes - delete row
@@ -657,7 +649,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if(isChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
-            this, "RadiPass", tr("Save changes?"),
+            this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if(question == QMessageBox::Yes)
         {
@@ -738,7 +730,7 @@ void MainWindow::openDatabase()
     if(isChanged)
     {
         QMessageBox::StandardButton question = QMessageBox::question(
-            this, "RadiPass", tr("Save changes?"),
+            this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         // If user clicks
         // Yes - must save changes

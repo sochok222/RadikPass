@@ -30,7 +30,7 @@ void myLogMessageHandler(const QtMsgType type, const QMessageLogContext& context
 
 void setStandardCfgColumns()
 {
-    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
+    QSettings settings("AlexRadik", "RadikPass"); // Loading current settings to QSettings, this will write settings to registry
 
     // Installing log messge handler
     qInstallMessageHandler(myLogMessageHandler);
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     setStandardCfgColumns();
     QApplication a(argc, argv);
     QTranslator *translator = new QTranslator;
-    QSettings settings = QSettings("AlexRadik", "RadiPass");
+    QSettings settings = QSettings("AlexRadik", "RadikPass");
     qApp->setWindowIcon(QIcon(":/programImages/resources/program_images/windowIcon.svg")); // Set icon for all windows
 
     // Checking if the fields that used to configure columns exists.

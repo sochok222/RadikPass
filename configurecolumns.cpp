@@ -86,7 +86,7 @@ void ConfigureColumns::addCheckBoxAt(int row_number, int column_number, QCheckBo
 void ConfigureColumns::loadSettings()
 {
     // Loading settings from QSettings
-    QSettings settings("AlexRadik", "RadiPass");
+    QSettings settings("AlexRadik", "RadikPass");
     QStringList columnTitle = settings.value("columnTitle").toStringList();
     QStringList columnUsername = settings.value("columnUsername").toStringList();
     QStringList columnPassword = settings.value("columnPassword").toStringList();
@@ -126,7 +126,7 @@ void ConfigureColumns::setup() {
 
 void ConfigureColumns::on_saveButton_clicked()
 {
-    QSettings settings("AlexRadik", "RadiPass"); // Loading current settings to QSettings, this will write settings to registry
+    QSettings settings("AlexRadik", "RadikPass"); // Loading current settings to QSettings, this will write settings to registry
 
     // Storing new settings in QStringList
     QStringList columnTitle = QStringList() << "" << "";
