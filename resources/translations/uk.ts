@@ -215,42 +215,50 @@ Try another name.</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is shown</source>
-        <translation>Чи показано</translation>
+        <translation type="vanished">Чи показано</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is hiden by asterisk(*)</source>
-        <translation>Чи приховано зірочками(*)</translation>
+        <translation type="vanished">Чи приховано зірочками(*)</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="29"/>
+        <source>Shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="29"/>
+        <source>Masked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Username</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Notes</source>
         <translation>Нотатки</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="28"/>
+        <location filename="../../configurecolumns.cpp" line="31"/>
         <source>Creation Time</source>
         <translation>Час створення</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="28"/>
+        <location filename="../../configurecolumns.cpp" line="31"/>
         <source>Last Changed</source>
         <translation>Остання зміна</translation>
     </message>

@@ -18,12 +18,15 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // Disabling editing in tableWidget
     ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection); // Disabling selection in tableWidget
 
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     // Creating rows and columns in tableWidget
     ui->tableWidget->setRowCount(7);
     ui->tableWidget->setColumnCount(2);
 
     // List with header names
-    QStringList horizontal = QList<QString>({tr("Is shown"), tr("Is hiden by asterisk(*)")});
+    QStringList horizontal = QList<QString>({tr("Shown"), tr("Masked")});
     QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes"),
                                            tr("Creation Time"), tr("Last Changed")});
 
@@ -44,6 +47,11 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
 
     setup(); // Filling cells in tableWidget
     loadSettings(); // Loading current settings
+
+    int height = ui->tableWidget->size().height();
+    for(int i = 0; i < 7; i++) {
+        ui->tableWidget->setRowHeight(i, height/7);
+    }
 }
 
 ConfigureColumns::~ConfigureColumns()

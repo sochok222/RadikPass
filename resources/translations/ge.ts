@@ -216,42 +216,50 @@ Try another name.</source>
         <translation type="unfinished">Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is shown</source>
-        <translation>Wird angezeigt</translation>
+        <translation type="vanished">Wird angezeigt</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="26"/>
         <source>Is hiden by asterisk(*)</source>
-        <translation>Ist durch ein Sternchen (*) verborgen</translation>
+        <translation type="vanished">Ist durch ein Sternchen (*) verborgen</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="29"/>
+        <source>Shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="29"/>
+        <source>Masked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Title</source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Username</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Password</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="27"/>
+        <location filename="../../configurecolumns.cpp" line="30"/>
         <source>Notes</source>
         <translation>Notizen:</translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="28"/>
+        <location filename="../../configurecolumns.cpp" line="31"/>
         <source>Creation Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../configurecolumns.cpp" line="28"/>
+        <location filename="../../configurecolumns.cpp" line="31"/>
         <source>Last Changed</source>
         <translation type="unfinished"></translation>
     </message>
