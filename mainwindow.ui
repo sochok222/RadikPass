@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
-    <height>443</height>
+    <width>543</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -297,16 +297,19 @@ QAction{
        </widget>
       </item>
       <item>
+       <widget class="QLineEdit" name="searchBar"/>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="sizeType">
-         <enum>QSizePolicy::Policy::Expanding</enum>
+         <enum>QSizePolicy::Policy::Maximum</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>100</width>
           <height>20</height>
          </size>
         </property>
@@ -321,7 +324,7 @@ QAction{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>646</width>
+     <width>543</width>
      <height>21</height>
     </rect>
    </property>

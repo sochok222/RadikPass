@@ -19,6 +19,44 @@ void DbManager::showMsgBox(const QString &text) {
 }
 
 
+void DbManager::search(const QString &text, QSqlDatabase *db) {
+    QSqlQuery query(*db);
+
+    query.exec(R"(
+    CREATE TABLE IF NOT EXISTS Search (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        Title TEXT,
+        [User Name] TEXT,
+        Password TEXT,
+        URL TEXT,
+        Notes TEXT,
+        [Creation Time] TEXT,
+        [Last Changed] TEXT
+    )
+    )");
+
+    query.exec("DELETE FROM Search");
+
+
+    query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
+
+
+    query.next();
+
+    qDebug() << "Table: " << query.value(0).toString();
+
+    QSqlQuery copyQuery(*db);
+
+    QString stat = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title = '%2'").arg(query.value(0).toString()).arg(text);
+
+    qDebug() << "query: " << stat;
+
+    if(!query.exec(stat)) {
+        qCritical() << "Unable to execute: " << query.lastQuery() <<", error: " << query.lastError();
+    }
+}
+
+
 bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId) {
     QSqlQuery query(*db);
 

@@ -69,9 +69,6 @@ private:
     // Catch close event to ask if user wants save changes or not (if isChanged = true).
     void closeEvent(QCloseEvent *event) override;
 
-    // This function will hide/show and mask/unmask columns according to settings that loaded from QSettings.
-    void configureColumns();
-
     // Checking if user has selected row in tableView.
     bool hasSelectedRow();
 
@@ -187,6 +184,9 @@ public slots:
     // Setting horizontal headers of columns in the tableView
     void setHeaders();
 
+    // This function will hide/show and mask/unmask columns according to settings that loaded from QSettings.
+    void configureColumns();
+
     // This functions are performing change of language in program.
     void setUkrainianLanguage();
     void setEnglishLanguage();
@@ -196,6 +196,9 @@ public slots:
     void setSystemColorTheme();
     void setDarkColorTheme();
     void setLightColorTheme();
+
+private slots:
+    void on_searchBar_textChanged(const QString &arg1);
 
 private:
     // Context menu menus and actions.

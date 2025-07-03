@@ -22,6 +22,10 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connectButtons();
     connectActions();
 
+    // Setting search bar
+    ui->searchBar->setClearButtonEnabled(true);
+    ui->searchBar->setPlaceholderText("Search...");
+
     // Setting listWidget
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
     ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection); // User can select only one row
@@ -65,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     model = new QSqlTableModel(this, db); // Creating model with all tables in it
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
+    connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
     if(tables.size() > 0) // If one or more table exists we select current first table
     {
         model->setTable(tables[0]);
@@ -1097,4 +1102,18 @@ void MainWindow::setLightColorTheme()
     qApp->setStyleSheet(style); // Applying style to program
 
     loadIcons(); // Updating icons
+}
+
+
+void MainWindow::on_searchBar_textChanged(const QString &arg1) {
+    if (arg1.size() == 0) {
+        model->setTable("General");
+        model->select();
+        return;
+    }
+
+    DbManager::search(arg1, &db);
+
+    model->setTable("Search");
+    model->select();
 }
