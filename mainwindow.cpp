@@ -68,13 +68,16 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     }
 
     model = new QSqlTableModel(this, db); // Creating model with all tables in it
+
+    // Connecting model update signal to slots that will retranslate headers and configure columns
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
-    if(tables.size() > 0) // If one or more table exists we select current first table
-    {
+
+    if(tables.size() > 0) { // If one or more table exists we select current first table
         model->setTable(tables[0]);
         ui->listWidget->setCurrentRow(0);
     }
+
     model->select();
     ui->tableView->setModel(model); // Loading model to QTableView
 
@@ -95,7 +98,7 @@ void MainWindow::setHeaders() {
                                 tr("Notes"), tr("Creation Time"), tr("Last Changed")};
 
     for(int i = 0; i < headers.size(); i++) {
-        model->setHeaderData(i+1, Qt::Horizontal, headers[i]);
+        model->setHeaderData(i+1, Qt::Horizontal, headers[i]); // Loading text to header of column in tableView
     }
 }
 
@@ -170,26 +173,33 @@ void MainWindow::setShortcuts()
 
 void MainWindow::setColorThemeActions()
 {
+    // Resetting actions
     actionSystem.reset(new QAction(tr("System")));
     actionDark.reset(new QAction(tr("Dark")));
     actionLight.reset(new QAction(tr("Light")));
 
+    // Resetting group for actions and adding actions to it
     colorThemeGroup.reset(new QActionGroup(this));
     colorThemeGroup->addAction(actionSystem.data());
     colorThemeGroup->addAction(actionDark.data());
     colorThemeGroup->addAction(actionLight.data());
 
+    // Connecting actions to slots
     connect(actionSystem.data(), SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
     connect(actionDark.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
     connect(actionLight.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
 
+    // Setting actions as checkable
     actionSystem->setCheckable(true);
     actionLight->setCheckable(true);
     actionDark->setCheckable(true);
+
+    // Setting checked action according to current theme
     if(settings.value("theme") == "system") actionSystem->setChecked(true);
     else if(settings.value("theme") == "dark") actionDark->setChecked(true);
     else if(settings.value("theme") == "light") actionLight->setChecked(true);
 
+    // Loading actions to toolbar
     ui->menuChange_color_theme->addAction(actionSystem.data());
     ui->menuChange_color_theme->addAction(actionDark.data());
     ui->menuChange_color_theme->addAction(actionLight.data());
