@@ -858,7 +858,7 @@ Try again, please</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../dbmanager.cpp" line="445"/>
+        <location filename="../../dbmanager.cpp" line="444"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>

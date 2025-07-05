@@ -1116,14 +1116,15 @@ void MainWindow::setLightColorTheme()
 
 
 void MainWindow::on_searchBar_textChanged(const QString &arg1) {
-    if (arg1.size() == 0) {
-        model->setTable("General");
+    if (arg1.size() == 0) { // If user cleared text in search bar
+        model->setTable(ui->listWidget->item(0)->text());
         model->select();
         return;
     }
 
-    DbManager::search(arg1, &db);
+    DbManager::search(arg1, &db); // Filling "Search" table with found rows
 
+    // Setting "Search" table and updating
     model->setTable("Search");
     model->select();
 }

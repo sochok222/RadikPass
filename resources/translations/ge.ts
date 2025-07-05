@@ -1051,7 +1051,7 @@ Funktion:</translation>
         <translation type="obsolete">Notizen:</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="445"/>
+        <location filename="../../dbmanager.cpp" line="444"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
