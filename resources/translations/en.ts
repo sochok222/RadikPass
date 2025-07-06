@@ -321,35 +321,35 @@ Try another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="20"/>
+        <location filename="../../editentry.cpp" line="21"/>
         <source>Something went wrong</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../editentry.cpp" line="44"/>
-        <location filename="../../editentry.cpp" line="59"/>
-        <source>Can&apos;t load data from database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../editentry.cpp" line="45"/>
         <location filename="../../editentry.cpp" line="60"/>
+        <source>Can&apos;t load data from database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../editentry.cpp" line="46"/>
+        <location filename="../../editentry.cpp" line="61"/>
         <source>Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="120"/>
+        <location filename="../../editentry.cpp" line="121"/>
         <source>Can&apos;t edit this row
 Error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="121"/>
+        <location filename="../../editentry.cpp" line="122"/>
         <source>Failed to execute statement: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="131"/>
+        <location filename="../../editentry.cpp" line="132"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished"></translation>
     </message>

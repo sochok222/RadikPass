@@ -392,36 +392,36 @@ Try another name.</source>
         <translation>Редагувати запис</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="20"/>
+        <location filename="../../editentry.cpp" line="21"/>
         <source>Something went wrong</source>
         <translation>Щось пішло не так</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="44"/>
-        <location filename="../../editentry.cpp" line="59"/>
+        <location filename="../../editentry.cpp" line="45"/>
+        <location filename="../../editentry.cpp" line="60"/>
         <source>Can&apos;t load data from database</source>
         <translation>Не вдалося завантажити данні з бази даних</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="45"/>
-        <location filename="../../editentry.cpp" line="60"/>
+        <location filename="../../editentry.cpp" line="46"/>
+        <location filename="../../editentry.cpp" line="61"/>
         <source>Try again, please</source>
         <translation>Спробуйте знову, будь ласка.</translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="120"/>
+        <location filename="../../editentry.cpp" line="121"/>
         <source>Can&apos;t edit this row
 Error: </source>
         <translation>Не можливо змінити цей рядок.
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="121"/>
+        <location filename="../../editentry.cpp" line="122"/>
         <source>Failed to execute statement: </source>
         <translation>Не вдалося виконати запит: </translation>
     </message>
     <message>
-        <location filename="../../editentry.cpp" line="131"/>
+        <location filename="../../editentry.cpp" line="132"/>
         <source>At least one field must not be empty</source>
         <translation>Щонайменше одне поле не має бути порожнім</translation>
     </message>

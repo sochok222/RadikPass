@@ -13,6 +13,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
 
+    // Checking if database is opened
     if(tableView == nullptr || db == nullptr || !db->isOpen())
     {
         QMessageBox msg;
@@ -23,7 +24,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
         this->close();
     }
 
-    fillData();
+    fillData(); // Filling rows with data from row
 }
 
 EditEntry::~EditEntry()
