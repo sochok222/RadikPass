@@ -24,7 +24,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
         this->close();
     }
 
-    fillData(); // Filling rows with data from row
+    fillData(); // Filling fiels with data from rows
 }
 
 EditEntry::~EditEntry()

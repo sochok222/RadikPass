@@ -5,41 +5,49 @@
     <name>AddEntry</name>
     <message>
         <location filename="../../addentry.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="137"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="44"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="138"/>
         <source>User Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="51"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="139"/>
         <source>Titile: </source>
         <translation>Заголовок:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="61"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="140"/>
         <source>URL: </source>
         <translation>Посилання:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="68"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="141"/>
         <source>Notes:</source>
         <translation>Нотатки:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="84"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="142"/>
         <source>Password: </source>
         <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="109"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="143"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../addentry.ui" line="116"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addentry.h" line="144"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -121,26 +129,31 @@ Last query: </source>
     <name>AddTable</name>
     <message>
         <location filename="../../addtable.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addtable.h" line="119"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="40"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addtable.h" line="120"/>
         <source>Name: </source>
         <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="54"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addtable.h" line="121"/>
         <source>Icon: </source>
         <translation>Іконка:</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="110"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addtable.h" line="122"/>
         <source>Create</source>
         <translation>Створити</translation>
     </message>
     <message>
         <location filename="../../addtable.ui" line="117"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_addtable.h" line="123"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -186,11 +199,13 @@ Try another name.</source>
     <name>ConfigureColumns</name>
     <message>
         <location filename="../../configurecolumns.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="80"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../configurecolumns.ui" line="59"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_configurecolumns.h" line="81"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
@@ -252,6 +267,7 @@ Try another name.</source>
     <name>CreateDatabase</name>
     <message>
         <location filename="../../createdatabase.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="156"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
@@ -261,31 +277,37 @@ Try another name.</source>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="74"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="157"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="81"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="158"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="150"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="161"/>
         <source>Quality:</source>
         <translation>Надійність</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="183"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="164"/>
         <source>Repeat</source>
         <translation>Повторити:</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="169"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="162"/>
         <source>***</source>
         <translation>***</translation>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="176"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="163"/>
         <source>Master password</source>
         <translation>Майстер-ключ:</translation>
     </message>
@@ -295,6 +317,7 @@ Try another name.</source>
     </message>
     <message>
         <location filename="../../createdatabase.ui" line="107"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_createdatabase.h" line="159"/>
         <source>Path</source>
         <translation>Шлях</translation>
     </message>
@@ -348,41 +371,49 @@ Try another name.</source>
     <name>EditEntry</name>
     <message>
         <location filename="../../editentry.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="137"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="38"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="138"/>
         <source>Titile: </source>
         <translation>Заголовок</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="48"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="139"/>
         <source>User Name:</source>
         <translation>Ім&apos;я:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="58"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="140"/>
         <source>Password: </source>
         <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="68"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="141"/>
         <source>URL: </source>
         <translation>Посилання:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="78"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="142"/>
         <source>Notes:</source>
         <translation>Нотатки:</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="109"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="143"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../editentry.ui" line="116"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_editentry.h" line="144"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -430,21 +461,25 @@ Error: </source>
     <name>EditTable</name>
     <message>
         <location filename="../../edittable.ui" line="32"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_edittable.h" line="120"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="40"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_edittable.h" line="121"/>
         <source>Name: </source>
         <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="54"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_edittable.h" line="122"/>
         <source>Icon: </source>
         <translation>Іконка:</translation>
     </message>
     <message>
         <location filename="../../edittable.ui" line="113"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_edittable.h" line="123"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
@@ -454,6 +489,7 @@ Error: </source>
     </message>
     <message>
         <location filename="../../edittable.ui" line="120"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_edittable.h" line="124"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -506,8 +542,9 @@ Error: </source>
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="309"/>
         <source>MainWindow</source>
-        <translation type="vanished">Головне Вікно</translation>
+        <translation>Головне Вікно</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="14"/>
@@ -516,58 +553,69 @@ Error: </source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="336"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="337"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="344"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="338"/>
         <source>Entry</source>
         <translation>Запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="348"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="339"/>
         <source>Url</source>
         <translation>Посилання</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="364"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="340"/>
         <source>Viev</source>
         <translation>Вигляд</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="368"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="341"/>
         <source>Color theme</source>
         <translation>Тема</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="377"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="342"/>
         <source>Language</source>
         <translation>Мова</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="391"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="310"/>
         <source>New</source>
         <translation>Новий</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="396"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="311"/>
         <location filename="../../mainwindow.cpp" line="370"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="401"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="312"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="406"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="313"/>
         <location filename="../../mainwindow.cpp" line="359"/>
         <source>Copy User Name</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="411"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="314"/>
         <location filename="../../mainwindow.cpp" line="151"/>
         <location filename="../../mainwindow.cpp" line="360"/>
         <source>Copy Password</source>
@@ -575,45 +623,53 @@ Error: </source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="416"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="315"/>
         <location filename="../../mainwindow.cpp" line="149"/>
         <source>Add Entry</source>
         <translation>Створити запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="421"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="316"/>
         <source>Edit Entry</source>
         <translation>Редагувати запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="426"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="317"/>
         <location filename="../../mainwindow.cpp" line="152"/>
         <source>Delete Entry</source>
         <translation>Видалити запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="431"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="318"/>
         <source>Duplicate Entry</source>
         <translation>Дублювати запис</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="436"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="319"/>
         <source>Change Language</source>
         <translation>Змінити мову</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="476"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="327"/>
         <location filename="../../mainwindow.cpp" line="178"/>
         <source>Dark</source>
         <translation>Темна</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="481"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="328"/>
         <location filename="../../mainwindow.cpp" line="179"/>
         <source>Light</source>
         <translation>Світла</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="486"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="329"/>
         <source>Default</source>
         <translation>Системна</translation>
     </message>
@@ -623,36 +679,43 @@ Error: </source>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="441"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="320"/>
         <source>Show Toolbar</source>
         <translation>Показувати панель інструментів</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="321"/>
         <source>Configure Columns</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="451"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="322"/>
         <source>Open Url</source>
         <translation>Відкрити посилання</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="456"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="323"/>
         <source>Copy Url</source>
         <translation>Скопіювати посилання</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="461"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="324"/>
         <source>English</source>
         <translation>Англійська</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="466"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="325"/>
         <source>Ukrainian</source>
         <translation>Українська</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="471"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_mainwindow.h" line="326"/>
         <source>German</source>
         <translation>Німецька</translation>
     </message>
@@ -859,43 +922,43 @@ Try again, please</source>
         <translation>Запис видалено</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="667"/>
-        <location filename="../../mainwindow.cpp" line="748"/>
+        <location filename="../../mainwindow.cpp" line="670"/>
+        <location filename="../../mainwindow.cpp" line="747"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="768"/>
+        <location filename="../../mainwindow.cpp" line="767"/>
         <source>Open encrypted database</source>
         <translation>Відкрити зашифровану базу даних</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="781"/>
+        <location filename="../../mainwindow.cpp" line="780"/>
         <source>Password is incorrect</source>
         <translation>Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="889"/>
+        <location filename="../../mainwindow.cpp" line="888"/>
         <source>Can&apos;t load icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="937"/>
+        <location filename="../../mainwindow.cpp" line="936"/>
         <source>Can&apos;t duplicate entry</source>
         <translation>Не вдається створити копію запису.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="980"/>
+        <location filename="../../mainwindow.cpp" line="979"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1007"/>
+        <location filename="../../mainwindow.cpp" line="1006"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1034"/>
+        <location filename="../../mainwindow.cpp" line="1033"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -904,12 +967,12 @@ Try again, please</source>
         <translation type="vanished">Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="808"/>
+        <location filename="../../mainwindow.cpp" line="807"/>
         <source>Create new database</source>
         <translation>Створити нову базу даних.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="821"/>
+        <location filename="../../mainwindow.cpp" line="820"/>
         <source>Can&apos;t create new database</source>
         <translation>Не вдалося створити нову базу даних.</translation>
     </message>
@@ -918,7 +981,7 @@ Try again, please</source>
         <translation type="vanished">Не вдалося здублювати колонки.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="945"/>
+        <location filename="../../mainwindow.cpp" line="944"/>
         <source>Entry duplicated</source>
         <translation>Запис здубльовано.</translation>
     </message>
@@ -927,21 +990,25 @@ Try again, please</source>
     <name>OpenDatabase</name>
     <message>
         <location filename="../../opendatabase.ui" line="26"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="137"/>
         <source>Dialog</source>
         <translation>Діалог</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="81"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="138"/>
         <source>Enter Master Key</source>
         <translation>Введіть майстер-ключ</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="109"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="139"/>
         <source>Path</source>
         <translation>Шлях</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="148"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="140"/>
         <source>Master Password</source>
         <translation>Майстер-ключ:</translation>
     </message>
@@ -951,11 +1018,13 @@ Try again, please</source>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="180"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="141"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
         <location filename="../../opendatabase.ui" line="187"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/fileEncryption_autogen/include/ui_opendatabase.h" line="142"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
@@ -1068,7 +1137,7 @@ Func: </source>
         <translation type="vanished">Остання зміна</translation>
     </message>
     <message>
-        <location filename="../../dbmanager.cpp" line="444"/>
+        <location filename="../../dbmanager.cpp" line="439"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>

@@ -63,6 +63,9 @@ public slots:
 private:
     Ui::MainWindow *ui;
 
+    // Remembering last used table
+    int lastUsedTable = 0;
+
     // Setting up shortcuts
     void setShortcuts();
 

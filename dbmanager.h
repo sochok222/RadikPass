@@ -15,6 +15,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QObject>
+#include <QListWidget>
 #include <QDir>
 
 // This class used to manage db.
@@ -29,7 +30,7 @@ public:
     // Showing QMessageBox to warn user if an error occurs.
     static void showMsgBox(const QString &text);
 
-    static void search(const QString &text, QSqlDatabase *db);
+    static void search(const QString &text, QSqlDatabase *db, QListWidget *tables);
 
     // Loading encrypted datbase from encryptedDatabase path, decrypting it by key
     // Loaind it to *db, and pushing tables tables that are avaible to user in vector &tables

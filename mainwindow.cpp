@@ -649,6 +649,9 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText)
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
+    // Updating last used index
+    lastUsedTable = ui->listWidget->currentRow();
+
     // Updating QSqlModel and QTableView to see selected table
     model->setTable(currentText);
     model->select();
@@ -712,12 +715,8 @@ void MainWindow::createTable()
         // Selecting last table (this is table that user added)
         model->setTable(tables[tables.size() - 1]);
         model->select();
-        ui->tableView->setModel(model);
     }
-    configureColumns();
     loadIconsToListWidget();
-
-
 }
 
 /// When user hits "Add data" button this function executes
@@ -1117,12 +1116,21 @@ void MainWindow::setLightColorTheme()
 
 void MainWindow::on_searchBar_textChanged(const QString &arg1) {
     if (arg1.size() == 0) { // If user cleared text in search bar
-        model->setTable(ui->listWidget->item(0)->text());
-        model->select();
+        if (lastUsedTable <= ui->listWidget->count()) {
+            ui->listWidget->setCurrentRow(lastUsedTable);
+            model->setTable(ui->listWidget->currentItem()->text());
+            model->select();
+            return;
+        } else {
+            ui->listWidget->setCurrentRow(0);
+            model->setTable(ui->listWidget->currentItem()->text());
+            model->select();
+            return;
+        }
         return;
     }
 
-    DbManager::search(arg1, &db); // Filling "Search" table with found rows
+    DbManager::search(arg1, &db, ui->listWidget); // Filling "Search" table with found rows
 
     // Setting "Search" table and updating
     model->setTable("Search");

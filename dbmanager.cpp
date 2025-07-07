@@ -19,7 +19,7 @@ void DbManager::showMsgBox(const QString &text) {
 }
 
 
-void DbManager::search(const QString &text, QSqlDatabase *db) {
+void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *tables) {
     QSqlQuery query(*db);
 
     // Creating table where search results will be stored
@@ -38,18 +38,13 @@ void DbManager::search(const QString &text, QSqlDatabase *db) {
 
     query.exec("DELETE FROM Search"); // Clearing Search table
 
-    query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name != 'sqlite_sequence'"); // query will select all tables
+    QSqlQuery copyQuery(*db);
+    for (int i = 0; i < tables->count(); i++) {
+        QString toExec = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title LIKE '%2%'").arg(tables->item(i)->text()).arg(text);
 
-    while(query.next()) {
-        qDebug() << "Table: " << query.value(0).toString();
+        qDebug() << "query: " << toExec;
 
-        QSqlQuery copyQuery(*db);
-
-        QString stat = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title = '%2'").arg(query.value(0).toString()).arg(text);
-
-        qDebug() << "query: " << stat;
-
-        if(!query.exec(stat)) {
+        if(!copyQuery.exec(toExec)) {
             qCritical() << "Unable to execute: " << query.lastQuery() <<", error: " << query.lastError();
         }
     }
