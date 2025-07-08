@@ -40,7 +40,7 @@ void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *table
 
     QSqlQuery copyQuery(*db);
     for (int i = 0; i < tables->count(); i++) {
-        QString toExec = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title LIKE '%2%'").arg(tables->item(i)->text()).arg(text);
+        QString toExec = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title LIKE '%2%' OR [User Name] LIKE '%2%' OR URL LIKE '%2%' OR Notes LIKE '%2%'").arg(tables->item(i)->text()).arg(text);
 
         qDebug() << "query: " << toExec;
 
@@ -240,7 +240,7 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
     }
 
     // Copying 'create table' queries and names of that tables
-    query.prepare("SELECT name, sql FROM tempDb.sqlite_master WHERE type='table' AND name != 'sqlite_sequence'");
+    query.prepare("SELECT name, sql FROM tempDb.sqlite_master WHERE type='table' AND name != 'sqlite_sequence' AND name != 'Search'");
     if (!query.exec()) {
         qDebug() << "Can't execute query that will copy queries and tables, error: " << query.lastError().text();
         return false;
