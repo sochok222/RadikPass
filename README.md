@@ -4,11 +4,10 @@
 
 ### Existing
 - Create, open, edit and save encrypted databases
-- Manage password groups
+- Search
 
 ### Planning to add 
 - Timers and markers for password entry if it has expiration date
-- Search
 - Better encryption
 - Password generator
 
