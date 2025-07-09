@@ -20,7 +20,9 @@ void DbManager::showMsgBox(const QString &text) {
 
 
 void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *tables) {
-    QSqlQuery query(*db);
+    qInfo() << Q_FUNC_INFO;
+
+    QSqlQuery query(*db); // This QSqlQuery will select all tables
 
     // Creating table where search results will be stored
     query.exec(R"(
@@ -38,11 +40,11 @@ void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *table
 
     query.exec("DELETE FROM Search"); // Clearing Search table
 
-    QSqlQuery copyQuery(*db);
+    QSqlQuery copyQuery(*db); // This QSqlQuery will find entries
     for (int i = 0; i < tables->count(); i++) {
         QString toExec = QString("INSERT INTO Search SELECT * FROM [%1] WHERE Title LIKE '%2%' OR [User Name] LIKE '%2%' OR URL LIKE '%2%' OR Notes LIKE '%2%'").arg(tables->item(i)->text()).arg(text);
 
-        qDebug() << "query: " << toExec;
+        qDebug() << "Query: " << toExec;
 
         if(!copyQuery.exec(toExec)) {
             qCritical() << "Unable to execute: " << query.lastQuery() <<", error: " << query.lastError();
@@ -50,13 +52,15 @@ void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *table
     }
 }
 
-
 bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatabase *db, int &rowId) {
+    qInfo() << Q_FUNC_INFO;
+
     QSqlQuery query(*db);
 
     // Creating a query that will find id of row and executing it
     QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(tableView->currentIndex().row());
     if(!query.exec(getId)) {
+        qCritical() << "Unable to execute query, error: " << query.lastError();
         return false; // If unable to execute needs to return false
     }
 
@@ -71,7 +75,7 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
 
     QSqlQuery query(*db);
 
-    qInfo() << "Preparing query that will delete row from TablesSettings...";
+    qInfo() << "Preparing 'DELETE FROM TablesSettings' query ...";
 
     // Preparing and executing a query that will delete the row with table and icon from the TablesSettings
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
@@ -150,7 +154,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
 
     qInfo() << "Successfully encrypted";
 
-    // Returning data
+    // Returning encrypted data
     QByteArray *ret = new QByteArray;
     ret->append(*iv + *encrypted);
     delete iv;

@@ -14,8 +14,7 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
     this->setWindowTitle(tr("Edit Entry"));
 
     // Checking if database is opened
-    if(tableView == nullptr || db == nullptr || !db->isOpen())
-    {
+    if(tableView == nullptr || db == nullptr || !db->isOpen()) {
         QMessageBox msg;
         msg.setIcon(QMessageBox::Critical);
         msg.setText(tr("Something went wrong"));
@@ -24,23 +23,20 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
         this->close();
     }
 
-    fillData(); // Filling fiels with data from rows
+    fillData(); // Filling fiels with data from entry
 }
 
-EditEntry::~EditEntry()
-{
+EditEntry::~EditEntry() {
     delete ui;
 }
 
-void EditEntry::fillData()
-{
+void EditEntry::fillData() {
     QSqlQuery query(*db);
 
-    QString table = model->tableName();
-    QString getId = QString("SELECT id FROM [%1] LIMIT 1 OFFSET %2").arg(table).arg(tableView->currentIndex().row());
+    QString tableName = model->tableName(); // Receiving name of tableName
+    QString getIdQuery = QString("SELECT id FROM [%1] LIMIT 1 OFFSET %2").arg(tableName).arg(tableView->currentIndex().row()); // Query that gets id from entry
 
-    if(!query.exec(getId))
-    {
+    if(!query.exec(getIdQuery)) {
         QMessageBox msg;
         msg.setInformativeText(tr("Can't load data from database"));
         msg.setText(tr("Try again, please"));
@@ -49,11 +45,12 @@ void EditEntry::fillData()
         msg.exec();
         this->close();
     }
+
     QString id;
     if(query.next())
         id = query.value(0).toString();
 
-    QString loadData = QString("SELECT * FROM [%1] WHERE id = %2").arg(table).arg(id);
+    QString loadData = QString("SELECT * FROM [%1] WHERE id = %2").arg(tableName).arg(id);
     if(!query.exec(loadData))
     {
         QMessageBox msg;
@@ -135,8 +132,7 @@ void EditEntry::on_okButton_clicked()
     }
 }
 
-void EditEntry::on_cancelButton_clicked()
-{
-
+void EditEntry::on_cancelButton_clicked() {
+    this->close();
 }
 

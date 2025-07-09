@@ -24,8 +24,7 @@ OpenDatabase::~OpenDatabase()
 
 void OpenDatabase::on_okButton_clicked()
 {
-    if(ui->passwordLine->text().size() > 0)
-    {
+    if(ui->passwordLine->text().size() > 0) {
         *masterPassword = ui->passwordLine->text().toUtf8();
         this->close();
     }else {

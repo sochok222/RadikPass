@@ -152,8 +152,7 @@ void MainWindow::setTooltips() {
     ui->buttonDeleteEntry->setToolTip(tr("Delete Entry"));
 }
 
-void MainWindow::setShortcuts()
-{
+void MainWindow::setShortcuts() {
     // Creating shortcuts.
     shortcutOpen.reset(new QShortcut(QKeySequence::Open, this));
     shortcutClose.reset(new QShortcut(QKeySequence::Close, this));
@@ -171,8 +170,7 @@ void MainWindow::setShortcuts()
     connect(shortcutAddEntry.data(), SIGNAL(activated()), this, SLOT(addEntry()));
 }
 
-void MainWindow::setColorThemeActions()
-{
+void MainWindow::setColorThemeActions() {
     // Resetting actions
     actionSystem.reset(new QAction(tr("System")));
     actionDark.reset(new QAction(tr("Dark")));
@@ -206,8 +204,7 @@ void MainWindow::setColorThemeActions()
 }
 
 
-void MainWindow::loadIcons()
-{
+void MainWindow::loadIcons() {
     loadIconsToListWidget();
 
     // Loading icons to buttons
@@ -241,9 +238,8 @@ void MainWindow::loadIcons()
 }
 
 
-void MainWindow::configureColumns() // Showing or hiding columns in tableView according to settings
-{
-    // Bassically ui->tableView->setColumnHidden is false, so I don't need to set it to false if column is need to be shown
+void MainWindow::configureColumns() {
+    // Loading settings
     QStringList columnTitle = settings.value("columnTitle").toStringList();
     QStringList columnUsername = settings.value("columnUsername").toStringList();
     QStringList columnPassword = settings.value("columnPassword").toStringList();
@@ -252,8 +248,9 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
     QStringList columnCreationTime = settings.value("columnCreationTime").toStringList();
     QStringList columnLastChanged = settings.value("columnLastChanged").toStringList();
 
-    ui->tableView->setColumnHidden(0,true); // Column with id of row is always hidden!
+    ui->tableView->setColumnHidden(0,true); // Hiding column with id of row
 
+    // Showing/hiding and masking/unmasing columns according to settings
     if(columnTitle.value(0) == "shown")
         ui->tableView->setColumnHidden(1, false);
     else ui->tableView->setColumnHidden(1, true);
@@ -304,7 +301,6 @@ void MainWindow::configureColumns() // Showing or hiding columns in tableView ac
     else ui->tableView->setItemDelegateForColumn(7, maskColumn);
 }
 
-/// This function checks if file in given path exists
 bool fileExists(const QString path)
 {
     qDebug() << Q_FUNC_INFO;
@@ -657,8 +653,6 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText)
     model->select();
     ui->tableView->setModel(model);
     configureColumns();
-
-
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -684,15 +678,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 
-void MainWindow::cfgColumns()
-{
+void MainWindow::cfgColumns() {
     ConfigureColumns *cfgColumns = new ConfigureColumns(this);
     cfgColumns->exec();
     delete cfgColumns;
     configureColumns();
 }
 
-// If user hits "Add table" button this function executes
 void MainWindow::createTable()
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
@@ -719,7 +711,6 @@ void MainWindow::createTable()
     loadIconsToListWidget();
 }
 
-/// When user hits "Add data" button this function executes
 void MainWindow::addEntry()
 {
     qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
@@ -800,7 +791,6 @@ void MainWindow::openDatabase()
     loadIcons();
 }
 
-// When user clicks button that must create new database this func will be called
 void MainWindow::createDatabase()
 {
     qDebug() << Q_FUNC_INFO;
@@ -896,12 +886,11 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
     }
 }
 
-// When user wants to edit row in table
 void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    // Creating EditTable window where user can edit row
+    // Creating EditTable window where user can change name or/and icon of table
     EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
     editTable->exec();
     delete editTable;
@@ -925,7 +914,7 @@ void MainWindow::duplicateEntry()
         return;
 
     QSqlQuery query(db);
-    QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // Getting id of row which needs to be duplicated
+    QString id = model->data(model->index(ui->tableView->currentIndex().row(), 0)).toString(); // Id of row which user wants to duplicate
 
     // Duplicating row
     query.prepare("INSERT INTO ["+model->tableName()+"] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM ["+model->tableName()+"] WHERE id = "+id);
