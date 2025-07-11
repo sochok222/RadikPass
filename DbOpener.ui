@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>OpenDatabase</class>
- <widget class="QDialog" name="OpenDatabase">
+ <class>DbOpener</class>
+ <widget class="QDialog" name="DbOpener">
   <property name="geometry">
    <rect>
     <x>0</x>

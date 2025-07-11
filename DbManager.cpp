@@ -1,4 +1,4 @@
-#include "dbmanager.h"
+#include "DbManager.h"
 #include <qsqldriver.h>
 #include <QList>
 #include <QModelIndex>

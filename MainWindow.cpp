@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "MainWindow.h"
+#include "./ui_MainWindow.h"
 #include <qstylehints.h>
 
 MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
@@ -562,7 +562,7 @@ void MainWindow::editRow()
     if(!hasSelectedRow()) // If user has no selected row return.
         return;
 
-    EditEntry *editEntry = new EditEntry(this, ui->tableView, &db, model);
+    EntryEditor *editEntry = new EntryEditor(this, ui->tableView, &db, model);
     editEntry->exec();
     delete editEntry;
     isChanged = true;
@@ -679,7 +679,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 
 void MainWindow::cfgColumns() {
-    ConfigureColumns *cfgColumns = new ConfigureColumns(this);
+    ColumnsConfigurator *cfgColumns = new ColumnsConfigurator(this);
     cfgColumns->exec();
     delete cfgColumns;
     configureColumns();
@@ -691,7 +691,7 @@ void MainWindow::createTable()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    AddTable *addTable = new AddTable(this, &db, &tables, theme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
+    TableAdder *addTable = new TableAdder(this, &db, &tables, theme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
     addTable->exec(); // Showing dialog
     delete addTable;
 
@@ -717,7 +717,7 @@ void MainWindow::addEntry()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    AddEntry *dialog = new AddEntry(this, &db, model->tableName()); // Create dialog that will add row to table
+    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName()); // Create dialog that will add row to table
     dialog->exec();    // Showing dialog
     delete dialog;
 
@@ -759,7 +759,7 @@ void MainWindow::openDatabase()
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if(!file.isEmpty())
     {
-        OpenDatabase *openDb = new OpenDatabase(this, &key, file);
+        DbOpener *openDb = new DbOpener(this, &key, file);
         openDb->exec();
     } else return;
 
@@ -798,7 +798,7 @@ void MainWindow::createDatabase()
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if(databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
 
-    CreateDatabase *createNew = new CreateDatabase(this, &key, databasePath); // Creating window where user can set password to new database
+    DbCreator *createNew = new DbCreator(this, &key, databasePath); // Creating window where user can set password to new database
     createNew->exec();
     delete createNew;
 
@@ -890,8 +890,8 @@ void MainWindow::editTable()
 {
     qDebug() << Q_FUNC_INFO;
 
-    // Creating EditTable window where user can change name or/and icon of table
-    EditTable *editTable = new EditTable(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
+    // Creating TableEditor window where user can change name or/and icon of table
+    TableEditor *editTable = new TableEditor(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
     editTable->exec();
     delete editTable;
 

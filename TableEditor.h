@@ -1,5 +1,5 @@
-#ifndef EDITTABLE_H
-#define EDITTABLE_H
+#ifndef TABLEEDITOR_H
+#define TABLEEDITOR_H
 
 #include <QDialog>
 #include <QCloseEvent>
@@ -20,11 +20,11 @@
 #include <QStandardItem>
 
 namespace Ui {
-class EditTable;
+class TableEditor;
 }
 
 // This class will create window when user wants to edit table (name or icon of table).
-class EditTable : public QDialog
+class TableEditor : public QDialog
 {
     Q_OBJECT
 
@@ -32,11 +32,11 @@ public:
     // *db to write changes, tableName to know which table user wants to edit,
     // *listWidget stores rows with tables(names and icons) in MainWindow, this class will change values in listWidget by pointer.
     // theme to load icons according to current theme.
-    explicit EditTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, QString theme = "");
-    ~EditTable();
+    explicit TableEditor(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, QString theme = "");
+    ~TableEditor();
 
 private:
-    Ui::EditTable *ui;
+    Ui::TableEditor *ui;
 
     // Values from class constructor.
     QSqlDatabase *db;
@@ -79,4 +79,4 @@ private slots:
 
 
 
-#endif // EDITTABLE_H
+#endif // TABLEEDITOR_H

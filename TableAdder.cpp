@@ -1,9 +1,9 @@
-#include "addtable.h"
-#include "ui_addtable.h"
+#include "TableAdder.h"
+#include "ui_TableAdder.h"
 
-AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, QString theme)
+TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, QString theme)
     : QDialog(parent)
-    , ui(new Ui::AddTable)
+    , ui(new Ui::TableAdder)
     , tables(tables)
     , db(db)
     , theme(theme)
@@ -38,13 +38,13 @@ AddTable::AddTable(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tabl
 }
 
 
-AddTable::~AddTable()
+TableAdder::~TableAdder()
 {
     delete ui;
     delete validator;
 }
 
-void AddTable::loadIcons()
+void TableAdder::loadIcons()
 {
     // Vector with names of icons
     QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
@@ -76,7 +76,7 @@ void AddTable::loadIcons()
 }
 
 
-AddTable::rtrnCodes AddTable::checkIfTableExists(const QString newTable)
+TableAdder::rtrnCodes TableAdder::checkIfTableExists(const QString newTable)
 {
     // Checking if name of new table isn't name that can't be used.
     if(newTable == "TablesSettings" || newTable == "sqlite_master" || newTable == "main")
@@ -99,7 +99,7 @@ AddTable::rtrnCodes AddTable::checkIfTableExists(const QString newTable)
 }
 
 
-void AddTable::on_addTableButton_clicked()
+void TableAdder::on_addTableButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
 
@@ -184,7 +184,7 @@ void AddTable::on_addTableButton_clicked()
     }
 }
 
-void AddTable::on_buttonCancel_clicked()
+void TableAdder::on_buttonCancel_clicked()
 {
     // Closing window.
     this->close();

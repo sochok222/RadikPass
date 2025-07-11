@@ -1,9 +1,9 @@
-#include "createdatabase.h"
-#include "ui_createdatabase.h"
+#include "DbCreator.h"
+#include "ui_DbCreator.h"
 
-CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *key, const QString path)
+DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
     : QDialog(parent)
-    , ui(new Ui::CreateDatabase)
+    , ui(new Ui::DbCreator)
     , key(key)
 {
     ui->setupUi(this);
@@ -44,20 +44,20 @@ CreateDatabase::CreateDatabase(QWidget *parent, QByteArray *key, const QString p
     ui->lineRepeat->setValidator(validator);
 }
 
-CreateDatabase::~CreateDatabase()
+DbCreator::~DbCreator()
 {
     delete ui;
     delete validator;
 }
 
 
-void CreateDatabase::on_saveButton_clicked()
+void DbCreator::on_saveButton_clicked()
 {
     *key = ui->linePassword->text().toUtf8(); // Returning key that user entered
     this->close(); // Closing window
 }
 
-void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
+void DbCreator::on_linePassword_textChanged(const QString &arg1)
 {
     // Checking password quality depending on length
     switch(ui->linePassword->text().size()) {
@@ -76,7 +76,7 @@ void CreateDatabase::on_linePassword_textChanged(const QString &arg1)
     }
 }
 
-void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
+void DbCreator::on_lineRepeat_textChanged(const QString &arg1)
 {
     // If password is hidden
     if(isPassHidden) {
@@ -93,7 +93,7 @@ void CreateDatabase::on_lineRepeat_textChanged(const QString &arg1)
     }
 }
 
-void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
+void DbCreator::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
 {
     switch(arg1) {
     case Qt::Checked: // If QCheckBox is checked
@@ -136,7 +136,7 @@ void CreateDatabase::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckSta
 }
 
 
-void CreateDatabase::on_cancelButton_clicked()
+void DbCreator::on_cancelButton_clicked()
 {
     this->reject(); // Closing window
 }

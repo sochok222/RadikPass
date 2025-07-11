@@ -1,5 +1,5 @@
-#ifndef CONFIGURECOLUMNS_H
-#define CONFIGURECOLUMNS_H
+#ifndef COLUMNSCONFIGURATOR_H
+#define COLUMNSCONFIGURATOR_H
 
 #include <QCheckBox>
 #include <QSettings>
@@ -8,23 +8,23 @@
 #include <QTranslator>
 
 namespace Ui {
-class ConfigureColumns;
+class ColumnsConfigurator;
 }
 
 // This window class allows user to configure columns that will be shown or hidden
-class ConfigureColumns : public QDialog
+class ColumnsConfigurator : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ConfigureColumns(QWidget *parent = nullptr);
-    ~ConfigureColumns();
+    explicit ColumnsConfigurator(QWidget *parent = nullptr);
+    ~ColumnsConfigurator();
 
 private slots:
     void on_saveButton_clicked(); // When user clicks Ok button
 
 private:
-    Ui::ConfigureColumns *ui;
+    Ui::ColumnsConfigurator *ui;
 
     // Adds checkbox to tableWidget
     void addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox);
@@ -72,4 +72,4 @@ private:
     QVector<QPair<QCheckBox*, QCheckBox*>> rows;
 };
 
-#endif // CONFIGURECOLUMNS_H
+#endif // COLUMNSCONFIGURATOR_H

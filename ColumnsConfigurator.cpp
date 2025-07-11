@@ -1,11 +1,11 @@
-#include "configurecolumns.h"
+#include "ColumnsConfigurator.h"
 #include <QTableWidget>
 #include <qmessagebox.h>
-#include "ui_configurecolumns.h"
+#include "ui_ColumnsConfigurator.h"
 
-ConfigureColumns::ConfigureColumns(QWidget *parent)
+ColumnsConfigurator::ColumnsConfigurator(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::ConfigureColumns)
+    , ui(new Ui::ColumnsConfigurator)
 {
     ui->setupUi(this);
 
@@ -54,7 +54,7 @@ ConfigureColumns::ConfigureColumns(QWidget *parent)
     }
 }
 
-ConfigureColumns::~ConfigureColumns()
+ColumnsConfigurator::~ColumnsConfigurator()
 {
     delete ui;
 
@@ -76,7 +76,7 @@ ConfigureColumns::~ConfigureColumns()
 }
 
 
-void ConfigureColumns::addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox)
+void ColumnsConfigurator::addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox)
 {
         // Create a widget that will contain a checkbox
     QWidget *checkBoxWidget = new QWidget();
@@ -91,7 +91,7 @@ void ConfigureColumns::addCheckBoxAt(int row_number, int column_number, QCheckBo
 }
 
 
-void ConfigureColumns::loadSettings()
+void ColumnsConfigurator::loadSettings()
 {
     // Loading settings from QSettings
     QSettings settings("AlexRadik", "RadikPass");
@@ -121,7 +121,7 @@ void ConfigureColumns::loadSettings()
 }
 
 
-void ConfigureColumns::setup() {
+void ColumnsConfigurator::setup() {
     // Filling tableView with cells.
     int row = 0;
     for(QPair<QCheckBox*, QCheckBox*> &el : rows)
@@ -132,7 +132,7 @@ void ConfigureColumns::setup() {
     }
 }
 
-void ConfigureColumns::on_saveButton_clicked()
+void ColumnsConfigurator::on_saveButton_clicked()
 {
     QSettings settings("AlexRadik", "RadikPass"); // Loading current settings to QSettings, this will write settings to registry
 

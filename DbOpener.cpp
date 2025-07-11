@@ -1,9 +1,9 @@
-#include "opendatabase.h"
-#include "ui_opendatabase.h"
+#include "DbOpener.h"
+#include "ui_DbOpener.h"
 
-OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result, const QString &path)
+DbOpener::DbOpener(QWidget *parent, QByteArray *result, const QString &path)
     : QDialog(parent)
-    , ui(new Ui::OpenDatabase)
+    , ui(new Ui::DbOpener)
 {
     ui->setupUi(this);
     ui->okButton->setDefault(true);
@@ -15,14 +15,14 @@ OpenDatabase::OpenDatabase(QWidget *parent, QByteArray *result, const QString &p
     this->setWindowTitle(tr("Open Database"));
 }
 
-OpenDatabase::~OpenDatabase()
+DbOpener::~DbOpener()
 {
     delete ui;
 }
 
 
 
-void OpenDatabase::on_okButton_clicked()
+void DbOpener::on_okButton_clicked()
 {
     if(ui->passwordLine->text().size() > 0) {
         *masterPassword = ui->passwordLine->text().toUtf8();
@@ -36,7 +36,7 @@ void OpenDatabase::on_okButton_clicked()
 }
 
 
-void OpenDatabase::on_cancelButton_clicked()
+void DbOpener::on_cancelButton_clicked()
 {
     settings.setValue("Last", "");
     this->destroy(true,true);

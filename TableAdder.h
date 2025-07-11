@@ -6,7 +6,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QDialog>
-#include "iconloader.h"
+#include "IconLoader.h"
 #include <QDirIterator>
 #include <QStandardPaths>
 #include <QString>
@@ -23,18 +23,18 @@
 
 
 namespace Ui {
-class AddTable;
+class TableAdder;
 }
 
-class AddTable : public QDialog
+class TableAdder : public QDialog
 {
     Q_OBJECT
 
 public:
     // QSqlDatabase* to write changes in opened database, *tables to append new table to vector of tables that displayed in listWidget in MainWindow
     // QString theme to know current theme
-    explicit AddTable(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, QString theme = "");
-    ~AddTable();
+    explicit TableAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, QString theme = "");
+    ~TableAdder();
 
 private slots:
     void on_addTableButton_clicked(); // When user wants to create new table
@@ -42,7 +42,7 @@ private slots:
     void on_buttonCancel_clicked(); // When user cancels action
 
 private:
-    Ui::AddTable *ui;
+    Ui::TableAdder *ui;
 
     enum class rtrnCodes{
         exists,

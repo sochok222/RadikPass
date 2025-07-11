@@ -1,5 +1,5 @@
-#ifndef EDITENTRY_H
-#define EDITENTRY_H
+#ifndef ENTRYEDITOR_H
+#define ENTRYEDITOR_H
 
 #include <QDialog>
 #include <QTableView>
@@ -11,18 +11,18 @@
 #include <QTranslator>
 
 namespace Ui {
-class EditEntry;
+class EntryEditor;
 }
 
 // This class creates window when user wants to edit row.
-class EditEntry : public QDialog
+class EntryEditor : public QDialog
 {
     Q_OBJECT
 
 public:
     // *tableView to know which row user wants to edit, *db to write changes, *model to load data from row.
-    explicit EditEntry(QWidget *parent = nullptr, QTableView *tableView = nullptr, QSqlDatabase *db = nullptr, QSqlTableModel *model = nullptr);
-    ~EditEntry();
+    explicit EntryEditor(QWidget *parent = nullptr, QTableView *tableView = nullptr, QSqlDatabase *db = nullptr, QSqlTableModel *model = nullptr);
+    ~EntryEditor();
 
 private slots:
     void on_okButton_clicked(); // When user clicks Ok button
@@ -30,18 +30,18 @@ private slots:
     void on_cancelButton_clicked(); // When user clicks Cancel button
 
 private:
-    Ui::EditEntry *ui;
+    Ui::EntryEditor *ui;
 
     // Storing values that got from class constructor.
     QSqlTableModel *model;
     QTableView *tableView;
     QSqlDatabase *db;
 
-    // Fills fields in EditEntry window with values that in row.
+    // Fills fields in EntryEditor window with values that in row.
     void fillData();
 
     // Check if at least one field in window is not empty.
     bool atLeastOneNotEmpty();
 };
 
-#endif // EDITENTRY_H
+#endif // ENTRYEDITOR_H

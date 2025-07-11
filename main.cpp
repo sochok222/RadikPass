@@ -1,10 +1,10 @@
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QApplication>
 #include <QStyleHints>
 #include <QFile>
 #include <iostream>
 #include <QSettings>
-#include "opendatabase.h"
+#include "DbOpener.h"
 
 bool isFileExists(const QString path)
 {
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
     {
         if(isFileExists(settings.value("Last").toString()))
         {
-            OpenDatabase *openDb = new OpenDatabase(0, &key, settings.value("Last").toString());
+            DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString());
             openDb->exec();
         }
     }else

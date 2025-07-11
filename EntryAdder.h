@@ -1,5 +1,5 @@
-#ifndef ADDENTRY_H
-#define ADDENTRY_H
+#ifndef ENTRYADDER_H
+#define ENTRYADDER_H
 
 #include <QDialog>
 #include <QDebug>
@@ -11,23 +11,23 @@
 
 
 namespace Ui {
-class AddEntry;
+class EntryAdder;
 }
 
-class AddEntry : public QDialog
+class EntryAdder : public QDialog
 {
     Q_OBJECT
 
 public:
     // QSqlDatabase *db to write changes in opened database, tableName to know in which table.
-    explicit AddEntry(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString tableName = "");
-    ~AddEntry();
+    explicit EntryAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString tableName = "");
+    ~EntryAdder();
 
 private slots:
     void on_okButton_clicked(); // When user clicks ok button this fuction executes
 
 private:
-    Ui::AddEntry *ui;
+    Ui::EntryAdder *ui;
 
     bool atLeastOneNotEmpty(); // Function that checks that al leas one field is not emtpy
 
@@ -35,4 +35,4 @@ private:
     QString tableName; // Storing Name of current table that passed to the class constructor
 };
 
-#endif // ADDENTRY_H
+#endif // ENTRYADDER_H

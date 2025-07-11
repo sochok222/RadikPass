@@ -22,9 +22,9 @@ set(TS_FILES
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        MainWindow.cpp
+        MainWindow.h
+        MainWindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -33,20 +33,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         ${QM_FILES}
-        addentry.h addentry.cpp addentry.ui
-        dbmanager.h dbmanager.cpp
-        addtable.h addtable.cpp addtable.ui
-        opendatabase.h opendatabase.cpp opendatabase.ui
-        createdatabase.h createdatabase.cpp createdatabase.ui
-        editentry.h editentry.cpp editentry.ui
-        celldelegate.h
-        configurecolumns.h configurecolumns.cpp configurecolumns.ui
+        EntryAdder.h EntryAdder.cpp EntryAdder.ui
+        DbManager.h DbManager.cpp
+        TableAdder.h TableAdder.cpp TableAdder.ui
+        DbOpener.h DbOpener.cpp DbOpener.ui
+        DbCreator.h DbCreator.cpp DbCreator.ui
+        EntryEditor.h EntryEditor.cpp EntryEditor.ui
+        CellDelegate.h
+        ColumnsConfigurator.h ColumnsConfigurator.cpp ColumnsConfigurator.ui
 
 
-        edittable.h edittable.cpp edittable.ui
+        TableEditor.h TableEditor.cpp TableEditor.ui
 
         resources.qrc
-        iconloader.h
+        IconLoader.h
         PasswordGenerator.h PasswordGenerator.cpp PasswordGenerator.ui
 
     )

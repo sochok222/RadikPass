@@ -1,10 +1,10 @@
-#include "addentry.h"
-#include "ui_addentry.h"
+#include "EntryAdder.h"
+#include "ui_EntryAdder.h"
 #include <qsqlerror.h>
 
-AddEntry::AddEntry(QWidget *parent, QSqlDatabase *db, QString tableName)
+EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName)
     : QDialog(parent)
-    , ui(new Ui::AddEntry)
+    , ui(new Ui::EntryAdder)
     , tableName(tableName)
     , db(db)
 {
@@ -24,14 +24,14 @@ AddEntry::AddEntry(QWidget *parent, QSqlDatabase *db, QString tableName)
     this->setWindowTitle(tr("Add Entry"));
 }
 
-AddEntry::~AddEntry()
+EntryAdder::~EntryAdder()
 {
     delete ui;
 }
 
 
 
-bool AddEntry::atLeastOneNotEmpty()
+bool EntryAdder::atLeastOneNotEmpty()
 {
     // Check if at least one field is not empty and return true if it is.
    if(!ui->title->text().isEmpty() || !ui->username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->url->text().isEmpty() || !ui->notes->toPlainText().isEmpty())
@@ -41,7 +41,7 @@ bool AddEntry::atLeastOneNotEmpty()
 
 
 
-void AddEntry::on_okButton_clicked()
+void EntryAdder::on_okButton_clicked()
 {
     qDebug() << Q_FUNC_INFO;
 

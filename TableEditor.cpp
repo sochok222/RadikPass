@@ -1,10 +1,10 @@
-#include "edittable.h"
-#include "ui_edittable.h"
+#include "TableEditor.h"
+#include "ui_TableEditor.h"
 #include <qsqlerror.h>
 
-#include "dbmanager.h"
+#include "DbManager.h"
 
-void EditTable::showMsgBox(const QString text)
+void TableEditor::showMsgBox(const QString text)
 {
     QMessageBox msg;
     msg.setText(text);
@@ -12,9 +12,9 @@ void EditTable::showMsgBox(const QString text)
     msg.exec();
 }
 
-EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget, QString theme)
+TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget, QString theme)
     : QDialog(parent)
-    , ui(new Ui::EditTable)
+    , ui(new Ui::TableEditor)
     , db(db)
     , tableName(tableName)
     , listWidget(listWidget)
@@ -58,14 +58,14 @@ EditTable::EditTable(QWidget *parent, QSqlDatabase *db, const QString tableName,
     loadIcons();
 }
 
-EditTable::~EditTable()
+TableEditor::~TableEditor()
 {
     delete ui;
     delete mapper;
     delete model;
 }
 
-void EditTable::loadIcons()
+void TableEditor::loadIcons()
 {
     // Load system icons
     QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
@@ -92,13 +92,13 @@ void EditTable::loadIcons()
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
-void EditTable::setConnections()
+void TableEditor::setConnections()
 {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), SLOT(iconChanged()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), SLOT(textChanged()));
 }
 
-void EditTable::saveChanges()
+void TableEditor::saveChanges()
 {
     QSqlQuery query(*db);
 
@@ -157,7 +157,7 @@ void EditTable::saveChanges()
 }
 
 
-void EditTable::closeEvent(QCloseEvent *event)
+void TableEditor::closeEvent(QCloseEvent *event)
 {
     qDebug() << Q_FUNC_INFO;
     if(isIconChanged || isNameChanged)
@@ -180,14 +180,14 @@ void EditTable::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void EditTable::on_buttonSave_clicked()
+void TableEditor::on_buttonSave_clicked()
 {
     saveChanges();
     this->accept();
 }
 
 
-void EditTable::on_buttonCancel_clicked()
+void TableEditor::on_buttonCancel_clicked()
 {
     this->accept();
 }

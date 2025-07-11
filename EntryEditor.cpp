@@ -1,11 +1,11 @@
-#include "editentry.h"
-#include "ui_editentry.h"
+#include "EntryEditor.h"
+#include "ui_EntryEditor.h"
 #include <qdatetime.h>
 #include <qsqlerror.h>
 
-EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, QSqlTableModel *model)
+EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *db, QSqlTableModel *model)
     : QDialog(parent)
-    , ui(new Ui::EditEntry)
+    , ui(new Ui::EntryEditor)
     , tableView(tableView)
     , db(db)
     , model(model)
@@ -26,11 +26,11 @@ EditEntry::EditEntry(QWidget *parent, QTableView *tableView, QSqlDatabase *db, Q
     fillData(); // Filling fiels with data from entry
 }
 
-EditEntry::~EditEntry() {
+EntryEditor::~EntryEditor() {
     delete ui;
 }
 
-void EditEntry::fillData() {
+void EntryEditor::fillData() {
     QSqlQuery query(*db);
 
     QString tableName = model->tableName(); // Receiving name of tableName
@@ -71,7 +71,7 @@ void EditEntry::fillData() {
     }
 }
 
-bool EditEntry::atLeastOneNotEmpty()
+bool EntryEditor::atLeastOneNotEmpty()
 {
     if(!ui->title->text().isEmpty() || !ui->username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->url->text().isEmpty() || !ui->notes->toPlainText().isEmpty())
         return true;
@@ -79,7 +79,7 @@ bool EditEntry::atLeastOneNotEmpty()
 }
 
 
-void EditEntry::on_okButton_clicked()
+void EntryEditor::on_okButton_clicked()
 {
     if(atLeastOneNotEmpty())
     {
@@ -132,7 +132,7 @@ void EditEntry::on_okButton_clicked()
     }
 }
 
-void EditEntry::on_cancelButton_clicked() {
+void EntryEditor::on_cancelButton_clicked() {
     this->close();
 }
 
