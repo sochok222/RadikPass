@@ -21,7 +21,7 @@ set(TS_FILES
 )
 
 set(PROJECT_SOURCES
-        main.cpp
+  Main.cpp
         MainWindow.cpp
         MainWindow.h
         MainWindow.ui
