@@ -42,6 +42,9 @@ private:
 
     // Check if at least one field in window is not empty.
     bool atLeastOneNotEmpty();
+
+    // Showing message box to user
+    void showMsgBox(const QString &text);
 };
 
 #endif // ENTRYEDITOR_H
