@@ -4,6 +4,7 @@
 #include <QtSql/qsqldatabase.h>
 #include "EntryAdder.h"
 #include "ColumnsConfigurator.h"
+#include "PasswordGenerator.h"
 #include <QtSql/QSqlDatabase>
 #include <QContextMenuEvent>
 #include "DbManager.h"
@@ -190,6 +191,9 @@ public slots:
     // This function will hide/show and mask/unmask columns according to settings that loaded from QSettings.
     void configureColumns();
 
+    // Opening PasswordGenerator window
+    void openPasswordGenerator();
+
     // This functions are performing change of language in program.
     void setUkrainianLanguage();
     void setEnglishLanguage();
@@ -205,23 +209,23 @@ private slots:
 
 private:
     // Context menu menus and actions.
-    QScopedPointer<QMenu> mainContextMenu;
-    QScopedPointer<QMenu> subMenuUrl;
-    QScopedPointer<QAction> actionCopyUrl;
-    QScopedPointer<QAction> actionOpenUrl;
-    QScopedPointer<QAction> actionCopyUsername;
-    QScopedPointer<QAction> actionCopyPassword;
-    QScopedPointer<QAction> actionDelete;
-    QScopedPointer<QAction> actionEdit;
-    QScopedPointer<QAction> actionAdd;
-    QScopedPointer<QAction> actionCfgColumns;
+    QScopedPointer<QMenu> menu_contextMenu;
+    QScopedPointer<QMenu> menu_url;
+    QScopedPointer<QAction> action_copyUrl;
+    QScopedPointer<QAction> action_OpenUrl;
+    QScopedPointer<QAction> action_copyUsername;
+    QScopedPointer<QAction> action_copyPassword;
+    QScopedPointer<QAction> action_delete; // This action will delete either entry or table, depending on place where the context menu was called
+    QScopedPointer<QAction> action_edit;
+    QScopedPointer<QAction> action_add;
+    QScopedPointer<QAction> action_configureColumns;
 
+    // menubar
     // Color theme actions, and group to group that actions.
-    QScopedPointer<QAction> actionSystem;
-    QScopedPointer<QAction> actionDark;
-    QScopedPointer<QAction> actionLight;
-    QScopedPointer<QActionGroup> colorThemeGroup;
-
+    QScopedPointer<QActionGroup> group_colorThemes;
+    QScopedPointer<QAction> action_systemTheme;
+    QScopedPointer<QAction> action_darkTheme;
+    QScopedPointer<QAction> action_lightTheme;
 
     // Shortcuts
     QScopedPointer<QShortcut> shortcutOpen;

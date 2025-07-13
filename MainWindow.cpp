@@ -92,6 +92,13 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::openPasswordGenerator() {
+    PasswordGenerator *passwordGenerator = new PasswordGenerator(this);
+    passwordGenerator->exec();
+    delete passwordGenerator;
+}
+
+
 void MainWindow::setHeaders() {
     QVector<QString> headers = {tr("Title"), tr("User Name"),
                                 tr("Password"), tr("URL"),
@@ -118,8 +125,12 @@ void MainWindow::connectActions() {
     connect(ui->actionEdit_Entry, SIGNAL(triggered()), SLOT(editRow()));
     connect(ui->actionDuplicate_Entry, SIGNAL(triggered()), SLOT(duplicateEntry()));
     connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteEntry()));
+
     // View menu actions
     connect(ui->actionConfigure_Columns, SIGNAL(triggered()), SLOT(cfgColumns()));
+
+    // action opens PasswordGenerator
+    connect(ui->actionPassword_Generator, SIGNAL(triggered()), this, SLOT(openPasswordGenerator()));
 
     // Language menu actions
     connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
@@ -172,35 +183,35 @@ void MainWindow::setShortcuts() {
 
 void MainWindow::setColorThemeActions() {
     // Resetting actions
-    actionSystem.reset(new QAction(tr("System")));
-    actionDark.reset(new QAction(tr("Dark")));
-    actionLight.reset(new QAction(tr("Light")));
+    action_systemTheme.reset(new QAction(tr("System")));
+    action_darkTheme.reset(new QAction(tr("Dark")));
+    action_lightTheme.reset(new QAction(tr("Light")));
 
     // Resetting group for actions and adding actions to it
-    colorThemeGroup.reset(new QActionGroup(this));
-    colorThemeGroup->addAction(actionSystem.data());
-    colorThemeGroup->addAction(actionDark.data());
-    colorThemeGroup->addAction(actionLight.data());
+    group_colorThemes.reset(new QActionGroup(this));
+    group_colorThemes->addAction(action_systemTheme.data());
+    group_colorThemes->addAction(action_darkTheme.data());
+    group_colorThemes->addAction(action_lightTheme.data());
 
     // Connecting actions to slots
-    connect(actionSystem.data(), SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
-    connect(actionDark.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
-    connect(actionLight.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
+    connect(action_systemTheme.data(), SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
+    connect(action_darkTheme.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
+    connect(action_lightTheme.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
 
     // Setting actions as checkable
-    actionSystem->setCheckable(true);
-    actionLight->setCheckable(true);
-    actionDark->setCheckable(true);
+    action_systemTheme->setCheckable(true);
+    action_lightTheme->setCheckable(true);
+    action_darkTheme->setCheckable(true);
 
     // Setting checked action according to current theme
-    if(settings.value("theme") == "system") actionSystem->setChecked(true);
-    else if(settings.value("theme") == "dark") actionDark->setChecked(true);
-    else if(settings.value("theme") == "light") actionLight->setChecked(true);
+    if(settings.value("theme") == "system") action_systemTheme->setChecked(true);
+    else if(settings.value("theme") == "dark") action_darkTheme->setChecked(true);
+    else if(settings.value("theme") == "light") action_lightTheme->setChecked(true);
 
     // Loading actions to toolbar
-    ui->menuChange_color_theme->addAction(actionSystem.data());
-    ui->menuChange_color_theme->addAction(actionDark.data());
-    ui->menuChange_color_theme->addAction(actionLight.data());
+    ui->menuChange_color_theme->addAction(action_systemTheme.data());
+    ui->menuChange_color_theme->addAction(action_darkTheme.data());
+    ui->menuChange_color_theme->addAction(action_lightTheme.data());
 }
 
 
@@ -349,92 +360,92 @@ void MainWindow::customMenuRequested(QPoint pos){
 
 
     if(ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) { // If mouse cursor is hover tableView and entry
-        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
+        menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions for context menu
-        actionCopyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this));
-        actionCopyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this));
-        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this));
-        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
-        actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
+        action_copyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this));
+        action_copyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
 
         // Resseting url menu and adding actions to it
-        subMenuUrl.reset(new QMenu(tr("URL"), this));
-        subMenuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
-        actionCopyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
-        actionOpenUrl.reset(new QAction(IconLoader::getIcon(Icon::openBrowser, theme), tr("Open"), this));
-        subMenuUrl->addAction(actionCopyUrl.data());
-        subMenuUrl->addAction(actionOpenUrl.data());
+        menu_url.reset(new QMenu(tr("URL"), this));
+        menu_url->setIcon(IconLoader::getIcon(Icon::link, theme));
+        action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
+        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::openBrowser, theme), tr("Open"), this));
+        menu_url->addAction(action_copyUrl.data());
+        menu_url->addAction(action_OpenUrl.data());
 
         // Connecting actions
-        connect(actionCopyUsername.data(), SIGNAL(triggered()), SLOT(copyUsername()));
-        connect(actionCopyPassword.data(), SIGNAL(triggered()), SLOT(copyPassword()));
-        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
-        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteEntry()));
-        connect(actionEdit.data(), SIGNAL(triggered()), SLOT(editRow()));
-        connect(actionCopyUrl.data(), SIGNAL(triggered()), SLOT(copyUrl()));
-        connect(actionOpenUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
-        connect(actionCfgColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
+        connect(action_copyUsername.data(), SIGNAL(triggered()), SLOT(copyUsername()));
+        connect(action_copyPassword.data(), SIGNAL(triggered()), SLOT(copyPassword()));
+        connect(action_add.data(), SIGNAL(triggered()), SLOT(addEntry()));
+        connect(action_delete.data(), SIGNAL(triggered()), SLOT(deleteEntry()));
+        connect(action_edit.data(), SIGNAL(triggered()), SLOT(editRow()));
+        connect(action_copyUrl.data(), SIGNAL(triggered()), SLOT(copyUrl()));
+        connect(action_OpenUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
+        connect(action_configureColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
 
         // Adding actions to context menu
-        mainContextMenu->addAction(actionCopyUsername.data());
-        mainContextMenu->addAction(actionCopyPassword.data());
-        mainContextMenu->addMenu(subMenuUrl.data());
-        mainContextMenu->addAction(actionEdit.data());
-        mainContextMenu->addAction(actionDelete.data());
-        mainContextMenu->addAction(actionAdd.data());
-        mainContextMenu->addAction(actionCfgColumns.data());
+        menu_contextMenu->addAction(action_copyUsername.data());
+        menu_contextMenu->addAction(action_copyPassword.data());
+        menu_contextMenu->addMenu(menu_url.data());
+        menu_contextMenu->addAction(action_edit.data());
+        menu_contextMenu->addAction(action_delete.data());
+        menu_contextMenu->addAction(action_add.data());
+        menu_contextMenu->addAction(action_configureColumns.data());
 
-        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+        menu_contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
     else if(ui->tableView->underMouse()) { // If mouse cursor is hovers only tableView
-        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
+        menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
-        actionCfgColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
 
         // Connecting actions
-        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(addEntry()));
-        connect(actionCfgColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
+        connect(action_add.data(), SIGNAL(triggered()), SLOT(addEntry()));
+        connect(action_configureColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
 
         // Adding actions to context menu
-        mainContextMenu->addAction(actionAdd.data());
-        mainContextMenu->addAction(actionCfgColumns.data());
+        menu_contextMenu->addAction(action_add.data());
+        menu_contextMenu->addAction(action_configureColumns.data());
 
-        mainContextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+        menu_contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
     else if(ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) { // If mouse cursor is hovering listWidget and his row
-        mainContextMenu.reset(new QMenu(this)); // Resetting actions
+        menu_contextMenu.reset(new QMenu(this)); // Resetting actions
 
         // Resetting actions
-        actionDelete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
-        actionEdit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
 
         // Connecting actions
-        connect(actionDelete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
-        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable()));
-        connect(actionEdit.data(), SIGNAL(triggered()), SLOT(editTable()));
+        connect(action_delete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
+        connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable()));
+        connect(action_edit.data(), SIGNAL(triggered()), SLOT(editTable()));
 
         // Adding actions to context menu
-        mainContextMenu->addAction(actionAdd.data());
-        mainContextMenu->addAction(actionEdit.data());
-        mainContextMenu->addAction(actionDelete.data());
+        menu_contextMenu->addAction(action_add.data());
+        menu_contextMenu->addAction(action_edit.data());
+        menu_contextMenu->addAction(action_delete.data());
 
-        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+        menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
     else if(ui->listWidget->underMouse()) { // If cursor hovers only listWidget
-        mainContextMenu.reset(new QMenu(this)); // Resetting context menu
+        menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
-        actionAdd.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this)); // Resetting add action
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this)); // Resetting add action
 
-        connect(actionAdd.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
+        connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
 
-        mainContextMenu->addAction(actionAdd.data()); // Adding action to context menu
+        menu_contextMenu->addAction(action_add.data()); // Adding action to context menu
 
-        mainContextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+        menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
 }
 

@@ -748,41 +748,50 @@ Letzte Abfrage: </translation>
 <context>
     <name>EntryEditor</name>
     <message>
-        <location filename="../../EntryEditor.cpp" line="14"/>
+        <location filename="../../EntryEditor.cpp" line="13"/>
         <source>Edit Entry</source>
         <translation type="unfinished">Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="20"/>
+        <location filename="../../EntryEditor.cpp" line="19"/>
         <source>Something went wrong</source>
         <translation type="unfinished">Etwas ist schief gelaufen</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="41"/>
-        <location filename="../../EntryEditor.cpp" line="57"/>
+        <location filename="../../EntryEditor.cpp" line="47"/>
+        <location filename="../../EntryEditor.cpp" line="59"/>
+        <location filename="../../EntryEditor.cpp" line="70"/>
+        <location filename="../../EntryEditor.cpp" line="90"/>
+        <source>Unable to load data from database.
+Try again, please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../EntryEditor.cpp" line="115"/>
+        <source>Unable to edit this row.
+Try again, please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Can&apos;t load data from database</source>
-        <translation type="unfinished">Daten können nicht aus der Datenbank geladen werden</translation>
+        <translation type="obsolete">Daten können nicht aus der Datenbank geladen werden</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="42"/>
-        <location filename="../../EntryEditor.cpp" line="58"/>
         <source>Try again, please</source>
-        <translation type="unfinished">Versuchen Sie es bitte noch einmal</translation>
+        <translation type="obsolete">Versuchen Sie es bitte noch einmal</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="118"/>
         <source>Can&apos;t edit this row
 Error: </source>
-        <translation type="unfinished">Diese Zeile kann nicht bearbeitet werden.
+        <translation type="obsolete">Diese Zeile kann nicht bearbeitet werden.
 Fehler:</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="119"/>
         <source>Failed to execute statement: </source>
-        <translation type="unfinished">Die Anweisung konnte nicht ausgeführt werden:</translation>
+        <translation type="obsolete">Die Anweisung konnte nicht ausgeführt werden:</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="129"/>
+        <location filename="../../EntryEditor.cpp" line="120"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished">Mindestens ein Feld darf nicht leer sein</translation>
     </message>
@@ -839,196 +848,208 @@ Fehler:</translation>
     <name>MainWindow</name>
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="333"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="341"/>
         <source>RadikPass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="350"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="361"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="370"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="358"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="362"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="371"/>
         <source>Entry</source>
         <translation>Eintrag</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="362"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="363"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="372"/>
         <source>Url</source>
         <translation>URL</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="378"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="364"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="373"/>
         <source>Viev</source>
         <translation>Viev</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="382"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="365"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="374"/>
         <source>Color theme</source>
         <translation>Farbthema</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="391"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="366"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="375"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="405"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="334"/>
+        <location filename="../../MainWindow.ui" line="399"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="376"/>
+        <source>Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="412"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="342"/>
         <source>New</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="410"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="335"/>
-        <location filename="../../mainwindow.cpp" line="366"/>
+        <location filename="../../MainWindow.ui" line="417"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="343"/>
+        <location filename="../../MainWindow.cpp" line="377"/>
         <source>Open</source>
         <translation>Offen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="415"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="336"/>
+        <location filename="../../MainWindow.ui" line="422"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="344"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="420"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="337"/>
-        <location filename="../../mainwindow.cpp" line="355"/>
+        <location filename="../../MainWindow.ui" line="427"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="345"/>
+        <location filename="../../MainWindow.cpp" line="366"/>
         <source>Copy User Name</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="425"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="338"/>
-        <location filename="../../mainwindow.cpp" line="151"/>
-        <location filename="../../mainwindow.cpp" line="356"/>
+        <location filename="../../MainWindow.ui" line="432"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="346"/>
+        <location filename="../../MainWindow.cpp" line="162"/>
+        <location filename="../../MainWindow.cpp" line="367"/>
         <source>Copy Password</source>
         <translation>Passwort kopieren</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="430"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="339"/>
-        <location filename="../../mainwindow.cpp" line="149"/>
+        <location filename="../../MainWindow.ui" line="437"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="347"/>
+        <location filename="../../MainWindow.cpp" line="160"/>
         <source>Add Entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="435"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="340"/>
+        <location filename="../../MainWindow.ui" line="442"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="348"/>
         <source>Edit Entry</source>
         <translation>Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="440"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="341"/>
-        <location filename="../../mainwindow.cpp" line="152"/>
+        <location filename="../../MainWindow.ui" line="447"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="349"/>
+        <location filename="../../MainWindow.cpp" line="163"/>
         <source>Delete Entry</source>
         <translation>Eintrag löschen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="445"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="342"/>
+        <location filename="../../MainWindow.ui" line="452"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="350"/>
         <source>Duplicate Entry</source>
         <translation>Doppelter Eintrag</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="450"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="343"/>
+        <location filename="../../MainWindow.ui" line="457"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="351"/>
         <source>Change Language</source>
         <translation>Sprache ändern</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="455"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="344"/>
+        <location filename="../../MainWindow.ui" line="462"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="352"/>
         <source>Show Toolbar</source>
         <translation>Symbolleiste anzeigen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="460"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="345"/>
+        <location filename="../../MainWindow.ui" line="467"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="353"/>
         <source>Configure Columns</source>
         <translation>Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="465"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="346"/>
+        <location filename="../../MainWindow.ui" line="472"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="354"/>
         <source>Open Url</source>
         <translation>URL öffnen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="470"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="347"/>
+        <location filename="../../MainWindow.ui" line="477"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="355"/>
         <source>Copy Url</source>
         <translation>URL kopieren</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="475"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="348"/>
+        <location filename="../../MainWindow.ui" line="482"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="356"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="480"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="349"/>
+        <location filename="../../MainWindow.ui" line="487"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="357"/>
         <source>Ukrainian</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="485"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="350"/>
+        <location filename="../../MainWindow.ui" line="492"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="358"/>
         <source>German</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="490"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="351"/>
-        <location filename="../../mainwindow.cpp" line="176"/>
+        <location filename="../../MainWindow.ui" line="497"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="359"/>
+        <location filename="../../MainWindow.cpp" line="187"/>
         <source>Dark</source>
         <translation>Dunkel</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="495"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="352"/>
-        <location filename="../../mainwindow.cpp" line="177"/>
+        <location filename="../../MainWindow.ui" line="502"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="360"/>
+        <location filename="../../MainWindow.cpp" line="188"/>
         <source>Light</source>
         <translation>Licht</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="500"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="353"/>
+        <location filename="../../MainWindow.ui" line="507"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="361"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="146"/>
+        <location filename="../../MainWindow.ui" line="512"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="362"/>
+        <source>Password Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="157"/>
         <source>New Database</source>
         <translation>Neue Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="147"/>
+        <location filename="../../MainWindow.cpp" line="158"/>
         <source>Open Database</source>
         <translation>Datenbank öffnen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="148"/>
+        <location filename="../../MainWindow.cpp" line="159"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="150"/>
+        <location filename="../../MainWindow.cpp" line="161"/>
         <source>Copy Username</source>
         <translation>Benutzernamen kopieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="175"/>
+        <location filename="../../MainWindow.cpp" line="186"/>
         <source>System</source>
         <translation>System</translation>
     </message>
@@ -1039,7 +1060,7 @@ Try again, please</source>
 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="320"/>
+        <location filename="../../MainWindow.cpp" line="331"/>
         <source>Title copied</source>
         <translation>Titel kopiert</translation>
     </message>
@@ -1048,150 +1069,150 @@ Try again, please</source>
         <translation type="vanished">Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="58"/>
+        <location filename="../../MainWindow.cpp" line="58"/>
         <source>Password is incorrect or database file is damaged
 Try again, please</source>
         <translation>Das Passwort ist falsch oder die Datenbankdatei ist beschädigt. 
 Bitte versuchen Sie es erneut.</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="325"/>
+        <location filename="../../MainWindow.cpp" line="336"/>
         <source>Username copied</source>
         <translation>Benutzername kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="330"/>
+        <location filename="../../MainWindow.cpp" line="341"/>
         <source>Password copied</source>
         <translation>Passwort kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="335"/>
+        <location filename="../../MainWindow.cpp" line="346"/>
         <source>Link opened</source>
         <translation>Link geöffnet</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="340"/>
+        <location filename="../../MainWindow.cpp" line="351"/>
         <source>Notes copied</source>
         <translation>Notizen kopiert</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="357"/>
-        <location filename="../../mainwindow.cpp" line="414"/>
+        <location filename="../../MainWindow.cpp" line="368"/>
+        <location filename="../../MainWindow.cpp" line="425"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="358"/>
-        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../MainWindow.cpp" line="369"/>
+        <location filename="../../MainWindow.cpp" line="406"/>
         <source>Add new</source>
         <translation>Neu hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="359"/>
-        <location filename="../../mainwindow.cpp" line="412"/>
+        <location filename="../../MainWindow.cpp" line="370"/>
+        <location filename="../../MainWindow.cpp" line="423"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="360"/>
-        <location filename="../../mainwindow.cpp" line="396"/>
+        <location filename="../../MainWindow.cpp" line="371"/>
+        <location filename="../../MainWindow.cpp" line="407"/>
         <source>Configure colums</source>
         <translation>Spalten konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="97"/>
-        <location filename="../../mainwindow.cpp" line="363"/>
+        <location filename="../../MainWindow.cpp" line="104"/>
+        <location filename="../../MainWindow.cpp" line="374"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="96"/>
+        <location filename="../../MainWindow.cpp" line="103"/>
         <source>Title</source>
         <translation type="unfinished">Titel:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="96"/>
+        <location filename="../../MainWindow.cpp" line="103"/>
         <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="97"/>
+        <location filename="../../MainWindow.cpp" line="104"/>
         <source>Password</source>
         <translation type="unfinished">Passwort:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="98"/>
+        <location filename="../../MainWindow.cpp" line="105"/>
         <source>Notes</source>
         <translation type="unfinished">Notizen:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="98"/>
+        <location filename="../../MainWindow.cpp" line="105"/>
         <source>Creation Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="98"/>
+        <location filename="../../MainWindow.cpp" line="105"/>
         <source>Last Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="365"/>
+        <location filename="../../MainWindow.cpp" line="376"/>
         <source>Copy</source>
         <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="413"/>
-        <location filename="../../mainwindow.cpp" line="431"/>
+        <location filename="../../MainWindow.cpp" line="424"/>
+        <location filename="../../MainWindow.cpp" line="442"/>
         <source>Add Table</source>
         <translation>Tabelle hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="476"/>
-        <location filename="../../mainwindow.cpp" line="532"/>
-        <location filename="../../mainwindow.cpp" line="545"/>
+        <location filename="../../MainWindow.cpp" line="487"/>
+        <location filename="../../MainWindow.cpp" line="543"/>
+        <location filename="../../MainWindow.cpp" line="556"/>
         <source>Can&apos;t get row id</source>
         <translation>Zeilen-ID kann nicht abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="477"/>
-        <location filename="../../mainwindow.cpp" line="490"/>
-        <location filename="../../mainwindow.cpp" line="533"/>
-        <location filename="../../mainwindow.cpp" line="546"/>
+        <location filename="../../MainWindow.cpp" line="488"/>
+        <location filename="../../MainWindow.cpp" line="501"/>
+        <location filename="../../MainWindow.cpp" line="544"/>
+        <location filename="../../MainWindow.cpp" line="557"/>
         <source>Query error: </source>
         <translation>Abfragefehler:</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="489"/>
+        <location filename="../../MainWindow.cpp" line="500"/>
         <source>Can&apos;t get data from database</source>
         <translation>Daten können nicht aus der Datenbank abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="499"/>
+        <location filename="../../MainWindow.cpp" line="510"/>
         <source>Username copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="555"/>
+        <location filename="../../MainWindow.cpp" line="566"/>
         <source>Password copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="581"/>
+        <location filename="../../MainWindow.cpp" line="592"/>
         <source>Delete Table?</source>
         <translation>Tabelle löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="599"/>
+        <location filename="../../MainWindow.cpp" line="610"/>
         <source>Table deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="603"/>
+        <location filename="../../MainWindow.cpp" line="614"/>
         <source>Can`t delete table.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="925"/>
+        <location filename="../../MainWindow.cpp" line="936"/>
         <source>Can&apos;t duplicate entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1200,53 +1221,53 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Diese Tabelle kann nicht gelöscht werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="608"/>
+        <location filename="../../MainWindow.cpp" line="619"/>
         <source>At least one table must exists</source>
         <translation>Mindestens eine Tabelle muss vorhanden sein</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="626"/>
+        <location filename="../../MainWindow.cpp" line="637"/>
         <source>Delete row?</source>
         <translation>Zeile löschen?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="637"/>
+        <location filename="../../MainWindow.cpp" line="648"/>
         <source>Entry deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="664"/>
-        <location filename="../../mainwindow.cpp" line="738"/>
+        <location filename="../../MainWindow.cpp" line="675"/>
+        <location filename="../../MainWindow.cpp" line="749"/>
         <source>Save changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="758"/>
+        <location filename="../../MainWindow.cpp" line="769"/>
         <source>Open encrypted database</source>
         <translation>Öffnen Sie eine verschlüsselte Datenbank</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="771"/>
+        <location filename="../../MainWindow.cpp" line="782"/>
         <source>Password is incorrect</source>
         <translation>Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="878"/>
+        <location filename="../../MainWindow.cpp" line="889"/>
         <source>Can&apos;t load icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="968"/>
+        <location filename="../../MainWindow.cpp" line="979"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="995"/>
+        <location filename="../../MainWindow.cpp" line="1006"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1022"/>
+        <location filename="../../MainWindow.cpp" line="1033"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1255,12 +1276,12 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="797"/>
+        <location filename="../../MainWindow.cpp" line="808"/>
         <source>Create new database</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="810"/>
+        <location filename="../../MainWindow.cpp" line="821"/>
         <source>Can&apos;t create new database</source>
         <translation>Neue Datenbank kann nicht erstellt werden</translation>
     </message>
@@ -1269,7 +1290,7 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Spalten können nicht dupliziert werden</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="933"/>
+        <location filename="../../MainWindow.cpp" line="944"/>
         <source>Entry duplicated</source>
         <translation>Eintrag dupliziert</translation>
     </message>
@@ -1323,8 +1344,70 @@ Bitte versuchen Sie es erneut.</translation>
     <name>PasswordGenerator</name>
     <message>
         <location filename="../../PasswordGenerator.ui" line="14"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="39"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="190"/>
         <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="24"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="191"/>
+        <source>lablelPasswordScore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="31"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="192"/>
+        <source>lablelEstimatedTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="50"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="193"/>
+        <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="65"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="194"/>
+        <source>A-Z</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="72"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="195"/>
+        <source>a-z</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="79"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="196"/>
+        <source>0-9</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="86"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="197"/>
+        <source>!@#$%^&amp;*</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="121"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="198"/>
+        <source>Regenerate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="128"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="199"/>
+        <source>labelSize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="172"/>
+        <location filename="../../PasswordGenerator.ui" line="179"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="200"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="201"/>
+        <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
