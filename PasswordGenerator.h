@@ -10,6 +10,14 @@ namespace Ui {
 class PasswordGenerator;
 }
 
+enum class PasswordStrength {
+    VeryWeak,
+    Weak,
+    Normal,
+    Strong,
+    VeryStrong
+};
+
 class PasswordGenerator : public QDialog
 {
     Q_OBJECT
@@ -17,6 +25,8 @@ class PasswordGenerator : public QDialog
 public:
     explicit PasswordGenerator(QWidget *parent = nullptr);
     ~PasswordGenerator();
+
+    PasswordStrength checkPassword(QString &password);
 
 public slots:
     void generatePassword();

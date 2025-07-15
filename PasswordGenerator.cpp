@@ -36,6 +36,26 @@ PasswordGenerator::~PasswordGenerator() {
 }
 
 
+PasswordStrength PasswordGenerator::checkPassword(QString &password) {
+    QSet<QChar> uniqueDigits;
+
+    int size = 0;
+
+    if (ui->checkBox_az->isChecked()) size += az.size();
+    if (ui->checkBox_AZ->isChecked()) size += AZ.size();
+    if (ui->checkBox_09->isChecked()) size +=  numbers.size();
+    if (ui->checkBox_special->isChecked()) size += special.size();
+
+    int strength = std::log(size) / std::log(2) * password.length();
+
+    if (strength > 0 && strength <= 35) return PasswordStrength::VeryWeak;
+    else if (strength > 35 && strength <= 50) return PasswordStrength::Weak;
+    else if (strength > 50 && strength <= 65) return PasswordStrength::Normal;
+    else if (strength > 65 && strength <= 80) return PasswordStrength::Strong;
+    else return PasswordStrength::VeryStrong;
+}
+
+
 void PasswordGenerator::checkBoxPressed(Qt::CheckState state) {
     switch(state) {
     case Qt::Checked:
@@ -95,4 +115,24 @@ void PasswordGenerator::generatePassword() {
     }
 
     ui->line_result->setText(result);
+
+    switch (checkPassword(result)) {
+    case PasswordStrength::VeryWeak:
+        ui->label_passwordScore->setText("Very weak");
+        break;
+    case PasswordStrength::Weak:
+        ui->label_passwordScore->setText("Weak");
+        break;
+    case PasswordStrength::Normal:
+        ui->label_passwordScore->setText("Normal");
+        break;
+    case PasswordStrength::Strong:
+        ui->label_passwordScore->setText("Strong");
+        break;
+    case PasswordStrength::VeryStrong:
+        ui->label_passwordScore->setText("Very Strong");
+        break;
+    default:
+        break;
+    }
 }
