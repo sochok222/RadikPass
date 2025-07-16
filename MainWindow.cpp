@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
 
-    if(tables.size() > 0) { // If one or more table exists we select current first table
+    if(tables.size() > 0) { // Loading first table if one or more exists
         model->setTable(tables[0]);
         ui->listWidget->setCurrentRow(0);
     }
@@ -93,7 +93,7 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::openPasswordGenerator() {
-    PasswordGenerator *passwordGenerator = new PasswordGenerator(this);
+    PasswordGenerator *passwordGenerator = new PasswordGenerator(this, 0);
     passwordGenerator->exec();
     delete passwordGenerator;
 }

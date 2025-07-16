@@ -61,11 +61,11 @@ void EntryEditor::fillData() {
         this->close();
     }
     if (query.next()) { // Copying data from entry to fields
-        ui->title->setText(query.value(1).toString());
-        ui->username->setText(query.value(2).toString());
+        ui->line_title->setText(query.value(1).toString());
+        ui->line_username->setText(query.value(2).toString());
         ui->password->setText(query.value(3).toString());
-        ui->url->setText(query.value(4).toString());
-        ui->notes->setText(query.value(5).toString());
+        ui->line_url->setText(query.value(4).toString());
+        ui->line_notes->setText(query.value(5).toString());
     } else {
         showMsgBox(tr("Unable to load data from database.\nTry again, please."));
         qCritical() << "Query didn't find an entry";
@@ -75,7 +75,7 @@ void EntryEditor::fillData() {
 
 bool EntryEditor::atLeastOneNotEmpty() {
     // Checking if at least one field is not emtpy
-    if (!ui->title->text().isEmpty() || !ui->username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->url->text().isEmpty() || !ui->notes->toPlainText().isEmpty())
+    if (!ui->line_title->text().isEmpty() || !ui->line_username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->line_url->text().isEmpty() || !ui->line_notes->toPlainText().isEmpty())
         return true;
     return false;
 }
@@ -104,11 +104,11 @@ void EntryEditor::on_okButton_clicked() {
                                                     "WHERE id == %2").arg(table).arg(id);
         // Preparing query and binding values
         query.prepare(command);
-        query.bindValue(":title", ui->title->text());
-        query.bindValue(":username", ui->username->text());
+        query.bindValue(":title", ui->line_title->text());
+        query.bindValue(":username", ui->line_username->text());
         query.bindValue(":password", ui->password->text());
-        query.bindValue(":url", ui->url->text());
-        query.bindValue(":notes", ui->notes->toPlainText());
+        query.bindValue(":url", ui->line_url->text());
+        query.bindValue(":notes", ui->line_notes->toPlainText());
         query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));
 
         if (!query.exec()) {
