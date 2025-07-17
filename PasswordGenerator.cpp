@@ -4,11 +4,19 @@
 PasswordGenerator::PasswordGenerator(QWidget *parent, QString *result)
     : QDialog(parent)
     , ui(new Ui::PasswordGenerator)
+    , result(result)
 {
+    qInfo() << Q_FUNC_INFO;
+
     ui->setupUi(this);
     ui->line_result->setReadOnly(true);
 
-    if (!result) ui->button_apply->hide();
+    this->setWindowTitle(tr("Password Generator"));
+
+    if (!result) ui->button_save->hide();
+
+    ui->label_entropy->setToolTip(tr("Is a measurement of how password is unpredictable"));
+    ui->label_quality->setToolTip(tr("Based on entropy"));
 
     ui->checkBox_Lowercase->setCheckState(Qt::Checked);
     ui->checkBox_Uppercase->setChecked(Qt::Checked);
@@ -62,15 +70,19 @@ PasswordOptions::Strength PasswordGenerator::checkPassword(QString &password) {
 
     int strength = std::log(std::pow(pool, password.size())) / std::log(2);
 
-    if (strength > 0 && strength <= 35) return PasswordOptions::VeryWeak;
-    else if (strength > 35 && strength <= 50) return PasswordOptions::Weak;
-    else if (strength > 50 && strength <= 65) return PasswordOptions::Normal;
-    else if (strength > 65 && strength <= 80) return PasswordOptions::Strong;
+    if (ui)
+        ui->label_entropy->setText(tr("Entropy: ") + QString::number(strength));
+
+    if (strength > 0 && strength <= 60) return PasswordOptions::Weak;
+    else if (strength > 60 && strength <= 85) return PasswordOptions::Normal;
+    else if (strength > 85 && strength <= 100) return PasswordOptions::Strong;
     else return PasswordOptions::VeryStrong;
 }
 
 
 void PasswordGenerator::checkBoxPressed(Qt::CheckState state) {
+    qInfo() << Q_FUNC_INFO;
+
     switch(state) {
     case Qt::Checked:
         selectedBoxes++;
@@ -90,6 +102,8 @@ void PasswordGenerator::checkBoxPressed(Qt::CheckState state) {
 
 
 void PasswordGenerator::disableCheckBoxes() {
+    qInfo() << Q_FUNC_INFO;
+
     if (ui->checkBox_Numbers->isChecked()) ui->checkBox_Numbers->setDisabled(true);
     else if (ui->checkBox_Lowercase->isChecked()) ui->checkBox_Lowercase->setDisabled(true);
     else if (ui->checkBox_Uppercase->isChecked()) ui->checkBox_Uppercase->setDisabled(true);
@@ -98,6 +112,8 @@ void PasswordGenerator::disableCheckBoxes() {
 
 
 void PasswordGenerator::enableCheckBoxes() {
+    qInfo() << Q_FUNC_INFO;
+
     ui->checkBox_Numbers->setEnabled(true);
     ui->checkBox_Lowercase->setEnabled(true);
     ui->checkBox_Uppercase->setEnabled(true);
@@ -105,6 +121,8 @@ void PasswordGenerator::enableCheckBoxes() {
 }
 
 void PasswordGenerator::copyPassword() {
+    qInfo() << Q_FUNC_INFO;
+
     OpenClipboard(0);
     EmptyClipboard();
     HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, ui->line_result->text().size() + 1);
@@ -116,9 +134,7 @@ void PasswordGenerator::copyPassword() {
 
 
 void PasswordGenerator::generatePassword() {
-    qInfo() << Q_FUNC_INFO;
-    ui->label_size->setText(&"Size: " [ui->slider_lenght->value()]);
-    QString buffer;
+    ui->label_PasswordSize->setText(tr("Size: ") + QString::number(ui->slider_lenght->value()));
 
     int flags = 0;
     if (ui->checkBox_Lowercase->isChecked()) flags |= PasswordOptions::Lowercase;
@@ -130,27 +146,31 @@ void PasswordGenerator::generatePassword() {
     ui->line_result->setText(password);
 
     switch (checkPassword(password)) {
-    case PasswordOptions::VeryWeak:
-        ui->label_passwordScore->setText("Very weak");
-        break;
     case PasswordOptions::Weak:
-        ui->label_passwordScore->setText("Weak");
+        ui->label_quality->setText(tr("Quality: weak"));
         break;
     case PasswordOptions::Normal:
-        ui->label_passwordScore->setText("Normal");
+        ui->label_quality->setText(tr("Quality: normal"));
         break;
     case PasswordOptions::Strong:
-        ui->label_passwordScore->setText("Strong");
+        ui->label_quality->setText(tr("Quality: strong"));
         break;
     case PasswordOptions::VeryStrong:
-        ui->label_passwordScore->setText("Very Strong");
+        ui->label_quality->setText(tr("Quality: very strong"));
         break;
     default:
         break;
     }
 }
 
-void PasswordGenerator::on_button_apply_clicked() {
+
+
+void PasswordGenerator::on_button_close_clicked() {
+    this->close();
+}
+
+
+void PasswordGenerator::on_button_save_clicked() {
     *result = ui->line_result->text();
     this->close();
 }

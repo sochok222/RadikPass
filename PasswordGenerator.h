@@ -19,7 +19,6 @@ enum Combinations {
     Special = 0x1000
 };
 enum Strength {
-    VeryWeak,
     Weak,
     Normal,
     Strong,
@@ -43,7 +42,9 @@ private slots:
     void checkBoxPressed(Qt::CheckState state);
     void generatePassword();
 
-    void on_button_apply_clicked();
+    void on_button_close_clicked();
+
+    void on_button_save_clicked();
 
 private:
     Ui::PasswordGenerator *ui;

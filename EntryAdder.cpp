@@ -2,26 +2,34 @@
 #include "ui_EntryAdder.h"
 #include <qsqlerror.h>
 
-EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName)
+void showMsgBox(const QString &text) {
+    QMessageBox msg;
+    msg.setText(text);
+    msg.setStandardButtons(QMessageBox::Ok);
+    msg.exec();
+}
+
+EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, const QString theme)
     : QDialog(parent)
     , ui(new Ui::EntryAdder)
     , tableName(tableName)
     , db(db)
 {
     ui->setupUi(this);
-
-    // Check if database is open
-    if(db == nullptr || !db->isOpen())
-    {
-        QMessageBox msg;
-        msg.setText("Can't open database");
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
-        this->close();
-    }
-
     // Set window name.
     this->setWindowTitle(tr("Add Entry"));
+    if (theme == "") {
+        showMsgBox("Unable to load current theme, try again please.");
+        this->close();
+    }
+    QAction *action_generatePassword = ui->password->addAction(IconLoader::getIcon(Icon::dice, theme), QLineEdit::TrailingPosition);
+    connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
+
+    // Check if database is open
+    if(db == nullptr || !db->isOpen()) {
+        showMsgBox(tr("Can't open database"));
+        this->close();
+    }
 }
 
 EntryAdder::~EntryAdder()
@@ -29,6 +37,16 @@ EntryAdder::~EntryAdder()
     delete ui;
 }
 
+
+void EntryAdder::openPasswordGenerator() {
+    QString generatedPassword;
+    PasswordGenerator *window_PasswordGenerator = new PasswordGenerator(this, &generatedPassword);
+    window_PasswordGenerator->exec();
+    delete window_PasswordGenerator;
+
+    if (generatedPassword.size() > 0)
+        ui->password->setText(generatedPassword);
+}
 
 
 bool EntryAdder::atLeastOneNotEmpty()

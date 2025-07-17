@@ -35,6 +35,7 @@
         <file>resources/icons/dark/trash.png</file>
         <file>resources/icons/dark/user.png</file>
         <file>resources/icons/dark/save.png</file>
+        <file>resources/icons/dark/dice.png</file>
     </qresource>
     <qresource prefix="/icons/light">
         <file>resources/icons/light/add.png</file>
@@ -63,6 +64,7 @@
         <file>resources/icons/light/trash.png</file>
         <file>resources/icons/light/user.png</file>
         <file>resources/icons/light/save.png</file>
+        <file>resources/icons/light/dice.png</file>
     </qresource>
     <qresource prefix="/programImages">
         <file>resources/program_images/windowIcon.svg</file>

@@ -63,7 +63,7 @@ void EntryEditor::fillData() {
     if (query.next()) { // Copying data from entry to fields
         ui->line_title->setText(query.value(1).toString());
         ui->line_username->setText(query.value(2).toString());
-        ui->password->setText(query.value(3).toString());
+        ui->line_password->setText(query.value(3).toString());
         ui->line_url->setText(query.value(4).toString());
         ui->line_notes->setText(query.value(5).toString());
     } else {
@@ -75,7 +75,7 @@ void EntryEditor::fillData() {
 
 bool EntryEditor::atLeastOneNotEmpty() {
     // Checking if at least one field is not emtpy
-    if (!ui->line_title->text().isEmpty() || !ui->line_username->text().isEmpty() || !ui->password->text().isEmpty() || !ui->line_url->text().isEmpty() || !ui->line_notes->toPlainText().isEmpty())
+    if (!ui->line_title->text().isEmpty() || !ui->line_username->text().isEmpty() || !ui->line_password->text().isEmpty() || !ui->line_url->text().isEmpty() || !ui->line_notes->toPlainText().isEmpty())
         return true;
     return false;
 }
@@ -106,7 +106,7 @@ void EntryEditor::on_okButton_clicked() {
         query.prepare(command);
         query.bindValue(":title", ui->line_title->text());
         query.bindValue(":username", ui->line_username->text());
-        query.bindValue(":password", ui->password->text());
+        query.bindValue(":password", ui->line_password->text());
         query.bindValue(":url", ui->line_url->text());
         query.bindValue(":notes", ui->line_notes->toPlainText());
         query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));

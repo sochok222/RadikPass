@@ -415,23 +415,28 @@
 <context>
     <name>EntryAdder</name>
     <message>
-        <location filename="../../EntryAdder.cpp" line="24"/>
+        <location filename="../../EntryAdder.cpp" line="20"/>
         <source>Add Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="75"/>
+        <location filename="../../EntryAdder.cpp" line="30"/>
+        <source>Can&apos;t open database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../EntryAdder.cpp" line="93"/>
         <source>Error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="75"/>
+        <location filename="../../EntryAdder.cpp" line="93"/>
         <source>
 Last query: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="86"/>
+        <location filename="../../EntryAdder.cpp" line="104"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -518,49 +523,49 @@ Try again, please.</source>
     </message>
     <message>
         <location filename="../../EntryEditor.ui" line="32"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="137"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="133"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="38"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="138"/>
+        <location filename="../../EntryEditor.ui" line="50"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="134"/>
         <source>Titile: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="48"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="139"/>
+        <location filename="../../EntryEditor.ui" line="81"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="138"/>
         <source>User Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="58"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="140"/>
+        <location filename="../../EntryEditor.ui" line="64"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="136"/>
         <source>Password: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="68"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="141"/>
+        <location filename="../../EntryEditor.ui" line="57"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="135"/>
         <source>URL: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="78"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="142"/>
+        <location filename="../../EntryEditor.ui" line="71"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="137"/>
         <source>Notes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="109"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="143"/>
+        <location filename="../../EntryEditor.ui" line="106"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="139"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.ui" line="116"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="144"/>
+        <location filename="../../EntryEditor.ui" line="113"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_EntryEditor.h" line="140"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1029,69 +1034,120 @@ Try again, please</source>
 <context>
     <name>PasswordGenerator</name>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="14"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="184"/>
+        <location filename="../../PasswordGenerator.ui" line="26"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="196"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="24"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="185"/>
-        <source>lablelPasswordScore</source>
+        <location filename="../../PasswordGenerator.ui" line="36"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="197"/>
+        <source>Quality:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="31"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="186"/>
-        <source>lablelEstimatedTime</source>
+        <location filename="../../PasswordGenerator.ui" line="43"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="198"/>
+        <source>Entropy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="50"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="187"/>
+        <location filename="../../PasswordGenerator.ui" line="62"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="199"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="65"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="188"/>
+        <location filename="../../PasswordGenerator.ui" line="77"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="200"/>
         <source>A-Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="72"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="189"/>
+        <location filename="../../PasswordGenerator.ui" line="84"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="201"/>
         <source>a-z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="79"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="190"/>
+        <location filename="../../PasswordGenerator.ui" line="91"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="202"/>
         <source>0-9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="86"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="191"/>
+        <location filename="../../PasswordGenerator.ui" line="98"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="203"/>
         <source>!@#$%^&amp;*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="121"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="192"/>
+        <location filename="../../PasswordGenerator.ui" line="133"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="204"/>
         <source>Regenerate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="128"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="193"/>
+        <location filename="../../PasswordGenerator.ui" line="140"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="205"/>
         <source>labelSize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.ui" line="172"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="194"/>
-        <source>Apply</source>
+        <location filename="../../PasswordGenerator.ui" line="197"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="206"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.ui" line="204"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_PasswordGenerator.h" line="207"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="14"/>
+        <source>Password Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="18"/>
+        <source>Is a measurement of how password is unpredictable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="19"/>
+        <source>Based on entropy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="74"/>
+        <source>Entropy: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="137"/>
+        <source>Size: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="150"/>
+        <source>Quality: weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="153"/>
+        <source>Quality: normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="156"/>
+        <source>Quality: strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PasswordGenerator.cpp" line="159"/>
+        <source>Quality: very strong</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

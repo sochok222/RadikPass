@@ -728,7 +728,7 @@ void MainWindow::addEntry()
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName()); // Create dialog that will add row to table
+    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName(), theme); // Create dialog that will add row to table
     dialog->exec();    // Showing dialog
     delete dialog;
 

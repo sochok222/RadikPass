@@ -34,7 +34,8 @@ enum class Icon {
     settings,
     trash,
     user,
-    save
+    save,
+    dice
 };
 
 // Static class that returns icon according to name and theme.
@@ -124,6 +125,9 @@ public:
             break;
         case(Icon::save):
             type = "save";
+            break;
+        case(Icon::dice):
+            type = "dice";
             break;
         default:
             break;
