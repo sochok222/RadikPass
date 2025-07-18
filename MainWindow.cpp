@@ -2,7 +2,7 @@
 #include "./ui_MainWindow.h"
 #include <qstylehints.h>
 
-MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, QString theme)
+MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *translator, Theme theme)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , key(MasterKey)
@@ -893,7 +893,8 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
         }
 
         query.next(); // Loading value to query
-        ui->listWidget->item(i)->setIcon(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
+        if (theme == Theme::Dark) ui->listWidget->item(i)->setIcon(QIcon(":/icons/dark/resources/icons/dark/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
+        else ui->listWidget->item(i)->setIcon(QIcon(":/icons/light/resources/icons/light/"+query.value(0).toString()+".png"));
     }
 }
 
@@ -1052,7 +1053,7 @@ void MainWindow::setSystemColorTheme()
         QFile styleFile(":/themes/resources/themes/dark.qss");
         styleFile.open(QFile::ReadOnly); // Openning file
 
-        this->theme = "dark"; // Setting theme value
+        this->theme = Theme::Dark; // Setting theme value
 
         QString style(styleFile.readAll()); // Reading theme from resource
         styleFile.close(); // Closing file
@@ -1063,7 +1064,7 @@ void MainWindow::setSystemColorTheme()
         QFile styleFile(":/themes/resources/themes/light.qss");
         styleFile.open(QFile::ReadOnly); // Openning file
 
-        this->theme = "light"; // Setting theme value
+        this->theme = Theme::Light; // Setting theme value
 
         QString style(styleFile.readAll()); // Reading theme from resource
         styleFile.close(); // Closing file
@@ -1083,7 +1084,7 @@ void MainWindow::setDarkColorTheme()
     QFile styleFile(":/themes/resources/themes/dark.qss");
     styleFile.open(QFile::ReadOnly); // Openning file
 
-    this->theme = "dark"; // Setting theme value
+    this->theme = Theme::Dark; // Setting theme value
     settings.setValue("theme", "dark");
 
     QString style(styleFile.readAll()); // Reading theme from resource
@@ -1102,7 +1103,7 @@ void MainWindow::setLightColorTheme()
     QFile styleFile(":/themes/resources/themes/light.qss");
     styleFile.open(QFile::ReadOnly); // Openning file
 
-    this->theme = "light"; // Setting theme value
+    this->theme = Theme::Light; // Setting theme value
     settings.setValue("theme", "light");
 
     QString style(styleFile.readAll()); // Reading theme from resource

@@ -50,12 +50,13 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr, QString theme = "dark");
+    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr, Theme theme = Theme::Dark);
     ~MainWindow();
 
 public slots:
@@ -104,7 +105,7 @@ private:
     QTranslator *translator;
 
     // Current theme.
-    QString theme;
+    Theme theme;
 
     // Cell delegate that will mask column by *.
     CellDelegate *maskColumn = new CellDelegate;

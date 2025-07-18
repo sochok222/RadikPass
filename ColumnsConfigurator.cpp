@@ -109,11 +109,11 @@ void ColumnsConfigurator::loadSettings()
 
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if((*settingsList[i])[0] == "shown") // If setting value is "shown" set checked state to CheckBox in first row
+        if((*settingsList[i])[0] == "shown") // If value is "shown" set checked state to check box in first row
         {
             rows[i].first->setCheckState(Qt::Checked);
         }
-        if((*settingsList[i])[1] == "masked") // If setting value is "masked" set checked state to CheckBox in second row
+        if((*settingsList[i])[1] == "masked") // If value is "masked" set checked state to check box in second row
         {
             rows[i].second->setCheckState(Qt::Checked);
         }

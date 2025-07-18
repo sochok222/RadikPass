@@ -2,17 +2,14 @@
 #include "ui_TableEditor.h"
 #include <qsqlerror.h>
 
-#include "DbManager.h"
-
-void TableEditor::showMsgBox(const QString text)
-{
+void TableEditor::showMsgBox(const QString text) {
     QMessageBox msg;
     msg.setText(text);
     msg.setStandardButtons(QMessageBox::Ok);
     msg.exec();
 }
 
-TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget, QString theme)
+TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableName, QListWidget *listWidget, Theme theme)
     : QDialog(parent)
     , ui(new Ui::TableEditor)
     , db(db)
@@ -24,13 +21,8 @@ TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableN
     this->setWindowTitle(tr("Edit Table"));
     ui->nameEdit->setText(tableName);
 
-    if(db == nullptr || !db->isOpen())
-    {
-        QMessageBox msg;
-        msg.setIcon(QMessageBox::Critical);
-        msg.setText(tr("Can`t open database"));
-        msg.addButton(QMessageBox::Ok);
-        msg.exec();
+    if (db == nullptr || !db->isOpen()) {
+        showMsgBox(tr("Can`t open database"));
         this->close();
     }
 
@@ -45,70 +37,42 @@ TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableN
 
     QTimer::singleShot(0, this, SLOT(setConnections()));
 
-    if(listWidget == nullptr)
-    {
+    if (listWidget == nullptr) {
         showMsgBox(tr("Can't load listWidget"));
-        QTimer::singleShot(0, this, SLOT(close()));
-    }
-    if(theme == "")
-    {
-        showMsgBox(tr("Can't load current theme"));
         QTimer::singleShot(0, this, SLOT(close()));
     }
     loadIcons();
 }
 
-TableEditor::~TableEditor()
-{
+TableEditor::~TableEditor() {
     delete ui;
     delete mapper;
     delete model;
 }
 
-void TableEditor::loadIcons()
-{
-    // Load system icons
-    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
-
-    for(const QString &sysIcon : sysIcons)
-    {
-        QString icon = ":/icons/"+theme+"/resources/icons/"+theme+"/"+sysIcon+".png";
-        ui->comboBox->addItem(QIcon(icon), "");
-        model->appendRow(new QStandardItem(sysIcon));
+void TableEditor::loadIcons() {
+    QVector<Icon> icons = {Icon::entry, Icon::game, Icon::house, Icon::money, Icon::office, Icon::pc, Icon::programming, Icon::user, Icon::key};
+    for(Icon &ico : icons) {
+        ui->comboBox->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
+        model->appendRow(new QStandardItem(IconLoader::getIconName(ico)));
     }
-
-    // QDirIterator it(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation),{"*.png"}, QDir::Files);
-
-    // while(it.hasNext())
-    // {
-    //     QString icon = it.next();
-
-    //     ui->comboBox->addItem(icon, "");
-    //     model->appendRow(new QStandardItem(icon));
-    // }
 
     mapper->setModel(model);
     mapper->toFirst();
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
-void TableEditor::setConnections()
-{
+void TableEditor::setConnections() {
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), SLOT(iconChanged()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), SLOT(textChanged()));
 }
 
-void TableEditor::saveChanges()
-{
+bool TableEditor::saveChanges() {
     QSqlQuery query(*db);
 
-    if(ui->nameEdit->text().size() <= 0)
-    {
-        QMessageBox msg;
-        msg.setText(tr("Field must be not empty"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
-        return;
+    if (ui->nameEdit->text().size() <= 0) {
+        showMsgBox(tr("Name field must be not empty."));
+        return false;
     }
 
     QString changeName = "ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'";
@@ -117,78 +81,61 @@ void TableEditor::saveChanges()
     QString ico(mapper->model()->data(model->index(mapper->currentIndex(), 0)).toString());
     QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ico+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
 
-    if(ui->nameEdit->text().size() == 0)
-    {
+    if (ui->nameEdit->text().size() == 0) {
         showMsgBox(tr("Line must be not empty"));
-        return;
+        return false;
     }
 
-    if(isNameChanged)
-    {
-        if(!query.exec(changeName)) {
-            QMessageBox msg;
-            msg.setText(tr("Unable to change name of table, try to reopen database."));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
-            return;
+    if (isNameChanged) {
+        if (!query.exec(changeName)) {
+            showMsgBox(tr("Unable to change name of table, try to reopen database."));
+            return false;
         }
-        if(!query.exec(changeSettingName)) {
+        if (!query.exec(changeSettingName)) {
             query.exec(restoreName);
-            QMessageBox msg;
-            msg.setText(tr("Unable to change name of table, try to reopen database."));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
-            return;
+            showMsgBox(tr("Unable to change name of table, try to reopen database."));
+            return false;
         }
     }
 
-    if(isIconChanged)
-    {
-        if(!query.exec(setNewIcon))
-        {
-            QMessageBox msg;
-            msg.setText(tr("Unable to change icon of table, try again."));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+    if (isIconChanged) {
+        if (!query.exec(setNewIcon)) {
+            showMsgBox(tr("Unable to change icon of table, try to reopen database."));
+            return false;
         }
     }
 
     listWidget->currentItem()->setText(ui->nameEdit->text());
+
+    return true;
 }
 
 
-void TableEditor::closeEvent(QCloseEvent *event)
-{
+void TableEditor::closeEvent(QCloseEvent *event) {
     qDebug() << Q_FUNC_INFO;
-    if(isIconChanged || isNameChanged)
-    {
+    if (isIconChanged || isNameChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", "Save changes?",
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
-        if(question == QMessageBox::Yes)
-        {
+        if (question == QMessageBox::Yes) {
             saveChanges();
             event->accept();
-        }else if(question == QMessageBox::No)
-        {
+        } else if (question == QMessageBox::No) {
             event->accept();
-        }else if(question == QMessageBox::Cancel)
-        {
+        } else if (question == QMessageBox::Cancel) {
             event->ignore();
         }
     }
     event->accept();
 }
 
-void TableEditor::on_buttonSave_clicked()
-{
-    saveChanges();
-    this->accept();
+void TableEditor::on_buttonSave_clicked() {
+    if (saveChanges())
+        this->accept();
 }
 
 
-void TableEditor::on_buttonCancel_clicked()
-{
+void TableEditor::on_buttonCancel_clicked() {
     this->accept();
 }
 

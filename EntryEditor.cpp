@@ -3,7 +3,16 @@
 #include <qdatetime.h>
 #include <qsqlerror.h>
 
-EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *db, QSqlTableModel *model)
+void EntryEditor::showMsgBox(const QString &text) {
+    qInfo() << Q_FUNC_INFO;
+    QMessageBox msg;
+    msg.setText(text);
+    msg.setStandardButtons(QMessageBox::Ok);
+    msg.setDefaultButton(QMessageBox::Ok);
+    msg.exec();
+}
+
+EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *db, QSqlTableModel *model, Theme theme)
     : QDialog(parent)
     , ui(new Ui::EntryEditor)
     , tableView(tableView)
@@ -12,13 +21,12 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
 
+    QAction *action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::dice, theme), QLineEdit::TrailingPosition);
+    connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
+
     // Checking if database is opened
     if (tableView == nullptr || db == nullptr || !db->isOpen()) {
-        QMessageBox msg;
-        msg.setIcon(QMessageBox::Critical);
-        msg.setText(tr("Something went wrong"));
-        msg.addButton(QMessageBox::Ok);
-        msg.exec();
+        showMsgBox(tr("Something went wrong.\nTry again please"));
     }
 
     fillData(); // Filling fiels with data from entry
@@ -28,13 +36,14 @@ EntryEditor::~EntryEditor() {
     delete ui;
 }
 
-void EntryEditor::showMsgBox(const QString &text) {
-    qInfo() << Q_FUNC_INFO;
-    QMessageBox msg;
-    msg.setText(text);
-    msg.setStandardButtons(QMessageBox::Ok);
-    msg.setDefaultButton(QMessageBox::Ok);
-    msg.exec();
+void EntryEditor::openPasswordGenerator() {
+    QString generatedPassword;
+    PasswordGenerator *window_PasswordGenerator = new PasswordGenerator(this, &generatedPassword);
+    window_PasswordGenerator->exec();
+    delete window_PasswordGenerator;
+
+    if (generatedPassword.size() > 0)
+        ui->line_password->setText(generatedPassword);
 }
 
 void EntryEditor::fillData() {

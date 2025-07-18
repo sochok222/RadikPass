@@ -1,7 +1,8 @@
 #include "TableAdder.h"
 #include "ui_TableAdder.h"
 
-TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, QString theme)
+
+TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, Theme theme)
     : QDialog(parent)
     , ui(new Ui::TableAdder)
     , tables(tables)
@@ -24,12 +25,8 @@ TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *
     ui->nameEdit->setValidator(validator);
 
     // Check if database is opened
-    if(db == nullptr || !db->isOpen() || tables == nullptr)
-    {
-        QMessageBox msg;
-        msg.setText(tr("Can't add new table, probably you didn't opened database"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    if (db == nullptr || !db->isOpen() || tables == nullptr) {
+        showMsgBox(tr("Can't add new table, probably you didn't opened database"));
         this->close();
     }
 
@@ -38,34 +35,24 @@ TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *
 }
 
 
-TableAdder::~TableAdder()
-{
+TableAdder::~TableAdder() {
     delete ui;
     delete validator;
 }
 
-void TableAdder::loadIcons()
-{
-    // Vector with names of icons
-    QVector<QString> sysIcons = {"entry", "game", "house", "money", "net", "office", "pc", "programming", "user", "key"};
+void TableAdder::showMsgBox(const QString &text) {
+    QMessageBox msg;
+    msg.setText(text);
+    msg.setStandardButtons(QMessageBox::Ok);
+    msg.exec();
+}
 
-    // Iterating through vector to load icons to comboBox and QStandardItemModel.
-    for(const QString &sysIcon : sysIcons)
-    {
-        ui->comboBox->addItem(QIcon(":/icons/"+theme+"/resources/icons/"+theme+"/"+sysIcon+".png"), "");
-        model->appendRow(new QStandardItem(sysIcon));
+void TableAdder::loadIcons() {
+    QVector<Icon> icons = {Icon::entry, Icon::game, Icon::house, Icon::money, Icon::office, Icon::pc, Icon::programming, Icon::user, Icon::key};
+    for(Icon &ico : icons) {
+        ui->comboBox->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
+        model->appendRow(new QStandardItem(IconLoader::getIconName(ico)));
     }
-
-    // TODO: in future implement user icons loading.
-    // QDirIterator it(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation),{"*.png"}, QDir::Files);
-
-    // while(it.hasNext())
-    // {
-    //     QString icon = it.next();
-
-    //     ui->comboBox->addItem(icon, "");
-    //     model->appendRow(new QStandardItem(icon));
-    // }
 
     // Mapping comboBox to QStandardModel.
     mapper->setModel(model);
@@ -76,10 +63,9 @@ void TableAdder::loadIcons()
 }
 
 
-TableAdder::rtrnCodes TableAdder::checkIfTableExists(const QString newTable)
-{
+TableAdder::rtrnCodes TableAdder::checkIfTableExists(const QString newTable) {
     // Checking if name of new table isn't name that can't be used.
-    if(newTable == "TablesSettings" || newTable == "sqlite_master" || newTable == "main")
+    if (newTable == "TablesSettings" || newTable == "sqlite_master" || newTable == "main")
         return rtrnCodes::cantBeUsed;
 
     QSqlQuery query(*db); // New query to execute database commands.
@@ -99,17 +85,12 @@ TableAdder::rtrnCodes TableAdder::checkIfTableExists(const QString newTable)
 }
 
 
-void TableAdder::on_addTableButton_clicked()
-{
+void TableAdder::on_addTableButton_clicked() {
     qDebug() << Q_FUNC_INFO;
 
     // If nameEdit is empty needs to show message to user that field must be not empty.
-    if(ui->nameEdit->text().size() <= 0)
-    {
-        QMessageBox msg;
-        msg.setText(tr("Field must be not empty"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    if (ui->nameEdit->text().size() <= 0) {
+        showMsgBox(tr("Name field must be not empty"));
         return;
     }
 
@@ -123,8 +104,7 @@ void TableAdder::on_addTableButton_clicked()
     rtrnCodes ifExists = checkIfTableExists(tableName);
 
     // Checking if database is already exists.
-    if(ifExists == rtrnCodes::notExists)
-    {
+    if (ifExists == rtrnCodes::notExists) {
         // Statement that will create table.
         QString command = QString(R"(
         CREATE TABLE [%1] (
@@ -140,12 +120,8 @@ void TableAdder::on_addTableButton_clicked()
         )").arg(tableName);
 
         // If query wasn't executed needs to show error.
-        if(!query.exec(command))
-        {
-            QMessageBox msg;
-            msg.setText(tr("Can't create table\nQuery error: ") + query.lastError().text());
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+        if(!query.exec(command)) {
+            showMsgBox(tr("Can't create table\nQuery error: ") + query.lastError().text());
         }
 
         // Receiving icon that user selected.
@@ -154,38 +130,21 @@ void TableAdder::on_addTableButton_clicked()
         query.prepare("INSERT INTO TablesSettings ([Table], Icon) VALUES ('"+tableName+"', '"+ico+"')");
 
         // If query wasn't executed needs to show error and delete table.
-        if(!query.exec())
-        {
-            // Deleting table.
-            query.exec(QString("DROP TABLE [%1]").arg(tableName));
-            // Showing error.
-            QMessageBox msg;
-            msg.setText(tr("Can't create table\nQuery error: ") + query.lastError().text());
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+        if (!query.exec()) {
+            query.exec(QString("DROP TABLE [%1]").arg(tableName)); // Deleting table.
+            showMsgBox(tr("Can't create table\nQuery error: ") + query.lastError().text());
         }
 
         // Appending name of table that was created to vector.
         tables->push_back(ui->nameEdit->text());
-
-        // Closing window.
         this->close();
-    }else if (ifExists == rtrnCodes::exists){ // Showing error if table is already exists.
-        QMessageBox msg;
-        msg.setText(tr("Table with this name already exists\nTry another name"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
-    }else if(ifExists == rtrnCodes::cantBeUsed) // Showing error if table can't be used.
-    {
-        QMessageBox msg;
-        msg.setText(tr("Can't create table with this name.\nTry another name."));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    } else if (ifExists == rtrnCodes::exists) { // Showing error if table is already exists.
+        showMsgBox(tr("Table with this name already exists\nTry another name"));
+    } else if (ifExists == rtrnCodes::cantBeUsed) {// Showing error if table can't be used.
+        showMsgBox(tr("Can't create table with this name.\nTry another name."));
     }
 }
 
-void TableAdder::on_buttonCancel_clicked()
-{
-    // Closing window.
+void TableAdder::on_buttonCancel_clicked() {
     this->close();
 }

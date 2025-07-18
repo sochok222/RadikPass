@@ -8,6 +8,8 @@
 #include <QSqlQuery>
 #include <QSqlDatabase>
 #include <QSqlRecord>
+#include "IconLoader.h"
+#include "PasswordGenerator.h"
 #include <QTranslator>
 
 namespace Ui {
@@ -21,13 +23,15 @@ class EntryEditor : public QDialog
 
 public:
     // *tableView to know which row user wants to edit, *db to write changes, *model to load data from row.
-    explicit EntryEditor(QWidget *parent = nullptr, QTableView *tableView = nullptr, QSqlDatabase *db = nullptr, QSqlTableModel *model = nullptr);
+    explicit EntryEditor(QWidget *parent = nullptr, QTableView *tableView = nullptr, QSqlDatabase *db = nullptr, QSqlTableModel *model = nullptr, Theme theme = Theme::Dark);
     ~EntryEditor();
 
 private slots:
     void on_okButton_clicked(); // When user clicks Ok button
 
     void on_cancelButton_clicked(); // When user clicks Cancel button
+
+    void openPasswordGenerator();
 
 private:
     Ui::EntryEditor *ui;

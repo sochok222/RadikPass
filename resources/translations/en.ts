@@ -420,23 +420,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="30"/>
+        <location filename="../../EntryAdder.cpp" line="27"/>
         <source>Can&apos;t open database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="93"/>
-        <source>Error: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../EntryAdder.cpp" line="93"/>
-        <source>
-Last query: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../EntryAdder.cpp" line="104"/>
+        <location filename="../../EntryAdder.cpp" line="90"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -492,32 +481,33 @@ Last query: </source>
 <context>
     <name>EntryEditor</name>
     <message>
-        <location filename="../../EntryEditor.cpp" line="13"/>
+        <location filename="../../EntryEditor.cpp" line="22"/>
         <source>Edit Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="19"/>
-        <source>Something went wrong</source>
+        <location filename="../../EntryEditor.cpp" line="29"/>
+        <source>Something went wrong.
+Try again please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="47"/>
-        <location filename="../../EntryEditor.cpp" line="59"/>
-        <location filename="../../EntryEditor.cpp" line="70"/>
-        <location filename="../../EntryEditor.cpp" line="90"/>
+        <location filename="../../EntryEditor.cpp" line="56"/>
+        <location filename="../../EntryEditor.cpp" line="68"/>
+        <location filename="../../EntryEditor.cpp" line="79"/>
+        <location filename="../../EntryEditor.cpp" line="99"/>
         <source>Unable to load data from database.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="115"/>
+        <location filename="../../EntryEditor.cpp" line="124"/>
         <source>Unable to edit this row.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="120"/>
+        <location filename="../../EntryEditor.cpp" line="129"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished"></translation>
     </message>
@@ -958,22 +948,22 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="936"/>
+        <location filename="../../MainWindow.cpp" line="937"/>
         <source>Can&apos;t duplicate entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="979"/>
+        <location filename="../../MainWindow.cpp" line="980"/>
         <source>Can&apos;t load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1006"/>
+        <location filename="../../MainWindow.cpp" line="1007"/>
         <source>Can&apos;t load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1033"/>
+        <location filename="../../MainWindow.cpp" line="1034"/>
         <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -993,7 +983,7 @@ Try again, please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="944"/>
+        <location filename="../../MainWindow.cpp" line="945"/>
         <source>Entry duplicated</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1168,35 +1158,35 @@ Try again please</source>
 <context>
     <name>TableAdder</name>
     <message>
-        <location filename="../../TableAdder.cpp" line="14"/>
+        <location filename="../../TableAdder.cpp" line="15"/>
         <source>Add Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="30"/>
+        <location filename="../../TableAdder.cpp" line="29"/>
         <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="110"/>
-        <source>Field must be not empty</source>
+        <location filename="../../TableAdder.cpp" line="93"/>
+        <source>Name field must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="146"/>
-        <location filename="../../TableAdder.cpp" line="163"/>
+        <location filename="../../TableAdder.cpp" line="124"/>
+        <location filename="../../TableAdder.cpp" line="135"/>
         <source>Can&apos;t create table
 Query error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="175"/>
+        <location filename="../../TableAdder.cpp" line="142"/>
         <source>Table with this name already exists
 Try another name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="181"/>
+        <location filename="../../TableAdder.cpp" line="144"/>
         <source>Can&apos;t create table with this name.
 Try another name.</source>
         <translation type="unfinished"></translation>
@@ -1265,44 +1255,39 @@ Try another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="24"/>
+        <location filename="../../TableEditor.cpp" line="21"/>
         <source>Edit Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="31"/>
+        <location filename="../../TableEditor.cpp" line="25"/>
         <source>Can`t open database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="50"/>
+        <location filename="../../TableEditor.cpp" line="41"/>
         <source>Can&apos;t load listWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="55"/>
-        <source>Can&apos;t load current theme</source>
+        <location filename="../../TableEditor.cpp" line="74"/>
+        <source>Name field must be not empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="108"/>
-        <source>Field must be not empty</source>
+        <location filename="../../TableEditor.cpp" line="103"/>
+        <source>Unable to change icon of table, try to reopen database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="122"/>
+        <location filename="../../TableEditor.cpp" line="85"/>
         <source>Line must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableEditor.cpp" line="130"/>
-        <location filename="../../TableEditor.cpp" line="138"/>
+        <location filename="../../TableEditor.cpp" line="91"/>
+        <location filename="../../TableEditor.cpp" line="96"/>
         <source>Unable to change name of table, try to reopen database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../TableEditor.cpp" line="150"/>
-        <source>Unable to change icon of table, try again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

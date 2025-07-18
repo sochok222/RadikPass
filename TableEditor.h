@@ -18,6 +18,7 @@
 #include <QStandardPaths>
 #include <QDirIterator>
 #include <QStandardItem>
+#include "IconLoader.h"
 
 namespace Ui {
 class TableEditor;
@@ -32,7 +33,7 @@ public:
     // *db to write changes, tableName to know which table user wants to edit,
     // *listWidget stores rows with tables(names and icons) in MainWindow, this class will change values in listWidget by pointer.
     // theme to load icons according to current theme.
-    explicit TableEditor(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, QString theme = "");
+    explicit TableEditor(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", QListWidget *listWidget = nullptr, Theme theme = Theme::Dark);
     ~TableEditor();
 
 private:
@@ -42,7 +43,7 @@ private:
     QSqlDatabase *db;
     QString tableName;
     QListWidget *listWidget;
-    QString theme;
+    Theme theme;
 
     // This will catch close event, and if user maked some changes needs to ask if user wants to save changes.
     void closeEvent(QCloseEvent *event) override;
@@ -55,7 +56,7 @@ private:
     void loadIcons();
 
     // This will write changes to database.
-    void saveChanges();
+    bool saveChanges();
 
     // This fuction shows user MessageBox if error occurs.
     void showMsgBox(const QString text);

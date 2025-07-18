@@ -5,9 +5,9 @@
 #include <iostream>
 #include <QSettings>
 #include "DbOpener.h"
+#include "IconLoader.h"
 
-bool isFileExists(const QString path)
-{
+bool isFileExists(const QString path) {
     QFile file(path);
     if(file.exists())
         return true;
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     }else settings.setValue("Language", "en"); // Default language is english
 
 
-    QString theme;
+    Theme theme;
     if(settings.value("theme") == "system" || (settings.value("theme").isNull() || settings.value("theme") == ""))
     {
         if(QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
 
-            theme = "dark";
+            theme = Theme::Dark;
 
             QString  style(styleFile.readAll());
             styleFile.close();
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
             QFile  styleFile(":/themes/resources/themes/light.qss");
             styleFile.open(QFile::ReadOnly);
 
-            theme = "light";
+            theme = Theme::Light;
 
             QString  style(styleFile.readAll());
             styleFile.close();
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
 
-            theme = "dark";
+            theme = Theme::Dark;
 
             QString  style(styleFile.readAll());
             styleFile.close();
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
             QFile  styleFile(":/themes/resources/themes/light.qss");
             styleFile.open(QFile::ReadOnly);
 
-            theme = "light";
+            theme = Theme::Light;
 
             QString  style(styleFile.readAll());
             styleFile.close();
@@ -178,15 +178,13 @@ int main(int argc, char *argv[])
 
 
     QByteArray key;
-    if((!settings.value("Last").isNull() && settings.value("Last").toString() != ""))
-    {
+    if ((!settings.value("Last").isNull() && settings.value("Last").toString() != "")) {
         if(isFileExists(settings.value("Last").toString()))
         {
             DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString());
             openDb->exec();
         }
-    }else
-    {
+    } else {
         qDebug() << "Can't find last used database";
     }
 

@@ -23,7 +23,7 @@ class EntryAdder : public QDialog
 
 public:
     // QSqlDatabase *db to write changes in opened database, tableName to know in which table.
-    explicit EntryAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", const QString theme = "");
+    explicit EntryAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, const QString tableName = "", Theme theme = Theme::Dark);
     ~EntryAdder();
 
 private slots:

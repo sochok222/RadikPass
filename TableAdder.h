@@ -33,7 +33,7 @@ class TableAdder : public QDialog
 public:
     // QSqlDatabase* to write changes in opened database, *tables to append new table to vector of tables that displayed in listWidget in MainWindow
     // QString theme to know current theme
-    explicit TableAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, QString theme = "");
+    explicit TableAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, Theme theme = Theme::Dark);
     ~TableAdder();
 
 private slots:
@@ -43,6 +43,8 @@ private slots:
 
 private:
     Ui::TableAdder *ui;
+
+    void showMsgBox(const QString &message);
 
     enum class rtrnCodes{
         exists,
@@ -57,7 +59,7 @@ private:
     QSqlDatabase *db;
     std::vector<QString> *tables;
     QMap<QString, QIcon*> *icons;
-    QString theme;
+    Theme theme;
 
     void loadIcons(); // This functions loads icons to QComboBox, where user can select icon that he wants
 
