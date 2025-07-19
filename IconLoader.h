@@ -8,34 +8,36 @@ enum class Theme {
 
 // enumeration that allows access icons comfortably through Icon::
 enum class Icon {
-    add,
-    bitcoin,
-    card,
-    close,
-    color,
-    copy,
-    create,
-    crypto,
-    duplicate,
-    edit,
-    entry,
-    game,
-    house,
-    key,
-    language,
-    link,
-    money,
-    net,
-    office,
-    open,
-    openBrowser,
-    pc,
-    programming,
-    settings,
-    trash,
-    user,
-    save,
-    dice
+    Add,
+    Bitcoin,
+    Card,
+    Close,
+    Color,
+    Copy,
+    Create,
+    Crypto,
+    Duplicate,
+    Edit,
+    Entry,
+    Game,
+    House,
+    Key,
+    Language,
+    Link,
+    Money,
+    Net,
+    Office,
+    Open,
+    OpenBrowser,
+    Pc,
+    Programming,
+    Settings,
+    Trash,
+    User,
+    Save,
+    Dice,
+    Eye,
+    EyeClosed
 };
 
 class IconLoader {
@@ -44,85 +46,85 @@ static QString getIconName(const Icon &ico) {
     QString type;
 
     switch(ico) {
-    case(Icon::add):
+    case(Icon::Add):
         type = "add";
         break;
-    case(Icon::card):
+    case(Icon::Card):
         type = "card";
         break;
-    case(Icon::close):
+    case(Icon::Close):
         type = "close";
         break;
-    case(Icon::color):
+    case(Icon::Color):
         type = "color";
         break;
-    case(Icon::copy):
+    case(Icon::Copy):
         type = "copy";
         break;
-    case(Icon::create):
+    case(Icon::Create):
         type = "create";
         break;
-    case(Icon::crypto):
+    case(Icon::Crypto):
         type = "crypto";
         break;
-    case(Icon::duplicate):
+    case(Icon::Duplicate):
         type = "duplicate";
         break;
-    case(Icon::edit):
+    case(Icon::Edit):
         type = "edit";
         break;
-    case(Icon::entry):
+    case(Icon::Entry):
         type = "entry";
         break;
-    case(Icon::game):
+    case(Icon::Game):
         type = "game";
         break;
-    case(Icon::house):
+    case(Icon::House):
         type = "house";
         break;
-    case(Icon::key):
+    case(Icon::Key):
         type = "key";
         break;
-    case(Icon::language):
+    case(Icon::Language):
         type = "language";
         break;
-    case(Icon::link):
+    case(Icon::Link):
         type = "link";
         break;
-    case(Icon::money):
+    case(Icon::Money):
         type = "money";
         break;
-    case(Icon::net):
+    case(Icon::Net):
         type = "net";
         break;
-    case(Icon::office):
+    case(Icon::Office):
         type = "office";
         break;
-    case(Icon::open):
+    case(Icon::Open):
         type = "open";
         break;
-    case(Icon::openBrowser):
+    case(Icon::OpenBrowser):
         type = "openBrowser";
         break;
-    case(Icon::pc):
+    case(Icon::Pc):
         type = "pc";
         break;
-    case(Icon::programming):
+    case(Icon::Programming):
         type = "programming";
         break;
-    case(Icon::settings):
+    case(Icon::Settings):
         type = "settings";
         break;
-    case(Icon::trash):
+    case(Icon::Trash):
         type = "trash";
         break;
-    case(Icon::user):
+    case(Icon::User):
         type = "user";
         break;
-    case(Icon::save):
+    case(Icon::Save):
         type = "save";
         break;
-    case(Icon::dice):
+    case(Icon::Dice):
         type = "dice";
         break;
     default:
@@ -136,85 +138,85 @@ static QIcon getIcon(const Icon &ico, const Theme theme) {
     QString type;
 
     switch(ico) {
-    case(Icon::add):
+    case(Icon::Add):
         type = "add";
         break;
-    case(Icon::card):
+    case(Icon::Card):
         type = "card";
         break;
-    case(Icon::close):
+    case(Icon::Close):
         type = "close";
         break;
-    case(Icon::color):
+    case(Icon::Color):
         type = "color";
         break;
-    case(Icon::copy):
+    case(Icon::Copy):
         type = "copy";
         break;
-    case(Icon::create):
+    case(Icon::Create):
         type = "create";
         break;
-    case(Icon::crypto):
+    case(Icon::Crypto):
         type = "crypto";
         break;
-    case(Icon::duplicate):
+    case(Icon::Duplicate):
         type = "duplicate";
         break;
-    case(Icon::edit):
+    case(Icon::Edit):
         type = "edit";
         break;
-    case(Icon::entry):
+    case(Icon::Entry):
         type = "entry";
         break;
-    case(Icon::game):
+    case(Icon::Game):
         type = "game";
         break;
-    case(Icon::house):
+    case(Icon::House):
         type = "house";
         break;
-    case(Icon::key):
+    case(Icon::Key):
         type = "key";
         break;
-    case(Icon::language):
+    case(Icon::Language):
         type = "language";
         break;
-    case(Icon::link):
+    case(Icon::Link):
         type = "link";
         break;
-    case(Icon::money):
+    case(Icon::Money):
         type = "money";
         break;
-    case(Icon::net):
+    case(Icon::Net):
         type = "net";
         break;
-    case(Icon::office):
+    case(Icon::Office):
         type = "office";
         break;
-    case(Icon::open):
+    case(Icon::Open):
         type = "open";
         break;
-    case(Icon::openBrowser):
+    case(Icon::OpenBrowser):
         type = "openBrowser";
         break;
-    case(Icon::pc):
+    case(Icon::Pc):
         type = "pc";
         break;
-    case(Icon::programming):
+    case(Icon::Programming):
         type = "programming";
         break;
-    case(Icon::settings):
+    case(Icon::Settings):
         type = "settings";
         break;
-    case(Icon::trash):
+    case(Icon::Trash):
         type = "trash";
         break;
-    case(Icon::user):
+    case(Icon::User):
         type = "user";
         break;
-    case(Icon::save):
+    case(Icon::Save):
         type = "save";
         break;
-    case(Icon::dice):
+    case(Icon::Dice):
         type = "dice";
         break;
     default:

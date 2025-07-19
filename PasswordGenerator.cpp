@@ -166,13 +166,15 @@ void PasswordGenerator::generatePassword() {
 
 
 void PasswordGenerator::on_button_close_clicked() {
-    *result = "";
+    if (result)
+        *result = "";
     this->close();
 }
 
 
 void PasswordGenerator::on_button_save_clicked() {
-    *result = ui->line_result->text();
+    if (result)
+        *result = ui->line_result->text();
     this->close();
 }
 

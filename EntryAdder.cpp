@@ -19,7 +19,7 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     // Set window name.
     this->setWindowTitle(tr("Add Entry"));
 
-    QAction *action_generatePassword = ui->password->addAction(IconLoader::getIcon(Icon::dice, theme), QLineEdit::TrailingPosition);
+    QAction *action_generatePassword = ui->password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
     // Check if database is open

@@ -51,7 +51,7 @@ TableEditor::~TableEditor() {
 }
 
 void TableEditor::loadIcons() {
-    QVector<Icon> icons = {Icon::entry, Icon::game, Icon::house, Icon::money, Icon::office, Icon::pc, Icon::programming, Icon::user, Icon::key};
+    QVector<Icon> icons = {Icon::Entry, Icon::Game, Icon::House, Icon::Money, Icon::Office, Icon::Pc, Icon::Programming, Icon::User, Icon::Key};
     for(Icon &ico : icons) {
         ui->comboBox->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
         model->appendRow(new QStandardItem(IconLoader::getIconName(ico)));

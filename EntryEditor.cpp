@@ -21,7 +21,7 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
 
-    QAction *action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::dice, theme), QLineEdit::TrailingPosition);
+    QAction *action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
     // Checking if database is opened

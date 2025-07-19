@@ -219,33 +219,33 @@ void MainWindow::loadIcons() {
     loadIconsToListWidget();
 
     // Loading icons to buttons
-    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::save, theme));
-    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::add, theme));
-    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::Open, theme));
+    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::Create, theme));
+    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::Save, theme));
+    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::Add, theme));
+    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::User, theme));
+    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
+    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
 
     // Loading icons to windows toolbar
     // File menu
-    ui->actionNew->setIcon(IconLoader::getIcon(Icon::create, theme));
-    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::open, theme));
-    ui->actionClose->setIcon(IconLoader::getIcon(Icon::close, theme));
+    ui->actionNew->setIcon(IconLoader::getIcon(Icon::Create, theme));
+    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::Open, theme));
+    ui->actionClose->setIcon(IconLoader::getIcon(Icon::Close, theme));
     // Entry menu
-    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::user, theme));
-    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::key, theme));
-    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::link, theme));
-    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::openBrowser, theme));
-    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::copy, theme));
-    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::entry, theme));
-    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::edit, theme));
-    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::duplicate, theme));
-    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::trash, theme));
+    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::User, theme));
+    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::Key, theme));
+    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::Link, theme));
+    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::OpenBrowser, theme));
+    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::Copy, theme));
+    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::Entry, theme));
+    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::Edit, theme));
+    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::Duplicate, theme));
+    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
     // View menu
-    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::language, theme));
-    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::settings, theme));
-    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::color, theme));
+    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::Language, theme));
+    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::Settings, theme));
+    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::Color, theme));
 }
 
 
@@ -363,18 +363,18 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions for context menu
-        action_copyUsername.reset(new QAction(IconLoader::getIcon(Icon::user, theme), tr("Copy User Name"), this));
-        action_copyPassword.reset(new QAction(IconLoader::getIcon(Icon::key, theme), tr("Copy Password"), this));
-        action_edit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::entry, theme), tr("Add new"), this));
-        action_delete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
-        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
+        action_copyUsername.reset(new QAction(IconLoader::getIcon(Icon::User, theme), tr("Copy User Name"), this));
+        action_copyPassword.reset(new QAction(IconLoader::getIcon(Icon::Key, theme), tr("Copy Password"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, theme), tr("Edit"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Entry, theme), tr("Add new"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, theme), tr("Delete"), this));
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, theme), tr("Configure colums"), this));
 
         // Resseting url menu and adding actions to it
         menu_url.reset(new QMenu(tr("URL"), this));
-        menu_url->setIcon(IconLoader::getIcon(Icon::link, theme));
-        action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::copy, theme), tr("Copy"), this));
-        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::openBrowser, theme), tr("Open"), this));
+        menu_url->setIcon(IconLoader::getIcon(Icon::Link, theme));
+        action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::Copy, theme), tr("Copy"), this));
+        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::OpenBrowser, theme), tr("Open"), this));
         menu_url->addAction(action_copyUrl.data());
         menu_url->addAction(action_OpenUrl.data());
 
@@ -403,8 +403,8 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
-        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::settings, theme), tr("Configure colums"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, theme), tr("Configure colums"), this));
 
         // Connecting actions
         connect(action_add.data(), SIGNAL(triggered()), SLOT(addEntry()));
@@ -420,9 +420,9 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu.reset(new QMenu(this)); // Resetting actions
 
         // Resetting actions
-        action_delete.reset(new QAction(IconLoader::getIcon(Icon::trash, theme), tr("Delete"), this));
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this));
-        action_edit.reset(new QAction(IconLoader::getIcon(Icon::edit, theme), tr("Edit"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, theme), tr("Delete"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, theme), tr("Edit"), this));
 
         // Connecting actions
         connect(action_delete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
@@ -439,7 +439,7 @@ void MainWindow::customMenuRequested(QPoint pos){
     else if(ui->listWidget->underMouse()) { // If cursor hovers only listWidget
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::add, theme), tr("Add Table"), this)); // Resetting add action
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this)); // Resetting add action
 
         connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
 
