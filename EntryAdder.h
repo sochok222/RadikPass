@@ -29,9 +29,13 @@ public:
 private slots:
     void on_okButton_clicked(); // When user clicks ok button this fuction executes
     void openPasswordGenerator();
+    void hidePassword();
 
 private:
     Ui::EntryAdder *ui;
+    Theme theme;
+    QAction *action_generatePassword;
+    QAction *action_hidePassword;
     bool atLeastOneNotEmpty(); // Function that checks that al leas one field is not emtpy
     QSqlDatabase *db; // Storing database that passed to the class constructor
     QString tableName; // Storing Name of current table that passed to the class constructor

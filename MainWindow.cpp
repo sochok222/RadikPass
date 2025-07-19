@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     , translator(translator)
     , theme(theme)
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
     ui->setupUi(this);
 
     // Binding shortcuts
@@ -47,22 +47,16 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     // Connecting listWidget to context menu slot
     connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
-    if (!key.isEmpty()) // If given key from database is not empty
-    {
+    if (!key.isEmpty()) { // If given key from database is not empty
         // loadDb() loads selected database to QSqlDatabase object (&db)
         // Path to database is loaded from QSettings
         // tables is list of tables in database, loadDb() changes this list according to loaded database
-        if (!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) // Trying to load database
-        {                                                                                // If not it seems that key is not right
-            QMessageBox msg;                                                             // or file is damaged or something else
-            msg.setText(tr("Password is incorrect or database file is damaged\nTry again, please"));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec(); // Showing message if can't open database
+        if (!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) { // Trying to load database
+            showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
             key = 0;
         }
 
-        for(int i = 0; i < tables.size(); i++) // Adding tables to listWidget in screen
-        {
+        for(int i = 0; i < tables.size(); i++) { // Adding tables to listWidget in screen
             ui->listWidget->addItem(tables[i]);
         }
     }
@@ -86,8 +80,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     loadIcons(); // Loading icons according to current color theme
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
@@ -324,7 +317,7 @@ void MainWindow::configureColumns() {
 
 bool fileExists(const QString path)
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
     QFile file(path);
     if (file.exists())
         return true;
@@ -333,37 +326,32 @@ bool fileExists(const QString path)
 
 void MainWindow::itemDoubleclicked(const QModelIndex &pos)
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
-    if (pos.column() == 1)
-    {
+    if (pos.column() == 1) {
         copyText(pos.data().toString());
         ui->statusbar->showMessage(tr("Title copied"), 3000);
     }
-    else if (pos.column() == 2)
-    {
+    else if (pos.column() == 2) {
         copyText(pos.data().toString());
         ui->statusbar->showMessage(tr("Username copied"), 3000);
     }
-    else if (pos.column() == 3)
-    {
+    else if (pos.column() == 3) {
         copyText(pos.data().toString());
         ui->statusbar->showMessage(tr("Password copied"), 3000);
     }
-    else if (pos.column() == 4)
-    {
+    else if (pos.column() == 4) {
         QDesktopServices::openUrl(QUrl(pos.data().toString()));
         ui->statusbar->showMessage(tr("Link opened"), 3000);
     }
-    else if (pos.column() == 5)
-    {
+    else if (pos.column() == 5) {
         copyText(pos.data().toString());
         ui->statusbar->showMessage(tr("Notes copied"), 3000);
     }
 }
 
 void MainWindow::customMenuRequested(QPoint pos){
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     if (ui->listWidget->count() == 0) // Checking if database is opened.
         return;
@@ -481,38 +469,38 @@ void MainWindow::openUrl() {
 }
 
 void MainWindow::copyUsername() {
-    // qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
-    // if (!hasSelectedRow()) // If user selected no row, do
-    //     return;
+    if (!hasSelectedRow()) // If user selected no row, do
+        return;
 
-    // QSqlQuery query(db);
-    // QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(ui->tableView->currentIndex().row());
-    // query.prepare(getId);
-    // if (!query.exec()) {
-    //     showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
-    //     qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
-    //     return;
-    // }
-    // query.next();
-    // QString id = query.value(0).toString();
+    QSqlQuery query(db);
+    QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(ui->tableView->currentIndex().row());
+    query.prepare(getId);
+    if (!query.exec()) {
+        showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
+        qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
+        return;
+    }
+    query.next();
+    QString id = query.value(0).toString();
 
-    // query.prepare("SELECT [User Name] FROM "+model->tableName()+" WHERE id == "+id);
-    // if (!query.exec()) {
-    //     showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
-    //     qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
-    //     return;
-    // }
-    // query.next();
+    query.prepare("SELECT [User Name] FROM "+model->tableName()+" WHERE id == "+id);
+    if (!query.exec()) {
+        showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
+        qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
+        return;
+    }
+    query.next();
 
-    // copyText(query.value(0).toString());
+    copyText(query.value(0).toString());
 
-    // ui->statusbar->showMessage(tr("Username copied."), 30000);
+    ui->statusbar->showMessage(tr("Username copied."), 30000);
 }
 
 
 void MainWindow::copyText(const QString &text) {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
     OpenClipboard(0);
     EmptyClipboard();
     HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, text.size()+1);
@@ -523,37 +511,37 @@ void MainWindow::copyText(const QString &text) {
 
 
 void MainWindow::copyPassword() {
-    // qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
-    // if (!hasSelectedRow()) // If user selected no row, do
-    //     return;
+    if (!hasSelectedRow()) // If user selected no row, do
+        return;
 
-    // QSqlQuery query(db);
-    // QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(ui->tableView->currentIndex().row());
-    // query.prepare(getId);
-    // if (!query.exec()) {
-    //     showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
-    //     qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
-    //     return;
-    // }
-    // query.next();
-    // QString id = query.value(0).toString();
+    QSqlQuery query(db);
+    QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(ui->tableView->currentIndex().row());
+    query.prepare(getId);
+    if (!query.exec()) {
+        showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
+        qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
+        return;
+    }
+    query.next();
+    QString id = query.value(0).toString();
 
-    // query.prepare("SELECT [Password] FROM "+model->tableName()+" WHERE id == "+id);
-    // if (!query.exec()) {
-    //     showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
-    //     qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
-    //     return;
-    // }
-    // query.next();
+    query.prepare("SELECT [Password] FROM "+model->tableName()+" WHERE id == "+id);
+    if (!query.exec()) {
+        showMsgBox(tr("Error"), tr("Unable to copy.\nTry again please."), QMessageBox::Icon::Critical);
+        qCritical() << "Unable to copy User Name, Error: " << query.lastError() << "\n Last query: " << query.lastQuery();
+        return;
+    }
+    query.next();
 
-    // copyText(query.value(0).toString());
+    copyText(query.value(0).toString());
 
-    // ui->statusbar->showMessage(tr("Password copied."), 3000);
+    ui->statusbar->showMessage(tr("Password copied."), 3000);
 }
 
 void MainWindow::editRow() {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow()) // If user has no selected row return.
         return;
@@ -569,7 +557,7 @@ void MainWindow::editRow() {
 }
 
 void MainWindow::deleteTable() {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
     int index = ui->listWidget->currentIndex().row();
 
     QMessageBox::StandardButton question = QMessageBox::question(
@@ -599,7 +587,7 @@ void MainWindow::deleteTable() {
 }
 
 void MainWindow::deleteEntry() {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow()) // If user selected no row, do
         return;
@@ -620,7 +608,7 @@ void MainWindow::deleteEntry() {
 }
 
 void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
-    qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     // Updating last used index
     lastUsedTable = ui->listWidget->currentRow();
@@ -633,7 +621,7 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
     if (isChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
@@ -659,7 +647,7 @@ void MainWindow::cfgColumns() {
 
 void MainWindow::createTable()
 {
-    qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
@@ -685,7 +673,7 @@ void MainWindow::createTable()
 
 void MainWindow::addEntry()
 {
-    qDebug() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
@@ -704,8 +692,7 @@ void MainWindow::addEntry()
 
 void MainWindow::openDatabase()
 {
-    if (isChanged)
-    {
+    if (isChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
@@ -713,15 +700,12 @@ void MainWindow::openDatabase()
         // Yes - must save changes
         // No - do not save changes
         // Cancel - do not close program
-        if (question == QMessageBox::Yes)
-        {
+        if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
             DbManager::uploadDb(settings.value("Last").toString(), key, &db);
-        }else if (question == QMessageBox::No)
-        {
+        }else if (question == QMessageBox::No) {
             qDebug() << "Clicked no";
-        }else if (question == QMessageBox::Cancel)
-        {
+        }else if (question == QMessageBox::Cancel) {
             qDebug() << "Clicked cancel";
             return;
         }
@@ -729,29 +713,21 @@ void MainWindow::openDatabase()
 
     QString file = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
-    if (!file.isEmpty())
-    {
+    if (!file.isEmpty()) {
         DbOpener *openDb = new DbOpener(this, &key, file);
         openDb->exec();
     } else return;
 
-    if (!key.isEmpty())
-    {
-        if (!DbManager::loadDb(file, key, &db, tables))
-        {
-            QMessageBox msg;
-            msg.setText(tr("Password is incorrect"));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+    if (!key.isEmpty()) {
+        if (!DbManager::loadDb(file, key, &db, tables)) {
+            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged."), QMessageBox::Critical);
         }
         settings.setValue("Last", file);
         ui->listWidget->clear();
-        for(int i = 0; i < tables.size(); i++)
-        {
+        for(int i = 0; i < tables.size(); i++) {
             ui->listWidget->addItem(tables[i]);
         }
-        if (tables.size() > 0) // If one or more table exists we select current first table
-        {
+        if (tables.size() > 0) { // If one or more table exists we select current first table
             model->setTable(tables[0]);
             ui->listWidget->setCurrentRow(0);
         }
@@ -763,9 +739,8 @@ void MainWindow::openDatabase()
     loadIcons();
 }
 
-void MainWindow::createDatabase()
-{
-    qDebug() << Q_FUNC_INFO;
+void MainWindow::createDatabase() {
+    qInfo() << Q_FUNC_INFO;
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if (databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
@@ -774,10 +749,8 @@ void MainWindow::createDatabase()
     createNew->exec();
     delete createNew;
 
-    if (key != "") // If key is empty this means that user closed createNew dialog
-    {
-        if (!DbManager::createAndFillDatabase(databasePath, key, &db)) // This must create new .db file and encrypt it
-        {
+    if (key != "") { // If key is empty this means that user closed createNew dialog
+        if (!DbManager::createAndFillDatabase(databasePath, key, &db)) { // This must create new .db file and encrypt it
             QMessageBox msg;
             msg.setText(tr("Can't create new database"));
             msg.setStandardButtons(QMessageBox::Ok);
@@ -805,7 +778,7 @@ void MainWindow::createDatabase()
 
 void MainWindow::configureEntryMenu() // This function will disable or enable actions in View menu in toolbar
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
 
     if (ui->tableView->selectionModel()->hasSelection()) // If row is not selected in TableView this will disable actions and vise versa
@@ -861,7 +834,7 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
 
 void MainWindow::editTable()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     // Creating TableEditor window where user can change name or/and icon of table
     TableEditor *editTable = new TableEditor(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
@@ -881,7 +854,7 @@ void MainWindow::editTable()
 
 void MainWindow::duplicateEntry()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow()) // If no rows are selected
         return;
@@ -891,13 +864,9 @@ void MainWindow::duplicateEntry()
 
     // Duplicating row
     query.prepare("INSERT INTO ["+model->tableName()+"] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) SELECT Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed] FROM ["+model->tableName()+"] WHERE id = "+id);
-    if (!query.exec())
-    {
-        QMessageBox msg;
-        qCritical() << "Can't duplicate entry, last query: " << query.lastQuery();
-        msg.setText(tr("Can't duplicate entry"));
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    if (!query.exec()) {
+        showMsgBox(tr("Error"), tr("Unable to duplicate entry.\nTry again, please."), QMessageBox::Critical);
+        qCritical() << "Can't duplicate entry, last query: " << query.lastQuery() << "\nQuery error: " << query.lastError();
         return;
     }
 
@@ -910,14 +879,13 @@ void MainWindow::duplicateEntry()
     ui->tableView->update();
 }
 
-void MainWindow::saveAll()
-{
+void MainWindow::saveAll() {
+    qInfo() << Q_FUNC_INFO;
     // Writing changes to file
     DbManager::uploadDb(settings.value("Last").toString(), key, &db);
 }
 
-bool MainWindow::hasSelectedRow()
-{
+bool MainWindow::hasSelectedRow() {
     if (ui->tableView->selectionModel()->selectedRows().size() == 0) // If count of selected rows equals to zero
         return false;
 
@@ -926,7 +894,7 @@ bool MainWindow::hasSelectedRow()
 
 void MainWindow::setUkrainianLanguage()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "uk"); // Changing value in settings
 
@@ -953,7 +921,7 @@ void MainWindow::setUkrainianLanguage()
 
 void MainWindow::setEnglishLanguage()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "en"); // Changing value in settings
 
@@ -980,7 +948,7 @@ void MainWindow::setEnglishLanguage()
 
 void MainWindow::setGermanLanguage()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "ge"); // Changing value in settings
 
@@ -1006,7 +974,7 @@ void MainWindow::setGermanLanguage()
 
 void MainWindow::setSystemColorTheme()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
     {
@@ -1039,7 +1007,7 @@ void MainWindow::setSystemColorTheme()
 
 void MainWindow::setDarkColorTheme()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     // Finding .qss style file
     QFile styleFile(":/themes/resources/themes/dark.qss");
@@ -1058,7 +1026,7 @@ void MainWindow::setDarkColorTheme()
 
 void MainWindow::setLightColorTheme()
 {
-    qDebug() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO;
 
     // Finding .qss style file
     QFile styleFile(":/themes/resources/themes/light.qss");
@@ -1098,8 +1066,3 @@ void MainWindow::on_searchBar_textChanged(const QString &arg1) {
     model->setTable("Search");
     model->select();
 }
-
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &index) {
-    copyText(index.data().toString());
-}
-

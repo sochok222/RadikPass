@@ -14,13 +14,20 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     , ui(new Ui::EntryAdder)
     , tableName(tableName)
     , db(db)
+    , theme(theme)
 {
     ui->setupUi(this);
     // Set window name.
     this->setWindowTitle(tr("Add Entry"));
 
-    QAction *action_generatePassword = ui->password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    ui->password->setEchoMode(QLineEdit::EchoMode::Password);
+
+    action_hidePassword = ui->password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
+
+    action_generatePassword = ui->password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
+
 
     // Check if database is open
     if (db == nullptr || !db->isOpen()) {
@@ -31,6 +38,17 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
 
 EntryAdder::~EntryAdder() {
     delete ui;
+}
+
+
+void EntryAdder::hidePassword() {
+    if (ui->password->echoMode() == QLineEdit::EchoMode::Password) {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
+        ui->password->setEchoMode(QLineEdit::Normal);
+    } else {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
+        ui->password->setEchoMode(QLineEdit::Password);
+    }
 }
 
 

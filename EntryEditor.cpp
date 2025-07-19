@@ -17,9 +17,15 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
     , ui(new Ui::EntryEditor)
     , tableView(tableView)
     , db(db)
-    , model(model) {
+    , model(model)
+    , theme(theme) {
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
+
+    ui->line_password->setEchoMode(QLineEdit::EchoMode::Password);
+
+    action_hidePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
     QAction *action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
@@ -34,6 +40,16 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
 
 EntryEditor::~EntryEditor() {
     delete ui;
+}
+
+void EntryEditor::hidePassword() {
+    if (ui->line_password->echoMode() == QLineEdit::EchoMode::Password) {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
+        ui->line_password->setEchoMode(QLineEdit::Normal);
+    } else {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
+        ui->line_password->setEchoMode(QLineEdit::Password);
+    }
 }
 
 void EntryEditor::openPasswordGenerator() {

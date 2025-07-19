@@ -211,7 +211,6 @@ public slots:
 private slots:
     void on_searchBar_textChanged(const QString &arg1);
 
-    void on_tableView_doubleClicked(const QModelIndex &index);
 
 private:
     // Context menu menus and actions.

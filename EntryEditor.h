@@ -33,8 +33,14 @@ private slots:
 
     void openPasswordGenerator();
 
+    void hidePassword();
+
 private:
     Ui::EntryEditor *ui;
+
+    Theme theme;
+    QAction *action_generatePassword;
+    QAction *action_hidePassword;
 
     // Storing values that got from class constructor.
     QSqlTableModel *model;
