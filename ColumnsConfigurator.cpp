@@ -109,11 +109,11 @@ void ColumnsConfigurator::loadSettings()
 
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if((*settingsList[i])[0] == "shown") // If value is "shown" set checked state to check box in first row
+        if ((*settingsList[i])[0] == "shown") // If value is "shown" set checked state to check box in first row
         {
             rows[i].first->setCheckState(Qt::Checked);
         }
-        if((*settingsList[i])[1] == "masked") // If value is "masked" set checked state to check box in second row
+        if ((*settingsList[i])[1] == "masked") // If value is "masked" set checked state to check box in second row
         {
             rows[i].second->setCheckState(Qt::Checked);
         }
@@ -152,11 +152,11 @@ void ColumnsConfigurator::on_saveButton_clicked()
 
     for(int i = 0; i < settingsList.size(); i++)
     {
-        if(rows[i].first->checkState()) // If state is checked in first row
+        if (rows[i].first->checkState()) // If state is checked in first row
         {
             (*settingsList[i])[0] = "shown"; // Saving value "shown"
         }else (*settingsList[i])[0] = "hidden"; // Otherwise saving value "hidden"
-        if(rows[i].second->checkState() == Qt::Checked) // Same for this
+        if (rows[i].second->checkState() == Qt::Checked) // Same for this
         {
             (*settingsList[i])[1] = "masked";
         }else (*settingsList[i])[1] = "unmasked";

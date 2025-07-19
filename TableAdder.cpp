@@ -120,7 +120,7 @@ void TableAdder::on_addTableButton_clicked() {
         )").arg(tableName);
 
         // If query wasn't executed needs to show error.
-        if(!query.exec(command)) {
+        if (!query.exec(command)) {
             showMsgBox(tr("Can't create table\nQuery error: ") + query.lastError().text());
         }
 

@@ -78,7 +78,7 @@ private:
     bool hasSelectedRow();
 
     // This function copies text to windows clipboard.
-    void copyText(const QString text);
+    void copyText(const QString &text);
 
     // Storing opened database in QSqlDatabase.
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -125,6 +125,9 @@ private:
 
     // Connecting actions in toolbar to slots
     void connectActions();
+
+    // Showing message boxes with error message
+    void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
 
 public slots:
     // When user clicks on right button of the mouse.
@@ -207,6 +210,8 @@ public slots:
 
 private slots:
     void on_searchBar_textChanged(const QString &arg1);
+
+    void on_tableView_doubleClicked(const QModelIndex &index);
 
 private:
     // Context menu menus and actions.

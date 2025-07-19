@@ -10,7 +10,7 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
 
     this->setWindowTitle(tr("Create Database")); // Setting window title
 
-    if(path != "") // If path is not empty
+    if (path != "") // If path is not empty
     {
         ui->labelPath->setText("Path: " + path); // Writing path to window
     }else { // Else showing error to user
@@ -79,8 +79,8 @@ void DbCreator::on_linePassword_textChanged(const QString &arg1)
 void DbCreator::on_lineRepeat_textChanged(const QString &arg1)
 {
     // If password is hidden
-    if(isPassHidden) {
-        if(arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0) { // If password in repeat line is not the same as in password line
+    if (isPassHidden) {
+        if (arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0) { // If password in repeat line is not the same as in password line
             // Setting red palette to repeat line
             QPalette lineRepeatPalette;
             lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));

@@ -9,7 +9,7 @@
 
 bool isFileExists(const QString path) {
     QFile file(path);
-    if(file.exists())
+    if (file.exists())
         return true;
     return false;
 }
@@ -19,7 +19,7 @@ void myLogMessageHandler(const QtMsgType type, const QMessageLogContext& context
     std::cout << msg.toStdString() << std::endl;
     QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/log.txt";
     QDir dir(path);
-    if(!dir.exists(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)))
+    if (!dir.exists(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)))
         dir.mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     QFile logFile(path);
     if (logFile.open(QIODevice::WriteOnly | QIODevice::Append))
@@ -87,16 +87,16 @@ int main(int argc, char *argv[])
         }
     }
 
-    if(!settings.value("Language").isNull() && settings.value("Language") != "")
+    if (!settings.value("Language").isNull() && settings.value("Language") != "")
     {
-        if(settings.value("Language") == "uk")
+        if (settings.value("Language") == "uk")
         {
             qApp->removeTranslator(translator); // remove the old translator
 
             // load the new translator
             QString path = QApplication::applicationDirPath();
             path.append("/Translations/");
-            if(translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+            if (translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
                 qApp->installTranslator(translator);
             else
             {
@@ -106,12 +106,12 @@ int main(int argc, char *argv[])
                 msg.setStandardButtons(QMessageBox::Ok);
                 msg.exec();
             }
-        }else if(settings.value("Language") == "ge")
+        }else if (settings.value("Language") == "ge")
         {
             // load the new translator
             QString path = QApplication::applicationDirPath();
             path.append("/Translations/");
-            if(translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
+            if (translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
                 qApp->installTranslator(translator);
             else
             {
@@ -126,9 +126,9 @@ int main(int argc, char *argv[])
 
 
     Theme theme;
-    if(settings.value("theme") == "system" || (settings.value("theme").isNull() || settings.value("theme") == ""))
+    if (settings.value("theme") == "system" || (settings.value("theme").isNull() || settings.value("theme") == ""))
     {
-        if(QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+        if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
         {
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         }
     }else
     {
-        if(settings.value("theme") == "dark")
+        if (settings.value("theme") == "dark")
         {
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
 
     QByteArray key;
     if ((!settings.value("Last").isNull() && settings.value("Last").toString() != "")) {
-        if(isFileExists(settings.value("Last").toString()))
+        if (isFileExists(settings.value("Last").toString()))
         {
             DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString());
             openDb->exec();

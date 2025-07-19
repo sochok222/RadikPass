@@ -46,7 +46,7 @@ void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *table
 
         qDebug() << "Query: " << toExec;
 
-        if(!copyQuery.exec(toExec)) {
+        if (!copyQuery.exec(toExec)) {
             qCritical() << "Unable to execute: " << query.lastQuery() <<", error: " << query.lastError();
         }
     }
@@ -59,7 +59,7 @@ bool DbManager::getRowId(QSqlTableModel *model, QTableView *tableView, QSqlDatab
 
     // Creating a query that will find id of row and executing it
     QString getId = QString("SELECT id FROM %1 LIMIT 1 OFFSET %2").arg(model->tableName()).arg(tableView->currentIndex().row());
-    if(!query.exec(getId)) {
+    if (!query.exec(getId)) {
         qCritical() << "Unable to execute query, error: " << query.lastError();
         return false; // If unable to execute needs to return false
     }
@@ -80,7 +80,7 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
     // Preparing and executing a query that will delete the row with table and icon from the TablesSettings
     query.prepare("DELETE FROM TablesSettings WHERE [Table] = :name");
     query.bindValue(":name", tableName);
-    if(!query.exec()) {
+    if (!query.exec()) {
         qCritical() << "Query execution failed, error: " << query.lastError();
         return false;
     } qDebug() << "Successfully executed";
@@ -89,7 +89,7 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
 
     // Preparingand executing a query that will delete the table from the database
     QString command = QString("DROP TABLE [%1]").arg(tableName);
-    if(!query.exec(command)) {
+    if (!query.exec(command)) {
         qCritical() << "Query execution failed, error: " << query.lastError();
         query.exec("INSERT INTO TablesSettings ([Table]) VALUES ('"+tableName+"')");
         return false;
@@ -103,7 +103,7 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     qInfo() << Q_FUNC_INFO;
 
     qInfo() << "Checking master key length...";
-    if(!checkMasterKey(key)) {
+    if (!checkMasterKey(key)) {
         qDebug() << "Appended zeroes to key";
     }
 
@@ -169,7 +169,7 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
 
     // Fixing key size
     qInfo() << "Checking key length...";
-    if(!checkMasterKey(key)) {
+    if (!checkMasterKey(key)) {
         qInfo() << "Fixed key size";
     }
 
@@ -228,7 +228,7 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
     db.setDatabaseName(":memory:");
 
     // Returning false if can`t open datatbase
-    if(!db.open()) {
+    if (!db.open()) {
         qCritical() << "Can't open database";
         return false;
     }
@@ -238,7 +238,7 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
     // Executing query that will attach the temporary database as tempDb
     query.prepare("ATTACH DATABASE :path as tempDb");
     query.bindValue(":path", path); // Binding path as :path
-    if(!query.exec()) {
+    if (!query.exec()) {
         qCritical() << "Can`t attach temporary database, query error: " << query.lastError().text();
         return false;
     }
@@ -274,13 +274,13 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
             showMsgBox("Can't copy content of table: " + tableName + ".\nPlease try again.");
         } else {
             // The "TablesSetting" is table that is not available to user
-            if(tableName != "TablesSettings")tables.push_back(tableName);
+            if (tableName != "TablesSettings")tables.push_back(tableName);
         }
     }
 
     // Detaching database
     query.prepare("DETACH DATABASE tempDb");
-    if(!query.exec()) {
+    if (!query.exec()) {
         qDebug() << "Can`t detach temporary database, query error: " <<  query.lastError().text();
         return false;
     }
@@ -291,12 +291,12 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
 bool DbManager::checkMasterKey(QByteArray &masterKey) {
     qDebug() << Q_FUNC_INFO;
 
-    if(masterKey.size() < 32) { // If key size is less than 32 bytes needs to append zeroes
+    if (masterKey.size() < 32) { // If key size is less than 32 bytes needs to append zeroes
         qInfo() << "Appending " << 32-masterKey.size() << " zeroes to key...";
         QByteArray toAppend(32-masterKey.size(), '0');
         masterKey.append(toAppend);
         return false;
-    }else if(masterKey.size() > 32) { // Else needs to remove redundant bytes
+    }else if (masterKey.size() > 32) { // Else needs to remove redundant bytes
         qInfo() << "Removing redundant bytes from key...";
         masterKey.remove(32, masterKey.size());
         return false;
@@ -313,14 +313,14 @@ bool DbManager::deleteTemporaryFile(T &file) {
     QByteArray *array = new QByteArray(file.size(), 0);
 
     // Openning file
-    if(!file.open()) {
+    if (!file.open()) {
         qCritical() << "Can`t open file";
         delete array;
         return false;
     }
 
     // Writing zeroes to file
-    if(!file.write(*array)) {
+    if (!file.write(*array)) {
         qCritical() << "Can't fill file with zeroes";
         file.close();
         file.remove();
@@ -331,7 +331,7 @@ bool DbManager::deleteTemporaryFile(T &file) {
     file.close();
 
     // Removing file
-    if(!file.remove()) {
+    if (!file.remove()) {
         qCritical() << "Can`t delete file";
         delete array;
         return false;
@@ -354,7 +354,7 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
     // Creating the temporary file
     QTemporaryFile temp;
     temp.setAutoRemove(false);
-    if(!temp.open()) {
+    if (!temp.open()) {
         qCritical() << "Can`t open temporary file";
         return false;
     }
@@ -365,13 +365,13 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
 
     encData = decryptData(encData, key); // Decrypting encrypted data
 
-    if(encData == nullptr || encData->size() == 0) {
+    if (encData == nullptr || encData->size() == 0) {
         return false;
         qCritical() << "Decrypted data is nullptr or has size of zero";
     }
 
     // Writing decrypted array to the temporary file
-    if(!temp.write(*encData)) {
+    if (!temp.write(*encData)) {
         qCritical() << "Can`t write decrypted data to temporary file";
         return false;
     }
@@ -382,13 +382,13 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
     QString databasePath(temp.fileName());
 
     // Loading temporary database to :memory: database
-    if(!loadTemporaryDatabase(*db, databasePath, tables)) {
+    if (!loadTemporaryDatabase(*db, databasePath, tables)) {
         qCritical() << "Can`t load temporary database to :memory:";
         return false;
     }
 
     // Deleting temporary file
-    if(!deleteTemporaryFile(temp)) {
+    if (!deleteTemporaryFile(temp)) {
         qCritical() << "Can`t delete temporary database";
         return false;
     }
@@ -402,7 +402,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
     // Creating temporary file
     QTemporaryFile tmp;
     tmp.setAutoRemove(false);
-    if(!tmp.open()) {
+    if (!tmp.open()) {
         qCritical() << "Can`t open temporary file to write new database";
         return false;
     }
@@ -412,7 +412,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
     // Attaching temporary database
     query.prepare("ATTACH DATABASE :path as tempDb");
     query.bindValue(":path", tmp.fileName());
-    if(!query.exec())
+    if (!query.exec())
     {
         qCritical() << "Can`t attach temporary database, query error: " << query.lastError().text();
         return false;
@@ -451,7 +451,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
 
     // Detaching database
     query.prepare("DETACH DATABASE tempDb");
-    if(!query.exec())
+    if (!query.exec())
     {
         qDebug() << "Error in: " << Q_FUNC_INFO;
         qDebug() << "Can`t detach temporary database, query error: " <<  query.lastError().text();
@@ -460,7 +460,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
 
     // Opening file
     QFile file(encryptedDatabase);
-    if(!file.open(QIODevice::WriteOnly)) {
+    if (!file.open(QIODevice::WriteOnly)) {
         qCritical() << "Can't open encrypted database";
         showMsgBox(QObject::tr("Unable to open encrypted database\nTry again please"));
         return false;
@@ -469,7 +469,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
     QByteArray *data = new QByteArray(tmp.readAll()); // Reading data from temporary database
 
     // Writing encrypted data to encrypted database
-    if(!file.write(*encryptData(data, key))) {
+    if (!file.write(*encryptData(data, key))) {
         qCritical() << "Can't write encrypted data to encrypted database";
         showMsgBox("Unable to write encrypted data\nTry again please");
         return false;
@@ -477,7 +477,7 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
     delete data;
 
     // Deleting temporary file safely
-    if(!deleteTemporaryFile(tmp)) {
+    if (!deleteTemporaryFile(tmp)) {
         qCritical() << "Can't delete temporary database";
         showMsgBox("Can`t delete temporary database\nTry to delete it manually, path: \n" + tmp.fileName());
         return false;
@@ -494,7 +494,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
 
     // Creating a temporary file and trying to open it
     QTemporaryFile tmp;
-    if(!tmp.open())
+    if (!tmp.open())
     {
         showMsgBox("Can't open temporary file");
         return false;
@@ -502,7 +502,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
 
     db->setDatabaseName(":memory:");
 
-    if(!db->open())
+    if (!db->open())
     {
         qDebug() << "Can't open database";
     }
@@ -511,7 +511,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
 
     query.prepare("ATTACH DATABASE :path as TempDb");
     query.bindValue(":path", tmp.fileName());
-    if(!query.exec())
+    if (!query.exec())
     {
         qDebug() << "Can't attach temporary database";
         return false;
@@ -531,7 +531,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
     )");
 
 
-    if(!query.exec())
+    if (!query.exec())
     {
         qDebug() << "Can't add columns to table:" << query.lastQuery();
         qDebug() << "Query execution error:" << query.lastError().text();
@@ -545,7 +545,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
     );
     )");
 
-    if(!query.exec())
+    if (!query.exec())
     {
         qDebug() << "Can't add table with settings" << query.lastQuery();
         qDebug() << "Query execution error:" << query.lastError().text();
@@ -569,7 +569,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
     file.open(QIODevice::WriteOnly);
     *raw = *encryptData(raw, key);
     qDebug() << "Encrypted data size: " << raw->size();
-    if(!file.write(*raw))
+    if (!file.write(*raw))
     {
         qDebug() << "Can't write encrypted raw data to database";
         delete raw;

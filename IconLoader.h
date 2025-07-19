@@ -127,6 +127,12 @@ static QString getIconName(const Icon &ico) {
     case(Icon::Dice):
         type = "dice";
         break;
+    case(Icon::Eye):
+        type = "eye";
+        break;
+    case(Icon::EyeClosed):
+        type = "eyeClosed";
+        break;
     default:
         break;
     }
@@ -218,6 +224,12 @@ static QIcon getIcon(const Icon &ico, const Theme theme) {
         break;
     case(Icon::Dice):
         type = "dice";
+        break;
+    case(Icon::Eye):
+        type = "eye";
+        break;
+    case(Icon::EyeClosed):
+        type = "eyeClosed";
         break;
     default:
         break;

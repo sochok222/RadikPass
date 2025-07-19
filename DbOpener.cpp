@@ -24,10 +24,10 @@ DbOpener::~DbOpener()
 
 void DbOpener::on_okButton_clicked()
 {
-    if(ui->passwordLine->text().size() > 0) {
+    if (ui->passwordLine->text().size() > 0) {
         *masterPassword = ui->passwordLine->text().toUtf8();
         this->close();
-    }else {
+    } else {
         QMessageBox msg;
         msg.setText(tr("Password line must be not empty"));
         msg.setStandardButtons(QMessageBox::Ok);

@@ -23,7 +23,7 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
     // Check if database is open
-    if(db == nullptr || !db->isOpen()) {
+    if (db == nullptr || !db->isOpen()) {
         showMsgBox(tr("Can't open database"));
         this->close();
     }
@@ -60,8 +60,7 @@ void EntryAdder::on_okButton_clicked() {
     QSqlQuery query(*db); // QSqlQuery to access QSqlDatabase db.
 
     // Check if at least one field not empty
-    if (atLeastOneNotEmpty())
-    {
+    if (atLeastOneNotEmpty()) {
         // Database query that will insert row in table.
         QString insertData = QString("INSERT INTO [%1] (Title, [User Name], Password, URL, Notes, [Creation Time], [Last Changed]) VALUES ("
                                      ":title, :username, :password, :url, :notes, :creationTime, :lastChanged"
