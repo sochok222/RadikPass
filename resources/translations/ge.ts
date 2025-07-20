@@ -1105,25 +1105,25 @@ Bitte versuchen Sie es erneut.</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="366"/>
-        <location filename="../../MainWindow.cpp" line="423"/>
+        <location filename="../../MainWindow.cpp" line="421"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="367"/>
-        <location filename="../../MainWindow.cpp" line="404"/>
+        <location filename="../../MainWindow.cpp" line="403"/>
         <source>Add new</source>
         <translation>Neu hinzufügen</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="368"/>
-        <location filename="../../MainWindow.cpp" line="421"/>
+        <location filename="../../MainWindow.cpp" line="419"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="369"/>
-        <location filename="../../MainWindow.cpp" line="405"/>
+        <location filename="../../MainWindow.cpp" line="404"/>
         <source>Configure colums</source>
         <translation>Spalten konfigurieren</translation>
     </message>
@@ -1169,8 +1169,8 @@ Bitte versuchen Sie es erneut.</translation>
         <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="422"/>
-        <location filename="../../MainWindow.cpp" line="440"/>
+        <location filename="../../MainWindow.cpp" line="420"/>
+        <location filename="../../MainWindow.cpp" line="436"/>
         <source>Add Table</source>
         <translation>Tabelle hinzufügen</translation>
     </message>
@@ -1187,12 +1187,12 @@ Bitte versuchen Sie es erneut.</translation>
         <translation type="vanished">Daten können nicht aus der Datenbank abgerufen werden</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="564"/>
+        <location filename="../../MainWindow.cpp" line="557"/>
         <source>Delete Table?</source>
         <translation>Tabelle löschen?</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="577"/>
+        <location filename="../../MainWindow.cpp" line="570"/>
         <source>Table deleted.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1202,70 +1202,101 @@ Bitte versuchen Sie es erneut.</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="55"/>
-        <location filename="../../MainWindow.cpp" line="481"/>
-        <location filename="../../MainWindow.cpp" line="490"/>
-        <location filename="../../MainWindow.cpp" line="523"/>
-        <location filename="../../MainWindow.cpp" line="532"/>
-        <location filename="../../MainWindow.cpp" line="579"/>
-        <location filename="../../MainWindow.cpp" line="723"/>
-        <location filename="../../MainWindow.cpp" line="868"/>
+        <location filename="../../MainWindow.cpp" line="474"/>
+        <location filename="../../MainWindow.cpp" line="483"/>
+        <location filename="../../MainWindow.cpp" line="516"/>
+        <location filename="../../MainWindow.cpp" line="525"/>
+        <location filename="../../MainWindow.cpp" line="572"/>
+        <location filename="../../MainWindow.cpp" line="711"/>
+        <location filename="../../MainWindow.cpp" line="742"/>
+        <location filename="../../MainWindow.cpp" line="799"/>
+        <location filename="../../MainWindow.cpp" line="839"/>
+        <location filename="../../MainWindow.cpp" line="876"/>
+        <location filename="../../MainWindow.cpp" line="897"/>
+        <location filename="../../MainWindow.cpp" line="917"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="481"/>
-        <location filename="../../MainWindow.cpp" line="490"/>
-        <location filename="../../MainWindow.cpp" line="523"/>
-        <location filename="../../MainWindow.cpp" line="532"/>
+        <location filename="../../MainWindow.cpp" line="474"/>
+        <location filename="../../MainWindow.cpp" line="483"/>
+        <location filename="../../MainWindow.cpp" line="516"/>
+        <location filename="../../MainWindow.cpp" line="525"/>
         <source>Unable to copy.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="498"/>
+        <location filename="../../MainWindow.cpp" line="491"/>
         <source>Username copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="540"/>
+        <location filename="../../MainWindow.cpp" line="533"/>
         <source>Password copied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="579"/>
+        <location filename="../../MainWindow.cpp" line="572"/>
         <source>Unable to delete this table.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="581"/>
+        <location filename="../../MainWindow.cpp" line="574"/>
         <source>At least one table must exists</source>
         <translation>Mindestens eine Tabelle muss vorhanden sein</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="598"/>
+        <location filename="../../MainWindow.cpp" line="591"/>
         <source>Delete row?</source>
         <translation>Zeile löschen?</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="606"/>
+        <location filename="../../MainWindow.cpp" line="599"/>
         <source>Entry deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="627"/>
-        <location filename="../../MainWindow.cpp" line="697"/>
+        <location filename="../../MainWindow.cpp" line="620"/>
+        <location filename="../../MainWindow.cpp" line="685"/>
         <source>Save changes?</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="714"/>
+        <location filename="../../MainWindow.cpp" line="702"/>
         <source>Open encrypted database</source>
         <translation>Öffnen Sie eine verschlüsselte Datenbank</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="723"/>
+        <location filename="../../MainWindow.cpp" line="711"/>
         <source>Password is incorrect or file is damaged.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="742"/>
+        <source>Unable to create new database.
+Try again please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="799"/>
+        <source>Unable to load icon to table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="876"/>
+        <source>Unable to load ukrainian translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="897"/>
+        <source>Unable to load english translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="917"/>
+        <source>Unable to load german translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1273,29 +1304,9 @@ Try again please.</source>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="823"/>
-        <source>Can&apos;t load icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="868"/>
+        <location filename="../../MainWindow.cpp" line="839"/>
         <source>Unable to duplicate entry.
 Try again, please.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="909"/>
-        <source>Can&apos;t load ukrainian translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="936"/>
-        <source>Can&apos;t load english translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="963"/>
-        <source>Can&apos;t load german translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1303,21 +1314,20 @@ Try again, please.</source>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="744"/>
+        <location filename="../../MainWindow.cpp" line="732"/>
         <source>Create new database</source>
         <translation>Datenbank erstellen</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="755"/>
         <source>Can&apos;t create new database</source>
-        <translation>Neue Datenbank kann nicht erstellt werden</translation>
+        <translation type="vanished">Neue Datenbank kann nicht erstellt werden</translation>
     </message>
     <message>
         <source>Can&apos;t duplicate columns</source>
         <translation type="vanished">Spalten können nicht dupliziert werden</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="875"/>
+        <location filename="../../MainWindow.cpp" line="846"/>
         <source>Entry duplicated</source>
         <translation>Eintrag dupliziert</translation>
     </message>
@@ -1575,12 +1585,12 @@ Funktion:</translation>
         <translation type="obsolete">Notizen:</translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="437"/>
+        <location filename="../../DbManager.cpp" line="447"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="465"/>
+        <location filename="../../DbManager.cpp" line="475"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>

@@ -350,14 +350,14 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
     }
 }
 
-void MainWindow::customMenuRequested(QPoint pos){
+void MainWindow::customMenuRequested(QPoint pos) {
     qInfo() << Q_FUNC_INFO;
 
     if (ui->listWidget->count() == 0) // Checking if database is opened.
         return;
 
 
-    if (ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) { // If mouse cursor is hover tableView and entry
+    if (ui->tableView->indexAt(pos).isValid() && ui->tableView->underMouse()) { // If mouse cursor is hovering tableView and entry
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions for context menu
@@ -396,8 +396,7 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu->addAction(action_configureColumns.data());
 
         menu_contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
-    }
-    else if (ui->tableView->underMouse()) { // If mouse cursor is hovers only tableView
+    } else if (ui->tableView->underMouse()) { // If mouse cursor is hovering only tableView
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions
@@ -413,8 +412,7 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu->addAction(action_configureColumns.data());
 
         menu_contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
-    }
-    else if (ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) { // If mouse cursor is hovering listWidget and his row
+    } else if (ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) { // If mouse cursor is hovering listWidget and his row
         menu_contextMenu.reset(new QMenu(this)); // Resetting actions
 
         // Resetting actions
@@ -433,16 +431,11 @@ void MainWindow::customMenuRequested(QPoint pos){
         menu_contextMenu->addAction(action_delete.data());
 
         menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
-    }
-    else if (ui->listWidget->underMouse()) { // If cursor hovers only listWidget
+    } else if (ui->listWidget->underMouse()) { // If cursor is hovering only listWidget
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
-
         action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this)); // Resetting add action
-
         connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
-
         menu_contextMenu->addAction(action_add.data()); // Adding action to context menu
-
         menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
 }
@@ -453,7 +446,7 @@ void MainWindow::copyUrl(){
     if (!hasSelectedRow()) // If user selected no row, do
         return;
 
-    QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4); // 4 - is column of url
+    QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4);
 
     copyText(idx.data().toString()); // Copying text to clipboard
 }
@@ -464,7 +457,7 @@ void MainWindow::openUrl() {
     if (!hasSelectedRow()) // If user selected no row, do
         return;
 
-    QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4); // 4 - is column of url
+    QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4);
     QDesktopServices::openUrl(idx.data().toString());
 }
 
@@ -645,8 +638,7 @@ void MainWindow::cfgColumns() {
     configureColumns();
 }
 
-void MainWindow::createTable()
-{
+void MainWindow::createTable() {
     qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
@@ -655,12 +647,10 @@ void MainWindow::createTable()
     addTable->exec(); // Showing dialog
     delete addTable;
 
-    if (ui->listWidget->count() != tables.size()) // If current ListWidget size has lower value than tables this means that user added new table
-    {
+    if (ui->listWidget->count() != tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
         ui->listWidget->clear(); // Clearing list of tables
-        for(int i = 0; i < tables.size(); i++) // Adding lists to QListWidget
-        {
-            ui->listWidget->addItem(tables[i]);
+        for(int i = 0; i < tables.size(); i++) {
+            ui->listWidget->addItem(tables[i]);  // Adding lists to QListWidget
         }
         ui->listWidget->setCurrentRow(tables.size()-1);
 
@@ -671,8 +661,7 @@ void MainWindow::createTable()
     loadIconsToListWidget();
 }
 
-void MainWindow::addEntry()
-{
+void MainWindow::addEntry() {
     qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
@@ -690,8 +679,7 @@ void MainWindow::addEntry()
 
 }
 
-void MainWindow::openDatabase()
-{
+void MainWindow::openDatabase() {
     if (isChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
@@ -751,10 +739,7 @@ void MainWindow::createDatabase() {
 
     if (key != "") { // If key is empty this means that user closed createNew dialog
         if (!DbManager::createAndFillDatabase(databasePath, key, &db)) { // This must create new .db file and encrypt it
-            QMessageBox msg;
-            msg.setText(tr("Can't create new database"));
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+            showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
             return;
         }
 
@@ -763,8 +748,7 @@ void MainWindow::createDatabase() {
 
         ui->listWidget->clear(); // Clears listWidget that holds all tables
 
-        for(int i = 0; i < tables.size(); i++) // Loading all tables that avaible to user from tables vector
-        {
+        for(int i = 0; i < tables.size(); i++) { // Loading all tables that available to user from tables vector
             ui->listWidget->addItem(tables[i]);
         }
 
@@ -776,21 +760,17 @@ void MainWindow::createDatabase() {
     loadIconsToListWidget(); // Loading icons to ListWidget with tables.
 }
 
-void MainWindow::configureEntryMenu() // This function will disable or enable actions in View menu in toolbar
-{
+void MainWindow::configureEntryMenu() { // This function will disable or enable actions in View menu in toolbar
     qInfo() << Q_FUNC_INFO;
 
-
-    if (ui->tableView->selectionModel()->hasSelection()) // If row is not selected in TableView this will disable actions and vise versa
-    {
+    if (ui->tableView->selectionModel()->hasSelection()) { // If row is not selected in TableView this will disable actions and vise versa
         ui->actionCopy_User_Name->setEnabled(true);
         ui->actionCopy_Password->setEnabled(true);
         ui->menuUrl->setEnabled(true);
         ui->actionEdit_Entry->setEnabled(true);
         ui->actionDuplicate_Entry->setEnabled(true);
         ui->actionDelete_Entry->setEnabled(true);
-    }else if (ui->listWidget->count() == 0) // Checking if database is opened
-    {
+    } else if (ui->listWidget->count() == 0) { // Checking if database is opened
         ui->actionCopy_User_Name->setEnabled(false);
         ui->actionCopy_Password->setEnabled(false);
         ui->menuUrl->setEnabled(false);
@@ -809,21 +789,14 @@ void MainWindow::configureEntryMenu() // This function will disable or enable ac
     }
 }
 
-void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
-{
+void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget,
     QSqlQuery query(db); // New query to read data from database
-    for(int i = 0; i < ui->listWidget->count(); i++) // For every item in ListWidget(table)
-    {
+    for(int i = 0; i < ui->listWidget->count(); i++) { // For every item in ListWidget(table)
         // Loading name of icon from TablesSettings
         query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name");
         query.bindValue(":name", ui->listWidget->item(i)->text());
-        if (!query.exec())
-        {
-            QMessageBox msg;
-            msg.setText(tr("Can't load icon"));
-            msg.setIcon(QMessageBox::Critical);
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
+        if (!query.exec()) {
+            showMsgBox(tr("Error"), tr("Unable to load icon to table"), QMessageBox::Critical);
         }
 
         query.next(); // Loading value to query
@@ -832,8 +805,7 @@ void MainWindow::loadIconsToListWidget() // This will load icons to ListWidget,
     }
 }
 
-void MainWindow::editTable()
-{
+void MainWindow::editTable() {
     qInfo() << Q_FUNC_INFO;
 
     // Creating TableEditor window where user can change name or/and icon of table
@@ -852,8 +824,7 @@ void MainWindow::editTable()
 
 }
 
-void MainWindow::duplicateEntry()
-{
+void MainWindow::duplicateEntry() {
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow()) // If no rows are selected
@@ -892,8 +863,7 @@ bool MainWindow::hasSelectedRow() {
     return true;
 }
 
-void MainWindow::setUkrainianLanguage()
-{
+void MainWindow::setUkrainianLanguage() {
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "uk"); // Changing value in settings
@@ -902,14 +872,9 @@ void MainWindow::setUkrainianLanguage()
 
     if (translator->load(":/translations/resources/translations/uk.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else // If it fails:
-    {
-        // Showing error message to user
-        QMessageBox msg;
-        msg.setText(tr("Can't load ukrainian translation"));
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec(); // Retranslating headers in tableView
+    else {
+        showMsgBox(tr("Error"), tr("Unable to load ukrainian translation"), QMessageBox::Critical);
+        return;
     }
 
     ui->retranslateUi(this); // Retranslating program
@@ -919,8 +884,7 @@ void MainWindow::setUkrainianLanguage()
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setEnglishLanguage()
-{
+void MainWindow::setEnglishLanguage() {
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "en"); // Changing value in settings
@@ -929,14 +893,8 @@ void MainWindow::setEnglishLanguage()
 
     if (translator->load(":/translations/resources/translations/en.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else // If it fails:
-    {
-        // Showing error message to user
-        QMessageBox msg;
-        msg.setText(tr("Can't load english translation"));
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    else {
+        showMsgBox(tr("Error"), tr("Unable to load english translation"), QMessageBox::Critical);
     }
 
     ui->retranslateUi(this); // Retranslating program
@@ -946,8 +904,7 @@ void MainWindow::setEnglishLanguage()
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setGermanLanguage()
-{
+void MainWindow::setGermanLanguage() {
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "ge"); // Changing value in settings
@@ -956,14 +913,8 @@ void MainWindow::setGermanLanguage()
 
     if (translator->load(":/translations/resources/translations/ge.qm")) // Trying to load translator from resource
         qApp->installTranslator(translator);
-    else // If it fails:
-    {
-        // Showing error message to user
-        QMessageBox msg;
-        msg.setText(tr("Can't load german translation"));
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
+    else {
+        showMsgBox(tr("Error"), tr("Unable to load german translation"), QMessageBox::Critical);
     }
     ui->retranslateUi(this); // Retranslating program
 
@@ -972,32 +923,26 @@ void MainWindow::setGermanLanguage()
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setSystemColorTheme()
-{
+void MainWindow::setSystemColorTheme() {
     qInfo() << Q_FUNC_INFO;
 
-    if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
-    {
-        // Finding .qss style file
+    if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
+        // Reading theme from resource
         QFile styleFile(":/themes/resources/themes/dark.qss");
-        styleFile.open(QFile::ReadOnly); // Openning file
+        styleFile.open(QFile::ReadOnly);
+        QString style(styleFile.readAll());
+        styleFile.close();
 
         this->theme = Theme::Dark; // Setting theme value
-
-        QString style(styleFile.readAll()); // Reading theme from resource
-        styleFile.close(); // Closing file
-
         qApp->setStyleSheet(style); // Applying style to program
-    }else {
-        // Finding .qss style file
+    } else {
+        // Reading theme from resource
         QFile styleFile(":/themes/resources/themes/light.qss");
-        styleFile.open(QFile::ReadOnly); // Openning file
+        styleFile.open(QFile::ReadOnly);
+        QString style(styleFile.readAll());
+        styleFile.close();
 
         this->theme = Theme::Light; // Setting theme value
-
-        QString style(styleFile.readAll()); // Reading theme from resource
-        styleFile.close(); // Closing file
-
         qApp->setStyleSheet(style); // Applying style to program
     }
     settings.setValue("theme", "system");
@@ -1005,41 +950,33 @@ void MainWindow::setSystemColorTheme()
     loadIcons(); // Updating icons
 }
 
-void MainWindow::setDarkColorTheme()
-{
+void MainWindow::setDarkColorTheme() {
     qInfo() << Q_FUNC_INFO;
 
-    // Finding .qss style file
+    // Reading theme from resource
     QFile styleFile(":/themes/resources/themes/dark.qss");
-    styleFile.open(QFile::ReadOnly); // Openning file
+    styleFile.open(QFile::ReadOnly);
+    QString style(styleFile.readAll());
+    styleFile.close();
 
     this->theme = Theme::Dark; // Setting theme value
     settings.setValue("theme", "dark");
-
-    QString style(styleFile.readAll()); // Reading theme from resource
-    styleFile.close(); // Closing file
-
     qApp->setStyleSheet(style); // Applying style to program
-
     loadIcons(); // Updating icons
 }
 
 void MainWindow::setLightColorTheme()
 {
     qInfo() << Q_FUNC_INFO;
-
-    // Finding .qss style file
+    // Reading theme from resource
     QFile styleFile(":/themes/resources/themes/light.qss");
-    styleFile.open(QFile::ReadOnly); // Openning file
+    styleFile.open(QFile::ReadOnly);
+    QString style(styleFile.readAll());
+    styleFile.close();
 
-    this->theme = Theme::Light; // Setting theme value
+    this->theme = Theme::Light;
     settings.setValue("theme", "light");
-
-    QString style(styleFile.readAll()); // Reading theme from resource
-    styleFile.close(); // Closing file
-
     qApp->setStyleSheet(style); // Applying style to program
-
     loadIcons(); // Updating icons
 }
 

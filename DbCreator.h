@@ -36,11 +36,8 @@ private slots:
 
 private:
     Ui::DbCreator *ui;
-
     QByteArray *key; // To store address of master-key by which database will be encrypted
-
     bool isPassHidden = true; // By this variable program know either to password or not
-
     QValidator *validator; // This QVidator will check if password that user enters is correct
 };
 

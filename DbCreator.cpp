@@ -13,7 +13,7 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
     if (path != "") // If path is not empty
     {
         ui->labelPath->setText("Path: " + path); // Writing path to window
-    }else { // Else showing error to user
+    } else { // Else showing error to user
         QMessageBox msg;
         msg.setText(tr("Can't load path"));
         msg.setStandardButtons(QMessageBox::Ok);

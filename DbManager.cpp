@@ -107,7 +107,17 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
         qDebug() << "Appended zeroes to key";
     }
 
-    // Creating iv with size of 16 bytes and filling it with random bytes
+    unsigned char out[32];
+    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
+        qDebug() << "Key derivation func error";
+    }
+
+    qDebug() << "derivated key: ";
+    for(int i = 0; i < 32; i++) {
+        qDebug() << (char)out[i];
+    }
+
+    // Creating iv with size of 16 bytes and filling it with random
     QByteArray *iv = new QByteArray(16, 0);
     RAND_bytes(reinterpret_cast<unsigned char*>(iv->data()), iv->size());
 
