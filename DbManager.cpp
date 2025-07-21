@@ -107,19 +107,16 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
         qDebug() << "Appended zeroes to key";
     }
 
-    unsigned char out[32];
-    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
+    unsigned char *salt = (unsigned char *) malloc(sizeof(unsigned char) * 32);
+    RAND_bytes(salt, 32);
+    unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
+    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), salt, 32, 100000, 32, out)) {
         qDebug() << "Key derivation func error";
     }
 
-    qDebug() << "derivated key: ";
-    for(int i = 0; i < 32; i++) {
-        qDebug() << (char)out[i];
-    }
-
     // Creating iv with size of 16 bytes and filling it with random
-    QByteArray *iv = new QByteArray(16, 0);
-    RAND_bytes(reinterpret_cast<unsigned char*>(iv->data()), iv->size());
+    unsigned char *iv = (unsigned char *) malloc(sizeof(unsigned char) * 16);
+    RAND_bytes(iv, 16);
 
     // Allocating cipher context
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
@@ -130,8 +127,8 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
 
     // Setting up cipher context
     if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
-                           reinterpret_cast<const unsigned char*>(key.data()),
-                           reinterpret_cast<const unsigned char*>(iv->data())) != 1) {
+                           out,
+                           iv) != 1) {
         EVP_CIPHER_CTX_free(ctx);
         qCritical() << "Encryption failed, cant setup cipher context";
         return nullptr;
@@ -183,8 +180,16 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
         qInfo() << "Fixed key size";
     }
 
+    unsigned char *salt = (unsigned char *) malloc(sizeof(unsigned char) * 32);
+    RAND_bytes(salt, 32);
+    unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
+    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), salt, 32, 100000, 32, out)) {
+        qDebug() << "Key derivation func error";
+    }
+
     // Reading iv and cipher data from encrypted byte array
-    QByteArray iv = encryptedData->left(16);
+    unsigned char *iv = (unsigned char *) malloc(sizeof(unsigned char) * 16);
+    iv = reinterpret_cast<unsigned char*>(&encryptedData->left(16).toStdString()[0]);
     QByteArray cipherText = encryptedData->mid(16);
 
     // Allocating ciper context
@@ -196,8 +201,8 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
 
     // Initializing decryption
     if (EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
-                           reinterpret_cast<const unsigned char*>(key.data()),
-                           reinterpret_cast<const unsigned char*>(iv.data())) != 1) {
+                           out,
+                           iv) != 1) {
         qCritical() << "Decryption failed, can't init decryption";
         EVP_CIPHER_CTX_free(ctx);
         return nullptr;

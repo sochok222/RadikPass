@@ -490,22 +490,22 @@ Try another name.</source>
         <translation type="unfinished">Надійність пароля залежить від його довжини</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="65"/>
+        <location filename="../../DbCreator.cpp" line="62"/>
         <source>Weak</source>
         <translation type="unfinished">Слабкий</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="68"/>
+        <location filename="../../DbCreator.cpp" line="65"/>
         <source>Normal</source>
         <translation type="unfinished">Середній</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="71"/>
+        <location filename="../../DbCreator.cpp" line="68"/>
         <source>Strong</source>
         <translation type="unfinished">Сильний</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="74"/>
+        <location filename="../../DbCreator.cpp" line="71"/>
         <source>Very Strong</source>
         <translation type="unfinished">Дуже сильний</translation>
     </message>
@@ -1626,12 +1626,12 @@ Func: </source>
         <translation type="vanished">Остання зміна</translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="447"/>
+        <location filename="../../DbManager.cpp" line="452"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="475"/>
+        <location filename="../../DbManager.cpp" line="480"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>

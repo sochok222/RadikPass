@@ -272,22 +272,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="65"/>
+        <location filename="../../DbCreator.cpp" line="62"/>
         <source>Weak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="68"/>
+        <location filename="../../DbCreator.cpp" line="65"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="71"/>
+        <location filename="../../DbCreator.cpp" line="68"/>
         <source>Strong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="74"/>
+        <location filename="../../DbCreator.cpp" line="71"/>
         <source>Very Strong</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1153,12 +1153,12 @@ Try again, please.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../DbManager.cpp" line="447"/>
+        <location filename="../../DbManager.cpp" line="452"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="475"/>
+        <location filename="../../DbManager.cpp" line="480"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>
