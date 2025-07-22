@@ -513,12 +513,12 @@ Try another name.</source>
 <context>
     <name>DbOpener</name>
     <message>
-        <location filename="../../DbOpener.cpp" line="15"/>
+        <location filename="../../DbOpener.cpp" line="22"/>
         <source>Open Database</source>
         <translation type="unfinished">Відкрити Базу Даних</translation>
     </message>
     <message>
-        <location filename="../../DbOpener.cpp" line="32"/>
+        <location filename="../../DbOpener.cpp" line="47"/>
         <source>Password line must be not empty</source>
         <translation type="unfinished">Поле з паролем не має бути пустим.</translation>
     </message>

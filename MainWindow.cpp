@@ -702,7 +702,7 @@ void MainWindow::openDatabase() {
     QString file = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if (!file.isEmpty()) {
-        DbOpener *openDb = new DbOpener(this, &key, file);
+        DbOpener *openDb = new DbOpener(this, &key, file, theme);
         openDb->exec();
     } else return;
 

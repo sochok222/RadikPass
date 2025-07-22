@@ -1,12 +1,19 @@
 #include "DbOpener.h"
 #include "ui_DbOpener.h"
 
-DbOpener::DbOpener(QWidget *parent, QByteArray *result, const QString &path)
+DbOpener::DbOpener(QWidget *parent, QByteArray *result, const QString &path, Theme theme)
     : QDialog(parent)
     , ui(new Ui::DbOpener)
+    , theme(theme)
 {
     ui->setupUi(this);
     ui->okButton->setDefault(true);
+
+    ui->passwordLine->setEchoMode(QLineEdit::EchoMode::Password);
+
+    action_hidePassword = ui->passwordLine->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
+
 
     ui->databasePathLabel->setText(path);
     masterPassword = result;
@@ -15,15 +22,23 @@ DbOpener::DbOpener(QWidget *parent, QByteArray *result, const QString &path)
     this->setWindowTitle(tr("Open Database"));
 }
 
-DbOpener::~DbOpener()
-{
+DbOpener::~DbOpener() {
     delete ui;
+}
+
+void DbOpener::hidePassword() {
+    if (ui->passwordLine->echoMode() == QLineEdit::EchoMode::Password) {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
+        ui->passwordLine->setEchoMode(QLineEdit::Normal);
+    } else {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
+        ui->passwordLine->setEchoMode(QLineEdit::Password);
+    }
 }
 
 
 
-void DbOpener::on_okButton_clicked()
-{
+void DbOpener::on_okButton_clicked() {
     if (ui->passwordLine->text().size() > 0) {
         *masterPassword = ui->passwordLine->text().toUtf8();
         this->close();
@@ -36,8 +51,7 @@ void DbOpener::on_okButton_clicked()
 }
 
 
-void DbOpener::on_cancelButton_clicked()
-{
+void DbOpener::on_cancelButton_clicked() {
     settings.setValue("Last", "");
     this->destroy(true,true);
 }

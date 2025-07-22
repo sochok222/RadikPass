@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QByteArray>
 #include <QMessageBox>
+#include "IconLoader.h"
 #include <QTranslator>
 
 namespace Ui {
@@ -19,7 +20,7 @@ class DbOpener : public QDialog
 
 public:
     // *result to reutrn master-key.
-    explicit DbOpener(QWidget *parent = nullptr, QByteArray *result = nullptr, const QString &path = "");
+    explicit DbOpener(QWidget *parent = nullptr, QByteArray *result = nullptr, const QString &path = "", Theme theme = Theme::Dark);
     ~DbOpener();
 
 private slots:
@@ -27,8 +28,14 @@ private slots:
 
     void on_cancelButton_clicked(); // When user clicks Cancel button.
 
+    void hidePassword();
+
 private:
     Ui::DbOpener *ui;
+
+    Theme theme;
+
+    QAction *action_hidePassword;
 
     // Loading settings.
     QSettings settings = QSettings("AlexRadik", "RadikPass");

@@ -179,9 +179,8 @@ int main(int argc, char *argv[])
 
     QByteArray key;
     if ((!settings.value("Last").isNull() && settings.value("Last").toString() != "")) {
-        if (isFileExists(settings.value("Last").toString()))
-        {
-            DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString());
+        if (isFileExists(settings.value("Last").toString())) {
+            DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString(), theme);
             openDb->exec();
         }
     } else {
