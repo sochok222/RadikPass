@@ -111,7 +111,7 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0" columnstretch="0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0" columnstretch="0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
      </property>
@@ -121,8 +121,8 @@
      <property name="verticalSpacing">
       <number>15</number>
      </property>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="linePassword">
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="lineRepeat">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -144,29 +144,10 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelRepeat">
        <property name="text">
-        <string>Quality:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QCheckBox" name="checkBoxIsAsterisks">
-       <property name="minimumSize">
-        <size>
-         <width>50</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>50</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>***</string>
+        <string>Repeat</string>
        </property>
       </widget>
      </item>
@@ -177,15 +158,15 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelRepeat">
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Repeat</string>
+        <string>Quality:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="lineRepeat">
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="linePassword">
        <property name="minimumSize">
         <size>
          <width>0</width>

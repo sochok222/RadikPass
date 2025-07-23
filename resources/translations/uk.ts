@@ -418,94 +418,94 @@ Try another name.</source>
     <name>DbCreator</name>
     <message>
         <location filename="../../DbCreator.ui" line="32"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="156"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="147"/>
         <source>Dialog</source>
         <translation type="unfinished">Діалог</translation>
     </message>
     <message>
         <location filename="../../DbCreator.ui" line="74"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="157"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="148"/>
         <source>Save</source>
         <translation type="unfinished">Зберегти</translation>
     </message>
     <message>
         <location filename="../../DbCreator.ui" line="81"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="158"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="149"/>
         <source>Cancel</source>
         <translation type="unfinished">Скасувати</translation>
     </message>
     <message>
         <location filename="../../DbCreator.ui" line="107"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="159"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="150"/>
         <source>Path</source>
         <translation type="unfinished">Шлях</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="150"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="161"/>
+        <location filename="../../DbCreator.ui" line="164"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="154"/>
         <source>Quality:</source>
         <translation type="unfinished">Надійність</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="169"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="162"/>
         <source>***</source>
-        <translation type="unfinished">***</translation>
+        <translation type="obsolete">***</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="176"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="163"/>
+        <location filename="../../DbCreator.ui" line="157"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="153"/>
         <source>Master password</source>
         <translation type="unfinished">Майстер-ключ:</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="183"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="164"/>
+        <location filename="../../DbCreator.ui" line="150"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="152"/>
         <source>Repeat</source>
         <translation type="unfinished">Повторити:</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="11"/>
+        <location filename="../../DbCreator.cpp" line="12"/>
         <source>Create Database</source>
         <translation type="unfinished">Створити Базу Даних</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="18"/>
         <source>Can&apos;t load path</source>
-        <translation type="unfinished">Не вдалося завантажити шлях</translation>
+        <translation type="obsolete">Не вдалося завантажити шлях</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="29"/>
         <source>Show/Hide password using asterisks</source>
-        <translation type="unfinished">Показати/Приховати пароль зірочками (*)</translation>
+        <translation type="obsolete">Показати/Приховати пароль зірочками (*)</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="30"/>
         <source>Password can contain letters, digits and special symbols only</source>
-        <translation type="unfinished">Пароль може містити тільки букви, цифри і спеціальні символи.</translation>
+        <translation type="obsolete">Пароль може містити тільки букви, цифри і спеціальні символи.</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="31"/>
         <source>Password quality for now is based on lenght</source>
-        <translation type="unfinished">Надійність пароля залежить від його довжини</translation>
+        <translation type="obsolete">Надійність пароля залежить від його довжини</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="62"/>
+        <location filename="../../DbCreator.cpp" line="19"/>
+        <source>Unable to load path.
+Try again please.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.cpp" line="98"/>
         <source>Weak</source>
         <translation type="unfinished">Слабкий</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="65"/>
+        <location filename="../../DbCreator.cpp" line="101"/>
         <source>Normal</source>
         <translation type="unfinished">Середній</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="68"/>
+        <location filename="../../DbCreator.cpp" line="104"/>
         <source>Strong</source>
         <translation type="unfinished">Сильний</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="71"/>
+        <location filename="../../DbCreator.cpp" line="107"/>
         <source>Very Strong</source>
         <translation type="unfinished">Дуже сильний</translation>
     </message>

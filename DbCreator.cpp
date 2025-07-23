@@ -1,10 +1,11 @@
 #include "DbCreator.h"
 #include "ui_DbCreator.h"
 
-DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
+DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme theme)
     : QDialog(parent)
     , ui(new Ui::DbCreator)
     , key(key)
+    , theme(theme)
 {
     ui->setupUi(this);
 
@@ -15,22 +16,26 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
         ui->labelPath->setText("Path: " + path); // Writing path to window
     } else { // Else showing error to user
         QMessageBox msg;
-        msg.setText(tr("Can't load path"));
+        msg.setText(tr("Unable to load path.\nTry again please."));
+        msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
         this->close();
     }
 
+    ui->linePassword->setEchoMode(QLineEdit::Password);
+    repeatEnabled = true;
+
+    action_hidePassword = ui->linePassword->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
+
+    action_openPasswordGenerator = ui->linePassword->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    connect(action_openPasswordGenerator, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
+
+
     // Setting maximum length to password lines
     ui->linePassword->setMaxLength(50);
     ui->lineRepeat->setMaxLength(50);
-
-    // Setting tooltips
-    ui->checkBoxIsAsterisks->setToolTip(tr("Show/Hide password using asterisks"));
-    ui->linePassword->setToolTip(tr("Password can contain letters, digits and special symbols only"));
-    ui->labelRepeat->setToolTip(tr("Password quality for now is based on lenght"));
-
-    ui->checkBoxIsAsterisks->setChecked(true); // Set checked as default
 
     // Setting echo mode to password lines
     ui->linePassword->setEchoMode(QLineEdit::Password);
@@ -47,6 +52,37 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path)
 DbCreator::~DbCreator() {
     delete ui;
     delete validator;
+}
+
+
+void DbCreator::hidePassword() {
+    if (ui->linePassword->echoMode() == QLineEdit::EchoMode::Password) {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
+        ui->linePassword->setEchoMode(QLineEdit::Normal);
+        ui->lineRepeat->clear();
+        ui->lineRepeat->hide();
+        ui->labelRepeat->hide();
+        repeatEnabled = false;
+    } else {
+        action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
+        ui->lineRepeat->show();
+        ui->labelRepeat->show();
+        repeatEnabled = true;
+        ui->linePassword->setEchoMode(QLineEdit::Password);
+    }
+}
+
+
+void DbCreator::openPasswordGenerator() {
+    QString generatedPassword;
+    PasswordGenerator *window_PasswordGenerator = new PasswordGenerator(this, &generatedPassword);
+    window_PasswordGenerator->exec();
+    delete window_PasswordGenerator;
+
+    if (generatedPassword.size() > 0) {
+        ui->lineRepeat->setText(generatedPassword);
+        ui->linePassword->setText(generatedPassword);
+    }
 }
 
 
@@ -75,53 +111,17 @@ void DbCreator::on_linePassword_textChanged(const QString &arg1) {
 
 void DbCreator::on_lineRepeat_textChanged(const QString &arg1) {
     // If password is hidden
-    if (isPassHidden) {
+    if (repeatEnabled) {
         if (arg1!=ui->linePassword->text() && ui->lineRepeat->text().size() > 0) { // If password in repeat line is not the same as in password line
             // Setting red palette to repeat line
             QPalette lineRepeatPalette;
             lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
             ui->lineRepeat->setPalette(lineRepeatPalette);
-        }else {
+        } else {
             // Else set default palette
             QPalette lineRepeatPalette;
             ui->lineRepeat->setPalette(lineRepeatPalette);
         }
-    }
-}
-
-void DbCreator::on_checkBoxIsAsterisks_checkStateChanged(const Qt::CheckState &arg1)
-{
-    switch(arg1) {
-    case Qt::Checked: // If QCheckBox is checked
-        ui->linePassword->setEchoMode(QLineEdit::Password); // Setting password echo mode to password line
-        ui->lineRepeat->setEchoMode(QLineEdit::Password); // Setting password echo mode to repeat password line
-
-        ui->lineRepeat->setEnabled(true); // Enabling repeat password line
-        ui->labelRepeat->setEnabled(true); // Enabling label near repeat password line
-
-        ui->lineRepeat->show(); // Showing repeat password line
-        ui->labelRepeat->show(); // Showing label near repeat password line
-
-        isPassHidden = true; // isPassHidden used to check if needs to check repeat line
-        break;
-
-    case Qt::Unchecked:
-        ui->linePassword->setEchoMode(QLineEdit::Normal); // Setting normal mode to password line
-
-        ui->lineRepeat->clear(); // Clearing repeat password line
-
-        // Disabling repeat password line and label near it
-        ui->lineRepeat->setEnabled(false);
-        ui->labelRepeat->setEnabled(false);
-        // Hiding
-        ui->lineRepeat->hide();
-        ui->labelRepeat->hide();
-
-        isPassHidden = false; // isPassHidden used to check if needs to check repeat line
-
-        break;
-    case Qt::PartiallyChecked:
-        break;
     }
 }
 
