@@ -1133,12 +1133,12 @@ Try again, please.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../DbManager.cpp" line="448"/>
+        <location filename="../../DbManager.cpp" line="435"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="476"/>
+        <location filename="../../DbManager.cpp" line="463"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>

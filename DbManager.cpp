@@ -22,8 +22,7 @@ void DbManager::showMsgBox(const QString &text) {
 void DbManager::search(const QString &text, QSqlDatabase *db, QListWidget *tables) {
     qInfo() << Q_FUNC_INFO;
 
-    QSqlQuery query(*db); // This QSqlQuery will select all tables
-
+    QSqlQuery query(*db);
     // Creating table where search results will be stored
     query.exec(R"(
     CREATE TABLE IF NOT EXISTS Search (
@@ -99,22 +98,18 @@ bool DbManager::deleteTable(QSqlDatabase *db, const QString tableName) {
 }
 
 
-QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
+QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &gotKey) {
     qInfo() << Q_FUNC_INFO;
 
-    qInfo() << "Checking master key length...";
-    if (!checkMasterKey(key)) {
-        qDebug() << "Appended zeroes to key";
-    }
+    // Creating iv with size of 16 bytes and filling it with random bytes
+    QByteArray *iv = new QByteArray(16, 0);
+    RAND_bytes(reinterpret_cast<unsigned char*>(iv->data()), iv->size());
 
-    unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
+    QByteArray key(32, 0);
+    RAND_bytes(reinterpret_cast<unsigned char*>(key.data()), key.size());
+    if(!PKCS5_PBKDF2_HMAC_SHA1(reinterpret_cast<char*>(gotKey.data()), gotKey.size(), 0, 0, 1000000, 32, reinterpret_cast<unsigned char*>(key.data()))) {
         qDebug() << "Key derivation func error";
     }
-
-    // Creating iv with size of 16 bytes and filling it with random
-    unsigned char *iv = (unsigned char *) malloc(sizeof(unsigned char) * 16);
-    RAND_bytes(iv, 16);
 
     // Allocating cipher context
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
@@ -125,8 +120,8 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
 
     // Setting up cipher context
     if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
-                           out,
-                           iv) != 1) {
+                           reinterpret_cast<const unsigned char*>(key.data()),
+                           reinterpret_cast<const unsigned char*>(iv->data())) != 1) {
         EVP_CIPHER_CTX_free(ctx);
         qCritical() << "Encryption failed, cant setup cipher context";
         return nullptr;
@@ -167,25 +162,17 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
     return ret;
 }
 
-QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
+QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &gotKey) {
     qInfo() << Q_FUNC_INFO;
 
-    qDebug() << "Got key with size of " << key.size() << " bytes.";
-
-    // Fixing key size
-    qInfo() << "Checking key length...";
-    if (!checkMasterKey(key)) {
-        qInfo() << "Fixed key size";
-    }
-
-    unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
+    QByteArray key(32, 0);
+    RAND_bytes(reinterpret_cast<unsigned char*>(key.data()), key.size());
+    if(!PKCS5_PBKDF2_HMAC_SHA1(reinterpret_cast<char*>(gotKey.data()), gotKey.size(), 0, 0, 1000000, 32, reinterpret_cast<unsigned char*>(key.data()))) {
         qDebug() << "Key derivation func error";
     }
 
     // Reading iv and cipher data from encrypted byte array
-    unsigned char *iv = (unsigned char *) malloc(sizeof(unsigned char) * 16);
-    iv = reinterpret_cast<unsigned char*>(&encryptedData->left(16).toStdString()[0]);
+    QByteArray iv = encryptedData->left(16);
     QByteArray cipherText = encryptedData->mid(16);
 
     // Allocating ciper context
@@ -197,8 +184,8 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
 
     // Initializing decryption
     if (EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
-                           out,
-                           iv) != 1) {
+                           reinterpret_cast<const unsigned char*>(key.data()),
+                           reinterpret_cast<const unsigned char*>(iv.data())) != 1) {
         qCritical() << "Decryption failed, can't init decryption";
         EVP_CIPHER_CTX_free(ctx);
         return nullptr;
