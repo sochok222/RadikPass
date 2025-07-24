@@ -107,10 +107,8 @@ QByteArray* DbManager::encryptData(QByteArray *data, QByteArray &key) {
         qDebug() << "Appended zeroes to key";
     }
 
-    unsigned char *salt = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    RAND_bytes(salt, 32);
     unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), salt, 32, 100000, 32, out)) {
+    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
         qDebug() << "Key derivation func error";
     }
 
@@ -180,10 +178,8 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &key) {
         qInfo() << "Fixed key size";
     }
 
-    unsigned char *salt = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    RAND_bytes(salt, 32);
     unsigned char *out = (unsigned char *) malloc(sizeof(unsigned char) * 32);
-    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), salt, 32, 100000, 32, out)) {
+    if(!PKCS5_PBKDF2_HMAC_SHA1(&key.toStdString()[0], strlen(&key.toStdString()[0]), 0, 0, 100000, 32, out)) {
         qDebug() << "Key derivation func error";
     }
 

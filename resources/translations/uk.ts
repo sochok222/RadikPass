@@ -1626,12 +1626,12 @@ Func: </source>
         <translation type="vanished">Остання зміна</translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="452"/>
+        <location filename="../../DbManager.cpp" line="448"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="480"/>
+        <location filename="../../DbManager.cpp" line="476"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>
