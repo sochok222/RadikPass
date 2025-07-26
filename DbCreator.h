@@ -42,10 +42,10 @@ private:
     Ui::DbCreator *ui;
     QByteArray *key; // To store address of master-key by which database will be encrypted
     bool repeatEnabled; // By this variable program know either to password or not
-    QValidator *validator; // This QVidator will check if password that user enters is correct
     QAction *action_hidePassword;
     QAction *action_openPasswordGenerator;
     Theme theme;
+    PasswordGenerator *window_PasswordGenerator;
 };
 
 #endif // DBCREATOR_H

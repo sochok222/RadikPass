@@ -429,16 +429,20 @@ Versuchen Sie einen anderen Namen.</translation>
         <translation type="unfinished">Weg</translation>
     </message>
     <message>
+        <location filename="../../DbCreator.ui" line="157"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="153"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../DbCreator.ui" line="164"/>
         <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="154"/>
         <source>Quality:</source>
         <translation type="unfinished">Qualität:</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="157"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="153"/>
         <source>Master password</source>
-        <translation type="unfinished">Master-Passwort:</translation>
+        <translation type="obsolete">Master-Passwort:</translation>
     </message>
     <message>
         <location filename="../../DbCreator.ui" line="150"/>
@@ -474,22 +478,22 @@ Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="98"/>
+        <location filename="../../DbCreator.cpp" line="87"/>
         <source>Weak</source>
         <translation type="unfinished">Schwach</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="101"/>
+        <location filename="../../DbCreator.cpp" line="90"/>
         <source>Normal</source>
         <translation type="unfinished">Normal</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="104"/>
+        <location filename="../../DbCreator.cpp" line="93"/>
         <source>Strong</source>
         <translation type="unfinished">Stark</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="107"/>
+        <location filename="../../DbCreator.cpp" line="96"/>
         <source>Very Strong</source>
         <translation type="unfinished">Sehr stark</translation>
     </message>
@@ -1203,13 +1207,14 @@ Bitte versuchen Sie es erneut.</translation>
         <location filename="../../MainWindow.cpp" line="516"/>
         <location filename="../../MainWindow.cpp" line="525"/>
         <location filename="../../MainWindow.cpp" line="572"/>
-        <location filename="../../MainWindow.cpp" line="711"/>
-        <location filename="../../MainWindow.cpp" line="742"/>
-        <location filename="../../MainWindow.cpp" line="799"/>
-        <location filename="../../MainWindow.cpp" line="839"/>
-        <location filename="../../MainWindow.cpp" line="876"/>
-        <location filename="../../MainWindow.cpp" line="897"/>
-        <location filename="../../MainWindow.cpp" line="917"/>
+        <location filename="../../MainWindow.cpp" line="708"/>
+        <location filename="../../MainWindow.cpp" line="739"/>
+        <location filename="../../MainWindow.cpp" line="744"/>
+        <location filename="../../MainWindow.cpp" line="798"/>
+        <location filename="../../MainWindow.cpp" line="838"/>
+        <location filename="../../MainWindow.cpp" line="875"/>
+        <location filename="../../MainWindow.cpp" line="896"/>
+        <location filename="../../MainWindow.cpp" line="916"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1260,38 +1265,40 @@ Try again please.</source>
         <translation>Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="702"/>
+        <location filename="../../MainWindow.cpp" line="699"/>
         <source>Open encrypted database</source>
         <translation>Öffnen Sie eine verschlüsselte Datenbank</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="711"/>
-        <source>Password is incorrect or file is damaged.</source>
+        <location filename="../../MainWindow.cpp" line="708"/>
+        <location filename="../../MainWindow.cpp" line="744"/>
+        <source>Password is incorrect or file is damaged.
+Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="742"/>
+        <location filename="../../MainWindow.cpp" line="739"/>
         <source>Unable to create new database.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="799"/>
+        <location filename="../../MainWindow.cpp" line="798"/>
         <source>Unable to load icon to table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="876"/>
+        <location filename="../../MainWindow.cpp" line="875"/>
         <source>Unable to load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="897"/>
+        <location filename="../../MainWindow.cpp" line="896"/>
         <source>Unable to load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="917"/>
+        <location filename="../../MainWindow.cpp" line="916"/>
         <source>Unable to load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1300,7 +1307,7 @@ Try again please.</source>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="839"/>
+        <location filename="../../MainWindow.cpp" line="838"/>
         <source>Unable to duplicate entry.
 Try again, please.</source>
         <translation type="unfinished"></translation>
@@ -1310,7 +1317,7 @@ Try again, please.</source>
         <translation type="vanished">Das Passwort ist falsch</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="732"/>
+        <location filename="../../MainWindow.cpp" line="729"/>
         <source>Create new database</source>
         <translation>Datenbank erstellen</translation>
     </message>
@@ -1323,7 +1330,7 @@ Try again, please.</source>
         <translation type="vanished">Spalten können nicht dupliziert werden</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="846"/>
+        <location filename="../../MainWindow.cpp" line="845"/>
         <source>Entry duplicated</source>
         <translation>Eintrag dupliziert</translation>
     </message>

@@ -684,10 +684,7 @@ void MainWindow::openDatabase() {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
-        // If user clicks
-        // Yes - must save changes
-        // No - do not save changes
-        // Cancel - do not close program
+
         if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
             DbManager::uploadDb(settings.value("Last").toString(), key, &db);
@@ -708,7 +705,7 @@ void MainWindow::openDatabase() {
 
     if (!key.isEmpty()) {
         if (!DbManager::loadDb(file, key, &db, tables)) {
-            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged."), QMessageBox::Critical);
+            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
         }
         settings.setValue("Last", file);
         ui->listWidget->clear();
@@ -731,19 +728,21 @@ void MainWindow::createDatabase() {
     qInfo() << Q_FUNC_INFO;
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
-    if (databasePath == "") return; // If user closed window this means that datbase path is null and function execution terminates
+    if (databasePath == "") return;
 
     DbCreator *createNew = new DbCreator(this, &key, databasePath); // Creating window where user can set password to new database
     createNew->exec();
     delete createNew;
 
-    if (key != "") { // If key is empty this means that user closed createNew dialog
-        if (!DbManager::createAndFillDatabase(databasePath, key, &db)) { // This must create new .db file and encrypt it
+    if (key != "") {
+        if (!DbManager::createAndFillDatabase(databasePath, key, &db)) {
             showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
             return;
         }
 
-        DbManager::loadDb(databasePath, key, &db, tables); // Loads database to to the QSqlDatabase instance
+        if (!DbManager::loadDb(databasePath, key, &db, tables)) {
+            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
+        }
         settings.setValue("Last", databasePath); // Setting last used database path to recently created
 
         ui->listWidget->clear(); // Clears listWidget that holds all tables
