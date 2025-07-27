@@ -1,5 +1,6 @@
 #include "TableAdder.h"
 #include "ui_TableAdder.h"
+#include <qtimer.h>
 
 
 TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, Theme theme)
@@ -27,7 +28,7 @@ TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *
     // Check if database is opened
     if (db == nullptr || !db->isOpen() || tables == nullptr) {
         showMsgBox(tr("Can't add new table, probably you didn't opened database"));
-        this->close();
+        QTimer::singleShot(0, this, SLOT(close()));
     }
 
     // Loading icons to QComboBox

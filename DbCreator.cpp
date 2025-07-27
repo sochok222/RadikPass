@@ -1,5 +1,6 @@
 #include "DbCreator.h"
 #include "ui_DbCreator.h"
+#include <qtimer.h>
 
 DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme theme)
     : QDialog(parent)
@@ -20,7 +21,7 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme
         msg.setIcon(QMessageBox::Critical);
         msg.setStandardButtons(QMessageBox::Ok);
         msg.exec();
-        this->close();
+        QTimer::singleShot(0, this, SLOT(close()));
     }
 
     ui->line_password->setEchoMode(QLineEdit::Password);
@@ -81,7 +82,12 @@ void DbCreator::on_saveButton_clicked() {
 }
 
 void DbCreator::on_linePassword_textChanged(const QString &arg1) {
-    // Checking password quality depending on length
+    bool hasDigit = false;
+    bool hasUppercase = false;
+    bool hasLowercase = false;
+    bool hasSpecial = false;
+
+
     switch(ui->line_password->text().size()) {
     case 1:
         ui->label_passwordQuality->setText(tr("Weak"));

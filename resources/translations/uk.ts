@@ -467,7 +467,7 @@ Try another name.</source>
         <translation type="unfinished">Повторити:</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="12"/>
+        <location filename="../../DbCreator.cpp" line="13"/>
         <source>Create Database</source>
         <translation type="unfinished">Створити Базу Даних</translation>
     </message>
@@ -488,28 +488,28 @@ Try another name.</source>
         <translation type="obsolete">Надійність пароля залежить від його довжини</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="19"/>
+        <location filename="../../DbCreator.cpp" line="20"/>
         <source>Unable to load path.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="87"/>
+        <location filename="../../DbCreator.cpp" line="93"/>
         <source>Weak</source>
         <translation type="unfinished">Слабкий</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="90"/>
+        <location filename="../../DbCreator.cpp" line="96"/>
         <source>Normal</source>
         <translation type="unfinished">Середній</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="93"/>
+        <location filename="../../DbCreator.cpp" line="99"/>
         <source>Strong</source>
         <translation type="unfinished">Сильний</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="96"/>
+        <location filename="../../DbCreator.cpp" line="102"/>
         <source>Very Strong</source>
         <translation type="unfinished">Дуже сильний</translation>
     </message>
@@ -699,12 +699,12 @@ Error: </source>
 <context>
     <name>EntryAdder</name>
     <message>
-        <location filename="../../EntryAdder.cpp" line="21"/>
+        <location filename="../../EntryAdder.cpp" line="22"/>
         <source>Add Entry</source>
         <translation type="unfinished">Створити запис</translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="34"/>
+        <location filename="../../EntryAdder.cpp" line="35"/>
         <source>Can&apos;t open database</source>
         <translation type="unfinished"></translation>
     </message>
@@ -718,7 +718,7 @@ Last query: </source>
         <translation type="obsolete">Останній запит: </translation>
     </message>
     <message>
-        <location filename="../../EntryAdder.cpp" line="107"/>
+        <location filename="../../EntryAdder.cpp" line="108"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished">Щонайменше одне поле не має бути порожнім</translation>
     </message>
@@ -774,7 +774,7 @@ Last query: </source>
 <context>
     <name>EntryEditor</name>
     <message>
-        <location filename="../../EntryEditor.cpp" line="23"/>
+        <location filename="../../EntryEditor.cpp" line="24"/>
         <source>Edit Entry</source>
         <translation type="unfinished">Редагувати запис</translation>
     </message>
@@ -783,22 +783,22 @@ Last query: </source>
         <translation type="obsolete">Щось пішло не так</translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="35"/>
+        <location filename="../../EntryEditor.cpp" line="36"/>
         <source>Something went wrong.
 Try again please</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="72"/>
-        <location filename="../../EntryEditor.cpp" line="84"/>
-        <location filename="../../EntryEditor.cpp" line="95"/>
-        <location filename="../../EntryEditor.cpp" line="115"/>
+        <location filename="../../EntryEditor.cpp" line="74"/>
+        <location filename="../../EntryEditor.cpp" line="86"/>
+        <location filename="../../EntryEditor.cpp" line="97"/>
+        <location filename="../../EntryEditor.cpp" line="117"/>
         <source>Unable to load data from database.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="140"/>
+        <location filename="../../EntryEditor.cpp" line="142"/>
         <source>Unable to edit this row.
 Try again, please.</source>
         <translation type="unfinished"></translation>
@@ -822,7 +822,7 @@ Error: </source>
         <translation type="obsolete">Не вдалося виконати запит: </translation>
     </message>
     <message>
-        <location filename="../../EntryEditor.cpp" line="145"/>
+        <location filename="../../EntryEditor.cpp" line="147"/>
         <source>At least one field must not be empty</source>
         <translation type="unfinished">Щонайменше одне поле не має бути порожнім</translation>
     </message>
@@ -1647,37 +1647,37 @@ Try again please</source>
 <context>
     <name>TableAdder</name>
     <message>
-        <location filename="../../TableAdder.cpp" line="15"/>
+        <location filename="../../TableAdder.cpp" line="16"/>
         <source>Add Table</source>
         <translation type="unfinished">Додати таблицю</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="29"/>
+        <location filename="../../TableAdder.cpp" line="30"/>
         <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
         <translation type="unfinished">Не можливо завантажити таблицю, скоріше всього база даних не відкрита</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="93"/>
+        <location filename="../../TableAdder.cpp" line="94"/>
         <source>Name field must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="124"/>
-        <location filename="../../TableAdder.cpp" line="135"/>
+        <location filename="../../TableAdder.cpp" line="125"/>
+        <location filename="../../TableAdder.cpp" line="136"/>
         <source>Can&apos;t create table
 Query error: </source>
         <translation type="unfinished">Не вдалося створити таблицю.
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="142"/>
+        <location filename="../../TableAdder.cpp" line="143"/>
         <source>Table with this name already exists
 Try another name</source>
         <translation type="unfinished">Таблиця з цим ім&apos;ям вже існує.
 Спробуйте вказати інакше ім&apos;я.</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="144"/>
+        <location filename="../../TableAdder.cpp" line="145"/>
         <source>Can&apos;t create table with this name.
 Try another name.</source>
         <translation type="unfinished">Не вдається створити таблицю з цим ім&apos;ям

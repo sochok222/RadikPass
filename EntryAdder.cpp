@@ -1,6 +1,7 @@
 #include "EntryAdder.h"
 #include "ui_EntryAdder.h"
 #include <qsqlerror.h>
+#include <qtimer.h>
 
 void showMsgBox(const QString &text) {
     QMessageBox msg;
@@ -32,7 +33,7 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     // Check if database is open
     if (db == nullptr || !db->isOpen()) {
         showMsgBox(tr("Can't open database"));
-        this->close();
+        QTimer::singleShot(0, this, SLOT(close()));
     }
 }
 

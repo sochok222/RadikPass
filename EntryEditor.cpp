@@ -2,6 +2,7 @@
 #include "ui_EntryEditor.h"
 #include <qdatetime.h>
 #include <qsqlerror.h>
+#include <qtimer.h>
 
 void EntryEditor::showMsgBox(const QString &text) {
     qInfo() << Q_FUNC_INFO;
@@ -33,6 +34,7 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
     // Checking if database is opened
     if (tableView == nullptr || db == nullptr || !db->isOpen()) {
         showMsgBox(tr("Something went wrong.\nTry again please"));
+        QTimer::singleShot(0, this, SLOT(close()));
     }
 
     fillData(); // Filling fiels with data from entry
