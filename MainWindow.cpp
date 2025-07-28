@@ -762,35 +762,35 @@ void MainWindow::createDatabase() {
 void MainWindow::configureEntryMenu() { // This function will disable or enable actions in View menu in toolbar
     qInfo() << Q_FUNC_INFO;
 
-    if (ui->tableView->selectionModel()->hasSelection()) { // If row is not selected in TableView this will disable actions and vise versa
+    if (ui->tableView->selectionModel()->hasSelection()) {
         ui->actionCopy_User_Name->setEnabled(true);
         ui->actionCopy_Password->setEnabled(true);
         ui->menuUrl->setEnabled(true);
         ui->actionEdit_Entry->setEnabled(true);
         ui->actionDuplicate_Entry->setEnabled(true);
         ui->actionDelete_Entry->setEnabled(true);
-    } else if (ui->listWidget->count() == 0) { // Checking if database is opened
-        ui->actionCopy_User_Name->setEnabled(false);
-        ui->actionCopy_Password->setEnabled(false);
-        ui->menuUrl->setEnabled(false);
-        ui->actionEdit_Entry->setEnabled(false);
-        ui->actionDuplicate_Entry->setEnabled(false);
-        ui->actionDelete_Entry->setEnabled(false);
-        ui->actionAdd_Entry->setEnabled(true);
+    } else if (ui->listWidget->count() == 0) {
+        ui->actionCopy_User_Name->setDisabled(true);
+        ui->actionCopy_Password->setDisabled(true);
+        ui->menuUrl->setDisabled(true);
+        ui->actionEdit_Entry->setDisabled(true);
+        ui->actionDuplicate_Entry->setDisabled(true);
+        ui->actionDelete_Entry->setDisabled(true);
+        ui->actionAdd_Entry->setDisabled(true);
     } else {
-        ui->actionCopy_User_Name->setEnabled(false);
-        ui->actionCopy_Password->setEnabled(false);
-        ui->menuUrl->setEnabled(false);
-        ui->actionEdit_Entry->setEnabled(false);
-        ui->actionDuplicate_Entry->setEnabled(false);
-        ui->actionDelete_Entry->setEnabled(false);
-        ui->actionAdd_Entry->setEnabled(false);
+        ui->actionCopy_User_Name->setDisabled(true);
+        ui->actionCopy_Password->setDisabled(true);
+        ui->menuUrl->setDisabled(true);
+        ui->actionEdit_Entry->setDisabled(true);
+        ui->actionDuplicate_Entry->setDisabled(true);
+        ui->actionDelete_Entry->setDisabled(true);
+        ui->actionAdd_Entry->setDisabled(true);
     }
 }
 
 void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget,
     QSqlQuery query(db); // New query to read data from database
-    for(int i = 0; i < ui->listWidget->count(); i++) { // For every item in ListWidget(table)
+    for(int i = 0; i < ui->listWidget->count(); i++) {
         // Loading name of icon from TablesSettings
         query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name");
         query.bindValue(":name", ui->listWidget->item(i)->text());

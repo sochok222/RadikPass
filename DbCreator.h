@@ -26,17 +26,17 @@ public:
     ~DbCreator();
 
 private slots:
-    void on_saveButton_clicked(); // When user clicks "Ok" button
-
-    void on_linePassword_textChanged(const QString &arg1); // When text in password line changed
-
-    void on_lineRepeat_textChanged(const QString &arg1); // When text in repeat line changed
-
-    void on_cancelButton_clicked(); // When user cancels action
-
     void hidePassword();
 
     void openPasswordGenerator();
+
+    void on_button_save_clicked();
+
+    void on_button_cancel_clicked();
+
+    void on_line_repeat_textChanged(const QString &arg1);
+
+    void on_line_password_textChanged(const QString &arg1);
 
 private:
     Ui::DbCreator *ui;

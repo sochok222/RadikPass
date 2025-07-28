@@ -252,22 +252,22 @@ Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="93"/>
+        <location filename="../../DbCreator.cpp" line="115"/>
         <source>Weak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="96"/>
+        <location filename="../../DbCreator.cpp" line="118"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="99"/>
+        <location filename="../../DbCreator.cpp" line="121"/>
         <source>Strong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="102"/>
+        <location filename="../../DbCreator.cpp" line="124"/>
         <source>Very Strong</source>
         <translation type="unfinished"></translation>
     </message>
@@ -882,34 +882,34 @@ Try again please.</source>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="708"/>
-        <location filename="../../MainWindow.cpp" line="744"/>
+        <location filename="../../MainWindow.cpp" line="745"/>
         <source>Password is incorrect or file is damaged.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="739"/>
+        <location filename="../../MainWindow.cpp" line="740"/>
         <source>Unable to create new database.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="798"/>
+        <location filename="../../MainWindow.cpp" line="799"/>
         <source>Unable to load icon to table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="875"/>
+        <location filename="../../MainWindow.cpp" line="876"/>
         <source>Unable to load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="896"/>
+        <location filename="../../MainWindow.cpp" line="897"/>
         <source>Unable to load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="916"/>
+        <location filename="../../MainWindow.cpp" line="917"/>
         <source>Unable to load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -921,13 +921,13 @@ Try again please.</source>
         <location filename="../../MainWindow.cpp" line="525"/>
         <location filename="../../MainWindow.cpp" line="572"/>
         <location filename="../../MainWindow.cpp" line="708"/>
-        <location filename="../../MainWindow.cpp" line="739"/>
-        <location filename="../../MainWindow.cpp" line="744"/>
-        <location filename="../../MainWindow.cpp" line="798"/>
-        <location filename="../../MainWindow.cpp" line="838"/>
-        <location filename="../../MainWindow.cpp" line="875"/>
-        <location filename="../../MainWindow.cpp" line="896"/>
-        <location filename="../../MainWindow.cpp" line="916"/>
+        <location filename="../../MainWindow.cpp" line="740"/>
+        <location filename="../../MainWindow.cpp" line="745"/>
+        <location filename="../../MainWindow.cpp" line="799"/>
+        <location filename="../../MainWindow.cpp" line="839"/>
+        <location filename="../../MainWindow.cpp" line="876"/>
+        <location filename="../../MainWindow.cpp" line="897"/>
+        <location filename="../../MainWindow.cpp" line="917"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -969,13 +969,13 @@ Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="838"/>
+        <location filename="../../MainWindow.cpp" line="839"/>
         <source>Unable to duplicate entry.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="845"/>
+        <location filename="../../MainWindow.cpp" line="846"/>
         <source>Entry duplicated</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1136,12 +1136,12 @@ Try again, please.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../DbManager.cpp" line="435"/>
+        <location filename="../../DbManager.cpp" line="417"/>
         <source>Can&apos;t copy table </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbManager.cpp" line="463"/>
+        <location filename="../../DbManager.cpp" line="445"/>
         <source>Unable to open encrypted database
 Try again please</source>
         <translation type="unfinished"></translation>

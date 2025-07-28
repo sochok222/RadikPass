@@ -56,10 +56,6 @@ public:
     // Return encrypted data array, *data this is data that will be encrypted using &key as master-key
     static QByteArray* encryptData(QByteArray *data, QByteArray &key);
 
-    // This will check and correct &masterKey to correct lengh, for aes 256 this is key that has lengh of 32 bytes,
-    // if key is shorter than 32 bytes it will append zeroes
-    static bool checkMasterKey(QByteArray &masterKey);
-
     // This will safely delete temporary file &file.
     // Before removing it will rewrite content of file by zeroes, and then delete file.
     template<typename T>

@@ -75,13 +75,35 @@ void DbCreator::openPasswordGenerator() {
     }
 }
 
-
-void DbCreator::on_saveButton_clicked() {
+void DbCreator::on_button_save_clicked() {
     *key = ui->line_password->text().toUtf8(); // Returning key that user entered
-    this->close(); // Closing window
+    this->close();
 }
 
-void DbCreator::on_linePassword_textChanged(const QString &arg1) {
+
+void DbCreator::on_button_cancel_clicked() {
+    this->reject();
+}
+
+
+void DbCreator::on_line_repeat_textChanged(const QString &arg1) {
+    // If password is hidden
+    if (repeatEnabled) {
+        if (arg1!=ui->line_password->text() && ui->line_repeat->text().size() > 0) { // If password in repeat line is not the same as in password line
+            // Setting red palette to repeat line
+            QPalette lineRepeatPalette;
+            lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
+            ui->line_repeat->setPalette(lineRepeatPalette);
+        } else {
+            // Else set default palette
+            QPalette lineRepeatPalette;
+            ui->line_repeat->setPalette(lineRepeatPalette);
+        }
+    }
+}
+
+
+void DbCreator::on_line_password_textChanged(const QString &arg1) {
     bool hasDigit = false;
     bool hasUppercase = false;
     bool hasLowercase = false;
@@ -102,26 +124,5 @@ void DbCreator::on_linePassword_textChanged(const QString &arg1) {
         ui->label_passwordQuality->setText(tr("Very Strong"));
         break;
     }
-}
-
-void DbCreator::on_lineRepeat_textChanged(const QString &arg1) {
-    // If password is hidden
-    if (repeatEnabled) {
-        if (arg1!=ui->line_password->text() && ui->line_repeat->text().size() > 0) { // If password in repeat line is not the same as in password line
-            // Setting red palette to repeat line
-            QPalette lineRepeatPalette;
-            lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
-            ui->line_repeat->setPalette(lineRepeatPalette);
-        } else {
-            // Else set default palette
-            QPalette lineRepeatPalette;
-            ui->line_repeat->setPalette(lineRepeatPalette);
-        }
-    }
-}
-
-
-void DbCreator::on_cancelButton_clicked() {
-    this->reject(); // Closing window
 }
 

@@ -166,7 +166,6 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &gotKey
     qInfo() << Q_FUNC_INFO;
 
     QByteArray key(32, 0);
-    RAND_bytes(reinterpret_cast<unsigned char*>(key.data()), key.size());
     if(!PKCS5_PBKDF2_HMAC_SHA1(reinterpret_cast<char*>(gotKey.data()), gotKey.size(), 0, 0, 1000000, 32, reinterpret_cast<unsigned char*>(key.data()))) {
         qDebug() << "Key derivation func error";
     }
@@ -280,23 +279,6 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
     query.prepare("DETACH DATABASE tempDb");
     if (!query.exec()) {
         qDebug() << "Can`t detach temporary database, query error: " <<  query.lastError().text();
-        return false;
-    }
-
-    return true;
-}
-
-bool DbManager::checkMasterKey(QByteArray &masterKey) {
-    qDebug() << Q_FUNC_INFO;
-
-    if (masterKey.size() < 32) { // If key size is less than 32 bytes needs to append zeroes
-        qInfo() << "Appending " << 32-masterKey.size() << " zeroes to key...";
-        QByteArray toAppend(32-masterKey.size(), '0');
-        masterKey.append(toAppend);
-        return false;
-    }else if (masterKey.size() > 32) { // Else needs to remove redundant bytes
-        qInfo() << "Removing redundant bytes from key...";
-        masterKey.remove(32, masterKey.size());
         return false;
     }
 
@@ -484,11 +466,8 @@ bool DbManager::uploadDb(const QString encryptedDatabase, QByteArray &key, QSqlD
     return true;
 }
 
-bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db)
-{
+bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db)  {
     qDebug() << Q_FUNC_INFO;
-
-    checkMasterKey(key); // If key length is less than 32 this function will append zeroes to key
 
     // Creating a temporary file and trying to open it
     QTemporaryFile tmp;
