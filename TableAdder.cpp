@@ -16,14 +16,14 @@ TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *
     this->setWindowTitle(tr("Add Table"));
 
     // Maximum length is 15
-    ui->nameEdit->setMaxLength(15);
+    ui->line_name->setMaxLength(15);
 
     // Limmitation of user input by QRegularExpression
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
     // Setting expression to validator
     validator = new QRegularExpressionValidator(rx, this);
     // Applyint validator to nameEdit
-    ui->nameEdit->setValidator(validator);
+    ui->line_name->setValidator(validator);
 
     // Check if database is opened
     if (db == nullptr || !db->isOpen() || tables == nullptr) {
@@ -51,7 +51,7 @@ void TableAdder::showMsgBox(const QString &text) {
 void TableAdder::loadIcons() {
     QVector<Icon> icons = {Icon::Entry, Icon::Game, Icon::House, Icon::Money, Icon::Office, Icon::Pc, Icon::Programming, Icon::User, Icon::Key};
     for(Icon &ico : icons) {
-        ui->comboBox->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
+        ui->comboBox_icon->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
         model->appendRow(new QStandardItem(IconLoader::getIconName(ico)));
     }
 
@@ -60,7 +60,7 @@ void TableAdder::loadIcons() {
     // Setting mapper index to first index.
     mapper->toFirst();
     // Synchronizing mapper to comboBox to know which icon user selected.
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
+    connect(ui->comboBox_icon, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
 
@@ -90,7 +90,7 @@ void TableAdder::on_addTableButton_clicked() {
     qDebug() << Q_FUNC_INFO;
 
     // If nameEdit is empty needs to show message to user that field must be not empty.
-    if (ui->nameEdit->text().size() <= 0) {
+    if (ui->line_name->text().size() <= 0) {
         showMsgBox(tr("Name field must be not empty"));
         return;
     }
@@ -99,7 +99,7 @@ void TableAdder::on_addTableButton_clicked() {
     QSqlQuery query(*db);
 
     // Name of table that user wants to create.
-    QString tableName = ui->nameEdit->text();
+    QString tableName = ui->line_name->text();
 
 
     rtrnCodes ifExists = checkIfTableExists(tableName);
@@ -137,7 +137,7 @@ void TableAdder::on_addTableButton_clicked() {
         }
 
         // Appending name of table that was created to vector.
-        tables->push_back(ui->nameEdit->text());
+        tables->push_back(ui->line_name->text());
         this->close();
     } else if (ifExists == rtrnCodes::exists) { // Showing error if table is already exists.
         showMsgBox(tr("Table with this name already exists\nTry another name"));

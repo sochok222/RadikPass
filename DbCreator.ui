@@ -122,7 +122,7 @@
       <number>15</number>
      </property>
      <item row="2" column="2">
-      <widget class="QLineEdit" name="line_repeat">
+      <widget class="QLineEdit" name="lineEdit_repeat">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -166,7 +166,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLineEdit" name="line_password">
+      <widget class="QLineEdit" name="lineEdit_password">
        <property name="minimumSize">
         <size>
          <width>0</width>

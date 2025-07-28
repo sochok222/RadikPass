@@ -12,6 +12,14 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme
 
     this->setWindowTitle(tr("Create Database")); // Setting window title
 
+
+    // Connecting buttons and signals of lineEdits
+    connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(clicked_button_cancel()));
+    connect(ui->button_save, SIGNAL(clicked(bool)), this, SLOT(clicked_button_save()));
+    connect(ui->lineEdit_password, SIGNAL(textChanged(QString)), this, SLOT(lineEdit_password_textChanged(QString)));
+    connect(ui->lineEdit_repeat, SIGNAL(textChanged(QString)), this, SLOT(lineEdit_repeat_textChanged(QString)));
+
+
     if (path != "") // If path is not empty
     {
         ui->label_path->setText("Path: " + path); // Writing path to window
@@ -24,19 +32,19 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme
         QTimer::singleShot(0, this, SLOT(close()));
     }
 
-    ui->line_password->setEchoMode(QLineEdit::Password);
+    ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     repeatEnabled = true;
 
-    action_hidePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
     connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
-    action_openPasswordGenerator = ui->line_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    action_openPasswordGenerator = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_openPasswordGenerator, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
 
     // Setting echo mode to password lines
-    ui->line_password->setEchoMode(QLineEdit::Password);
-    ui->line_repeat->setEchoMode(QLineEdit::Password);
+    ui->lineEdit_password->setEchoMode(QLineEdit::Password);
+    ui->lineEdit_repeat->setEchoMode(QLineEdit::Password);
 
 }
 
@@ -46,19 +54,19 @@ DbCreator::~DbCreator() {
 
 
 void DbCreator::hidePassword() {
-    if (ui->line_password->echoMode() == QLineEdit::EchoMode::Password) {
+    if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
-        ui->line_password->setEchoMode(QLineEdit::Normal);
-        ui->line_repeat->clear();
-        ui->line_repeat->hide();
+        ui->lineEdit_password->setEchoMode(QLineEdit::Normal);
+        ui->lineEdit_repeat->clear();
+        ui->lineEdit_repeat->hide();
         ui->label_repeat->hide();
         repeatEnabled = false;
     } else {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
-        ui->line_repeat->show();
+        ui->lineEdit_repeat->show();
         ui->label_repeat->show();
         repeatEnabled = true;
-        ui->line_password->setEchoMode(QLineEdit::Password);
+        ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     }
 }
 
@@ -70,47 +78,47 @@ void DbCreator::openPasswordGenerator() {
     delete window_PasswordGenerator;
 
     if (generatedPassword.size() > 0) {
-        ui->line_repeat->setText(generatedPassword);
-        ui->line_password->setText(generatedPassword);
+        ui->lineEdit_repeat->setText(generatedPassword);
+        ui->lineEdit_password->setText(generatedPassword);
     }
 }
 
-void DbCreator::on_button_save_clicked() {
-    *key = ui->line_password->text().toUtf8(); // Returning key that user entered
+void DbCreator::clicked_button_save() {
+    *key = ui->lineEdit_password->text().toUtf8(); // Returning key that user entered
     this->close();
 }
 
 
-void DbCreator::on_button_cancel_clicked() {
+void DbCreator::clicked_button_cancel() {
     this->reject();
 }
 
 
-void DbCreator::on_line_repeat_textChanged(const QString &arg1) {
+void DbCreator::lineEdit_repeat_textChanged(const QString &arg1) {
     // If password is hidden
     if (repeatEnabled) {
-        if (arg1!=ui->line_password->text() && ui->line_repeat->text().size() > 0) { // If password in repeat line is not the same as in password line
+        if (arg1!=ui->lineEdit_password->text() && ui->lineEdit_repeat->text().size() > 0) { // If password in repeat line is not the same as in password line
             // Setting red palette to repeat line
             QPalette lineRepeatPalette;
             lineRepeatPalette.setColor(QPalette::Base, QColor(235,135,135));
-            ui->line_repeat->setPalette(lineRepeatPalette);
+            ui->lineEdit_repeat->setPalette(lineRepeatPalette);
         } else {
             // Else set default palette
             QPalette lineRepeatPalette;
-            ui->line_repeat->setPalette(lineRepeatPalette);
+            ui->lineEdit_repeat->setPalette(lineRepeatPalette);
         }
     }
 }
 
 
-void DbCreator::on_line_password_textChanged(const QString &arg1) {
+void DbCreator::lineEdit_password_textChanged(const QString &arg1) {
     bool hasDigit = false;
     bool hasUppercase = false;
     bool hasLowercase = false;
     bool hasSpecial = false;
 
 
-    switch(ui->line_password->text().size()) {
+    switch(ui->lineEdit_password->text().size()) {
     case 1:
         ui->label_passwordQuality->setText(tr("Weak"));
         break;

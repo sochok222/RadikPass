@@ -33,37 +33,37 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="2">
-    <widget class="QLineEdit" name="title"/>
+    <widget class="QLineEdit" name="line_title"/>
    </item>
    <item row="4" column="2">
-    <widget class="QLineEdit" name="password"/>
+    <widget class="QLineEdit" name="line_password"/>
    </item>
    <item row="2" column="1">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_userName">
      <property name="text">
       <string>User Name:</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_title">
      <property name="text">
       <string>Titile: </string>
      </property>
     </widget>
    </item>
    <item row="6" column="2">
-    <widget class="QLineEdit" name="url"/>
+    <widget class="QLineEdit" name="line_url"/>
    </item>
    <item row="6" column="1">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_url">
      <property name="text">
       <string>URL: </string>
      </property>
     </widget>
    </item>
    <item row="8" column="1">
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="label_notes">
      <property name="text">
       <string>Notes:</string>
      </property>
@@ -73,13 +73,13 @@
     </widget>
    </item>
    <item row="8" column="2">
-    <widget class="QTextEdit" name="notes"/>
+    <widget class="QTextEdit" name="line_notes"/>
    </item>
    <item row="2" column="2">
-    <widget class="QLineEdit" name="username"/>
+    <widget class="QLineEdit" name="line_username"/>
    </item>
    <item row="4" column="1">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_password">
      <property name="text">
       <string>Password: </string>
      </property>
@@ -104,14 +104,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton">
+      <widget class="QPushButton" name="button_ok">
        <property name="text">
         <string>Ok</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton">
+      <widget class="QPushButton" name="button_cancel">
        <property name="text">
         <string>Cancel</string>
        </property>

@@ -24,9 +24,9 @@ public:
     ~DbOpener();
 
 private slots:
-    void on_okButton_clicked(); // When user clicks Ok button.
+    void clicked_button_ok(); // When user clicks Ok button.
 
-    void on_cancelButton_clicked(); // When user clicks Cancel button.
+    void clicked_button_cancel(); // When user clicks Cancel button.
 
     void hidePassword();
 

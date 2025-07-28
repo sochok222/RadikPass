@@ -23,13 +23,13 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connectActions();
 
     // Setting search bar
-    ui->searchBar->setClearButtonEnabled(true);
-    ui->searchBar->setPlaceholderText("Search...");
+    ui->line_search->setClearButtonEnabled(true);
+    ui->line_search->setPlaceholderText("Search...");
 
     // Setting listWidget
-    ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
-    ui->listWidget->setSelectionMode(QAbstractItemView::SingleSelection); // User can select only one row
-    ui->listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel); // Enabling smooth scrolling
+    ui->listWidget_tables->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
+    ui->listWidget_tables->setSelectionMode(QAbstractItemView::SingleSelection); // User can select only one row
+    ui->listWidget_tables->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel); // Enabling smooth scrolling
 
     // Setting tableView
     ui->tableView->verticalHeader()->setVisible(false); // Disabling vertical headers
@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), SLOT(itemDoubleclicked(QModelIndex))); // Doubleclicked slot
 
     // Connecting listWidget to context menu slot
-    connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
+    connect(ui->listWidget_tables, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
     if (!key.isEmpty()) { // If given key from database is not empty
         // loadDb() loads selected database to QSqlDatabase object (&db)
@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
         }
 
         for(int i = 0; i < tables.size(); i++) { // Adding tables to listWidget in screen
-            ui->listWidget->addItem(tables[i]);
+            ui->listWidget_tables->addItem(tables[i]);
         }
     }
 
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
 
     if (tables.size() > 0) { // Loading first table if one or more exists
         model->setTable(tables[0]);
-        ui->listWidget->setCurrentRow(0);
+        ui->listWidget_tables->setCurrentRow(0);
     }
 
     model->select();
@@ -114,56 +114,56 @@ void MainWindow::setHeaders() {
 
 void MainWindow::connectActions() {
     // File menu actions
-    connect(ui->actionClose, SIGNAL(triggered()), SLOT(close()));
-    connect(ui->actionNew, SIGNAL(triggered()), this, SLOT(createDatabase()));
-    connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openDatabase()));
+    connect(ui->action_close, SIGNAL(triggered()), SLOT(close()));
+    connect(ui->action_new, SIGNAL(triggered()), this, SLOT(createDatabase()));
+    connect(ui->action_open, SIGNAL(triggered()), this, SLOT(openDatabase()));
 
     // Entry menu actions
-    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
-    connect(ui->actionCopy_Password, SIGNAL(triggered()), SLOT(copyPassword()));
-    connect(ui->actionOpenUrl, SIGNAL(triggered()), SLOT(openUrl()));
-    connect(ui->actionCopyUrl, SIGNAL(triggered()), SLOT(copyUrl()));
-    connect(ui->actionCopy_User_Name, SIGNAL(triggered()), SLOT(copyUsername()));
-    connect(ui->actionAdd_Entry, SIGNAL(triggered()), SLOT(addEntry()));
-    connect(ui->actionEdit_Entry, SIGNAL(triggered()), SLOT(editRow()));
-    connect(ui->actionDuplicate_Entry, SIGNAL(triggered()), SLOT(duplicateEntry()));
-    connect(ui->actionDelete_Entry, SIGNAL(triggered()), SLOT(deleteEntry()));
+    connect(ui->action_copyUserName, SIGNAL(triggered()), SLOT(copyUsername()));
+    connect(ui->action_copyPassword, SIGNAL(triggered()), SLOT(copyPassword()));
+    connect(ui->action_openUrl, SIGNAL(triggered()), SLOT(openUrl()));
+    connect(ui->action_copyUrl, SIGNAL(triggered()), SLOT(copyUrl()));
+    connect(ui->action_copyUserName, SIGNAL(triggered()), SLOT(copyUsername()));
+    connect(ui->action_addEntry, SIGNAL(triggered()), SLOT(addEntry()));
+    connect(ui->action_editEntry, SIGNAL(triggered()), SLOT(editRow()));
+    connect(ui->action_duplicateEntry, SIGNAL(triggered()), SLOT(duplicateEntry()));
+    connect(ui->action_deleteEntry, SIGNAL(triggered()), SLOT(deleteEntry()));
 
     // View menu actions
-    connect(ui->actionConfigure_Columns, SIGNAL(triggered()), SLOT(cfgColumns()));
+    connect(ui->action_configureColumns, SIGNAL(triggered()), SLOT(cfgColumns()));
 
     // action opens PasswordGenerator
-    connect(ui->actionPassword_Generator, SIGNAL(triggered()), this, SLOT(openPasswordGenerator()));
+    connect(ui->action_passwordGenerator, SIGNAL(triggered()), this, SLOT(openPasswordGenerator()));
 
     // Language menu actions
-    connect(ui->actionLanguageUkrainian, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
-    connect(ui->actionLanguageEnglish, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
-    connect(ui->actionLanguageGerman, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
+    connect(ui->action_setUkrLanguage, SIGNAL(triggered(bool)), SLOT(setUkrainianLanguage()));
+    connect(ui->action_setEngLanguage, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
+    connect(ui->action_setGeLanguage, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
 
     setColorThemeActions(); // setting actions in "Color Theme" menu
 }
 
 void MainWindow::connectButtons() {
     // Connecting buttons to slots
-    connect(ui->buttonNew, SIGNAL(clicked()), SLOT(createDatabase()));
-    connect(ui->buttonOpen, SIGNAL(clicked()), SLOT(openDatabase()));
-    connect(ui->buttonSave, SIGNAL(clicked()), SLOT(saveAll()));
-    connect(ui->buttonAddEntry, SIGNAL(clicked()), SLOT(addEntry()));
-    connect(ui->buttonCopyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
-    connect(ui->buttonCopyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
-    connect(ui->buttonDeleteEntry, SIGNAL(clicked()), SLOT(deleteEntry()));
+    connect(ui->button_new, SIGNAL(clicked()), SLOT(createDatabase()));
+    connect(ui->button_open, SIGNAL(clicked()), SLOT(openDatabase()));
+    connect(ui->button_save, SIGNAL(clicked()), SLOT(saveAll()));
+    connect(ui->button_addEntry, SIGNAL(clicked()), SLOT(addEntry()));
+    connect(ui->button_copyUsername, SIGNAL(clicked()), SLOT(copyUsername()));
+    connect(ui->button_copyPassword, SIGNAL(clicked()), SLOT(copyPassword()));
+    connect(ui->button_deleteEntry, SIGNAL(clicked()), SLOT(deleteEntry()));
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
 }
 
 void MainWindow::setTooltips() {
     // Setting hints to toolbar
-    ui->buttonNew->setToolTip(tr("New Database"));
-    ui->buttonOpen->setToolTip(tr("Open Database"));
-    ui->buttonSave->setToolTip(tr("Save"));
-    ui->buttonAddEntry->setToolTip(tr("Add Entry"));
-    ui->buttonCopyUsername->setToolTip(tr("Copy Username"));
-    ui->buttonCopyPassword->setToolTip(tr("Copy Password"));
-    ui->buttonDeleteEntry->setToolTip(tr("Delete Entry"));
+    ui->button_new->setToolTip(tr("New Database"));
+    ui->button_open->setToolTip(tr("Open Database"));
+    ui->button_save->setToolTip(tr("Save"));
+    ui->button_addEntry->setToolTip(tr("Add Entry"));
+    ui->button_copyUsername->setToolTip(tr("Copy Username"));
+    ui->button_copyPassword->setToolTip(tr("Copy Password"));
+    ui->button_deleteEntry->setToolTip(tr("Delete Entry"));
 }
 
 void MainWindow::setShortcuts() {
@@ -212,9 +212,9 @@ void MainWindow::setColorThemeActions() {
     else if (settings.value("theme") == "light") action_lightTheme->setChecked(true);
 
     // Loading actions to toolbar
-    ui->menuChange_color_theme->addAction(action_systemTheme.data());
-    ui->menuChange_color_theme->addAction(action_darkTheme.data());
-    ui->menuChange_color_theme->addAction(action_lightTheme.data());
+    ui->menu_colorTheme->addAction(action_systemTheme.data());
+    ui->menu_colorTheme->addAction(action_darkTheme.data());
+    ui->menu_colorTheme->addAction(action_lightTheme.data());
 }
 
 
@@ -222,33 +222,33 @@ void MainWindow::loadIcons() {
     loadIconsToListWidget();
 
     // Loading icons to buttons
-    ui->buttonOpen->setIcon(IconLoader::getIcon(Icon::Open, theme));
-    ui->buttonNew->setIcon(IconLoader::getIcon(Icon::Create, theme));
-    ui->buttonSave->setIcon(IconLoader::getIcon(Icon::Save, theme));
-    ui->buttonAddEntry->setIcon(IconLoader::getIcon(Icon::Add, theme));
-    ui->buttonCopyUsername->setIcon(IconLoader::getIcon(Icon::User, theme));
-    ui->buttonCopyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
-    ui->buttonDeleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
+    ui->button_open->setIcon(IconLoader::getIcon(Icon::Open, theme));
+    ui->button_new->setIcon(IconLoader::getIcon(Icon::Create, theme));
+    ui->button_save->setIcon(IconLoader::getIcon(Icon::Save, theme));
+    ui->button_addEntry->setIcon(IconLoader::getIcon(Icon::Add, theme));
+    ui->button_copyUsername->setIcon(IconLoader::getIcon(Icon::User, theme));
+    ui->button_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
+    ui->button_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
 
     // Loading icons to windows toolbar
     // File menu
-    ui->actionNew->setIcon(IconLoader::getIcon(Icon::Create, theme));
-    ui->actionOpen->setIcon(IconLoader::getIcon(Icon::Open, theme));
-    ui->actionClose->setIcon(IconLoader::getIcon(Icon::Close, theme));
+    ui->action_new->setIcon(IconLoader::getIcon(Icon::Create, theme));
+    ui->action_open->setIcon(IconLoader::getIcon(Icon::Open, theme));
+    ui->action_close->setIcon(IconLoader::getIcon(Icon::Close, theme));
     // Entry menu
-    ui->actionCopy_User_Name->setIcon(IconLoader::getIcon(Icon::User, theme));
-    ui->actionCopy_Password->setIcon(IconLoader::getIcon(Icon::Key, theme));
+    ui->action_copyUserName->setIcon(IconLoader::getIcon(Icon::User, theme));
+    ui->action_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
     ui->menuUrl->setIcon(IconLoader::getIcon(Icon::Link, theme));
-    ui->actionOpenUrl->setIcon(IconLoader::getIcon(Icon::OpenBrowser, theme));
-    ui->actionCopyUrl->setIcon(IconLoader::getIcon(Icon::Copy, theme));
-    ui->actionAdd_Entry->setIcon(IconLoader::getIcon(Icon::Entry, theme));
-    ui->actionEdit_Entry->setIcon(IconLoader::getIcon(Icon::Edit, theme));
-    ui->actionDuplicate_Entry->setIcon(IconLoader::getIcon(Icon::Duplicate, theme));
-    ui->actionDelete_Entry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
+    ui->action_openUrl->setIcon(IconLoader::getIcon(Icon::OpenBrowser, theme));
+    ui->action_copyUrl->setIcon(IconLoader::getIcon(Icon::Copy, theme));
+    ui->action_addEntry->setIcon(IconLoader::getIcon(Icon::Entry, theme));
+    ui->action_editEntry->setIcon(IconLoader::getIcon(Icon::Edit, theme));
+    ui->action_duplicateEntry->setIcon(IconLoader::getIcon(Icon::Duplicate, theme));
+    ui->action_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
     // View menu
     ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::Language, theme));
-    ui->actionConfigure_Columns->setIcon(IconLoader::getIcon(Icon::Settings, theme));
-    ui->menuChange_color_theme->setIcon(IconLoader::getIcon(Icon::Color, theme));
+    ui->action_configureColumns->setIcon(IconLoader::getIcon(Icon::Settings, theme));
+    ui->menu_colorTheme->setIcon(IconLoader::getIcon(Icon::Color, theme));
 }
 
 
@@ -353,7 +353,7 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
 void MainWindow::customMenuRequested(QPoint pos) {
     qInfo() << Q_FUNC_INFO;
 
-    if (ui->listWidget->count() == 0) // Checking if database is opened.
+    if (ui->listWidget_tables->count() == 0) // Checking if database is opened.
         return;
 
 
@@ -412,7 +412,7 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu->addAction(action_configureColumns.data());
 
         menu_contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos)); // Showing context menu at pos
-    } else if (ui->listWidget->indexAt(pos).isValid() && ui->listWidget->underMouse()) { // If mouse cursor is hovering listWidget and his row
+    } else if (ui->listWidget_tables->indexAt(pos).isValid() && ui->listWidget_tables->underMouse()) { // If mouse cursor is hovering listWidget and his row
         menu_contextMenu.reset(new QMenu(this)); // Resetting actions
 
         // Resetting actions
@@ -430,13 +430,13 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu->addAction(action_edit.data());
         menu_contextMenu->addAction(action_delete.data());
 
-        menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
-    } else if (ui->listWidget->underMouse()) { // If cursor is hovering only listWidget
+        menu_contextMenu->popup(ui->listWidget_tables->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+    } else if (ui->listWidget_tables->underMouse()) { // If cursor is hovering only listWidget
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
         action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this)); // Resetting add action
         connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
         menu_contextMenu->addAction(action_add.data()); // Adding action to context menu
-        menu_contextMenu->popup(ui->listWidget->viewport()->mapToGlobal(pos)); // Showing context menu at pos
+        menu_contextMenu->popup(ui->listWidget_tables->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     }
 }
 
@@ -551,7 +551,7 @@ void MainWindow::editRow() {
 
 void MainWindow::deleteTable() {
     qInfo() << Q_FUNC_INFO;
-    int index = ui->listWidget->currentIndex().row();
+    int index = ui->listWidget_tables->currentIndex().row();
 
     QMessageBox::StandardButton question = QMessageBox::question(
         this, "RadikPass", tr("Delete Table?"),
@@ -559,10 +559,10 @@ void MainWindow::deleteTable() {
 
     if (question == QMessageBox::Yes) {
         if (tables.size() != 1) {
-            if (DbManager::deleteTable(&db, ui->listWidget->item(index)->text())) {
+            if (DbManager::deleteTable(&db, ui->listWidget_tables->item(index)->text())) {
                 isChanged = true;
                 tables.erase(tables.begin() + index);
-                ui->listWidget->takeItem(index);
+                ui->listWidget_tables->takeItem(index);
                 model->setTable(tables[tables.size() - 1]);
                 model->select();
                 ui->tableView->update();
@@ -604,7 +604,7 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
     qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
 
     // Updating last used index
-    lastUsedTable = ui->listWidget->currentRow();
+    lastUsedTable = ui->listWidget_tables->currentRow();
 
     // Updating QSqlModel and QTableView to see selected table
     model->setTable(currentText);
@@ -647,12 +647,12 @@ void MainWindow::createTable() {
     addTable->exec(); // Showing dialog
     delete addTable;
 
-    if (ui->listWidget->count() != tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
-        ui->listWidget->clear(); // Clearing list of tables
+    if (ui->listWidget_tables->count() != tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
+        ui->listWidget_tables->clear(); // Clearing list of tables
         for(int i = 0; i < tables.size(); i++) {
-            ui->listWidget->addItem(tables[i]);  // Adding lists to QListWidget
+            ui->listWidget_tables->addItem(tables[i]);  // Adding lists to QListWidget
         }
-        ui->listWidget->setCurrentRow(tables.size()-1);
+        ui->listWidget_tables->setCurrentRow(tables.size()-1);
 
         // Selecting last table (this is table that user added)
         model->setTable(tables[tables.size() - 1]);
@@ -708,13 +708,13 @@ void MainWindow::openDatabase() {
             showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
         }
         settings.setValue("Last", file);
-        ui->listWidget->clear();
+        ui->listWidget_tables->clear();
         for(int i = 0; i < tables.size(); i++) {
-            ui->listWidget->addItem(tables[i]);
+            ui->listWidget_tables->addItem(tables[i]);
         }
         if (tables.size() > 0) { // If one or more table exists we select current first table
             model->setTable(tables[0]);
-            ui->listWidget->setCurrentRow(0);
+            ui->listWidget_tables->setCurrentRow(0);
         }
         model->select();
         ui->tableView->update();
@@ -745,14 +745,14 @@ void MainWindow::createDatabase() {
         }
         settings.setValue("Last", databasePath); // Setting last used database path to recently created
 
-        ui->listWidget->clear(); // Clears listWidget that holds all tables
+        ui->listWidget_tables->clear(); // Clears listWidget that holds all tables
 
         for(int i = 0; i < tables.size(); i++) { // Loading all tables that available to user from tables vector
-            ui->listWidget->addItem(tables[i]);
+            ui->listWidget_tables->addItem(tables[i]);
         }
 
         if (tables.size() > 0)
-            ui->listWidget->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
+            ui->listWidget_tables->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
     }
 
     configureColumns(); // Showing columns according to settings.
@@ -763,44 +763,44 @@ void MainWindow::configureEntryMenu() { // This function will disable or enable 
     qInfo() << Q_FUNC_INFO;
 
     if (ui->tableView->selectionModel()->hasSelection()) {
-        ui->actionCopy_User_Name->setEnabled(true);
-        ui->actionCopy_Password->setEnabled(true);
+        ui->action_copyUserName->setEnabled(true);
+        ui->action_copyPassword->setEnabled(true);
         ui->menuUrl->setEnabled(true);
-        ui->actionEdit_Entry->setEnabled(true);
-        ui->actionDuplicate_Entry->setEnabled(true);
-        ui->actionDelete_Entry->setEnabled(true);
-    } else if (ui->listWidget->count() == 0) {
-        ui->actionCopy_User_Name->setDisabled(true);
-        ui->actionCopy_Password->setDisabled(true);
+        ui->action_editEntry->setEnabled(true);
+        ui->action_duplicateEntry->setEnabled(true);
+        ui->action_deleteEntry->setEnabled(true);
+    } else if (ui->listWidget_tables->count() == 0) {
+        ui->action_copyUserName->setDisabled(true);
+        ui->action_copyPassword->setDisabled(true);
         ui->menuUrl->setDisabled(true);
-        ui->actionEdit_Entry->setDisabled(true);
-        ui->actionDuplicate_Entry->setDisabled(true);
-        ui->actionDelete_Entry->setDisabled(true);
-        ui->actionAdd_Entry->setDisabled(true);
+        ui->action_editEntry->setDisabled(true);
+        ui->action_duplicateEntry->setDisabled(true);
+        ui->action_deleteEntry->setDisabled(true);
+        ui->action_addEntry->setDisabled(true);
     } else {
-        ui->actionCopy_User_Name->setDisabled(true);
-        ui->actionCopy_Password->setDisabled(true);
+        ui->action_copyUserName->setDisabled(true);
+        ui->action_copyPassword->setDisabled(true);
         ui->menuUrl->setDisabled(true);
-        ui->actionEdit_Entry->setDisabled(true);
-        ui->actionDuplicate_Entry->setDisabled(true);
-        ui->actionDelete_Entry->setDisabled(true);
-        ui->actionAdd_Entry->setDisabled(true);
+        ui->action_editEntry->setDisabled(true);
+        ui->action_duplicateEntry->setDisabled(true);
+        ui->action_deleteEntry->setDisabled(true);
+        ui->action_addEntry->setDisabled(true);
     }
 }
 
 void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget,
     QSqlQuery query(db); // New query to read data from database
-    for(int i = 0; i < ui->listWidget->count(); i++) {
+    for(int i = 0; i < ui->listWidget_tables->count(); i++) {
         // Loading name of icon from TablesSettings
         query.prepare("SELECT Icon FROM TablesSettings WHERE [Table] = :name");
-        query.bindValue(":name", ui->listWidget->item(i)->text());
+        query.bindValue(":name", ui->listWidget_tables->item(i)->text());
         if (!query.exec()) {
             showMsgBox(tr("Error"), tr("Unable to load icon to table"), QMessageBox::Critical);
         }
 
         query.next(); // Loading value to query
-        if (theme == Theme::Dark) ui->listWidget->item(i)->setIcon(QIcon(":/icons/dark/resources/icons/dark/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
-        else ui->listWidget->item(i)->setIcon(QIcon(":/icons/light/resources/icons/light/"+query.value(0).toString()+".png"));
+        if (theme == Theme::Dark) ui->listWidget_tables->item(i)->setIcon(QIcon(":/icons/dark/resources/icons/dark/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
+        else ui->listWidget_tables->item(i)->setIcon(QIcon(":/icons/light/resources/icons/light/"+query.value(0).toString()+".png"));
     }
 }
 
@@ -808,12 +808,12 @@ void MainWindow::editTable() {
     qInfo() << Q_FUNC_INFO;
 
     // Creating TableEditor window where user can change name or/and icon of table
-    TableEditor *editTable = new TableEditor(this, &db, ui->listWidget->currentItem()->text(), ui->listWidget, theme);
+    TableEditor *editTable = new TableEditor(this, &db, ui->listWidget_tables->currentItem()->text(), ui->listWidget_tables, theme);
     editTable->exec();
     delete editTable;
 
     // Selecting in table model table that user was editing.
-    model->setTable(ui->listWidget->currentItem()->text());
+    model->setTable(ui->listWidget_tables->currentItem()->text());
     model->select();
 
     isChanged = true; // If user makes some changes needs to set this to true
@@ -982,21 +982,21 @@ void MainWindow::setLightColorTheme()
 
 void MainWindow::on_searchBar_textChanged(const QString &arg1) {
     if (arg1.size() == 0) { // If user cleared text in search bar
-        if (lastUsedTable <= ui->listWidget->count()) {
-            ui->listWidget->setCurrentRow(lastUsedTable);
-            model->setTable(ui->listWidget->currentItem()->text());
+        if (lastUsedTable <= ui->listWidget_tables->count()) {
+            ui->listWidget_tables->setCurrentRow(lastUsedTable);
+            model->setTable(ui->listWidget_tables->currentItem()->text());
             model->select();
             return;
         } else {
-            ui->listWidget->setCurrentRow(0);
-            model->setTable(ui->listWidget->currentItem()->text());
+            ui->listWidget_tables->setCurrentRow(0);
+            model->setTable(ui->listWidget_tables->currentItem()->text());
             model->select();
             return;
         }
         return;
     }
 
-    DbManager::search(arg1, &db, ui->listWidget); // Filling "Search" table with found rows
+    DbManager::search(arg1, &db, ui->listWidget_tables); // Filling "Search" table with found rows
 
     // Setting "Search" table and updating
     model->setTable("Search");

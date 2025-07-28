@@ -55,7 +55,7 @@ QAction{
        <number>0</number>
       </property>
       <item>
-       <widget class="QListWidget" name="listWidget">
+       <widget class="QListWidget" name="listWidget_tables">
         <property name="minimumSize">
          <size>
           <width>100</width>
@@ -95,7 +95,7 @@ QAction{
        <number>2</number>
       </property>
       <item>
-       <widget class="QPushButton" name="buttonNew">
+       <widget class="QPushButton" name="button_new">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -129,7 +129,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonOpen">
+       <widget class="QPushButton" name="button_open">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -157,7 +157,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonSave">
+       <widget class="QPushButton" name="button_save">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -192,7 +192,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonAddEntry">
+       <widget class="QPushButton" name="button_addEntry">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -220,7 +220,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonCopyUsername">
+       <widget class="QPushButton" name="button_copyUsername">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -248,7 +248,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonCopyPassword">
+       <widget class="QPushButton" name="button_copyPassword">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -276,7 +276,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buttonDeleteEntry">
+       <widget class="QPushButton" name="button_deleteEntry">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>30</horstretch>
@@ -311,7 +311,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="searchBar"/>
+       <widget class="QLineEdit" name="line_search"/>
       </item>
       <item>
        <spacer name="horizontalSpacer">
@@ -349,9 +349,9 @@ QAction{
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionClose"/>
+    <addaction name="action_new"/>
+    <addaction name="action_open"/>
+    <addaction name="action_close"/>
    </widget>
    <widget class="QMenu" name="menuEntry">
     <property name="title">
@@ -361,44 +361,44 @@ QAction{
      <property name="title">
       <string>Url</string>
      </property>
-     <addaction name="actionOpenUrl"/>
-     <addaction name="actionCopyUrl"/>
+     <addaction name="action_openUrl"/>
+     <addaction name="action_copyUrl"/>
     </widget>
-    <addaction name="actionCopy_User_Name"/>
-    <addaction name="actionCopy_Password"/>
+    <addaction name="action_copyUserName"/>
+    <addaction name="action_copyPassword"/>
     <addaction name="menuUrl"/>
     <addaction name="separator"/>
-    <addaction name="actionAdd_Entry"/>
-    <addaction name="actionEdit_Entry"/>
-    <addaction name="actionDuplicate_Entry"/>
-    <addaction name="actionDelete_Entry"/>
+    <addaction name="action_addEntry"/>
+    <addaction name="action_editEntry"/>
+    <addaction name="action_duplicateEntry"/>
+    <addaction name="action_deleteEntry"/>
    </widget>
    <widget class="QMenu" name="menuViev">
     <property name="title">
      <string>Viev</string>
     </property>
-    <widget class="QMenu" name="menuChange_color_theme">
+    <widget class="QMenu" name="menu_colorTheme">
      <property name="title">
       <string>Color theme</string>
      </property>
     </widget>
-    <addaction name="menuChange_color_theme"/>
+    <addaction name="menu_colorTheme"/>
     <addaction name="separator"/>
-    <addaction name="actionConfigure_Columns"/>
+    <addaction name="action_configureColumns"/>
    </widget>
    <widget class="QMenu" name="menuLanguage">
     <property name="title">
      <string>Language</string>
     </property>
-    <addaction name="actionLanguageEnglish"/>
-    <addaction name="actionLanguageUkrainian"/>
-    <addaction name="actionLanguageGerman"/>
+    <addaction name="action_setEngLanguage"/>
+    <addaction name="action_setUkrLanguage"/>
+    <addaction name="action_setGeLanguage"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionPassword_Generator"/>
+    <addaction name="action_passwordGenerator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEntry"/>
@@ -407,47 +407,47 @@ QAction{
    <addaction name="menuTools"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNew">
+  <action name="action_new">
    <property name="text">
     <string>New</string>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="action_open">
    <property name="text">
     <string>Open</string>
    </property>
   </action>
-  <action name="actionClose">
+  <action name="action_close">
    <property name="text">
     <string>Close</string>
    </property>
   </action>
-  <action name="actionCopy_User_Name">
+  <action name="action_copyUserName">
    <property name="text">
     <string>Copy User Name</string>
    </property>
   </action>
-  <action name="actionCopy_Password">
+  <action name="action_copyPassword">
    <property name="text">
     <string>Copy Password</string>
    </property>
   </action>
-  <action name="actionAdd_Entry">
+  <action name="action_addEntry">
    <property name="text">
     <string>Add Entry</string>
    </property>
   </action>
-  <action name="actionEdit_Entry">
+  <action name="action_editEntry">
    <property name="text">
     <string>Edit Entry</string>
    </property>
   </action>
-  <action name="actionDelete_Entry">
+  <action name="action_deleteEntry">
    <property name="text">
     <string>Delete Entry</string>
    </property>
   </action>
-  <action name="actionDuplicate_Entry">
+  <action name="action_duplicateEntry">
    <property name="text">
     <string>Duplicate Entry</string>
    </property>
@@ -462,32 +462,32 @@ QAction{
     <string>Show Toolbar</string>
    </property>
   </action>
-  <action name="actionConfigure_Columns">
+  <action name="action_configureColumns">
    <property name="text">
     <string>Configure Columns</string>
    </property>
   </action>
-  <action name="actionOpenUrl">
+  <action name="action_openUrl">
    <property name="text">
     <string>Open Url</string>
    </property>
   </action>
-  <action name="actionCopyUrl">
+  <action name="action_copyUrl">
    <property name="text">
     <string>Copy Url</string>
    </property>
   </action>
-  <action name="actionLanguageEnglish">
+  <action name="action_setEngLanguage">
    <property name="text">
     <string>English</string>
    </property>
   </action>
-  <action name="actionLanguageUkrainian">
+  <action name="action_setUkrLanguage">
    <property name="text">
     <string>Ukrainian</string>
    </property>
   </action>
-  <action name="actionLanguageGerman">
+  <action name="action_setGeLanguage">
    <property name="text">
     <string>German</string>
    </property>
@@ -507,7 +507,7 @@ QAction{
     <string>Default</string>
    </property>
   </action>
-  <action name="actionPassword_Generator">
+  <action name="action_passwordGenerator">
    <property name="text">
     <string>Password Generator</string>
    </property>

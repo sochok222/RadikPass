@@ -7,18 +7,22 @@ DbOpener::DbOpener(QWidget *parent, QByteArray *result, const QString &path, The
     , theme(theme)
 {
     ui->setupUi(this);
-    ui->okButton->setDefault(true);
+    ui->button_ok->setDefault(true);
 
-    ui->passwordLine->setEchoMode(QLineEdit::EchoMode::Password);
+    // Connecting buttons to slots
+    connect(ui->button_ok, SIGNAL(clicked(bool)), this, SLOT(clicked_button_ok()));
+    connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(clicked_button_cancel()));
 
-    action_hidePassword = ui->passwordLine->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    ui->line_password->setEchoMode(QLineEdit::EchoMode::Password);
+
+    action_hidePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
     connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
 
-    ui->databasePathLabel->setText(path);
+    ui->label_databasePath->setText(path);
     masterPassword = result;
     QSettings setting("AlexRadik", "RadikPass");
-    ui->okButton->setAutoDefault(true);
+    ui->button_ok->setAutoDefault(true);
     this->setWindowTitle(tr("Open Database"));
 }
 
@@ -27,20 +31,20 @@ DbOpener::~DbOpener() {
 }
 
 void DbOpener::hidePassword() {
-    if (ui->passwordLine->echoMode() == QLineEdit::EchoMode::Password) {
+    if (ui->line_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
-        ui->passwordLine->setEchoMode(QLineEdit::Normal);
+        ui->line_password->setEchoMode(QLineEdit::Normal);
     } else {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
-        ui->passwordLine->setEchoMode(QLineEdit::Password);
+        ui->line_password->setEchoMode(QLineEdit::Password);
     }
 }
 
 
 
-void DbOpener::on_okButton_clicked() {
-    if (ui->passwordLine->text().size() > 0) {
-        *masterPassword = ui->passwordLine->text().toUtf8();
+void DbOpener::clicked_button_ok() {
+    if (ui->line_password->text().size() > 0) {
+        *masterPassword = ui->line_password->text().toUtf8();
         this->close();
     } else {
         QMessageBox msg;
@@ -51,7 +55,7 @@ void DbOpener::on_okButton_clicked() {
 }
 
 
-void DbOpener::on_cancelButton_clicked() {
+void DbOpener::clicked_button_cancel() {
     settings.setValue("Last", "");
     this->destroy(true,true);
 }

@@ -30,13 +30,13 @@ private slots:
 
     void openPasswordGenerator();
 
-    void on_button_save_clicked();
+    void clicked_button_save();
 
-    void on_button_cancel_clicked();
+    void clicked_button_cancel();
 
-    void on_line_repeat_textChanged(const QString &arg1);
+    void lineEdit_repeat_textChanged(const QString &arg1);
 
-    void on_line_password_textChanged(const QString &arg1);
+    void lineEdit_password_textChanged(const QString &arg1);
 
 private:
     Ui::DbCreator *ui;

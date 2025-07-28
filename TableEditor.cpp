@@ -19,7 +19,7 @@ TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableN
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Table"));
-    ui->nameEdit->setText(tableName);
+    ui->line_name->setText(tableName);
 
     if (db == nullptr || !db->isOpen()) {
         showMsgBox(tr("Can`t open database"));
@@ -29,11 +29,11 @@ TableEditor::TableEditor(QWidget *parent, QSqlDatabase *db, const QString tableN
     model = new QStandardItemModel;
     mapper = new QDataWidgetMapper;
 
-    ui->nameEdit->setMaxLength(15);
+    ui->line_name->setMaxLength(15);
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
     QValidator *validator = new QRegularExpressionValidator(rx, this);
 
-    ui->nameEdit->setValidator(validator);
+    ui->line_name->setValidator(validator);
 
     QTimer::singleShot(0, this, SLOT(setConnections()));
 
@@ -53,35 +53,35 @@ TableEditor::~TableEditor() {
 void TableEditor::loadIcons() {
     QVector<Icon> icons = {Icon::Entry, Icon::Game, Icon::House, Icon::Money, Icon::Office, Icon::Pc, Icon::Programming, Icon::User, Icon::Key};
     for(Icon &ico : icons) {
-        ui->comboBox->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
+        ui->comboBox_icon->addItem(QIcon(IconLoader::getIcon(ico, theme)), "");
         model->appendRow(new QStandardItem(IconLoader::getIconName(ico)));
     }
 
     mapper->setModel(model);
     mapper->toFirst();
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
+    connect(ui->comboBox_icon, SIGNAL(currentIndexChanged(int)), mapper, SLOT(setCurrentIndex(int)));
 }
 
 void TableEditor::setConnections() {
-    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), SLOT(iconChanged()));
-    connect(ui->nameEdit, SIGNAL(textChanged(QString)), SLOT(textChanged()));
+    connect(ui->comboBox_icon, SIGNAL(currentIndexChanged(int)), SLOT(iconChanged()));
+    connect(ui->line_name, SIGNAL(textChanged(QString)), SLOT(textChanged()));
 }
 
 bool TableEditor::saveChanges() {
     QSqlQuery query(*db);
 
-    if (ui->nameEdit->text().size() <= 0) {
+    if (ui->line_name->text().size() <= 0) {
         showMsgBox(tr("Name field must be not empty."));
         return false;
     }
 
-    QString changeName = "ALTER TABLE '"+tableName+"' RENAME TO '"+ui->nameEdit->text()+"'";
-    QString restoreName = "ALTER TABLE '"+ui->nameEdit->text()+"' RENAME TO '"+tableName+"'";
-    QString changeSettingName = "UPDATE TablesSettings SET [Table] = '"+ui->nameEdit->text()+"' WHERE [Table] = '"+tableName+"'";
+    QString changeName = "ALTER TABLE '"+tableName+"' RENAME TO '"+ui->line_name->text()+"'";
+    QString restoreName = "ALTER TABLE '"+ui->line_name->text()+"' RENAME TO '"+tableName+"'";
+    QString changeSettingName = "UPDATE TablesSettings SET [Table] = '"+ui->line_name->text()+"' WHERE [Table] = '"+tableName+"'";
     QString ico(mapper->model()->data(model->index(mapper->currentIndex(), 0)).toString());
-    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ico+"' WHERE [Table] = '"+ui->nameEdit->text()+"'");
+    QString setNewIcon("UPDATE TablesSettings SET Icon = '"+ico+"' WHERE [Table] = '"+ui->line_name->text()+"'");
 
-    if (ui->nameEdit->text().size() == 0) {
+    if (ui->line_name->text().size() == 0) {
         showMsgBox(tr("Line must be not empty"));
         return false;
     }
@@ -105,7 +105,7 @@ bool TableEditor::saveChanges() {
         }
     }
 
-    listWidget->currentItem()->setText(ui->nameEdit->text());
+    listWidget->currentItem()->setText(ui->line_name->text());
 
     return true;
 }
