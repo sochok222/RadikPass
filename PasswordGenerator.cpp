@@ -15,8 +15,7 @@ PasswordGenerator::PasswordGenerator(QWidget *parent, QString *result)
 
     if (!result) ui->button_save->hide();
 
-    ui->label_entropy->setToolTip(tr("Is a measurement of how password is unpredictable"));
-    ui->label_quality->setToolTip(tr("Based on entropy"));
+    ui->label_entropy->setToolTip(tr("Measure of password strength"));
 
     ui->checkBox_Lowercase->setCheckState(Qt::Checked);
     ui->checkBox_Uppercase->setChecked(Qt::Checked);
@@ -47,10 +46,10 @@ PasswordGenerator::~PasswordGenerator() {
 QString PasswordGenerator::generator(int lenght, int flags) {
     QString buffer;
 
-    if (flags & PasswordOptions::Lowercase) buffer += Lowercase;
-    if (flags & PasswordOptions::Uppercase) buffer += Uppercase;
-    if (flags & PasswordOptions::Numbers) buffer +=  Numbers;
-    if (flags & PasswordOptions::Special) buffer += Special;
+    if (flags & Password::Lowercase) buffer += Password::s_lowercase;
+    if (flags & Password::Uppercase) buffer += Password::s_uppercase;
+    if (flags & Password::Numbers) buffer +=  Password::s_numbers;
+    if (flags & Password::Special) buffer += Password::s_special;
 
     QString result;
     for (int i = 0; i < ui->slider_lenght->value(); i++) {
@@ -60,23 +59,45 @@ QString PasswordGenerator::generator(int lenght, int flags) {
 }
 
 
-PasswordOptions::Strength PasswordGenerator::checkPassword(QString &password) {
+Password::Strength PasswordGenerator::getStrength(const int &entropy) {
+    if (entropy >= 0 && entropy <= 72) return Password::Weak;
+    else if (entropy >  72 && entropy <= 85) return Password::Normal;
+    else if (entropy > 85 && entropy <= 100) return Password::Strong;
+    else return Password::VeryStrong;
+}
+
+
+int PasswordGenerator::getEntropy(const QString &password) {
     int pool = 0;
 
-    if (ui->checkBox_Lowercase->isChecked()) pool += Lowercase.size();
-    if (ui->checkBox_Uppercase->isChecked()) pool += Uppercase.size();
-    if (ui->checkBox_Numbers->isChecked()) pool +=  Numbers.size();
-    if (ui->checkBox_Special->isChecked()) pool += Special.size();
+    if (password.contains(Password::regExp_lowercase)) pool += Password::s_lowercase.size();
+    if (password.contains(Password::regExp_uppercase)) pool += Password::s_uppercase.size();
+    if (password.contains(Password::regExp_numbers)) pool += Password::s_numbers.size();
+    if (password.contains(Password::regExp_special)) pool += Password::s_special.size();
+    qDebug() << "pool is: " << pool;
+
+
+    return std::log(std::pow(pool, password.size())) / std::log(2);
+}
+
+
+Password::Strength PasswordGenerator::getPasswordStrength(const QString &password) {
+    int pool = 0;
+
+    if (ui->checkBox_Lowercase->isChecked()) pool += Password::s_lowercase.size();
+    if (ui->checkBox_Uppercase->isChecked()) pool += Password::s_uppercase.size();
+    if (ui->checkBox_Numbers->isChecked()) pool +=  Password::s_numbers.size();
+    if (ui->checkBox_Special->isChecked()) pool += Password::s_special.size();
 
     int strength = std::log(std::pow(pool, password.size())) / std::log(2);
 
     if (ui)
         ui->label_entropy->setText(tr("Entropy: ") + QString::number(strength));
 
-    if (strength > 0 && strength <= 60) return PasswordOptions::Weak;
-    else if (strength > 60 && strength <= 85) return PasswordOptions::Normal;
-    else if (strength > 85 && strength <= 100) return PasswordOptions::Strong;
-    else return PasswordOptions::VeryStrong;
+    if (strength >= 0 && strength <= 50) return Password::Weak;
+    else if (strength > 50 && strength <= 85) return Password::Normal;
+    else if (strength > 85 && strength <= 100) return Password::Strong;
+    else return Password::VeryStrong;
 }
 
 
@@ -137,25 +158,25 @@ void PasswordGenerator::generatePassword() {
     ui->label_PasswordSize->setText(tr("Size: ") + QString::number(ui->slider_lenght->value()));
 
     int flags = 0;
-    if (ui->checkBox_Lowercase->isChecked()) flags |= PasswordOptions::Lowercase;
-    if (ui->checkBox_Uppercase->isChecked()) flags |= PasswordOptions::Uppercase;
-    if (ui->checkBox_Numbers->isChecked()) flags |=  PasswordOptions::Numbers;
-    if (ui->checkBox_Special->isChecked()) flags |= PasswordOptions::Special;
+    if (ui->checkBox_Lowercase->isChecked()) flags |= Password::Lowercase;
+    if (ui->checkBox_Uppercase->isChecked()) flags |= Password::Uppercase;
+    if (ui->checkBox_Numbers->isChecked()) flags |=  Password::Numbers;
+    if (ui->checkBox_Special->isChecked()) flags |= Password::Special;
 
     QString password = generator(ui->slider_lenght->value(), flags);
     ui->line_result->setText(password);
 
-    switch (checkPassword(password)) {
-    case PasswordOptions::Weak:
+    switch (getPasswordStrength(password)) {
+    case Password::Weak:
         ui->label_quality->setText(tr("Quality: weak"));
         break;
-    case PasswordOptions::Normal:
+    case Password::Normal:
         ui->label_quality->setText(tr("Quality: normal"));
         break;
-    case PasswordOptions::Strong:
+    case Password::Strong:
         ui->label_quality->setText(tr("Quality: strong"));
         break;
-    case PasswordOptions::VeryStrong:
+    case Password::VeryStrong:
         ui->label_quality->setText(tr("Quality: very strong"));
         break;
     default:

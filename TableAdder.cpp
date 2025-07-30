@@ -18,11 +18,9 @@ TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *
     // Maximum length is 15
     ui->line_name->setMaxLength(15);
 
-    // Limmitation of user input by QRegularExpression
+    // Creating egular expression for database name
     QRegularExpression rx(R"(^[a-zA-Zа-яА-ЯІіїЇ0-9_]+(\s[a-zA-Zа-яА-ЯІіїЇ0-9_]+)+$)");
-    // Setting expression to validator
     validator = new QRegularExpressionValidator(rx, this);
-    // Applyint validator to nameEdit
     ui->line_name->setValidator(validator);
 
     // Check if database is opened

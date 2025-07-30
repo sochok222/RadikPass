@@ -2,6 +2,7 @@
 #define PASSWORDGENERATOR_H
 
 #include <QDialog>
+#include <qregularexpression.h>
 #include <time.h>
 #include <random>
 #include <windows.h>
@@ -11,7 +12,17 @@ namespace Ui {
 class PasswordGenerator;
 }
 
-namespace PasswordOptions {
+namespace Password {
+static const QRegularExpression regExp_uppercase("[A-Z]");
+static const QRegularExpression regExp_lowercase("[a-z]");
+static const QRegularExpression regExp_numbers("[0-9]");
+static const QRegularExpression regExp_special("[^a-z^A-Z^0-9]");
+
+static const QString s_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+static const QString s_lowercase = "abcdefghijklmnopqrstuvwxyz";
+static const QString s_numbers = "0123456789";
+static const QString s_special = "!@#$%^&*-_";
+
 enum Combinations {
     Uppercase = 0x0001,
     Lowercase = 0x0010,
@@ -34,7 +45,9 @@ public:
     explicit PasswordGenerator(QWidget *parent = nullptr, QString *result = nullptr);
     ~PasswordGenerator();
 
-    PasswordOptions::Strength checkPassword(QString &password);
+    static int getEntropy(const QString &password);
+    static Password::Strength getStrength(const int &entropy);
+
     QString generator(int length, int flags);
 
 private slots:
@@ -51,11 +64,8 @@ private:
 
     void disableCheckBoxes();
     void enableCheckBoxes();
+    Password::Strength getPasswordStrength(const QString &password);
 
-    QString Uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QString Lowercase = "abcdefghijklmnopqrstuvwxyz";
-    QString Numbers = "0123456789";
-    QString Special = "!@#$%^&*-_";
     int selectedBoxes = 0;
 
     QString *result;

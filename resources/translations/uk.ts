@@ -4,44 +4,36 @@
 <context>
     <name>AddEntry</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="137"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="138"/>
         <source>User Name:</source>
-        <translation>Ім&apos;я:</translation>
+        <translation type="vanished">Ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="139"/>
         <source>Titile: </source>
-        <translation>Заголовок:</translation>
+        <translation type="vanished">Заголовок:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="140"/>
         <source>URL: </source>
-        <translation>Посилання:</translation>
+        <translation type="vanished">Посилання:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="141"/>
         <source>Notes:</source>
-        <translation>Нотатки:</translation>
+        <translation type="vanished">Нотатки:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="142"/>
         <source>Password: </source>
-        <translation>Пароль:</translation>
+        <translation type="vanished">Пароль:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="143"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation type="vanished">Ок</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addentry.h" line="144"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
         <source>Add Entry</source>
@@ -116,29 +108,24 @@ Last query: </source>
 <context>
     <name>AddTable</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addtable.h" line="119"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addtable.h" line="120"/>
         <source>Name: </source>
-        <translation>Назва:</translation>
+        <translation type="vanished">Назва:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addtable.h" line="121"/>
         <source>Icon: </source>
-        <translation>Іконка:</translation>
+        <translation type="vanished">Іконка:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addtable.h" line="122"/>
         <source>Create</source>
-        <translation>Створити</translation>
+        <translation type="vanished">Створити</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_addtable.h" line="123"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
         <source>Add Table</source>
@@ -234,14 +221,12 @@ Try another name.</source>
 <context>
     <name>ConfigureColumns</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_configurecolumns.h" line="80"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_configurecolumns.h" line="81"/>
         <source>Save</source>
-        <translation>Зберегти</translation>
+        <translation type="vanished">Зберегти</translation>
     </message>
     <message>
         <source>Configure Columns</source>
@@ -283,60 +268,44 @@ Try another name.</source>
 <context>
     <name>CreateDatabase</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="156"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="156"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
         <source>Help</source>
         <translation type="vanished">Допомога</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="157"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="157"/>
         <source>Save</source>
-        <translation>Зберегти</translation>
+        <translation type="vanished">Зберегти</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="158"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="158"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="161"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="161"/>
         <source>Quality:</source>
-        <translation>Надійність</translation>
+        <translation type="vanished">Надійність</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="164"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="164"/>
         <source>Repeat</source>
-        <translation>Повторити:</translation>
+        <translation type="vanished">Повторити:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="162"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="162"/>
         <source>***</source>
-        <translation>***</translation>
+        <translation type="vanished">***</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="163"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="163"/>
         <source>Master password</source>
-        <translation>Майстер-ключ:</translation>
+        <translation type="vanished">Майстер-ключ:</translation>
     </message>
     <message>
         <source>New Database</source>
         <translation type="vanished">Нова База Данних</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_createdatabase.h" line="159"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DatabaseCreator.h" line="159"/>
         <source>Path</source>
-        <translation>Шлях</translation>
+        <translation type="vanished">Шлях</translation>
     </message>
     <message>
         <source>Create Database</source>
@@ -418,39 +387,49 @@ Try another name.</source>
     <name>DbCreator</name>
     <message>
         <location filename="../../DbCreator.ui" line="32"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="147"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="152"/>
         <source>Dialog</source>
         <translation type="unfinished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="74"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="148"/>
+        <location filename="../../DbCreator.ui" line="100"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="154"/>
         <source>Save</source>
         <translation type="unfinished">Зберегти</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="81"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="149"/>
+        <location filename="../../DbCreator.ui" line="107"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="155"/>
         <source>Cancel</source>
         <translation type="unfinished">Скасувати</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="107"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="150"/>
+        <location filename="../../DbCreator.ui" line="181"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="158"/>
+        <source>Quality: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.ui" line="188"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="159"/>
+        <source>Entropy: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.ui" line="73"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="153"/>
         <source>Path</source>
         <translation type="unfinished">Шлях</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="157"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="153"/>
+        <location filename="../../DbCreator.ui" line="170"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="157"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="164"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="154"/>
         <source>Quality:</source>
-        <translation type="unfinished">Надійність</translation>
+        <translation type="obsolete">Надійність</translation>
     </message>
     <message>
         <source>***</source>
@@ -461,8 +440,8 @@ Try another name.</source>
         <translation type="obsolete">Майстер-ключ:</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.ui" line="150"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="152"/>
+        <location filename="../../DbCreator.ui" line="163"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_DbCreator.h" line="156"/>
         <source>Repeat</source>
         <translation type="unfinished">Повторити:</translation>
     </message>
@@ -470,6 +449,26 @@ Try another name.</source>
         <location filename="../../DbCreator.cpp" line="13"/>
         <source>Create Database</source>
         <translation type="unfinished">Створити Базу Даних</translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.cpp" line="123"/>
+        <source>Quality: Weak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.cpp" line="126"/>
+        <source>Quality: Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.cpp" line="129"/>
+        <source>Quality: Strong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DbCreator.cpp" line="132"/>
+        <source>Quality: Very Strong</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Can&apos;t load path</source>
@@ -488,30 +487,26 @@ Try another name.</source>
         <translation type="obsolete">Надійність пароля залежить від його довжини</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="28"/>
+        <location filename="../../DbCreator.cpp" line="31"/>
         <source>Unable to load path.
 Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="123"/>
         <source>Weak</source>
-        <translation type="unfinished">Слабкий</translation>
+        <translation type="obsolete">Слабкий</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="126"/>
         <source>Normal</source>
-        <translation type="unfinished">Середній</translation>
+        <translation type="obsolete">Середній</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="129"/>
         <source>Strong</source>
-        <translation type="unfinished">Сильний</translation>
+        <translation type="obsolete">Сильний</translation>
     </message>
     <message>
-        <location filename="../../DbCreator.cpp" line="132"/>
         <source>Very Strong</source>
-        <translation type="unfinished">Дуже сильний</translation>
+        <translation type="obsolete">Дуже сильний</translation>
     </message>
 </context>
 <context>
@@ -570,44 +565,36 @@ Try again please.</source>
 <context>
     <name>EditEntry</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="137"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="138"/>
         <source>Titile: </source>
-        <translation>Заголовок</translation>
+        <translation type="vanished">Заголовок</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="139"/>
         <source>User Name:</source>
-        <translation>Ім&apos;я:</translation>
+        <translation type="vanished">Ім&apos;я:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="140"/>
         <source>Password: </source>
-        <translation>Пароль:</translation>
+        <translation type="vanished">Пароль:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="141"/>
         <source>URL: </source>
-        <translation>Посилання:</translation>
+        <translation type="vanished">Посилання:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="142"/>
         <source>Notes:</source>
-        <translation>Нотатки:</translation>
+        <translation type="vanished">Нотатки:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="143"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation type="vanished">Ок</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_editentry.h" line="144"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
         <source>Edit Entry</source>
@@ -643,33 +630,28 @@ Error: </source>
 <context>
     <name>EditTable</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_edittable.h" line="120"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_edittable.h" line="121"/>
         <source>Name: </source>
-        <translation>Назва:</translation>
+        <translation type="vanished">Назва:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_edittable.h" line="122"/>
         <source>Icon: </source>
-        <translation>Іконка:</translation>
+        <translation type="vanished">Іконка:</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_edittable.h" line="123"/>
         <source>Save</source>
-        <translation>Зберегти</translation>
+        <translation type="vanished">Зберегти</translation>
     </message>
     <message>
         <source>Create</source>
         <translation type="vanished">Створити</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_edittable.h" line="124"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
         <source>Edit Table</source>
@@ -887,81 +869,81 @@ Error: </source>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="341"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="341"/>
         <source>RadikPass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="350"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="370"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="370"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="358"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="371"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="371"/>
         <source>Entry</source>
         <translation>Запис</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="362"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="372"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="372"/>
         <source>Url</source>
         <translation>Посилання</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="378"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="373"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="373"/>
         <source>Viev</source>
         <translation>Вигляд</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="382"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="374"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="374"/>
         <source>Color theme</source>
         <translation>Тема</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="391"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="375"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="375"/>
         <source>Language</source>
         <translation>Мова</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="399"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="376"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="376"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="412"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="342"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="342"/>
         <source>New</source>
         <translation>Новий</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="417"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="343"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="343"/>
         <location filename="../../MainWindow.cpp" line="375"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="422"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="344"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="344"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="427"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="345"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="345"/>
         <location filename="../../MainWindow.cpp" line="364"/>
         <source>Copy User Name</source>
         <translation>Копіювати ім&apos;я</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="432"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="346"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="346"/>
         <location filename="../../MainWindow.cpp" line="165"/>
         <location filename="../../MainWindow.cpp" line="365"/>
         <source>Copy Password</source>
@@ -969,59 +951,59 @@ Error: </source>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="437"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="347"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="347"/>
         <location filename="../../MainWindow.cpp" line="163"/>
         <source>Add Entry</source>
         <translation>Створити запис</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="442"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="348"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="348"/>
         <source>Edit Entry</source>
         <translation>Редагувати запис</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="447"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="349"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="349"/>
         <location filename="../../MainWindow.cpp" line="166"/>
         <source>Delete Entry</source>
         <translation>Видалити запис</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="452"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="350"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="350"/>
         <source>Duplicate Entry</source>
         <translation>Дублювати запис</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="457"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="351"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="351"/>
         <source>Change Language</source>
         <translation>Змінити мову</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="497"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="359"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="359"/>
         <location filename="../../MainWindow.cpp" line="190"/>
         <source>Dark</source>
         <translation>Темна</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="502"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="360"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="360"/>
         <location filename="../../MainWindow.cpp" line="191"/>
         <source>Light</source>
         <translation>Світла</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="507"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="361"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="361"/>
         <source>Default</source>
         <translation>Системна</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="512"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="362"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="362"/>
         <source>Password Generator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1031,43 +1013,43 @@ Error: </source>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="462"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="352"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="352"/>
         <source>Show Toolbar</source>
         <translation>Показувати панель інструментів</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="467"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="353"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="353"/>
         <source>Configure Columns</source>
         <translation>Налаштування таблиць</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="472"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="354"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="354"/>
         <source>Open Url</source>
         <translation>Відкрити посилання</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="477"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="355"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="355"/>
         <source>Copy Url</source>
         <translation>Скопіювати посилання</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="482"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="356"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="356"/>
         <source>English</source>
         <translation>Англійська</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="487"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="357"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="357"/>
         <source>Ukrainian</source>
         <translation>Українська</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="492"/>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_mainwindow.h" line="358"/>
+        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_MainWindow.h" line="358"/>
         <source>German</source>
         <translation>Німецька</translation>
     </message>
@@ -1377,38 +1359,32 @@ Try again please.</source>
 <context>
     <name>OpenDatabase</name>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="137"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation type="vanished">Діалог</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="138"/>
         <source>Enter Master Key</source>
-        <translation>Введіть майстер-ключ</translation>
+        <translation type="vanished">Введіть майстер-ключ</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="139"/>
         <source>Path</source>
-        <translation>Шлях</translation>
+        <translation type="vanished">Шлях</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="140"/>
         <source>Master Password</source>
-        <translation>Майстер-ключ:</translation>
+        <translation type="vanished">Майстер-ключ:</translation>
     </message>
     <message>
         <source>Help</source>
         <translation type="vanished">Допомога</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="141"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation type="vanished">Ок</translation>
     </message>
     <message>
-        <location filename="../../build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/RadikPass_autogen/include/ui_opendatabase.h" line="142"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation type="vanished">Скасувати</translation>
     </message>
     <message>
         <source>Open Database</source>
@@ -1500,41 +1476,36 @@ Try again please.</source>
     </message>
     <message>
         <location filename="../../PasswordGenerator.cpp" line="18"/>
-        <source>Is a measurement of how password is unpredictable</source>
+        <source>Measure of password strength</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="19"/>
-        <source>Based on entropy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../PasswordGenerator.cpp" line="74"/>
+        <location filename="../../PasswordGenerator.cpp" line="95"/>
         <source>Entropy: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="137"/>
+        <location filename="../../PasswordGenerator.cpp" line="158"/>
         <source>Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="150"/>
+        <location filename="../../PasswordGenerator.cpp" line="171"/>
         <source>Quality: weak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="153"/>
+        <location filename="../../PasswordGenerator.cpp" line="174"/>
         <source>Quality: normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="156"/>
+        <location filename="../../PasswordGenerator.cpp" line="177"/>
         <source>Quality: strong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PasswordGenerator.cpp" line="159"/>
+        <location filename="../../PasswordGenerator.cpp" line="180"/>
         <source>Quality: very strong</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1656,32 +1627,32 @@ Try again please</source>
         <translation type="unfinished">Додати таблицю</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="30"/>
+        <location filename="../../TableAdder.cpp" line="28"/>
         <source>Can&apos;t add new table, probably you didn&apos;t opened database</source>
         <translation type="unfinished">Не можливо завантажити таблицю, скоріше всього база даних не відкрита</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="94"/>
+        <location filename="../../TableAdder.cpp" line="92"/>
         <source>Name field must be not empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="125"/>
-        <location filename="../../TableAdder.cpp" line="136"/>
+        <location filename="../../TableAdder.cpp" line="123"/>
+        <location filename="../../TableAdder.cpp" line="134"/>
         <source>Can&apos;t create table
 Query error: </source>
         <translation type="unfinished">Не вдалося створити таблицю.
 Помилка: </translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="143"/>
+        <location filename="../../TableAdder.cpp" line="141"/>
         <source>Table with this name already exists
 Try another name</source>
         <translation type="unfinished">Таблиця з цим ім&apos;ям вже існує.
 Спробуйте вказати інакше ім&apos;я.</translation>
     </message>
     <message>
-        <location filename="../../TableAdder.cpp" line="145"/>
+        <location filename="../../TableAdder.cpp" line="143"/>
         <source>Can&apos;t create table with this name.
 Try another name.</source>
         <translation type="unfinished">Не вдається створити таблицю з цим ім&apos;ям

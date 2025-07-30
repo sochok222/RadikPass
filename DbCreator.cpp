@@ -12,6 +12,9 @@ DbCreator::DbCreator(QWidget *parent, QByteArray *key, const QString path, Theme
 
     this->setWindowTitle(tr("Create Database")); // Setting window title
 
+    // Tooltips
+    ui->label_entropy->setToolTip("Measure of password strength");
+
 
     // Connecting buttons and signals of lineEdits
     connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(clicked_button_cancel()));
@@ -112,24 +115,21 @@ void DbCreator::lineEdit_repeat_textChanged(const QString &arg1) {
 
 
 void DbCreator::lineEdit_password_textChanged(const QString &arg1) {
-    bool hasDigit = false;
-    bool hasUppercase = false;
-    bool hasLowercase = false;
-    bool hasSpecial = false;
+    int entropy = PasswordGenerator::getEntropy(arg1);
+    ui->label_entropy->setText("Entropy: " + QString::number(entropy));
 
-
-    switch(ui->lineEdit_password->text().size()) {
-    case 1:
-        ui->label_passwordQuality->setText(tr("Weak"));
+    switch(PasswordGenerator::getStrength(entropy)) {
+    case Password::Weak:
+        ui->label_quality->setText(tr("Quality: Weak"));
         break;
-    case 8:
-        ui->label_passwordQuality->setText(tr("Normal"));
+    case Password::Normal:
+        ui->label_quality->setText(tr("Quality: Normal"));
         break;
-    case 16:
-        ui->label_passwordQuality->setText(tr("Strong"));
+    case Password::Strong:
+        ui->label_quality->setText(tr("Quality: Strong"));
         break;
-    case 25:
-        ui->label_passwordQuality->setText(tr("Very Strong"));
+    case Password::VeryStrong:
+        ui->label_quality->setText(tr("Quality: Very Strong"));
         break;
     }
 }
