@@ -9,7 +9,7 @@ PasswordGenerator::PasswordGenerator(QWidget *parent, QString *result)
     qInfo() << Q_FUNC_INFO;
 
     ui->setupUi(this);
-    ui->line_result->setReadOnly(true);
+    ui->lineEdit_result->setReadOnly(true);
 
     this->setWindowTitle(tr("Password Generator"));
 
@@ -146,9 +146,9 @@ void PasswordGenerator::copyPassword() {
 
     OpenClipboard(0);
     EmptyClipboard();
-    HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, ui->line_result->text().size() + 1);
+    HGLOBAL hGlob = GlobalAlloc(GMEM_FIXED, ui->lineEdit_result->text().size() + 1);
 
-    strcpy_s((char*)hGlob, ui->line_result->text().size() + 1, &ui->line_result->text().toStdString()[0]);
+    strcpy_s((char*)hGlob, ui->lineEdit_result->text().size() + 1, &ui->lineEdit_result->text().toStdString()[0]);
     SetClipboardData(CF_TEXT, hGlob);
     CloseClipboard();
 }
@@ -164,7 +164,7 @@ void PasswordGenerator::generatePassword() {
     if (ui->checkBox_Special->isChecked()) flags |= Password::Special;
 
     QString password = generator(ui->slider_lenght->value(), flags);
-    ui->line_result->setText(password);
+    ui->lineEdit_result->setText(password);
 
     switch (getPasswordStrength(password)) {
     case Password::Weak:
@@ -195,7 +195,7 @@ void PasswordGenerator::on_button_close_clicked() {
 
 void PasswordGenerator::on_button_save_clicked() {
     if (result)
-        *result = ui->line_result->text();
+        *result = ui->lineEdit_result->text();
     this->close();
 }
 

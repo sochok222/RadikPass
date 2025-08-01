@@ -33,10 +33,10 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="2">
-    <widget class="QLineEdit" name="line_title"/>
+    <widget class="QLineEdit" name="lineEdit_title"/>
    </item>
    <item row="4" column="2">
-    <widget class="QLineEdit" name="line_password"/>
+    <widget class="QLineEdit" name="lineEdit_password"/>
    </item>
    <item row="2" column="1">
     <widget class="QLabel" name="label_userName">
@@ -53,7 +53,7 @@
     </widget>
    </item>
    <item row="6" column="2">
-    <widget class="QLineEdit" name="line_url"/>
+    <widget class="QLineEdit" name="lineEdit_url"/>
    </item>
    <item row="6" column="1">
     <widget class="QLabel" name="label_url">
@@ -73,10 +73,10 @@
     </widget>
    </item>
    <item row="8" column="2">
-    <widget class="QTextEdit" name="line_notes"/>
+    <widget class="QTextEdit" name="lineEdit_notes"/>
    </item>
    <item row="2" column="2">
-    <widget class="QLineEdit" name="line_username"/>
+    <widget class="QLineEdit" name="lineEdit_username"/>
    </item>
    <item row="4" column="1">
     <widget class="QLabel" name="label_password">

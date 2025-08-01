@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent, QByteArray MasterKey, QTranslator *trans
     connectActions();
 
     // Setting search bar
-    ui->line_search->setClearButtonEnabled(true);
-    ui->line_search->setPlaceholderText("Search...");
+    ui->lineEdit_search->setClearButtonEnabled(true);
+    ui->lineEdit_search->setPlaceholderText("Search...");
 
     // Setting listWidget
     ui->listWidget_tables->setContextMenuPolicy(Qt::CustomContextMenu); // Enabling context menu
@@ -622,9 +622,9 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         if (question == QMessageBox::Yes) {
             DbManager::uploadDb(settings.value("Last").toString(), key, &db);
             event->accept();
-        }else if (question == QMessageBox::No) {
+        } else if (question == QMessageBox::No) {
             event->accept();
-        }else if (question == QMessageBox::Cancel) {
+        } else if (question == QMessageBox::Cancel) {
             event->ignore();
         }
     }
@@ -688,9 +688,9 @@ void MainWindow::openDatabase() {
         if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
             DbManager::uploadDb(settings.value("Last").toString(), key, &db);
-        }else if (question == QMessageBox::No) {
+        } else if (question == QMessageBox::No) {
             qDebug() << "Clicked no";
-        }else if (question == QMessageBox::Cancel) {
+        } else if (question == QMessageBox::Cancel) {
             qDebug() << "Clicked cancel";
             return;
         }

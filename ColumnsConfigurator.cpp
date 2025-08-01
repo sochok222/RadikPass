@@ -11,30 +11,7 @@ ColumnsConfigurator::ColumnsConfigurator(QWidget *parent)
 
     this->setWindowTitle(tr("Configure Columns")); // Setting window title
 
-    // Setting smooth scroll mode
-    ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // Disabling editing in tableWidget
-    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection); // Disabling selection in tableWidget
-
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    // Creating rows and columns in tableWidget
-    ui->tableWidget->setRowCount(7);
-    ui->tableWidget->setColumnCount(2);
-
-    // List with header names
-    QStringList horizontal = QList<QString>({tr("Shown"), tr("Masked")});
-    QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes"),
-                                           tr("Creation Time"), tr("Last Changed")});
-
-    // Adding headers to tableWidget
-    ui->tableWidget->setVerticalHeaderLabels(vertical);
-    ui->tableWidget->setHorizontalHeaderLabels(horizontal);
-
-    // Initialization of vector of QComboBoxes(cells)
+    // Initializing vector with comboBoxes that used in tableWidget
     rows = {
         {isTitleShown, isTitleAsterisks},
         {isUsernameShown, isUsernameAsterisks},
@@ -45,17 +22,13 @@ ColumnsConfigurator::ColumnsConfigurator(QWidget *parent)
         {isLastChangedShown, isLastChangedAsterisks}
     };
 
-    setup(); // Filling cells in tableWidget
-    loadSettings(); // Loading current settings
+    setupTableWidget();
 
-    int height = ui->tableWidget->size().height();
-    for(int i = 0; i < 7; i++) {
-        ui->tableWidget->setRowHeight(i, height/7);
-    }
+    // Connecting button to slot
+    connect(ui->button_save, SIGNAL(clicked(bool)), this, SLOT(saveChanges()));
 }
 
-ColumnsConfigurator::~ColumnsConfigurator()
-{
+ColumnsConfigurator::~ColumnsConfigurator() {
     delete ui;
 
     delete isTitleShown;
@@ -75,9 +48,33 @@ ColumnsConfigurator::~ColumnsConfigurator()
     delete isLastChangedAsterisks;
 }
 
+void ColumnsConfigurator::setupTableWidget() {
+    // Disabling selection and editing
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
-void ColumnsConfigurator::addCheckBoxAt(int row_number, int column_number, QCheckBox *checkBox)
-{
+    // Stretching cells to size of widget
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Creating rows and columns
+    ui->tableWidget->setRowCount(7);
+    ui->tableWidget->setColumnCount(2);
+
+    // Horizontal and vertical headers
+    QStringList horizontal = QList<QString>({tr("Shown"), tr("Masked")});
+    QStringList vertical = QList<QString>({tr("Title"), tr("Username"), tr("Password"), ("URL"), tr("Notes"),
+                                           tr("Creation Time"), tr("Last Changed")});
+
+    // Adding headers to widget
+    ui->tableWidget->setVerticalHeaderLabels(vertical);
+    ui->tableWidget->setHorizontalHeaderLabels(horizontal);
+
+    fillTableWidget(); // Filling cells in tableWidget
+    loadSettings(); // Loading current settings
+}
+
+void ColumnsConfigurator::addCheckBox(int row_number, int column_number, QCheckBox *checkBox) {
         // Create a widget that will contain a checkbox
     QWidget *checkBoxWidget = new QWidget();
     QHBoxLayout *layoutCheckBox = new QHBoxLayout(checkBoxWidget); // create a layer with reference to the widget
@@ -91,8 +88,7 @@ void ColumnsConfigurator::addCheckBoxAt(int row_number, int column_number, QChec
 }
 
 
-void ColumnsConfigurator::loadSettings()
-{
+void ColumnsConfigurator::loadSettings() {
     // Loading settings from QSettings
     QSettings settings("AlexRadik", "RadikPass");
     QStringList columnTitle = settings.value("columnTitle").toStringList();
@@ -107,33 +103,28 @@ void ColumnsConfigurator::loadSettings()
     QVector<QStringList*> settingsList = {
                 &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
-    for(int i = 0; i < settingsList.size(); i++)
-    {
-        if ((*settingsList[i])[0] == "shown") // If value is "shown" set checked state to check box in first row
-        {
+    for (int i = 0; i < settingsList.size(); i++) {
+        if ((*settingsList[i])[0] == "shown") { // If value is "shown" set checked state to check box in first row
             rows[i].first->setCheckState(Qt::Checked);
         }
-        if ((*settingsList[i])[1] == "masked") // If value is "masked" set checked state to check box in second row
-        {
+        if ((*settingsList[i])[1] == "masked") { // If value is "masked" set checked state to check box in second row
             rows[i].second->setCheckState(Qt::Checked);
         }
     }
 }
 
 
-void ColumnsConfigurator::setup() {
-    // Filling tableView with cells.
+void ColumnsConfigurator::fillTableWidget() {
+    // Adding comboBoxes
     int row = 0;
-    for(QPair<QCheckBox*, QCheckBox*> &el : rows)
-    {
+    for (QPair<QCheckBox*, QCheckBox*> &el : rows) {
         el.first->setCheckState(Qt::Unchecked); el.second->setCheckState(Qt::Unchecked); // Settings unchecked state as default
-        addCheckBoxAt(row, 0, el.first); addCheckBoxAt(row, 1, el.second); // Adding CheckBoxes to cells
+        addCheckBox(row, 0, el.first); addCheckBox(row, 1, el.second); // Adding CheckBoxes to cells
         row++;
     }
 }
 
-void ColumnsConfigurator::on_saveButton_clicked()
-{
+void ColumnsConfigurator::saveChanges() {
     QSettings settings("AlexRadik", "RadikPass"); // Loading current settings to QSettings, this will write settings to registry
 
     // Storing new settings in QStringList
@@ -150,20 +141,17 @@ void ColumnsConfigurator::on_saveButton_clicked()
                         &columnTitle, &columnUsername, &columnPassword, &columnURL, &columnNotes, &columnCreationTime, &columnLastChanged};
 
 
-    for(int i = 0; i < settingsList.size(); i++)
-    {
-        if (rows[i].first->checkState()) // If state is checked in first row
-        {
-            (*settingsList[i])[0] = "shown"; // Saving value "shown"
-        }else (*settingsList[i])[0] = "hidden"; // Otherwise saving value "hidden"
-        if (rows[i].second->checkState() == Qt::Checked) // Same for this
-        {
+    // Saving settings to settingsList
+    for (int i = 0; i < settingsList.size(); i++) {
+        if (rows[i].first->checkState()) {
+            (*settingsList[i])[0] = "shown";
+        } else (*settingsList[i])[0] = "hidden";
+        if (rows[i].second->checkState() == Qt::Checked) {
             (*settingsList[i])[1] = "masked";
-        }else (*settingsList[i])[1] = "unmasked";
+        } else (*settingsList[i])[1] = "unmasked";
 
     }
 
-    // Saving settings to QSettings
     settings.setValue("columnTitle", columnTitle);
     settings.setValue("columnUsername", columnUsername);
     settings.setValue("columnPassword", columnPassword);

@@ -21,12 +21,12 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     // Set window name.
     this->setWindowTitle(tr("Add Entry"));
 
-    ui->line_password->setEchoMode(QLineEdit::EchoMode::Password);
+    ui->lineEdit_password->setEchoMode(QLineEdit::EchoMode::Password);
 
-    action_hidePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
     connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
-    action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    action_generatePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
 
@@ -43,12 +43,12 @@ EntryAdder::~EntryAdder() {
 
 
 void EntryAdder::hidePassword() {
-    if (ui->line_password->echoMode() == QLineEdit::EchoMode::Password) {
+    if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
-        ui->line_password->setEchoMode(QLineEdit::Normal);
+        ui->lineEdit_password->setEchoMode(QLineEdit::Normal);
     } else {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
-        ui->line_password->setEchoMode(QLineEdit::Password);
+        ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     }
 }
 
@@ -60,13 +60,13 @@ void EntryAdder::openPasswordGenerator() {
     delete window_PasswordGenerator;
 
     if (generatedPassword.size() > 0)
-        ui->line_password->setText(generatedPassword);
+        ui->lineEdit_password->setText(generatedPassword);
 }
 
 
 bool EntryAdder::atLeastOneNotEmpty() {
     // Check if at least one field is not empty and return true if it is.
-   if (!ui->line_title->text().isEmpty() || !ui->line_username->text().isEmpty() || !ui->line_password->text().isEmpty() || !ui->line_url->text().isEmpty() || !ui->line_notes->toPlainText().isEmpty())
+   if (!ui->lineEdit_title->text().isEmpty() || !ui->lineEdit_username->text().isEmpty() || !ui->lineEdit_password->text().isEmpty() || !ui->lineEdit_url->text().isEmpty() || !ui->lineEdit_notes->toPlainText().isEmpty())
         return true;
     return false;
 }
@@ -89,11 +89,11 @@ void EntryAdder::on_okButton_clicked() {
         query.prepare(insertData);
 
         // Binding values.
-        query.bindValue(":title", ui->line_title->text());
-        query.bindValue(":username", ui->line_username->text());
-        query.bindValue(":password", ui->line_password->text());
-        query.bindValue(":url", ui->line_url->text());
-        query.bindValue(":notes", ui->line_notes->toPlainText());
+        query.bindValue(":title", ui->lineEdit_title->text());
+        query.bindValue(":username", ui->lineEdit_username->text());
+        query.bindValue(":password", ui->lineEdit_password->text());
+        query.bindValue(":url", ui->lineEdit_url->text());
+        query.bindValue(":notes", ui->lineEdit_notes->toPlainText());
         query.bindValue(":creationTime", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy")); // Using QDateTime to get current date and time.
         query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));
 

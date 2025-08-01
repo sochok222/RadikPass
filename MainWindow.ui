@@ -185,7 +185,7 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line">
+       <widget class="Line" name="line_separator">
         <property name="orientation">
          <enum>Qt::Orientation::Vertical</enum>
         </property>
@@ -304,14 +304,14 @@ QAction{
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_2">
+       <widget class="Line" name="line_separator_2">
         <property name="orientation">
          <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="line_search"/>
+       <widget class="QLineEdit" name="lineEdit_search"/>
       </item>
       <item>
        <spacer name="horizontalSpacer">

@@ -23,12 +23,12 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
     ui->setupUi(this);
     this->setWindowTitle(tr("Edit Entry"));
 
-    ui->line_password->setEchoMode(QLineEdit::EchoMode::Password);
+    ui->lineEdit_password->setEchoMode(QLineEdit::EchoMode::Password);
 
-    action_hidePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
     connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
-    QAction *action_generatePassword = ui->line_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    QAction *action_generatePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
     connect(action_generatePassword, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
     // Checking if database is opened
@@ -45,12 +45,12 @@ EntryEditor::~EntryEditor() {
 }
 
 void EntryEditor::hidePassword() {
-    if (ui->line_password->echoMode() == QLineEdit::EchoMode::Password) {
+    if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
-        ui->line_password->setEchoMode(QLineEdit::Normal);
+        ui->lineEdit_password->setEchoMode(QLineEdit::Normal);
     } else {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
-        ui->line_password->setEchoMode(QLineEdit::Password);
+        ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     }
 }
 
@@ -61,7 +61,7 @@ void EntryEditor::openPasswordGenerator() {
     delete window_PasswordGenerator;
 
     if (generatedPassword.size() > 0)
-        ui->line_password->setText(generatedPassword);
+        ui->lineEdit_password->setText(generatedPassword);
 }
 
 void EntryEditor::fillData() {
@@ -88,11 +88,11 @@ void EntryEditor::fillData() {
         this->close();
     }
     if (query.next()) { // Copying data from entry to fields
-        ui->line_title->setText(query.value(1).toString());
-        ui->line_username->setText(query.value(2).toString());
-        ui->line_password->setText(query.value(3).toString());
-        ui->line_url->setText(query.value(4).toString());
-        ui->line_notes->setText(query.value(5).toString());
+        ui->lineEdit_title->setText(query.value(1).toString());
+        ui->lineEdit_username->setText(query.value(2).toString());
+        ui->lineEdit_password->setText(query.value(3).toString());
+        ui->lineEdit_url->setText(query.value(4).toString());
+        ui->lineEdit_notes->setText(query.value(5).toString());
     } else {
         showMsgBox(tr("Unable to load data from database.\nTry again, please."));
         qCritical() << "Query didn't find an entry";
@@ -102,7 +102,7 @@ void EntryEditor::fillData() {
 
 bool EntryEditor::atLeastOneNotEmpty() {
     // Checking if at least one field is not emtpy
-    if (!ui->line_title->text().isEmpty() || !ui->line_username->text().isEmpty() || !ui->line_password->text().isEmpty() || !ui->line_url->text().isEmpty() || !ui->line_notes->toPlainText().isEmpty())
+    if (!ui->lineEdit_title->text().isEmpty() || !ui->lineEdit_username->text().isEmpty() || !ui->lineEdit_password->text().isEmpty() || !ui->lineEdit_url->text().isEmpty() || !ui->lineEdit_notes->toPlainText().isEmpty())
         return true;
     return false;
 }
@@ -131,11 +131,11 @@ void EntryEditor::on_okButton_clicked() {
                                                     "WHERE id == %2").arg(table).arg(id);
         // Preparing query and binding values
         query.prepare(command);
-        query.bindValue(":title", ui->line_title->text());
-        query.bindValue(":username", ui->line_username->text());
-        query.bindValue(":password", ui->line_password->text());
-        query.bindValue(":url", ui->line_url->text());
-        query.bindValue(":notes", ui->line_notes->toPlainText());
+        query.bindValue(":title", ui->lineEdit_title->text());
+        query.bindValue(":username", ui->lineEdit_username->text());
+        query.bindValue(":password", ui->lineEdit_password->text());
+        query.bindValue(":url", ui->lineEdit_url->text());
+        query.bindValue(":notes", ui->lineEdit_notes->toPlainText());
         query.bindValue(":lastChanged", QDateTime::currentDateTime().toString("H:mm dd/MM/yyyy"));
 
         if (!query.exec()) {

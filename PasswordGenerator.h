@@ -13,7 +13,7 @@ class PasswordGenerator;
 }
 
 namespace Password {
-static const QRegularExpression regExp_uppercase("[A-Z]");
+static QRegularExpression regExp_uppercase("[A-Z]");
 static const QRegularExpression regExp_lowercase("[a-z]");
 static const QRegularExpression regExp_numbers("[0-9]");
 static const QRegularExpression regExp_special("[^a-z^A-Z^0-9]");
@@ -54,6 +54,7 @@ private slots:
     void copyPassword();
     void checkBoxPressed(Qt::CheckState state);
     void generatePassword();
+    Password::Strength getPasswordStrength(const QString &password);
 
     void on_button_close_clicked();
 
@@ -64,7 +65,7 @@ private:
 
     void disableCheckBoxes();
     void enableCheckBoxes();
-    Password::Strength getPasswordStrength(const QString &password);
+
 
     int selectedBoxes = 0;
 

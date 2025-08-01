@@ -166,42 +166,42 @@ Try another name.</source>
         <translation type="unfinished">Налаштування таблиць</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="29"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="65"/>
         <source>Shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="29"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="65"/>
         <source>Masked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="30"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="66"/>
         <source>Title</source>
         <translation type="unfinished">Заголовок</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="30"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="66"/>
         <source>Username</source>
         <translation type="unfinished">Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="30"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="66"/>
         <source>Password</source>
         <translation type="unfinished">Пароль</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="30"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="66"/>
         <source>Notes</source>
         <translation type="unfinished">Нотатки</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="31"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="67"/>
         <source>Creation Time</source>
         <translation type="unfinished">Час створення</translation>
     </message>
     <message>
-        <location filename="../../ColumnsConfigurator.cpp" line="31"/>
+        <location filename="../../ColumnsConfigurator.cpp" line="67"/>
         <source>Last Changed</source>
         <translation type="unfinished">Остання зміна</translation>
     </message>
