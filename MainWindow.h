@@ -14,7 +14,6 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include "CellDelegate.h"
-#include "DbOpener.h"
 #include <QScopedPointer>
 #include <openssl/rand.h>
 #include <QStandardPaths>
@@ -50,13 +49,22 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+struct AppState {
+    QVector<QString> tables; // Tables that are available to user
+    QString pathToDatabase;
+    QByteArray masterKey;
+    bool isDbChanged;
+    QSqlDatabase db;
+    Theme theme;
+};
+
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, QByteArray MasterKey = "", QTranslator *translator = nullptr, Theme theme = Theme::Dark);
+    MainWindow(QWidget *parent = nullptr, AppState *appState = nullptr);
     ~MainWindow();
 
 public slots:
@@ -64,6 +72,8 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+
+    AppState *appState;
 
     // Remembering last used table
     int lastUsedTable = 0;
@@ -90,7 +100,7 @@ private:
     QString currentTable;
 
     // Vector with avaible to user tables, this vector loaded to listWidget.
-    std::vector<QString> tables;
+    QVector<QString> tables;
 
     // Loading settings.
     QSettings settings = QSettings("AlexRadik", "RadikPass");

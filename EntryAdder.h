@@ -27,7 +27,7 @@ public:
     ~EntryAdder();
 
 private slots:
-    void on_okButton_clicked(); // When user clicks ok button this fuction executes
+    void button_ok_clicked();
     void openPasswordGenerator();
     void hidePassword();
 

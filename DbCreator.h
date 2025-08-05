@@ -6,10 +6,15 @@
 #include <QMessageBox>
 #include <QTranslator>
 #include <QScopedPointer>
-#include <QRegularExpression>
-#include <QRegularExpressionValidator>
+#include <QSqlDatabase>
 #include "IconLoader.h"
+#include "DbManager.h"
 #include "PasswordGenerator.h"
+
+/*
+ * This class must create database and load it to *resultDb, save path to 'last' in QSettings and copy it to *resultPath and load user-available tables to *tables
+*/
+
 
 namespace Ui {
 class DbCreator;
@@ -20,9 +25,7 @@ class DbCreator : public QDialog
     Q_OBJECT
 
 public:
-    // This class needs key to set encryption to new database, and path to show user where new database will be created
-    // DbCreator class won't create database, DbManager will do this work
-    explicit DbCreator(QWidget *parent = nullptr, QByteArray *key = nullptr, const QString path = "", Theme theme = Theme::Dark);
+    explicit DbCreator(QWidget *parent = nullptr, QSqlDatabase *resultDb = nullptr, QString *resultPath = nullptr, QByteArray *resultKey = nullptr, Theme theme = Theme::Dark);
     ~DbCreator();
 
 private slots:
@@ -40,8 +43,10 @@ private slots:
 
 private:
     Ui::DbCreator *ui;
-    QByteArray *key; // To store address of master-key by which database will be encrypted
-    bool repeatEnabled; // By this variable program know either to password or not
+    void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
+    QSqlDatabase *resultDb;
+    QString *resultPath;
+    bool repeatEnabled;
     QAction *action_hidePassword;
     QAction *action_openPasswordGenerator;
     Theme theme;

@@ -34,10 +34,10 @@ public:
 
     // Loading encrypted datbase from encryptedDatabase path, decrypting it by key
     // Loaind it to *db, and pushing tables tables that are avaible to user in vector &tables
-    static bool loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db, std::vector<QString> &tables);
+    static bool loadDb(const QString encryptedDatabase, QByteArray *key, QSqlDatabase *db, QVector<QString> *tables);
 
     // This fuction will copy decrypted database to &db at &path, and load list of tabes that avaible to user to &tables
-    static bool loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables);
+    static bool loadTemporaryDatabase(QSqlDatabase *db, QString &path, QVector<QString> &tables);
 
     // Creates and fills database in temoprary file by *db, then encrypts this database content to databasePath using the &key
     static bool createAndFillDatabase(const QString databasePath, QByteArray &key, QSqlDatabase *db);

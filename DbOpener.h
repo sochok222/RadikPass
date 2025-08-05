@@ -8,7 +8,18 @@
 #include <QByteArray>
 #include <QMessageBox>
 #include "IconLoader.h"
+#include <QTimer>
+#include "dbmanager.h"
 #include <QTranslator>
+
+struct AppState {
+    QVector<QString> tables; // Tables that are available to user
+    QString pathToDatabase;
+    QByteArray masterKey;
+    bool isDbChanged;
+    QSqlDatabase db;
+    Theme theme;
+};
 
 namespace Ui {
 class DbOpener;
@@ -20,28 +31,27 @@ class DbOpener : public QDialog
 
 public:
     // *result to reutrn master-key.
-    explicit DbOpener(QWidget *parent = nullptr, QByteArray *result = nullptr, const QString &path = "", Theme theme = Theme::Dark);
+    explicit DbOpener(QWidget *parent = nullptr, AppState *appState = nullptr);
     ~DbOpener();
 
 private slots:
-    void clicked_button_ok(); // When user clicks Ok button.
-
-    void clicked_button_cancel(); // When user clicks Cancel button.
+    void button_ok_clicked();
+    void button_cancel_clicked();
 
     void hidePassword();
 
 private:
     Ui::DbOpener *ui;
 
+    void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
+
     Theme theme;
 
     QAction *action_hidePassword;
 
-    // Loading settings.
-    QSettings settings = QSettings("AlexRadik", "RadikPass");
+    AppState *appState;
 
-    // Storing master-key.
-    QByteArray *masterPassword;
+    QSettings settings = QSettings("AlexRadik", "RadikPass");
 };
 
 #endif // DBOPENER_H

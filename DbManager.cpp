@@ -218,19 +218,19 @@ QByteArray* DbManager::decryptData(QByteArray *encryptedData, QByteArray &gotKey
     return decrypted; // Returning decrypted byte array
 }
 
-bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vector<QString> &tables) {
+bool DbManager::loadTemporaryDatabase(QSqlDatabase *db, QString &path, QVector<QString> &tables) {
     qInfo() << Q_FUNC_INFO;
 
     // Connecting database to RAM
-    db.setDatabaseName(":memory:");
+    db->setDatabaseName(":memory:");
 
     // Returning false if can`t open datatbase
-    if (!db.open()) {
+    if (!db->open()) {
         qCritical() << "Can't open database";
         return false;
     }
 
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
 
     // Executing query that will attach the temporary database as tempDb
     query.prepare("ATTACH DATABASE :path as tempDb");
@@ -257,7 +257,7 @@ bool DbManager::loadTemporaryDatabase(QSqlDatabase &db, QString &path, std::vect
         qDebug() << "Creating table:" << tableName;
 
         // Creating table in :memory: database
-        QSqlQuery createQuery(db);
+        QSqlQuery createQuery(*db);
         if (!createQuery.exec(createSQL)) {
             qCritical() << "Create table failed:" << createQuery.lastError().text();
             showMsgBox("Can't copy table: " + tableName + ".\nPlease try again.");
@@ -321,7 +321,7 @@ bool DbManager::deleteTemporaryFile(T &file) {
     return true;
 }
 
-bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDatabase *db, std::vector<QString> &tables)
+bool DbManager::loadDb(const QString encryptedDatabase, QByteArray *key, QSqlDatabase *db, QVector<QString> *tables)
 {
     qInfo() << Q_FUNC_INFO;
 
@@ -343,7 +343,7 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
 
     QByteArray *encData = new QByteArray(encrypted.readAll()); // Reading the content of the encrypted file
 
-    encData = decryptData(encData, key); // Decrypting encrypted data
+    encData = decryptData(encData, *key); // Decrypting encrypted data
 
     if (encData == nullptr || encData->size() == 0) {
         return false;
@@ -362,7 +362,7 @@ bool DbManager::loadDb(const QString encryptedDatabase, QByteArray &key, QSqlDat
     QString databasePath(temp.fileName());
 
     // Loading temporary database to :memory: database
-    if (!loadTemporaryDatabase(*db, databasePath, tables)) {
+    if (!loadTemporaryDatabase(db, databasePath, *tables)) {
         qCritical() << "Can`t load temporary database to :memory:";
         return false;
     }

@@ -50,19 +50,8 @@ MainWindow::MainWindow(QWidget *parent, AppState *appState)
     // Connecting listWidget to context menu slot
     connect(ui->listWidget_tables, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
-    if (!key.isEmpty()) { // If given key from database is not empty
-        // loadDb() loads selected database to QSqlDatabase object (&db)
-        // Path to database is loaded from QSettings
-        // tables is list of tables in database, loadDb() changes this list according to loaded database
-        if (!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) { // Trying to load database
-            showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
-            key = 0;
-        }
-
-        for(int i = 0; i < tables.size(); i++) { // Adding tables to listWidget in screen
-            ui->listWidget_tables->addItem(tables[i]);
-        }
-    }
+    // Checking if database is opened
+    if ()
 
     model = new QSqlTableModel(this, db); // Creating model with all tables in it
 
@@ -70,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent, AppState *appState)
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
 
-    if (tables.size() > 0) { // Loading first table if one or more exists
+    if (appState->tables.size() > 0) { // Loading first table if one or more exists
         model->setTable(tables[0]);
         ui->listWidget_tables->setCurrentRow(0);
     }
@@ -85,6 +74,11 @@ MainWindow::MainWindow(QWidget *parent, AppState *appState)
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+
+bool MainWindow::checkIfOpened(QSqlDatabase *db) {
+    QSqlQuery query(*())
 }
 
 
@@ -561,12 +555,12 @@ void MainWindow::deleteTable() {
         QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
 
     if (question == QMessageBox::Yes) {
-        if (tables.size() != 1) {
+        if (appState->tables.size() != 1) {
             if (DbManager::deleteTable(&db, ui->listWidget_tables->item(index)->text())) {
                 isChanged = true;
-                tables.erase(tables.begin() + index);
+                appState->tables.erase(appState->tables.begin() + index);
                 ui->listWidget_tables->takeItem(index);
-                model->setTable(tables[tables.size() - 1]);
+                model->setTable(tables[appState->tables.size() - 1]);
                 model->select();
                 ui->tableView->update();
                 configureColumns();
@@ -650,15 +644,15 @@ void MainWindow::createTable() {
     addTable->exec(); // Showing dialog
     delete addTable;
 
-    if (ui->listWidget_tables->count() != tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
+    if (ui->listWidget_tables->count() != appState->tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
         ui->listWidget_tables->clear(); // Clearing list of tables
-        for(int i = 0; i < tables.size(); i++) {
+        for(int i = 0; i < appState->tables.size(); i++) {
             ui->listWidget_tables->addItem(tables[i]);  // Adding lists to QListWidget
         }
-        ui->listWidget_tables->setCurrentRow(tables.size()-1);
+        ui->listWidget_tables->setCurrentRow(appState->tables.size()-1);
 
         // Selecting last table (this is table that user added)
-        model->setTable(tables[tables.size() - 1]);
+        model->setTable(tables[appState->tables.size() - 1]);
         model->select();
     }
     loadIconsToListWidget();
@@ -712,10 +706,10 @@ void MainWindow::openDatabase() {
         }
         settings.setValue("Last", file);
         ui->listWidget_tables->clear();
-        for(int i = 0; i < tables.size(); i++) {
+        for(int i = 0; i < appState->tables.size(); i++) {
             ui->listWidget_tables->addItem(tables[i]);
         }
-        if (tables.size() > 0) { // If one or more table exists we select current first table
+        if (appState->tables.size() > 0) { // If one or more table exists we select current first table
             model->setTable(tables[0]);
             ui->listWidget_tables->setCurrentRow(0);
         }
@@ -750,16 +744,16 @@ void MainWindow::createDatabase() {
 
         ui->listWidget_tables->clear(); // Clears listWidget that holds all tables
 
-        for(int i = 0; i < tables.size(); i++) { // Loading all tables that available to user from tables vector
+        for(int i = 0; i < appState->tables.size(); i++) { // Loading all tables that available to user from tables vector
             ui->listWidget_tables->addItem(tables[i]);
         }
 
-        if (tables.size() > 0)
+        if (appState->tables.size() > 0)
             ui->listWidget_tables->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
     }
 
     configureColumns(); // Showing columns according to settings.
-    loadIconsToListWidget(); // Loading icons to ListWidget with tables.
+    loadIconsToListWidget(); // Loading icons to ListWidget with appState->tables.
 }
 
 void MainWindow::configureEntryMenu() { // This function will disable or enable actions in View menu in toolbar

@@ -18,8 +18,10 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
     , theme(theme)
 {
     ui->setupUi(this);
-    // Set window name.
     this->setWindowTitle(tr("Add Entry"));
+
+    connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->button_ok, SIGNAL(clicked(bool)), this, SLOT(button_ok_clicked()));
 
     ui->lineEdit_password->setEchoMode(QLineEdit::EchoMode::Password);
 
@@ -38,6 +40,8 @@ EntryAdder::EntryAdder(QWidget *parent, QSqlDatabase *db, QString tableName, The
 }
 
 EntryAdder::~EntryAdder() {
+    delete action_generatePassword;
+    delete action_hidePassword;
     delete ui;
 }
 
@@ -72,8 +76,7 @@ bool EntryAdder::atLeastOneNotEmpty() {
 }
 
 
-
-void EntryAdder::on_okButton_clicked() {
+void EntryAdder::button_ok_clicked() {
     qDebug() << Q_FUNC_INFO;
 
     QSqlQuery query(*db); // QSqlQuery to access QSqlDatabase db.
