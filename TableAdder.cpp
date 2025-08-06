@@ -3,7 +3,7 @@
 #include <qtimer.h>
 
 
-TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, std::vector<QString> *tables, Theme theme)
+TableAdder::TableAdder(QWidget *parent, QSqlDatabase *db, QVector<QString> *tables, Theme theme)
     : QDialog(parent)
     , ui(new Ui::TableAdder)
     , tables(tables)

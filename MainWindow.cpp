@@ -1,16 +1,18 @@
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
+#include "DbOpener.h"
 #include <qstylehints.h>
 
-MainWindow::MainWindow(QWidget *parent, AppState *appState)
+MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translator)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , appState(appState)
+    , colorTheme(colorTheme)
+    , translator(translator)
 {
     qInfo() << Q_FUNC_INFO;
     ui->setupUi(this);
 
-    if (appState == nullptr) {
+    if (translator == nullptr) {
         qCritical() << "AppState is nullpointer!";
         QTimer::singleShot(0, this, SLOT(close()));
     }
@@ -50,41 +52,37 @@ MainWindow::MainWindow(QWidget *parent, AppState *appState)
     // Connecting listWidget to context menu slot
     connect(ui->listWidget_tables, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
-    if (!key.isEmpty()) { // If given key from database is not empty
-        // loadDb() loads selected database to QSqlDatabase object (&db)
-        // Path to database is loaded from QSettings
-        // tables is list of tables in database, loadDb() changes this list according to loaded database
-        if (!DbManager::loadDb(settings.value("Last").toString(), key, &db, tables)) { // Trying to load database
-            showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
-            key = 0;
-        }
-
-        for(int i = 0; i < tables.size(); i++) { // Adding tables to listWidget in screen
-            ui->listWidget_tables->addItem(tables[i]);
-        }
+    model = new QSqlTableModel(this, db);
+    if (!settings.value("LastUsed").toString().isEmpty()){
+        DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &masterKey, &tables, colorTheme);
+        window_OpenDatabase->exec();
+        if (checkIfDatabaseOpened(&db)) {
+            qDebug() << "Database is opened";
+            model->setTable(tables[0]);
+        } else qDebug() << "Database is not opened";
     }
 
-    model = new QSqlTableModel(this, db); // Creating model with all tables in it
 
     // Connecting model update signal to slots that will retranslate headers and configure columns
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
 
-    if (tables.size() > 0) { // Loading first table if one or more exists
-        model->setTable(tables[0]);
-        ui->listWidget_tables->setCurrentRow(0);
-    }
 
     model->select();
-    ui->tableView->setModel(model); // Loading model to QTableView
-
-    configureColumns(); // Showing columns according to settings.
-
-    loadIcons(); // Loading icons according to current color theme
+    ui->tableView->setModel(model);
+    configureColumns();
+    loadIcons();
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+
+bool MainWindow::checkIfDatabaseOpened(QSqlDatabase *db) {
+    QSqlQuery query(*db);
+    if (query.exec()) return true;
+    return false;
 }
 
 
@@ -143,7 +141,7 @@ void MainWindow::connectActions() {
     connect(ui->action_setEngLanguage, SIGNAL(triggered(bool)), SLOT(setEnglishLanguage()));
     connect(ui->action_setGeLanguage, SIGNAL(triggered(bool)), SLOT(setGermanLanguage()));
 
-    setColorThemeActions(); // setting actions in "Color Theme" menu
+    setColorThemeActions(); // setting actions in "Color colorTheme" menu
 }
 
 void MainWindow::connectButtons() {
@@ -200,19 +198,19 @@ void MainWindow::setColorThemeActions() {
     group_colorThemes->addAction(action_lightTheme.data());
 
     // Connecting actions to slots
-    connect(action_systemTheme.data(), SIGNAL(triggered(bool)), SLOT(setSystemColorTheme()));
-    connect(action_darkTheme.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
-    connect(action_lightTheme.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
+    connect(action_systemTheme.data(), SIGNAL(triggered(bool)), SLOT(setSystemTheme()));
+    connect(action_darkTheme.data(), SIGNAL(triggered(bool)), SLOT(setDarkTheme()));
+    connect(action_lightTheme.data(), SIGNAL(triggered(bool)), SLOT(setLightTheme()));
 
     // Setting actions as checkable
     action_systemTheme->setCheckable(true);
     action_lightTheme->setCheckable(true);
     action_darkTheme->setCheckable(true);
 
-    // Setting checked action according to current theme
-    if (settings.value("theme") == "system") action_systemTheme->setChecked(true);
-    else if (settings.value("theme") == "dark") action_darkTheme->setChecked(true);
-    else if (settings.value("theme") == "light") action_lightTheme->setChecked(true);
+    // Setting checked action according to current Theme
+    if (settings.value("Theme") == "system") action_systemTheme->setChecked(true);
+    else if (settings.value("Theme") == "dark") action_darkTheme->setChecked(true);
+    else if (settings.value("Theme") == "light") action_lightTheme->setChecked(true);
 
     // Loading actions to toolbar
     ui->menu_colorTheme->addAction(action_systemTheme.data());
@@ -225,33 +223,33 @@ void MainWindow::loadIcons() {
     loadIconsToListWidget();
 
     // Loading icons to buttons
-    ui->button_open->setIcon(IconLoader::getIcon(Icon::Open, theme));
-    ui->button_new->setIcon(IconLoader::getIcon(Icon::Create, theme));
-    ui->button_save->setIcon(IconLoader::getIcon(Icon::Save, theme));
-    ui->button_addEntry->setIcon(IconLoader::getIcon(Icon::Add, theme));
-    ui->button_copyUsername->setIcon(IconLoader::getIcon(Icon::User, theme));
-    ui->button_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
-    ui->button_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
+    ui->button_open->setIcon(IconLoader::getIcon(Icon::Open, colorTheme));
+    ui->button_new->setIcon(IconLoader::getIcon(Icon::Create, colorTheme));
+    ui->button_save->setIcon(IconLoader::getIcon(Icon::Save, colorTheme));
+    ui->button_addEntry->setIcon(IconLoader::getIcon(Icon::Add, colorTheme));
+    ui->button_copyUsername->setIcon(IconLoader::getIcon(Icon::User, colorTheme));
+    ui->button_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, colorTheme));
+    ui->button_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, colorTheme));
 
     // Loading icons to windows toolbar
     // File menu
-    ui->action_new->setIcon(IconLoader::getIcon(Icon::Create, theme));
-    ui->action_open->setIcon(IconLoader::getIcon(Icon::Open, theme));
-    ui->action_close->setIcon(IconLoader::getIcon(Icon::Close, theme));
+    ui->action_new->setIcon(IconLoader::getIcon(Icon::Create, colorTheme));
+    ui->action_open->setIcon(IconLoader::getIcon(Icon::Open, colorTheme));
+    ui->action_close->setIcon(IconLoader::getIcon(Icon::Close, colorTheme));
     // Entry menu
-    ui->action_copyUserName->setIcon(IconLoader::getIcon(Icon::User, theme));
-    ui->action_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, theme));
-    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::Link, theme));
-    ui->action_openUrl->setIcon(IconLoader::getIcon(Icon::OpenBrowser, theme));
-    ui->action_copyUrl->setIcon(IconLoader::getIcon(Icon::Copy, theme));
-    ui->action_addEntry->setIcon(IconLoader::getIcon(Icon::Entry, theme));
-    ui->action_editEntry->setIcon(IconLoader::getIcon(Icon::Edit, theme));
-    ui->action_duplicateEntry->setIcon(IconLoader::getIcon(Icon::Duplicate, theme));
-    ui->action_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, theme));
+    ui->action_copyUserName->setIcon(IconLoader::getIcon(Icon::User, colorTheme));
+    ui->action_copyPassword->setIcon(IconLoader::getIcon(Icon::Key, colorTheme));
+    ui->menuUrl->setIcon(IconLoader::getIcon(Icon::Link, colorTheme));
+    ui->action_openUrl->setIcon(IconLoader::getIcon(Icon::OpenBrowser, colorTheme));
+    ui->action_copyUrl->setIcon(IconLoader::getIcon(Icon::Copy, colorTheme));
+    ui->action_addEntry->setIcon(IconLoader::getIcon(Icon::Entry, colorTheme));
+    ui->action_editEntry->setIcon(IconLoader::getIcon(Icon::Edit, colorTheme));
+    ui->action_duplicateEntry->setIcon(IconLoader::getIcon(Icon::Duplicate, colorTheme));
+    ui->action_deleteEntry->setIcon(IconLoader::getIcon(Icon::Trash, colorTheme));
     // View menu
-    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::Language, theme));
-    ui->action_configureColumns->setIcon(IconLoader::getIcon(Icon::Settings, theme));
-    ui->menu_colorTheme->setIcon(IconLoader::getIcon(Icon::Color, theme));
+    ui->actionChange_Language->setIcon(IconLoader::getIcon(Icon::Language, colorTheme));
+    ui->action_configureColumns->setIcon(IconLoader::getIcon(Icon::Settings, colorTheme));
+    ui->menu_colorTheme->setIcon(IconLoader::getIcon(Icon::Color, colorTheme));
 }
 
 
@@ -364,18 +362,18 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions for context menu
-        action_copyUsername.reset(new QAction(IconLoader::getIcon(Icon::User, theme), tr("Copy User Name"), this));
-        action_copyPassword.reset(new QAction(IconLoader::getIcon(Icon::Key, theme), tr("Copy Password"), this));
-        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, theme), tr("Edit"), this));
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::Entry, theme), tr("Add new"), this));
-        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, theme), tr("Delete"), this));
-        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, theme), tr("Configure colums"), this));
+        action_copyUsername.reset(new QAction(IconLoader::getIcon(Icon::User, colorTheme), tr("Copy User Name"), this));
+        action_copyPassword.reset(new QAction(IconLoader::getIcon(Icon::Key, colorTheme), tr("Copy Password"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, colorTheme), tr("Edit"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Entry, colorTheme), tr("Add new"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, colorTheme), tr("Delete"), this));
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, colorTheme), tr("Configure colums"), this));
 
         // Resseting url menu and adding actions to it
         menu_url.reset(new QMenu(tr("URL"), this));
-        menu_url->setIcon(IconLoader::getIcon(Icon::Link, theme));
-        action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::Copy, theme), tr("Copy"), this));
-        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::OpenBrowser, theme), tr("Open"), this));
+        menu_url->setIcon(IconLoader::getIcon(Icon::Link, colorTheme));
+        action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::Copy, colorTheme), tr("Copy"), this));
+        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::OpenBrowser, colorTheme), tr("Open"), this));
         menu_url->addAction(action_copyUrl.data());
         menu_url->addAction(action_OpenUrl.data());
 
@@ -403,8 +401,8 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
 
         // Resetting actions
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add new"), this)); // Resetting QAction *actionAdd object
-        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, theme), tr("Configure colums"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, colorTheme), tr("Add new"), this)); // Resetting QAction *actionAdd object
+        action_configureColumns.reset(new QAction(IconLoader::getIcon(Icon::Settings, colorTheme), tr("Configure colums"), this));
 
         // Connecting actions
         connect(action_add.data(), SIGNAL(triggered()), SLOT(addEntry()));
@@ -419,9 +417,9 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu.reset(new QMenu(this)); // Resetting actions
 
         // Resetting actions
-        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, theme), tr("Delete"), this));
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this));
-        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, theme), tr("Edit"), this));
+        action_delete.reset(new QAction(IconLoader::getIcon(Icon::Trash, colorTheme), tr("Delete"), this));
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, colorTheme), tr("Add Table"), this));
+        action_edit.reset(new QAction(IconLoader::getIcon(Icon::Edit, colorTheme), tr("Edit"), this));
 
         // Connecting actions
         connect(action_delete.data(), SIGNAL(triggered()), SLOT(deleteTable()));
@@ -436,7 +434,7 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_contextMenu->popup(ui->listWidget_tables->viewport()->mapToGlobal(pos)); // Showing context menu at pos
     } else if (ui->listWidget_tables->underMouse()) { // If cursor is hovering only listWidget
         menu_contextMenu.reset(new QMenu(this)); // Resetting context menu
-        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, theme), tr("Add Table"), this)); // Resetting add action
+        action_add.reset(new QAction(IconLoader::getIcon(Icon::Add, colorTheme), tr("Add Table"), this)); // Resetting add action
         connect(action_add.data(), SIGNAL(triggered()), SLOT(createTable())); // Connecting actions
         menu_contextMenu->addAction(action_add.data()); // Adding action to context menu
         menu_contextMenu->popup(ui->listWidget_tables->viewport()->mapToGlobal(pos)); // Showing context menu at pos
@@ -623,7 +621,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
             this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if (question == QMessageBox::Yes) {
-            DbManager::uploadDb(settings.value("Last").toString(), key, &db);
+            DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
             event->accept();
         } else if (question == QMessageBox::No) {
             event->accept();
@@ -646,7 +644,7 @@ void MainWindow::createTable() {
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    TableAdder *addTable = new TableAdder(this, &db, &tables, theme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
+    TableAdder *addTable = new TableAdder(this, &db, &tables, colorTheme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
     addTable->exec(); // Showing dialog
     delete addTable;
 
@@ -669,7 +667,7 @@ void MainWindow::addEntry() {
 
     isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
 
-    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName(), theme); // Create dialog that will add row to table
+    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName(), colorTheme); // Create dialog that will add row to table
     dialog->exec();    // Showing dialog
     delete dialog;
 
@@ -690,7 +688,7 @@ void MainWindow::openDatabase() {
 
         if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
-            DbManager::uploadDb(settings.value("Last").toString(), key, &db);
+            DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
         } else if (question == QMessageBox::No) {
             qDebug() << "Clicked no";
         } else if (question == QMessageBox::Cancel) {
@@ -702,12 +700,12 @@ void MainWindow::openDatabase() {
     QString file = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if (!file.isEmpty()) {
-        DbOpener *openDb = new DbOpener(this, &key, file, theme);
+        DbOpener *openDb = new DbOpener(this, &db, file, &masterKey, &tables, colorTheme);
         openDb->exec();
     } else return;
 
-    if (!key.isEmpty()) {
-        if (!DbManager::loadDb(file, key, &db, tables)) {
+    if (!masterKey.isEmpty()) {
+        if (!DbManager::loadDb(file, &masterKey, &db, &tables)) {
             showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
         }
         settings.setValue("Last", file);
@@ -732,18 +730,18 @@ void MainWindow::createDatabase() {
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if (databasePath == "") return;
-
-    DbCreator *createNew = new DbCreator(this, &key, databasePath); // Creating window where user can set password to new database
+    QString gotPath;
+    DbCreator *createNew = new DbCreator(this, &db, &gotPath, &masterKey, colorTheme); // Creating window where user can set password to new database
     createNew->exec();
     delete createNew;
 
-    if (key != "") {
-        if (!DbManager::createAndFillDatabase(databasePath, key, &db)) {
+    if (!masterKey.isEmpty()) {
+        if (!DbManager::createAndFillDatabase(databasePath, masterKey, &db)) {
             showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
             return;
         }
 
-        if (!DbManager::loadDb(databasePath, key, &db, tables)) {
+        if (!DbManager::loadDb(databasePath, &masterKey, &db, &tables)) {
             showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
         }
         settings.setValue("Last", databasePath); // Setting last used database path to recently created
@@ -802,7 +800,7 @@ void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget
         }
 
         query.next(); // Loading value to query
-        if (theme == Theme::Dark) ui->listWidget_tables->item(i)->setIcon(QIcon(":/icons/dark/resources/icons/dark/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
+        if (colorTheme == Theme::Dark) ui->listWidget_tables->item(i)->setIcon(QIcon(":/icons/dark/resources/icons/dark/"+query.value(0).toString()+".png")); // Set icon in ListWidget row
         else ui->listWidget_tables->item(i)->setIcon(QIcon(":/icons/light/resources/icons/light/"+query.value(0).toString()+".png"));
     }
 }
@@ -811,7 +809,7 @@ void MainWindow::editTable() {
     qInfo() << Q_FUNC_INFO;
 
     // Creating TableEditor window where user can change name or/and icon of table
-    TableEditor *editTable = new TableEditor(this, &db, ui->listWidget_tables->currentItem()->text(), ui->listWidget_tables, theme);
+    TableEditor *editTable = new TableEditor(this, &db, ui->listWidget_tables->currentItem()->text(), ui->listWidget_tables, colorTheme);
     editTable->exec();
     delete editTable;
 
@@ -855,7 +853,7 @@ void MainWindow::duplicateEntry() {
 void MainWindow::saveAll() {
     qInfo() << Q_FUNC_INFO;
     // Writing changes to file
-    DbManager::uploadDb(settings.value("Last").toString(), key, &db);
+    DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
 }
 
 bool MainWindow::hasSelectedRow() {
@@ -929,25 +927,25 @@ void MainWindow::setSystemColorTheme() {
     qInfo() << Q_FUNC_INFO;
 
     if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
-        // Reading theme from resource
-        QFile styleFile(":/themes/resources/themes/dark.qss");
+        // Reading colorTheme from resource
+        QFile styleFile(":/colorThemes/resources/colorThemes/dark.qss");
         styleFile.open(QFile::ReadOnly);
         QString style(styleFile.readAll());
         styleFile.close();
 
-        this->theme = Theme::Dark; // Setting theme value
+        this->colorTheme = Theme::Dark; // Setting colorTheme value
         qApp->setStyleSheet(style); // Applying style to program
     } else {
-        // Reading theme from resource
-        QFile styleFile(":/themes/resources/themes/light.qss");
+        // Reading colorTheme from resource
+        QFile styleFile(":/colorThemes/resources/colorThemes/light.qss");
         styleFile.open(QFile::ReadOnly);
         QString style(styleFile.readAll());
         styleFile.close();
 
-        this->theme = Theme::Light; // Setting theme value
+        this->colorTheme = Theme::Light; // Setting colorTheme value
         qApp->setStyleSheet(style); // Applying style to program
     }
-    settings.setValue("theme", "system");
+    settings.setValue("colorTheme", "system");
 
     loadIcons(); // Updating icons
 }
@@ -955,14 +953,14 @@ void MainWindow::setSystemColorTheme() {
 void MainWindow::setDarkColorTheme() {
     qInfo() << Q_FUNC_INFO;
 
-    // Reading theme from resource
-    QFile styleFile(":/themes/resources/themes/dark.qss");
+    // Reading colorTheme from resource
+    QFile styleFile(":/colorThemes/resources/colorThemes/dark.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());
     styleFile.close();
 
-    this->theme = Theme::Dark; // Setting theme value
-    settings.setValue("theme", "dark");
+    this->colorTheme =Theme::Dark; // Setting colorTheme value
+    settings.setValue("colorTheme", "dark");
     qApp->setStyleSheet(style); // Applying style to program
     loadIcons(); // Updating icons
 }
@@ -970,14 +968,14 @@ void MainWindow::setDarkColorTheme() {
 void MainWindow::setLightColorTheme()
 {
     qInfo() << Q_FUNC_INFO;
-    // Reading theme from resource
-    QFile styleFile(":/themes/resources/themes/light.qss");
+    // Reading colorTheme from resource
+    QFile styleFile(":/colorThemes/resources/colorThemes/light.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());
     styleFile.close();
 
-    this->theme = Theme::Light;
-    settings.setValue("theme", "light");
+    this->colorTheme = Theme::Light;
+    settings.setValue("colorTheme", "light");
     qApp->setStyleSheet(style); // Applying style to program
     loadIcons(); // Updating icons
 }

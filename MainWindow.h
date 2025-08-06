@@ -49,22 +49,13 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-struct AppState {
-    QVector<QString> tables; // Tables that are available to user
-    QString pathToDatabase;
-    QByteArray masterKey;
-    bool isDbChanged;
-    QSqlDatabase db;
-    Theme theme;
-};
-
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, AppState *appState = nullptr);
+    MainWindow(QWidget *parent = nullptr, Theme colorTheme = Theme::Dark, QTranslator *translator = nullptr);
     ~MainWindow();
 
 public slots:
@@ -72,8 +63,6 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-
-    AppState *appState;
 
     // Remembering last used table
     int lastUsedTable = 0;
@@ -99,23 +88,11 @@ private:
     // Current selected table.
     QString currentTable;
 
-    // Vector with avaible to user tables, this vector loaded to listWidget.
-    QVector<QString> tables;
-
     // Loading settings.
     QSettings settings = QSettings("AlexRadik", "RadikPass");
 
-    // Key with which database will be decrypted/encrypted
-    QByteArray key = 0;
-
     // If user makes any changes in database needs to set this state to true.
     bool isChanged = false;
-
-    // Translator that translates program.
-    QTranslator *translator;
-
-    // Current theme.
-    Theme theme;
 
     // Cell delegate that will mask column by *.
     CellDelegate *maskColumn = new CellDelegate;
@@ -138,6 +115,8 @@ private:
 
     // Showing message boxes with error message
     void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
+
+    bool checkIfDatabaseOpened(QSqlDatabase *db);
 
 public slots:
     // When user clicks on right button of the mouse.
@@ -223,20 +202,19 @@ private slots:
 
 
 private:
-    // Context menu menus and actions.
+    // Context menu actions
     QScopedPointer<QMenu> menu_contextMenu;
     QScopedPointer<QMenu> menu_url;
     QScopedPointer<QAction> action_copyUrl;
     QScopedPointer<QAction> action_OpenUrl;
     QScopedPointer<QAction> action_copyUsername;
     QScopedPointer<QAction> action_copyPassword;
-    QScopedPointer<QAction> action_delete; // This action will delete either entry or table, depending on place where the context menu was called
+    QScopedPointer<QAction> action_delete;
     QScopedPointer<QAction> action_edit;
     QScopedPointer<QAction> action_add;
     QScopedPointer<QAction> action_configureColumns;
 
-    // menubar
-    // Color theme actions, and group to group that actions.
+    // Color theme actions
     QScopedPointer<QActionGroup> group_colorThemes;
     QScopedPointer<QAction> action_systemTheme;
     QScopedPointer<QAction> action_darkTheme;
@@ -249,6 +227,12 @@ private:
     QScopedPointer<QShortcut> shortcutDelete;
     QScopedPointer<QShortcut> shortcutAddEntry;
     QScopedPointer<QShortcut> shortcutNewDatabase;
+
+
+    QTranslator *translator;
+    Theme colorTheme;
+    QByteArray masterKey;
+    QVector<QString> tables;
 };
 
 

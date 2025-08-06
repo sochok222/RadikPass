@@ -2,10 +2,9 @@
 #include "ui_DbCreator.h"
 #include <qtimer.h>
 
-DbCreator::DbCreator(QWidget *parent, AppState *appState)
+DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPath, QByteArray *resultKey, Theme theme)
     : QDialog(parent)
     , ui(new Ui::DbCreator)
-    , resultDb(appState)
     , resultPath(resultPath)
     , theme(theme)
 {
@@ -13,22 +12,6 @@ DbCreator::DbCreator(QWidget *parent, AppState *appState)
     this->setWindowTitle(tr("Create Database"));
     ui->label_entropy->setToolTip("Measure of password strength");
 
-    if (!appState || !resultPath) {
-        QMessageBox msg;
-        msg.setText(tr("Something went wrong.\nTry again please."));
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
-
-        if (!appState) {
-            qCritical() << "*resultDb is nullptr";
-            QTimer::singleShot(0, this, SLOT(close()));
-        }
-        if (!resultPath) {
-            qCritical() << "*path is nullptr";
-            QTimer::singleShot(0, this, SLOT(close()));
-        }
-    }
 
 
 
@@ -70,6 +53,7 @@ void DbCreator::showMsgBox(const QString &title, const QString &text, const QMes
 }
 
 
+
 void DbCreator::hidePassword() {
     if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
@@ -100,43 +84,33 @@ void DbCreator::openPasswordGenerator() {
     }
 }
 
-void DbCreator::clicked_button_save() {
-    if (ui->lineEdit_password->text() != "") {
-        if (repeatEnabled && ui->lineEdit_password->text() != ui->lineEdit_repeat->text()) {
-            QMessageBox msg;
-            msg.setText(tr("Password must matching with repeat line."));
-            msg.setIcon(QMessageBox::Warning);
-            msg.setStandardButtons(QMessageBox::Ok);
-            msg.exec();
-        } else {
-            QByteArray key = ui->lineEdit_password->text().toUtf8();
-            if (!DbManager::createAndFillDatabase(*resultPath, key, resultDb)) {
-                showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
-                return;
-            }
-
-            if (!DbManager::loadDb(resultPath, key, resultDb, tables)) {
-                showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
-            }
-            settings.setValue("Last", resultpath); // Setting last used database path to recently created
-
-            ui->listWidget_tables->clear(); // Clears listWidget that holds all tables
-
-            for(int i = 0; i < tables.size(); i++) { // Loading all tables that available to user from tables vector
-                ui->listWidget_tables->addItem(tables[i]);
-            }
-
-            if (tables.size() > 0)
-                ui->listWidget_tables->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
-        }
-    } else {
-        QMessageBox msg;
-        msg.setText(tr("Password line must be not empty"));
-        msg.setIcon(QMessageBox::Warning);
-        msg.setStandardButtons(QMessageBox::Ok);
-        msg.exec();
-    }
-}
+// void DbCreator::clicked_button_save() {
+//     if (ui->lineEdit_password->text() != "") {
+//         if (repeatEnabled && ui->lineEdit_password->text() != ui->lineEdit_repeat->text()) {
+//             QMessageBox msg;
+//             msg.setText(tr("Password must matching with repeat line."));
+//             msg.setIcon(QMessageBox::Warning);
+//             msg.setStandardButtons(QMessageBox::Ok);
+//             msg.exec();
+//         } else {
+//             QByteArray key = ui->lineEdit_password->text().toUtf8();
+//             if (!DbManager::createAndFillDatabase(*resultPath, key, resultDb)) {
+//                 showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
+//                 return;
+//             }
+//             QVector<QString> tables;
+//             if (!DbManager::loadDb(*resultPath, &key, resultDb, &tables)) {
+//                 showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
+//             }
+//         }
+//     } else {
+//         QMessageBox msg;
+//         msg.setText(tr("Password line must be not empty"));
+//         msg.setIcon(QMessageBox::Warning);
+//         msg.setStandardButtons(QMessageBox::Ok);
+//         msg.exec();
+//     }
+// }
 
 
 void DbCreator::lineEdit_repeat_textChanged(const QString &arg1) {

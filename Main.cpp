@@ -20,15 +20,11 @@ void resetColumnsSettings();
 int main(int argc, char *argv[]) {
     qDebug() << Q_FUNC_INFO;
 
-    AppState appState;
-    appState.isDbChanged = false;
-
     QApplication a(argc, argv);
     QTranslator *translator = new QTranslator;
     QSettings settings = QSettings("AlexRadik", "RadikPass");
     qApp->setWindowIcon(QIcon(":/programImages/resources/program_images/windowIcon.svg")); // Set icon for all windows
 
-    // Checking if the fields that used to configure columns exists.
 
     QVector<QString> cfgColumnsFields = {"columnTitle", "columnUsername", "columnPassword", "columnURL", "columnNotes", "columnCreationTime", "columnLastChanged"};
     for (QString &field : cfgColumnsFields) {
@@ -38,11 +34,10 @@ int main(int argc, char *argv[]) {
         }
     }
 
+
+    // Obtaining last used language from QSettings
     if (!settings.value("Language").isNull() && settings.value("Language") != ""){
         if (settings.value("Language") == "uk") {
-            qApp->removeTranslator(translator); // remove the old translator
-
-            // load the new translator
             QString path = QApplication::applicationDirPath();
             path.append("/Translations/");
             if (translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
@@ -53,9 +48,9 @@ int main(int argc, char *argv[]) {
                 msg.setText("Can't load ukrainian translation");
                 msg.setStandardButtons(QMessageBox::Ok);
                 msg.exec();
+                return 1;
             }
         } else if (settings.value("Language") == "ge") {
-            // load the new translator
             QString path = QApplication::applicationDirPath();
             path.append("/Translations/");
             if (translator->load(":/translations/resources/translations/uk.qm")) //Here Path and Filename has to be entered because the system didn't find the QM Files else
@@ -66,68 +61,54 @@ int main(int argc, char *argv[]) {
                 msg.setText("Can't load german translation");
                 msg.setStandardButtons(QMessageBox::Ok);
                 msg.exec();
+                return 1;
             }
         }
-    } else settings.setValue("Language", "en"); // Default language is english
+    } else settings.setValue("Language", "en");
 
+
+
+    // Obtaining last used color theme
+    Theme theme;
     if (settings.value("theme") == "system" || (settings.value("theme").isNull() || settings.value("theme") == "")) {
         if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
-
-            appState.theme = Theme::Dark;
-
             QString  style(styleFile.readAll());
             styleFile.close();
-
             qApp->setStyleSheet(style);
+
+            theme = Theme::Dark;
         } else {
             QFile  styleFile(":/themes/resources/themes/light.qss");
             styleFile.open(QFile::ReadOnly);
-
-            appState.theme = Theme::Light;
-
             QString  style(styleFile.readAll());
             styleFile.close();
-
             qApp->setStyleSheet(style);
+
+            theme = Theme::Light;
         }
     } else {
         if (settings.value("theme") == "dark") {
             QFile  styleFile(":/themes/resources/themes/dark.qss");
             styleFile.open(QFile::ReadOnly);
-
-            appState.theme = Theme::Dark;
-
             QString  style(styleFile.readAll());
             styleFile.close();
-
             qApp->setStyleSheet(style);
+
+            theme = Theme::Dark;
         } else {
             QFile  styleFile(":/themes/resources/themes/light.qss");
             styleFile.open(QFile::ReadOnly);
-
-            appState.theme = Theme::Light;
-
             QString  style(styleFile.readAll());
             styleFile.close();
-
             qApp->setStyleSheet(style);
+
+            theme = Theme::Light;
         }
     }
 
-
-    QByteArray key;
-    if ((!settings.value("Last").isNull() && settings.value("Last").toString() != "")) {
-        if (isFileExists(settings.value("Last").toString())) {
-            DbOpener *openDb = new DbOpener(0, &key, settings.value("Last").toString(), appState.theme);
-            openDb->exec();
-        }
-    } else {
-        qDebug() << "Can't find last used database";
-    }
-
-    MainWindow w(0, &appState);
+    MainWindow w(0, theme, translator);
     w.show();
     return a.exec();
 }

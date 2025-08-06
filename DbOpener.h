@@ -12,31 +12,22 @@
 #include "dbmanager.h"
 #include <QTranslator>
 
-struct AppState {
-    QVector<QString> tables; // Tables that are available to user
-    QString pathToDatabase;
-    QByteArray masterKey;
-    bool isDbChanged;
-    QSqlDatabase db;
-    Theme theme;
-};
 
 namespace Ui {
 class DbOpener;
 }
-// This class will create window to allow user open database.
+
 class DbOpener : public QDialog
 {
     Q_OBJECT
 
 public:
-    // *result to reutrn master-key.
-    explicit DbOpener(QWidget *parent = nullptr, AppState *appState = nullptr);
+    explicit DbOpener(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString pathToDatabase = "", QByteArray *masterKey = nullptr, QVector<QString> *tables = nullptr, Theme colorTheme = Theme::Dark);
     ~DbOpener();
 
 private slots:
     void button_ok_clicked();
-    void button_cancel_clicked();
+    // void button_cancel_clicked();
 
     void hidePassword();
 
@@ -45,11 +36,14 @@ private:
 
     void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
 
-    Theme theme;
+    QSqlDatabase *db;
+    QString pathToDatabase;
+    QByteArray *masterKey;
+    QVector<QString> *tables;
+    Theme colorTheme;
+
 
     QAction *action_hidePassword;
-
-    AppState *appState;
 
     QSettings settings = QSettings("AlexRadik", "RadikPass");
 };

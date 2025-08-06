@@ -36,7 +36,6 @@ EntryEditor::EntryEditor(QWidget *parent, QTableView *tableView, QSqlDatabase *d
         showMsgBox(tr("Something went wrong.\nTry again please"));
         QTimer::singleShot(0, this, SLOT(close()));
     }
-
     fillData(); // Filling fiels with data from entry
 }
 

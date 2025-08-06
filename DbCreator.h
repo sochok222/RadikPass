@@ -33,10 +33,6 @@ private slots:
 
     void openPasswordGenerator();
 
-    void clicked_button_save();
-
-    void clicked_button_cancel();
-
     void lineEdit_repeat_textChanged(const QString &arg1);
 
     void lineEdit_password_textChanged(const QString &arg1);

@@ -33,7 +33,7 @@ class TableAdder : public QDialog
 public:
     // QSqlDatabase* to write changes in opened database, *tables to append new table to vector of tables that displayed in listWidget in MainWindow
     // QString theme to know current theme
-    explicit TableAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, std::vector<QString> *tables = nullptr, Theme theme = Theme::Dark);
+    explicit TableAdder(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QVector<QString> *tables = nullptr, Theme theme = Theme::Dark);
     ~TableAdder();
 
 private slots:
@@ -57,7 +57,7 @@ private:
 
     // Storing parameters that passed to class constructor
     QSqlDatabase *db;
-    std::vector<QString> *tables;
+    QVector<QString> *tables;
     QMap<QString, QIcon*> *icons;
     Theme theme;
 
