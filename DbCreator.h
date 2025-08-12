@@ -30,6 +30,7 @@ public:
 
 private slots:
     void hidePassword();
+    void button_save_clicked();
 
     void openPasswordGenerator();
 
@@ -40,13 +41,14 @@ private slots:
 private:
     Ui::DbCreator *ui;
     void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
-    QSqlDatabase *resultDb;
-    QString *resultPath;
-    bool repeatEnabled;
-    QAction *action_hidePassword;
-    QAction *action_openPasswordGenerator;
-    Theme theme;
-    PasswordGenerator *window_PasswordGenerator;
+    QSqlDatabase *m_resultDb;
+    QByteArray *m_resultKey;
+    QString *m_resultPath;
+    bool m_repeatEnabled;
+    QAction *m_action_hidePassword;
+    QAction *m_action_openPasswordGenerator;
+    Theme m_theme;
+    PasswordGenerator *m_window_PasswordGenerator;
 };
 
 #endif // DBCREATOR_H

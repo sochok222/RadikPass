@@ -5,8 +5,10 @@
 DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPath, QByteArray *resultKey, Theme theme)
     : QDialog(parent)
     , ui(new Ui::DbCreator)
-    , resultPath(resultPath)
-    , theme(theme)
+    , m_resultPath(resultPath)
+    , m_theme(theme)
+    , m_resultDb(resultDb)
+    , m_resultKey(resultKey)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Create Database"));
@@ -24,13 +26,13 @@ DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPat
 
 
     ui->lineEdit_password->setEchoMode(QLineEdit::Password);
-    repeatEnabled = true;
+    m_repeatEnabled = true;
 
-    action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
-    connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
+    m_action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, theme), QLineEdit::TrailingPosition);
+    connect(m_action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
-    action_openPasswordGenerator = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
-    connect(action_openPasswordGenerator, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
+    m_action_openPasswordGenerator = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::Dice, theme), QLineEdit::TrailingPosition);
+    connect(m_action_openPasswordGenerator, SIGNAL(triggered(bool)), this, SLOT(openPasswordGenerator()));
 
 
     // Setting echo mode to password lines
@@ -56,17 +58,17 @@ void DbCreator::showMsgBox(const QString &title, const QString &text, const QMes
 
 void DbCreator::hidePassword() {
     if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
-        action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, theme));
+        m_action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, m_theme));
         ui->lineEdit_password->setEchoMode(QLineEdit::Normal);
         ui->lineEdit_repeat->clear();
         ui->lineEdit_repeat->hide();
         ui->label_repeat->hide();
-        repeatEnabled = false;
+        m_repeatEnabled = false;
     } else {
-        action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, theme));
+        m_action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, m_theme));
         ui->lineEdit_repeat->show();
         ui->label_repeat->show();
-        repeatEnabled = true;
+        m_repeatEnabled = true;
         ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     }
 }
@@ -74,9 +76,9 @@ void DbCreator::hidePassword() {
 
 void DbCreator::openPasswordGenerator() {
     QString generatedPassword;
-    window_PasswordGenerator = new PasswordGenerator(this, &generatedPassword);
-    window_PasswordGenerator->exec();
-    delete window_PasswordGenerator;
+    m_window_PasswordGenerator = new PasswordGenerator(this, &generatedPassword);
+    m_window_PasswordGenerator->exec();
+    delete m_window_PasswordGenerator;
 
     if (generatedPassword.size() > 0) {
         ui->lineEdit_repeat->setText(generatedPassword);
@@ -84,38 +86,38 @@ void DbCreator::openPasswordGenerator() {
     }
 }
 
-// void DbCreator::clicked_button_save() {
-//     if (ui->lineEdit_password->text() != "") {
-//         if (repeatEnabled && ui->lineEdit_password->text() != ui->lineEdit_repeat->text()) {
-//             QMessageBox msg;
-//             msg.setText(tr("Password must matching with repeat line."));
-//             msg.setIcon(QMessageBox::Warning);
-//             msg.setStandardButtons(QMessageBox::Ok);
-//             msg.exec();
-//         } else {
-//             QByteArray key = ui->lineEdit_password->text().toUtf8();
-//             if (!DbManager::createAndFillDatabase(*resultPath, key, resultDb)) {
-//                 showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
-//                 return;
-//             }
-//             QVector<QString> tables;
-//             if (!DbManager::loadDb(*resultPath, &key, resultDb, &tables)) {
-//                 showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
-//             }
-//         }
-//     } else {
-//         QMessageBox msg;
-//         msg.setText(tr("Password line must be not empty"));
-//         msg.setIcon(QMessageBox::Warning);
-//         msg.setStandardButtons(QMessageBox::Ok);
-//         msg.exec();
-//     }
-// }
+void DbCreator::button_save_clicked() {
+    if (ui->lineEdit_password->text() != "") {
+        if (m_repeatEnabled && ui->lineEdit_password->text() != ui->lineEdit_repeat->text()) {
+            QMessageBox msg;
+            msg.setText(tr("Password must matching with repeat line."));
+            msg.setIcon(QMessageBox::Warning);
+            msg.setStandardButtons(QMessageBox::Ok);
+            msg.exec();
+        } else {
+            QByteArray key = ui->lineEdit_password->text().toUtf8();
+            if (!DbManager::createAndFillDatabase(*m_resultPath, key, m_resultDb)) {
+                showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
+                return;
+            }
+            QVector<QString> tables;
+            if (!DbManager::loadDb(*m_resultPath, &key, m_resultDb, &tables)) {
+                showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
+            }
+        }
+    } else {
+        QMessageBox msg;
+        msg.setText(tr("Password line must be not empty"));
+        msg.setIcon(QMessageBox::Warning);
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+    }
+}
 
 
 void DbCreator::lineEdit_repeat_textChanged(const QString &arg1) {
     // If password is hidden
-    if (repeatEnabled) {
+    if (m_repeatEnabled) {
         if (arg1!=ui->lineEdit_password->text() && ui->lineEdit_repeat->text().size() > 0) { // If password in repeat line is not the same as in password line
             // Setting red palette to repeat line
             QPalette lineRepeatPalette;

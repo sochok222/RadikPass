@@ -321,8 +321,7 @@ bool DbManager::deleteTemporaryFile(T &file) {
     return true;
 }
 
-bool DbManager::loadDb(const QString encryptedDatabase, QByteArray *key, QSqlDatabase *db, QVector<QString> *tables)
-{
+bool DbManager::loadDb(const QString encryptedDatabase, QByteArray *key, QSqlDatabase *db, QVector<QString> *tables) {
     qInfo() << Q_FUNC_INFO;
 
     // Encrypted database will be open via QFile
@@ -471,16 +470,14 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
 
     // Creating a temporary file and trying to open it
     QTemporaryFile tmp;
-    if (!tmp.open())
-    {
+    if (!tmp.open()) {
         showMsgBox("Can't open temporary file");
         return false;
     }
 
     db->setDatabaseName(":memory:");
 
-    if (!db->open())
-    {
+    if (!db->open()) {
         qDebug() << "Can't open database";
     }
 
@@ -488,8 +485,7 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
 
     query.prepare("ATTACH DATABASE :path as TempDb");
     query.bindValue(":path", tmp.fileName());
-    if (!query.exec())
-    {
+    if (!query.exec()) {
         qDebug() << "Can't attach temporary database";
         return false;
     }
@@ -546,12 +542,14 @@ bool DbManager::createAndFillDatabase(const QString databasePath, QByteArray &ke
     file.open(QIODevice::WriteOnly);
     *raw = *encryptData(raw, key);
     qDebug() << "Encrypted data size: " << raw->size();
+    file.resize(0);
     if (!file.write(*raw))
     {
         qDebug() << "Can't write encrypted raw data to database";
         delete raw;
         return false;
     }
+    delete raw;
     file.close();
 
 

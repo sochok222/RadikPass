@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     ui->setupUi(this);
 
     if (translator == nullptr) {
-        qCritical() << "AppState is nullpointer!";
+        qCritical() << "translator is nullpointer!";
         QTimer::singleShot(0, this, SLOT(close()));
     }
 
@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     // Connecting listWidget to context menu slot
     connect(ui->listWidget_tables, SIGNAL(customContextMenuRequested(QPoint)), SLOT(customMenuRequested(QPoint)));
 
+    // Trying to open last used database
     model = new QSqlTableModel(this, db);
     if (!settings.value("LastUsed").toString().isEmpty()){
         DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &masterKey, &tables, colorTheme);
@@ -730,31 +731,15 @@ void MainWindow::createDatabase() {
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if (databasePath == "") return;
-    QString gotPath;
-    DbCreator *createNew = new DbCreator(this, &db, &gotPath, &masterKey, colorTheme); // Creating window where user can set password to new database
+    DbCreator *createNew = new DbCreator(this, &db, &databasePath, &masterKey, colorTheme); // Creating window where user can set password to new database
+
     createNew->exec();
     delete createNew;
 
-    if (!masterKey.isEmpty()) {
-        if (!DbManager::createAndFillDatabase(databasePath, masterKey, &db)) {
-            showMsgBox(tr("Error"), tr("Unable to create new database.\nTry again please."), QMessageBox::Critical);
-            return;
-        }
+    model->setTable("General");
+    model->select();
 
-        if (!DbManager::loadDb(databasePath, &masterKey, &db, &tables)) {
-            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
-        }
-        settings.setValue("Last", databasePath); // Setting last used database path to recently created
 
-        ui->listWidget_tables->clear(); // Clears listWidget that holds all tables
-
-        for(int i = 0; i < tables.size(); i++) { // Loading all tables that available to user from tables vector
-            ui->listWidget_tables->addItem(tables[i]);
-        }
-
-        if (tables.size() > 0)
-            ui->listWidget_tables->setCurrentRow(0); // Select first item in listWidget, item changes connected to slot on_listWidget_currentTextChanged();
-    }
 
     configureColumns(); // Showing columns according to settings.
     loadIconsToListWidget(); // Loading icons to ListWidget with tables.
