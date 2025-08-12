@@ -105,6 +105,7 @@ void DbCreator::button_save_clicked() {
                 showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
             }
         }
+        this->close();
     } else {
         QMessageBox msg;
         msg.setText(tr("Password line must be not empty"));
