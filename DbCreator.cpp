@@ -14,9 +14,6 @@ DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPat
     this->setWindowTitle(tr("Create Database"));
     ui->label_entropy->setToolTip("Measure of password strength");
 
-
-
-
     // Connecting buttons and signals of lineEdits
     connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->button_save, SIGNAL(clicked(bool)), this, SLOT(button_save_clicked()));
@@ -103,7 +100,9 @@ void DbCreator::button_save_clicked() {
             QVector<QString> tables;
             if (!DbManager::loadDb(*m_resultPath, &key, m_resultDb, &tables)) {
                 showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
+                return;
             }
+            m_settings.setValue("LastUsed", *m_resultPath);
         }
         this->close();
     } else {

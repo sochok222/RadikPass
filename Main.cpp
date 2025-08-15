@@ -20,9 +20,12 @@ void resetColumnsSettings();
 int main(int argc, char *argv[]) {
     qDebug() << Q_FUNC_INFO;
 
+    QCoreApplication::setApplicationName("RadikPass");
+    QCoreApplication::setOrganizationName("AlexRadik");
+
     QApplication a(argc, argv);
     QTranslator *translator = new QTranslator;
-    QSettings settings = QSettings("AlexRadik", "RadikPass");
+    QSettings settings;
     qApp->setWindowIcon(QIcon(":/programImages/resources/program_images/windowIcon.svg")); // Set icon for all windows
 
 

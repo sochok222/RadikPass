@@ -22,7 +22,7 @@ class DbOpener : public QDialog
     Q_OBJECT
 
 public:
-    explicit DbOpener(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString pathToDatabase = "", QByteArray *masterKey = nullptr, QVector<QString> *tables = nullptr, Theme colorTheme = Theme::Dark);
+    explicit DbOpener(QWidget *parent = nullptr, QSqlDatabase *db = nullptr, QString pathToDatabase = "", QByteArray *resultKey = nullptr, QVector<QString> *tables = nullptr, Theme colorTheme = Theme::Dark);
     ~DbOpener();
 
 private slots:
@@ -38,7 +38,7 @@ private:
 
     QSqlDatabase *db;
     QString pathToDatabase;
-    QByteArray *masterKey;
+    QByteArray *resultKey;
     QVector<QString> *tables;
     Theme colorTheme;
 

@@ -324,6 +324,9 @@ bool DbManager::deleteTemporaryFile(T &file) {
 bool DbManager::loadDb(const QString encryptedDatabase, QByteArray *key, QSqlDatabase *db, QVector<QString> *tables) {
     qInfo() << Q_FUNC_INFO;
 
+    // Clearing list with tables
+    tables->clear();
+
     // Encrypted database will be open via QFile
     QFile encrypted(encryptedDatabase);
 

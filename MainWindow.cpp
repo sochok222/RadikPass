@@ -57,10 +57,13 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     if (!settings.value("LastUsed").toString().isEmpty()){
         DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &masterKey, &tables, colorTheme);
         window_OpenDatabase->exec();
-        if (checkIfDatabaseOpened(&db)) {
-            qDebug() << "Database is opened";
+        if (tables.size() > 0) {
             model->setTable(tables[0]);
-        } else qDebug() << "Database is not opened";
+            for (QString &table : tables) {
+                ui->listWidget_tables->addItem(table);
+            }
+            ui->listWidget_tables->setCurrentRow(0);
+        }
     }
 
 
@@ -698,29 +701,18 @@ void MainWindow::openDatabase() {
         }
     }
 
-    QString file = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
+    QString pathToDatabase = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
-    if (!file.isEmpty()) {
-        DbOpener *openDb = new DbOpener(this, &db, file, &masterKey, &tables, colorTheme);
+    if (!pathToDatabase.isEmpty()) {
+        QVector<QString> copyTables = tables;
+
+        DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &masterKey, &tables, colorTheme);
         openDb->exec();
+
+
     } else return;
 
-    if (!masterKey.isEmpty()) {
-        if (!DbManager::loadDb(file, &masterKey, &db, &tables)) {
-            showMsgBox(tr("Error"), tr("Password is incorrect or file is damaged.\nTry again please."), QMessageBox::Critical);
-        }
-        settings.setValue("Last", file);
-        ui->listWidget_tables->clear();
-        for(int i = 0; i < tables.size(); i++) {
-            ui->listWidget_tables->addItem(tables[i]);
-        }
-        if (tables.size() > 0) { // If one or more table exists we select current first table
-            model->setTable(tables[0]);
-            ui->listWidget_tables->setCurrentRow(0);
-        }
-        model->select();
-        ui->tableView->update();
-    }
+
     configureColumns();
 
     loadIcons();

@@ -89,7 +89,7 @@ private:
     QString currentTable;
 
     // Loading settings.
-    QSettings settings = QSettings("AlexRadik", "RadikPass");
+    QSettings settings;
 
     // If user makes any changes in database needs to set this state to true.
     bool isChanged = false;

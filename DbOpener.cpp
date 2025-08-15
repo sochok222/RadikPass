@@ -1,23 +1,25 @@
 #include "DbOpener.h"
 #include "ui_DbOpener.h"
 
-DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QByteArray *masterKey, QVector<QString> *tables, Theme colorTheme)
+DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QByteArray *resultKey, QVector<QString> *tables, Theme colorTheme)
     : QDialog(parent)
     , ui(new Ui::DbOpener)
     , db(db)
     , pathToDatabase(pathToDatabase)
-    , masterKey(masterKey)
+    , resultKey(resultKey)
     , colorTheme(colorTheme)
     , tables(tables)
 {
     ui->setupUi(this);
     ui->button_ok->setDefault(true);
 
+    qDebug() << "Trying to open database at path: " << pathToDatabase;
+
     if (db == nullptr) {
         qCritical() << "db is nullptr";
         QTimer::singleShot(0, this, SLOT(close()));
     }
-    if (masterKey == nullptr) {
+    if (resultKey == nullptr) {
         qCritical() << "resultKey is nullptr";
         QTimer::singleShot(0, this, SLOT(close()));
     }
@@ -29,6 +31,8 @@ DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QB
         qCritical() << "Path is empty";
         QTimer::singleShot(0, this, SLOT(close()));
     }
+    ui->label_databasePath->setText(pathToDatabase);
+
 
     // Connecting buttons to slots
     connect(ui->button_ok, SIGNAL(clicked(bool)), this, SLOT(button_ok_clicked()));
@@ -39,7 +43,6 @@ DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QB
     action_hidePassword = ui->lineEdit_password->addAction(IconLoader::getIcon(Icon::EyeClosed, colorTheme), QLineEdit::TrailingPosition);
     connect(action_hidePassword, SIGNAL(triggered(bool)), this, SLOT(hidePassword()));
 
-    QSettings setting("AlexRadik", "RadikPass");
     ui->button_ok->setAutoDefault(true);
     this->setWindowTitle(tr("Open Database"));
 }
@@ -70,10 +73,12 @@ void DbOpener::showMsgBox(const QString &title, const QString &text, const QMess
 
 void DbOpener::button_ok_clicked() {
     if (ui->lineEdit_password->text().size() > 0) {
-        if (!DbManager::loadDb(pathToDatabase, masterKey, db, tables)) { // Trying to load database
+        QByteArray key = ui->lineEdit_password->text().toUtf8();
+        if (!DbManager::loadDb(pathToDatabase, &key, db, tables)) { // Trying to load database
             showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
+            return;
         }
-        masterKey->clear();
+        *resultKey = key;
 
         this->close();
     } else {

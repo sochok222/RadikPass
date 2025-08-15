@@ -8,6 +8,7 @@
 #include <QScopedPointer>
 #include <QSqlDatabase>
 #include "IconLoader.h"
+#include <QSettings>
 #include "DbManager.h"
 #include "PasswordGenerator.h"
 
@@ -48,6 +49,7 @@ private:
     QAction *m_action_hidePassword;
     QAction *m_action_openPasswordGenerator;
     Theme m_theme;
+    QSettings m_settings;
     PasswordGenerator *m_window_PasswordGenerator;
 };
 
