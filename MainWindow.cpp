@@ -55,15 +55,17 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     // Trying to open last used database
     model = new QSqlTableModel(this, db);
     if (!settings.value("LastUsed").toString().isEmpty()){
-        DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &masterKey, &tables, colorTheme);
+        QByteArray gotKey;
+        DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &gotKey, &tables, colorTheme);
         window_OpenDatabase->exec();
         if (tables.size() > 0) {
+            masterKey = gotKey;
             model->setTable(tables[0]);
             for (QString &table : tables) {
                 ui->listWidget_tables->addItem(table);
             }
             ui->listWidget_tables->setCurrentRow(0);
-        }
+        } else qDebug() << "window_OpenDatabase returned empty list of tables";
     }
 
 
@@ -689,7 +691,6 @@ void MainWindow::openDatabase() {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
-
         if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
             DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
@@ -701,14 +702,27 @@ void MainWindow::openDatabase() {
         }
     }
 
+    // Receiving path to database and trying to open
     QString pathToDatabase = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if (!pathToDatabase.isEmpty()) {
-        QVector<QString> copyTables = tables;
+        QVector<QString> copyTables;
+        QByteArray gotKey;
 
-        DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &masterKey, &tables, colorTheme);
+        DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &gotKey, &copyTables, colorTheme);
         openDb->exec();
+        if (copyTables.size() > 0) {
 
+            masterKey = gotKey;
+            tables = copyTables;
+
+            model->setTable(tables[0]);
+            for (QString &table : tables) {
+                ui->listWidget_tables->addItem(table);
+            }
+
+            ui->listWidget_tables->setCurrentRow(0);
+        } else qDebug() << "window_OpenDatabase returned empty list of tables";
 
     } else return;
 
@@ -720,13 +734,19 @@ void MainWindow::openDatabase() {
 
 void MainWindow::createDatabase() {
     qInfo() << Q_FUNC_INFO;
+
+    // Receiving path where user wants to create database
     QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
                                             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
     if (databasePath == "") return;
-    DbCreator *createNew = new DbCreator(this, &db, &databasePath, &masterKey, colorTheme); // Creating window where user can set password to new database
 
-    createNew->exec();
-    delete createNew;
+    QByteArray gotKey;
+    QVector<QString> tables;
+    // DbCreator *window_DbCreator = new DbCreator(this, &db)
+
+
+    // createNew->exec();
+    // delete createNew;
 
     model->setTable("General");
     model->select();

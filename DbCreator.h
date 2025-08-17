@@ -26,7 +26,7 @@ class DbCreator : public QDialog
     Q_OBJECT
 
 public:
-    explicit DbCreator(QWidget *parent = nullptr, QSqlDatabase *resultDb = nullptr, QString *resultPath = nullptr, QByteArray *resultKey = nullptr, Theme theme = Theme::Dark);
+    explicit DbCreator(QWidget *parent = nullptr, QSqlDatabase *resultDb = nullptr, QString *resultPath = nullptr, QByteArray *resultKey = nullptr, QVector<QString> *resultTables = nullptr, Theme theme = Theme::Dark);
     ~DbCreator();
 
 private slots:
@@ -44,6 +44,7 @@ private:
     void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
     QSqlDatabase *m_resultDb;
     QByteArray *m_resultKey;
+    QVector<QString> *m_resultTables;
     QString *m_resultPath;
     bool m_repeatEnabled;
     QAction *m_action_hidePassword;

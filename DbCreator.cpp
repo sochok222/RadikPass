@@ -2,17 +2,30 @@
 #include "ui_DbCreator.h"
 #include <qtimer.h>
 
-DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPath, QByteArray *resultKey, Theme theme)
+DbCreator::DbCreator(QWidget *parent, QSqlDatabase *resultDb, QString *resultPath, QByteArray *resultKey, QVector<QString> *resultTables, Theme theme)
     : QDialog(parent)
     , ui(new Ui::DbCreator)
     , m_resultPath(resultPath)
     , m_theme(theme)
     , m_resultDb(resultDb)
     , m_resultKey(resultKey)
+    , m_resultTables(resultTables)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Create Database"));
     ui->label_entropy->setToolTip("Measure of password strength");
+
+
+    // Checking if no one of arguments is nullptr
+    if (!m_resultDb || !m_resultPath || !m_resultKey || !m_resultTables) {
+        if (!m_resultDb)        qDebug()    << "m_resultDb      is nullptr";
+        if (!m_resultPath)      qDebug()    << "m_resultPath    is nullptr";
+        if (!m_resultKey)       qDebug()    << "m_resultKey     is nullptr";
+        if (!m_resultTables)    qDebug()    << "m_resultTables  is nullptr";
+        showMsgBox(tr("Error"), tr("Unable to open this window.\nTry again please"), QMessageBox::Critical);
+        QTimer::singleShot(0, this, SLOT(close()));
+    }
+
 
     // Connecting buttons and signals of lineEdits
     connect(ui->button_cancel, SIGNAL(clicked(bool)), this, SLOT(close()));

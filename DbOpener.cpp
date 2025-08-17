@@ -15,6 +15,8 @@ DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QB
 
     qDebug() << "Trying to open database at path: " << pathToDatabase;
 
+    resultKey->clear();
+
     if (db == nullptr) {
         qCritical() << "db is nullptr";
         QTimer::singleShot(0, this, SLOT(close()));
