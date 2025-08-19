@@ -720,22 +720,22 @@ Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="796"/>
+        <location filename="../../MainWindow.cpp" line="800"/>
         <source>Unable to load icon to table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="873"/>
+        <location filename="../../MainWindow.cpp" line="877"/>
         <source>Unable to load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="894"/>
+        <location filename="../../MainWindow.cpp" line="898"/>
         <source>Unable to load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="914"/>
+        <location filename="../../MainWindow.cpp" line="918"/>
         <source>Unable to load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -745,11 +745,11 @@ Try again please.</source>
         <location filename="../../MainWindow.cpp" line="523"/>
         <location filename="../../MainWindow.cpp" line="532"/>
         <location filename="../../MainWindow.cpp" line="579"/>
-        <location filename="../../MainWindow.cpp" line="796"/>
-        <location filename="../../MainWindow.cpp" line="836"/>
-        <location filename="../../MainWindow.cpp" line="873"/>
-        <location filename="../../MainWindow.cpp" line="894"/>
-        <location filename="../../MainWindow.cpp" line="914"/>
+        <location filename="../../MainWindow.cpp" line="800"/>
+        <location filename="../../MainWindow.cpp" line="840"/>
+        <location filename="../../MainWindow.cpp" line="877"/>
+        <location filename="../../MainWindow.cpp" line="898"/>
+        <location filename="../../MainWindow.cpp" line="918"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -786,18 +786,18 @@ Try again please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="739"/>
+        <location filename="../../MainWindow.cpp" line="738"/>
         <source>Create new database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="836"/>
+        <location filename="../../MainWindow.cpp" line="840"/>
         <source>Unable to duplicate entry.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="843"/>
+        <location filename="../../MainWindow.cpp" line="847"/>
         <source>Entry duplicated</source>
         <translation type="unfinished"></translation>
     </message>

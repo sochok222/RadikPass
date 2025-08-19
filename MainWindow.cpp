@@ -704,7 +704,7 @@ void MainWindow::openDatabase() {
 
     // Receiving path to database and trying to open
     QString pathToDatabase = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
-                                                QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
+                                                QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation), "*.db");
     if (!pathToDatabase.isEmpty()) {
         QVector<QString> copyTables;
         QByteArray gotKey;
@@ -712,23 +712,21 @@ void MainWindow::openDatabase() {
         DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &gotKey, &copyTables, colorTheme);
         openDb->exec();
         if (copyTables.size() > 0) {
-
             masterKey = gotKey;
             tables = copyTables;
-
-            model->setTable(tables[0]);
             for (QString &table : tables) {
                 ui->listWidget_tables->addItem(table);
             }
-
             ui->listWidget_tables->setCurrentRow(0);
         } else qDebug() << "window_OpenDatabase returned empty list of tables";
-
     } else return;
 
+    // Loading first table
+    model->setTable(tables[0]);
+    model->select();
 
+    // Configuring columns in tableWidget and loading icons to listWidget
     configureColumns();
-
     loadIcons();
 }
 
@@ -741,20 +739,26 @@ void MainWindow::createDatabase() {
     if (databasePath == "") return;
 
     QByteArray gotKey;
-    QVector<QString> tables;
-    // DbCreator *window_DbCreator = new DbCreator(this, &db)
+    QVector<QString> gotTables;
+    DbCreator *window_DbCreator = new DbCreator(this, &db, &databasePath, &gotKey, &gotTables);
+    window_DbCreator->exec();
+    delete window_DbCreator;
 
+    if (gotTables.size() > 0) {
+        tables = gotTables;
+        masterKey = gotKey;
+        ui->listWidget_tables->clear();
+        for (int i = 0; i < tables.size(); i++) {
+            ui->listWidget_tables->addItem(tables[i]);
+        }
+        model->setTable(tables[0]);
+        model->select();
+        ui->tableView->update();
 
-    // createNew->exec();
-    // delete createNew;
-
-    model->setTable("General");
-    model->select();
-
-
-
-    configureColumns(); // Showing columns according to settings.
-    loadIconsToListWidget(); // Loading icons to ListWidget with tables.
+        // Configuring columns in tableWidget and loading icons to listWidget
+        configureColumns();
+        loadIconsToListWidget();
+    }
 }
 
 void MainWindow::configureEntryMenu() { // This function will disable or enable actions in View menu in toolbar
@@ -816,8 +820,9 @@ void MainWindow::editTable() {
 
     isChanged = true; // If user makes some changes needs to set this to true
 
-    loadIconsToListWidget(); // Loading icons to ListWidget with tables
-    configureColumns(); // Showing columns according to settings.
+    // Configuring columns in tableWidget and loading icons to listWidget
+    loadIconsToListWidget();
+    configureColumns();
 
 }
 
