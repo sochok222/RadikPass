@@ -627,7 +627,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
             this, "RadikPass", tr("Save changes?"),
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes); // Creates MessageBox with buttons
         if (question == QMessageBox::Yes) {
-            DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
+            DbManager::uploadDb(settings.value("LastUsed").toString(), masterKey, &db);
             event->accept();
         } else if (question == QMessageBox::No) {
             event->accept();
@@ -683,7 +683,6 @@ void MainWindow::addEntry() {
     ui->tableView->update();
     configureColumns();
 
-
 }
 
 void MainWindow::openDatabase() {
@@ -693,7 +692,7 @@ void MainWindow::openDatabase() {
             QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
         if (question == QMessageBox::Yes) {
             qDebug() << "Clicked yes";
-            DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
+            DbManager::uploadDb(settings.value("LastUsed").toString(), masterKey, &db);
         } else if (question == QMessageBox::No) {
             qDebug() << "Clicked no";
         } else if (question == QMessageBox::Cancel) {
@@ -702,16 +701,25 @@ void MainWindow::openDatabase() {
         }
     }
 
+    // Creating directory with appdata if not exists
+    QDir dir;
+    dir.mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+
     // Receiving path to database and trying to open
     QString pathToDatabase = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
                                                 QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation), "*.db");
     if (!pathToDatabase.isEmpty()) {
+        // Saving path to last used
+        settings.setValue("LastUsed", pathToDatabase);
+
         QVector<QString> copyTables;
         QByteArray gotKey;
 
         DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &gotKey, &copyTables, colorTheme);
         openDb->exec();
         if (copyTables.size() > 0) {
+            ui->listWidget_tables->clear();
+
             masterKey = gotKey;
             tables = copyTables;
             for (QString &table : tables) {
@@ -733,24 +741,49 @@ void MainWindow::openDatabase() {
 void MainWindow::createDatabase() {
     qInfo() << Q_FUNC_INFO;
 
+    if (isChanged) {
+        QMessageBox::StandardButton question = QMessageBox::question(
+            this, "RadikPass", tr("Save changes?"),
+            QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+        if (question == QMessageBox::Yes) {
+            qDebug() << "Clicked yes";
+            DbManager::uploadDb(settings.value("LastUsed").toString(), masterKey, &db);
+        } else if (question == QMessageBox::No) {
+            qDebug() << "Clicked no";
+        } else if (question == QMessageBox::Cancel) {
+            qDebug() << "Clicked cancel";
+            return;
+        }
+    }
+
+    // Creating directory with appdata if not exists
+    QDir dir;
+    dir.mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+
     // Receiving path where user wants to create database
-    QString databasePath = QFileDialog::getSaveFileName(this, tr("Create new database"),
-                                            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db"); // Asking user to chose path and name of new database
-    if (databasePath == "") return;
+    QString pathToDatabase = QFileDialog::getSaveFileName(this, tr("Create new database"),
+                                            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/Passwords.db", "*.db");
+    if (pathToDatabase == "") return;
 
     QByteArray gotKey;
     QVector<QString> gotTables;
-    DbCreator *window_DbCreator = new DbCreator(this, &db, &databasePath, &gotKey, &gotTables);
+    DbCreator *window_DbCreator = new DbCreator(this, &db, &pathToDatabase, &gotKey, &gotTables);
     window_DbCreator->exec();
     delete window_DbCreator;
 
     if (gotTables.size() > 0) {
+        // Saving path to last used
+        settings.setValue("LastUsed", pathToDatabase);
+
         tables = gotTables;
         masterKey = gotKey;
         ui->listWidget_tables->clear();
         for (int i = 0; i < tables.size(); i++) {
             ui->listWidget_tables->addItem(tables[i]);
         }
+        ui->listWidget_tables->setCurrentRow(0);
+
+        // Loading first table
         model->setTable(tables[0]);
         model->select();
         ui->tableView->update();
@@ -855,7 +888,7 @@ void MainWindow::duplicateEntry() {
 void MainWindow::saveAll() {
     qInfo() << Q_FUNC_INFO;
     // Writing changes to file
-    DbManager::uploadDb(settings.value("Last").toString(), masterKey, &db);
+    DbManager::uploadDb(settings.value("LastUsed").toString(), masterKey, &db);
 }
 
 bool MainWindow::hasSelectedRow() {

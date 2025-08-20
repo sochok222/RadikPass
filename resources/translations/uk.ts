@@ -1237,28 +1237,28 @@ Try again, please</source>
         <translation>Додати таблицю</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="800"/>
+        <location filename="../../MainWindow.cpp" line="818"/>
         <source>Unable to load icon to table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="840"/>
+        <location filename="../../MainWindow.cpp" line="859"/>
         <source>Unable to duplicate entry.
 Try again, please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="877"/>
+        <location filename="../../MainWindow.cpp" line="896"/>
         <source>Unable to load ukrainian translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="898"/>
+        <location filename="../../MainWindow.cpp" line="917"/>
         <source>Unable to load english translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="918"/>
+        <location filename="../../MainWindow.cpp" line="937"/>
         <source>Unable to load german translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1304,11 +1304,11 @@ Try again, please.</source>
         <location filename="../../MainWindow.cpp" line="523"/>
         <location filename="../../MainWindow.cpp" line="532"/>
         <location filename="../../MainWindow.cpp" line="579"/>
-        <location filename="../../MainWindow.cpp" line="800"/>
-        <location filename="../../MainWindow.cpp" line="840"/>
-        <location filename="../../MainWindow.cpp" line="877"/>
-        <location filename="../../MainWindow.cpp" line="898"/>
-        <location filename="../../MainWindow.cpp" line="918"/>
+        <location filename="../../MainWindow.cpp" line="818"/>
+        <location filename="../../MainWindow.cpp" line="859"/>
+        <location filename="../../MainWindow.cpp" line="896"/>
+        <location filename="../../MainWindow.cpp" line="917"/>
+        <location filename="../../MainWindow.cpp" line="937"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1344,12 +1344,12 @@ Try again please.</source>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="627"/>
-        <location filename="../../MainWindow.cpp" line="692"/>
+        <location filename="../../MainWindow.cpp" line="691"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="706"/>
+        <location filename="../../MainWindow.cpp" line="709"/>
         <source>Open encrypted database</source>
         <translation>Відкрити зашифровану базу даних</translation>
     </message>
@@ -1366,7 +1366,7 @@ Try again please.</source>
         <translation type="vanished">Пароль введено не вірно.</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="738"/>
+        <location filename="../../MainWindow.cpp" line="749"/>
         <source>Create new database</source>
         <translation>Створити нову базу даних.</translation>
     </message>
@@ -1379,7 +1379,7 @@ Try again please.</source>
         <translation type="vanished">Не вдалося здублювати колонки.</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="847"/>
+        <location filename="../../MainWindow.cpp" line="866"/>
         <source>Entry duplicated</source>
         <translation>Запис здубльовано.</translation>
     </message>
