@@ -206,7 +206,7 @@ private:
     QScopedPointer<QMenu> menu_contextMenu;
     QScopedPointer<QMenu> menu_url;
     QScopedPointer<QAction> action_copyUrl;
-    QScopedPointer<QAction> action_OpenUrl;
+    QScopedPointer<QAction> action_openUrl;
     QScopedPointer<QAction> action_copyUsername;
     QScopedPointer<QAction> action_copyPassword;
     QScopedPointer<QAction> action_delete;
@@ -216,9 +216,9 @@ private:
 
     // Color theme actions
     QScopedPointer<QActionGroup> group_colorThemes;
-    QScopedPointer<QAction> action_systemTheme;
-    QScopedPointer<QAction> action_darkTheme;
-    QScopedPointer<QAction> action_lightTheme;
+    QScopedPointer<QAction> action_setSystemTheme;
+    QScopedPointer<QAction> action_setDarkTheme;
+    QScopedPointer<QAction> action_setLightTheme;
 
     // Shortcuts
     QScopedPointer<QShortcut> shortcutOpen;

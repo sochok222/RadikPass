@@ -78,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     ui->tableView->setModel(model);
     configureColumns();
     loadIcons();
+    this->setDisabled(true);
 }
 
 MainWindow::~MainWindow() {
@@ -193,35 +194,35 @@ void MainWindow::setShortcuts() {
 
 void MainWindow::setColorThemeActions() {
     // Resetting actions
-    action_systemTheme.reset(new QAction(tr("System")));
-    action_darkTheme.reset(new QAction(tr("Dark")));
-    action_lightTheme.reset(new QAction(tr("Light")));
+    action_setSystemTheme.reset(new QAction(tr("System")));
+    action_setDarkTheme.reset(new QAction(tr("Dark")));
+    action_setLightTheme.reset(new QAction(tr("Light")));
 
     // Resetting group for actions and adding actions to it
     group_colorThemes.reset(new QActionGroup(this));
-    group_colorThemes->addAction(action_systemTheme.data());
-    group_colorThemes->addAction(action_darkTheme.data());
-    group_colorThemes->addAction(action_lightTheme.data());
+    group_colorThemes->addAction(action_setSystemTheme.data());
+    group_colorThemes->addAction(action_setDarkTheme.data());
+    group_colorThemes->addAction(action_setLightTheme.data());
 
     // Connecting actions to slots
-    connect(action_systemTheme.data(), SIGNAL(triggered(bool)), SLOT(setSystemTheme()));
-    connect(action_darkTheme.data(), SIGNAL(triggered(bool)), SLOT(setDarkTheme()));
-    connect(action_lightTheme.data(), SIGNAL(triggered(bool)), SLOT(setLightTheme()));
+    connect(action_setSystemTheme.data(), SIGNAL(triggered(bool)), this, SLOT(setSystemColorTheme()));
+    connect(action_setDarkTheme.data(), SIGNAL(triggered(bool)), SLOT(setDarkColorTheme()));
+    connect(action_setLightTheme.data(), SIGNAL(triggered(bool)), SLOT(setLightColorTheme()));
 
     // Setting actions as checkable
-    action_systemTheme->setCheckable(true);
-    action_lightTheme->setCheckable(true);
-    action_darkTheme->setCheckable(true);
+    action_setSystemTheme->setCheckable(true);
+    action_setLightTheme->setCheckable(true);
+    action_setDarkTheme->setCheckable(true);
 
     // Setting checked action according to current Theme
-    if (settings.value("Theme") == "system") action_systemTheme->setChecked(true);
-    else if (settings.value("Theme") == "dark") action_darkTheme->setChecked(true);
-    else if (settings.value("Theme") == "light") action_lightTheme->setChecked(true);
+    if (settings.value("Theme") == "system") action_setSystemTheme->setChecked(true);
+    else if (settings.value("Theme") == "dark") action_setDarkTheme->setChecked(true);
+    else if (settings.value("Theme") == "light") action_setLightTheme->setChecked(true);
 
     // Loading actions to toolbar
-    ui->menu_colorTheme->addAction(action_systemTheme.data());
-    ui->menu_colorTheme->addAction(action_darkTheme.data());
-    ui->menu_colorTheme->addAction(action_lightTheme.data());
+    ui->menu_colorTheme->addAction(action_setSystemTheme.data());
+    ui->menu_colorTheme->addAction(action_setDarkTheme.data());
+    ui->menu_colorTheme->addAction(action_setLightTheme.data());
 }
 
 
@@ -379,9 +380,9 @@ void MainWindow::customMenuRequested(QPoint pos) {
         menu_url.reset(new QMenu(tr("URL"), this));
         menu_url->setIcon(IconLoader::getIcon(Icon::Link, colorTheme));
         action_copyUrl.reset(new QAction(IconLoader::getIcon(Icon::Copy, colorTheme), tr("Copy"), this));
-        action_OpenUrl.reset(new QAction(IconLoader::getIcon(Icon::OpenBrowser, colorTheme), tr("Open"), this));
+        action_openUrl.reset(new QAction(IconLoader::getIcon(Icon::OpenBrowser, colorTheme), tr("Open"), this));
         menu_url->addAction(action_copyUrl.data());
-        menu_url->addAction(action_OpenUrl.data());
+        menu_url->addAction(action_openUrl.data());
 
         // Connecting actions
         connect(action_copyUsername.data(), SIGNAL(triggered()), SLOT(copyUsername()));
@@ -390,7 +391,7 @@ void MainWindow::customMenuRequested(QPoint pos) {
         connect(action_delete.data(), SIGNAL(triggered()), SLOT(deleteEntry()));
         connect(action_edit.data(), SIGNAL(triggered()), SLOT(editRow()));
         connect(action_copyUrl.data(), SIGNAL(triggered()), SLOT(copyUrl()));
-        connect(action_OpenUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
+        connect(action_openUrl.data(), SIGNAL(triggered()), SLOT(openUrl()));
         connect(action_configureColumns.data(), SIGNAL(triggered()), SLOT(cfgColumns()));
 
         // Adding actions to context menu
@@ -450,7 +451,7 @@ void MainWindow::customMenuRequested(QPoint pos) {
 void MainWindow::copyUrl(){
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user selected no row, do
+    if (!hasSelectedRow())
         return;
 
     QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4);
@@ -461,7 +462,7 @@ void MainWindow::copyUrl(){
 void MainWindow::openUrl() {
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user selected no row, do
+    if (!hasSelectedRow())
         return;
 
     QModelIndex idx = model->index(ui->tableView->currentIndex().row(), 4);
@@ -471,7 +472,7 @@ void MainWindow::openUrl() {
 void MainWindow::copyUsername() {
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user selected no row, do
+    if (!hasSelectedRow())
         return;
 
     QSqlQuery query(db);
@@ -513,7 +514,7 @@ void MainWindow::copyText(const QString &text) {
 void MainWindow::copyPassword() {
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user selected no row, do
+    if (!hasSelectedRow())
         return;
 
     QSqlQuery query(db);
@@ -543,7 +544,7 @@ void MainWindow::copyPassword() {
 void MainWindow::editRow() {
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user has no selected row return.
+    if (!hasSelectedRow())
         return;
 
     EntryEditor *editEntry = new EntryEditor(this, ui->tableView, &db, model);
@@ -589,7 +590,7 @@ void MainWindow::deleteTable() {
 void MainWindow::deleteEntry() {
     qInfo() << Q_FUNC_INFO;
 
-    if (!hasSelectedRow()) // If user selected no row, do
+    if (!hasSelectedRow())
         return;
 
     int index = ui->tableView->currentIndex().row(); // Index of selected row
@@ -608,7 +609,7 @@ void MainWindow::deleteEntry() {
 }
 
 void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
-    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO;
 
     // Updating last used index
     lastUsedTable = ui->listWidget_tables->currentRow();
@@ -639,20 +640,20 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 
 
 void MainWindow::cfgColumns() {
-    ColumnsConfigurator *cfgColumns = new ColumnsConfigurator(this);
-    cfgColumns->exec();
-    delete cfgColumns;
+    ColumnsConfigurator *window_ColumnsConfigurator = new ColumnsConfigurator(this);
+    window_ColumnsConfigurator->exec();
+    delete window_ColumnsConfigurator;
     configureColumns();
 }
 
 void MainWindow::createTable() {
-    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO;
 
-    isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
+    isChanged = true;
 
-    TableAdder *addTable = new TableAdder(this, &db, &tables, colorTheme); // This dialog will create new table in QSqlDatabase object and append new table to tables list
-    addTable->exec(); // Showing dialog
-    delete addTable;
+    TableAdder *window_AddTable = new TableAdder(this, &db, &tables, colorTheme);
+    window_AddTable->exec();
+    delete window_AddTable;
 
     if (ui->listWidget_tables->count() != tables.size()) { // If current ListWidget size has lower value than tables this means that user added new table
         ui->listWidget_tables->clear(); // Clearing list of tables
@@ -669,13 +670,16 @@ void MainWindow::createTable() {
 }
 
 void MainWindow::addEntry() {
-    qInfo() << Q_FUNC_INFO; // Writing function names to see where error appears, all this messages shown in Application Output
+    qInfo() << Q_FUNC_INFO;
 
-    isChanged = true; // If user do some changes needs to change this state to true to ask if save changes on exit
+    if (!db.isOpen())
+        return;
 
-    EntryAdder *dialog = new EntryAdder(this, &db, model->tableName(), colorTheme); // Create dialog that will add row to table
-    dialog->exec();    // Showing dialog
-    delete dialog;
+    isChanged = true;
+
+    EntryAdder *window_EntryAdder = new EntryAdder(this, &db, model->tableName(), colorTheme);
+    window_EntryAdder->exec();
+    delete window_EntryAdder;
 
     // Updating QSqlModel and QTableView to see changes
     model->setTable(model->tableName());
@@ -707,7 +711,7 @@ void MainWindow::openDatabase() {
 
     // Receiving path to database and trying to open
     QString pathToDatabase = QFileDialog::getOpenFileName(this, tr("Open encrypted database"),
-                                                QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation), "*.db");
+                                                QStandardPaths::writableLocation(QStandardPaths::AppDataLocation), "*.db");
     if (!pathToDatabase.isEmpty()) {
         // Saving path to last used
         settings.setValue("LastUsed", pathToDatabase);
@@ -851,7 +855,7 @@ void MainWindow::editTable() {
     model->setTable(ui->listWidget_tables->currentItem()->text());
     model->select();
 
-    isChanged = true; // If user makes some changes needs to set this to true
+    isChanged = true;
 
     // Configuring columns in tableWidget and loading icons to listWidget
     loadIconsToListWidget();
@@ -887,8 +891,11 @@ void MainWindow::duplicateEntry() {
 
 void MainWindow::saveAll() {
     qInfo() << Q_FUNC_INFO;
-    // Writing changes to file
+    if (!checkIfDatabaseOpened(&db)) return;
+
+    // Writing changes
     DbManager::uploadDb(settings.value("LastUsed").toString(), masterKey, &db);
+    isChanged = false;
 }
 
 bool MainWindow::hasSelectedRow() {
@@ -963,7 +970,7 @@ void MainWindow::setSystemColorTheme() {
 
     if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
         // Reading colorTheme from resource
-        QFile styleFile(":/colorThemes/resources/colorThemes/dark.qss");
+        QFile styleFile(":/themes/resources/themes/dark.qss");
         styleFile.open(QFile::ReadOnly);
         QString style(styleFile.readAll());
         styleFile.close();
@@ -972,7 +979,7 @@ void MainWindow::setSystemColorTheme() {
         qApp->setStyleSheet(style); // Applying style to program
     } else {
         // Reading colorTheme from resource
-        QFile styleFile(":/colorThemes/resources/colorThemes/light.qss");
+        QFile styleFile(":/themes/resources/themes/light.qss");
         styleFile.open(QFile::ReadOnly);
         QString style(styleFile.readAll());
         styleFile.close();
@@ -989,7 +996,7 @@ void MainWindow::setDarkColorTheme() {
     qInfo() << Q_FUNC_INFO;
 
     // Reading colorTheme from resource
-    QFile styleFile(":/colorThemes/resources/colorThemes/dark.qss");
+    QFile styleFile(":/themes/resources/themes/dark.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());
     styleFile.close();
@@ -1004,7 +1011,7 @@ void MainWindow::setLightColorTheme()
 {
     qInfo() << Q_FUNC_INFO;
     // Reading colorTheme from resource
-    QFile styleFile(":/colorThemes/resources/colorThemes/light.qss");
+    QFile styleFile(":/themes/resources/themes/light.qss");
     styleFile.open(QFile::ReadOnly);
     QString style(styleFile.readAll());
     styleFile.close();
@@ -1017,7 +1024,7 @@ void MainWindow::setLightColorTheme()
 
 
 void MainWindow::on_searchBar_textChanged(const QString &arg1) {
-    if (arg1.size() == 0) { // If user cleared text in search bar
+    if (arg1.size() == 0) {
         if (lastUsedTable <= ui->listWidget_tables->count()) {
             ui->listWidget_tables->setCurrentRow(lastUsedTable);
             model->setTable(ui->listWidget_tables->currentItem()->text());
