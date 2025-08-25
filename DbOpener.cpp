@@ -75,18 +75,16 @@ void DbOpener::showMsgBox(const QString &title, const QString &text, const QMess
 
 void DbOpener::button_ok_clicked() {
     if (ui->lineEdit_password->text().size() > 0) {
+        this->setDisabled(true);
         QByteArray key = ui->lineEdit_password->text().toUtf8();
         if (!DbManager::loadDb(pathToDatabase, &key, db, tables)) { // Trying to load database
             showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
             return;
         }
         *resultKey = key;
-
+        this->setEnabled(true);
         this->close();
     } else {
         showMsgBox(tr("Warning"), tr("Password line must be not empty"), QMessageBox::Warning);
     }
 }
-
-
-

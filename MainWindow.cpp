@@ -78,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     ui->tableView->setModel(model);
     configureColumns();
     loadIcons();
-    this->setDisabled(true);
 }
 
 MainWindow::~MainWindow() {
@@ -681,8 +680,7 @@ void MainWindow::addEntry() {
     window_EntryAdder->exec();
     delete window_EntryAdder;
 
-    // Updating QSqlModel and QTableView to see changes
-    model->setTable(model->tableName());
+    // Updating model and tableView
     model->select();
     ui->tableView->update();
     configureColumns();
