@@ -11,6 +11,8 @@
 #include <QTimer>
 #include "dbmanager.h"
 #include <QTranslator>
+#include <thread>
+#include "waitingspinnerwidget.h"
 
 
 namespace Ui {
@@ -35,9 +37,11 @@ private:
     Ui::DbOpener *ui;
 
     void showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon);
+    void openDb();
 
     QSqlDatabase *db;
     QString pathToDatabase;
+    WaitingSpinnerWidget *spinner;
     QByteArray *resultKey;
     QVector<QString> *tables;
     Theme colorTheme;

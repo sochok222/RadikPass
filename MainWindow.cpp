@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
 
     // Trying to open last used database
     model = new QSqlTableModel(this, db);
-    if (!settings.value("LastUsed").toString().isEmpty()){
+    if (!settings.value("LastUsed").toString().isEmpty() && fileExists(settings.value("LastUsed").toString())){
         QByteArray gotKey;
         DbOpener *window_OpenDatabase = new DbOpener(this, &db, settings.value("LastUsed").toString(), &gotKey, &tables, colorTheme);
         window_OpenDatabase->exec();
@@ -73,26 +73,36 @@ MainWindow::MainWindow(QWidget *parent, Theme colorTheme, QTranslator *translato
     connect(model, SIGNAL(modelReset()), SLOT(setHeaders()));
     connect(model, SIGNAL(modelReset()), SLOT(configureColumns()));
 
-
     model->select();
     ui->tableView->setModel(model);
     configureColumns();
     loadIcons();
 }
 
-MainWindow::~MainWindow() {
+MainWindow::~MainWindow()
+{
     delete ui;
 }
 
 
-bool MainWindow::checkIfDatabaseOpened(QSqlDatabase *db) {
+bool MainWindow::fileExists(const QString &path)
+{
+    QFile file(path);
+    if (file.exists()) return true;
+    return false;
+}
+
+
+bool MainWindow::checkIfDatabaseOpened(QSqlDatabase *db)
+{
     QSqlQuery query(*db);
     if (query.exec()) return true;
     return false;
 }
 
 
-void MainWindow::showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon) {
+void MainWindow::showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon)
+{
     QMessageBox msgBox;
     msgBox.setWindowTitle(title);
     msgBox.setText(text);
@@ -102,14 +112,16 @@ void MainWindow::showMsgBox(const QString &title, const QString &text, const QMe
 }
 
 
-void MainWindow::openPasswordGenerator() {
+void MainWindow::openPasswordGenerator()
+{
     PasswordGenerator *passwordGenerator = new PasswordGenerator(this, 0);
     passwordGenerator->exec();
     delete passwordGenerator;
 }
 
 
-void MainWindow::setHeaders() {
+void MainWindow::setHeaders()
+{
     QVector<QString> headers = {tr("Title"), tr("User Name"),
                                 tr("Password"), tr("URL"),
                                 tr("Notes"), tr("Creation Time"), tr("Last Changed")};
@@ -119,7 +131,8 @@ void MainWindow::setHeaders() {
     }
 }
 
-void MainWindow::connectActions() {
+void MainWindow::connectActions()
+{
     // File menu actions
     connect(ui->action_close, SIGNAL(triggered()), SLOT(close()));
     connect(ui->action_new, SIGNAL(triggered()), this, SLOT(createDatabase()));
@@ -150,7 +163,8 @@ void MainWindow::connectActions() {
     setColorThemeActions(); // setting actions in "Color colorTheme" menu
 }
 
-void MainWindow::connectButtons() {
+void MainWindow::connectButtons()
+{
     // Connecting buttons to slots
     connect(ui->button_new, SIGNAL(clicked()), SLOT(createDatabase()));
     connect(ui->button_open, SIGNAL(clicked()), SLOT(openDatabase()));
@@ -162,7 +176,8 @@ void MainWindow::connectButtons() {
     connect(ui->menuEntry, SIGNAL(aboutToShow()), SLOT(configureEntryMenu()));
 }
 
-void MainWindow::setTooltips() {
+void MainWindow::setTooltips()
+{
     // Setting hints to toolbar
     ui->button_new->setToolTip(tr("New Database"));
     ui->button_open->setToolTip(tr("Open Database"));
@@ -173,7 +188,8 @@ void MainWindow::setTooltips() {
     ui->button_deleteEntry->setToolTip(tr("Delete Entry"));
 }
 
-void MainWindow::setShortcuts() {
+void MainWindow::setShortcuts()
+{
     // Creating shortcuts.
     shortcutOpen.reset(new QShortcut(QKeySequence::Open, this));
     shortcutClose.reset(new QShortcut(QKeySequence::Close, this));
@@ -191,7 +207,8 @@ void MainWindow::setShortcuts() {
     connect(shortcutAddEntry.data(), SIGNAL(activated()), this, SLOT(addEntry()));
 }
 
-void MainWindow::setColorThemeActions() {
+void MainWindow::setColorThemeActions()
+{
     // Resetting actions
     action_setSystemTheme.reset(new QAction(tr("System")));
     action_setDarkTheme.reset(new QAction(tr("Dark")));
@@ -225,7 +242,8 @@ void MainWindow::setColorThemeActions() {
 }
 
 
-void MainWindow::loadIcons() {
+void MainWindow::loadIcons()
+{
     loadIconsToListWidget();
 
     // Loading icons to buttons
@@ -259,8 +277,8 @@ void MainWindow::loadIcons() {
 }
 
 
-void MainWindow::configureColumns() {
-    // Loading settings
+void MainWindow::configureColumns()
+{
     QStringList columnTitle = settings.value("columnTitle").toStringList();
     QStringList columnUsername = settings.value("columnUsername").toStringList();
     QStringList columnPassword = settings.value("columnPassword").toStringList();
@@ -322,14 +340,6 @@ void MainWindow::configureColumns() {
     else ui->tableView->setItemDelegateForColumn(7, maskColumn);
 }
 
-bool fileExists(const QString path)
-{
-    qInfo() << Q_FUNC_INFO;
-    QFile file(path);
-    if (file.exists())
-        return true;
-    return false;
-}
 
 void MainWindow::itemDoubleclicked(const QModelIndex &pos)
 {
@@ -357,7 +367,8 @@ void MainWindow::itemDoubleclicked(const QModelIndex &pos)
     }
 }
 
-void MainWindow::customMenuRequested(QPoint pos) {
+void MainWindow::customMenuRequested(QPoint pos)
+{
     qInfo() << Q_FUNC_INFO;
 
     if (ui->listWidget_tables->count() == 0) // Checking if database is opened.
@@ -447,7 +458,8 @@ void MainWindow::customMenuRequested(QPoint pos) {
     }
 }
 
-void MainWindow::copyUrl(){
+void MainWindow::copyUrl()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -458,7 +470,8 @@ void MainWindow::copyUrl(){
     copyText(idx.data().toString()); // Copying text to clipboard
 }
 
-void MainWindow::openUrl() {
+void MainWindow::openUrl()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -468,7 +481,8 @@ void MainWindow::openUrl() {
     QDesktopServices::openUrl(idx.data().toString());
 }
 
-void MainWindow::copyUsername() {
+void MainWindow::copyUsername()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -499,7 +513,8 @@ void MainWindow::copyUsername() {
 }
 
 
-void MainWindow::copyText(const QString &text) {
+void MainWindow::copyText(const QString &text)
+{
     qInfo() << Q_FUNC_INFO;
     OpenClipboard(0);
     EmptyClipboard();
@@ -510,7 +525,8 @@ void MainWindow::copyText(const QString &text) {
 }
 
 
-void MainWindow::copyPassword() {
+void MainWindow::copyPassword()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -540,7 +556,9 @@ void MainWindow::copyPassword() {
     ui->statusbar->showMessage(tr("Password copied."), 3000);
 }
 
-void MainWindow::editRow() {
+
+void MainWindow::editRow()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -556,7 +574,9 @@ void MainWindow::editRow() {
     configureColumns();
 }
 
-void MainWindow::deleteTable() {
+
+void MainWindow::deleteTable()
+{
     qInfo() << Q_FUNC_INFO;
     int index = ui->listWidget_tables->currentIndex().row();
 
@@ -586,7 +606,9 @@ void MainWindow::deleteTable() {
     configureColumns();
 }
 
-void MainWindow::deleteEntry() {
+
+void MainWindow::deleteEntry()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow())
@@ -607,7 +629,8 @@ void MainWindow::deleteEntry() {
     }
 }
 
-void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
+void MainWindow::on_listWidget_currentTextChanged(const QString &currentText)
+{
     qInfo() << Q_FUNC_INFO;
 
     // Updating last used index
@@ -620,7 +643,8 @@ void MainWindow::on_listWidget_currentTextChanged(const QString &currentText) {
     configureColumns();
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
+void MainWindow::closeEvent(QCloseEvent *event)
+{
     qInfo() << Q_FUNC_INFO;
     if (isChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
@@ -638,14 +662,16 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 
-void MainWindow::cfgColumns() {
+void MainWindow::cfgColumns()
+{
     ColumnsConfigurator *window_ColumnsConfigurator = new ColumnsConfigurator(this);
     window_ColumnsConfigurator->exec();
     delete window_ColumnsConfigurator;
     configureColumns();
 }
 
-void MainWindow::createTable() {
+void MainWindow::createTable()
+{
     qInfo() << Q_FUNC_INFO;
 
     isChanged = true;
@@ -668,7 +694,8 @@ void MainWindow::createTable() {
     loadIconsToListWidget();
 }
 
-void MainWindow::addEntry() {
+void MainWindow::addEntry()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!db.isOpen())
@@ -687,7 +714,8 @@ void MainWindow::addEntry() {
 
 }
 
-void MainWindow::openDatabase() {
+void MainWindow::openDatabase()
+{
     if (isChanged) {
         QMessageBox::StandardButton question = QMessageBox::question(
             this, "RadikPass", tr("Save changes?"),
@@ -720,8 +748,8 @@ void MainWindow::openDatabase() {
         DbOpener *openDb = new DbOpener(this, &db, pathToDatabase, &gotKey, &copyTables, colorTheme);
         openDb->exec();
         if (copyTables.size() > 0) {
+            settings.value("LastUsed").setValue(pathToDatabase);
             ui->listWidget_tables->clear();
-
             masterKey = gotKey;
             tables = copyTables;
             for (QString &table : tables) {
@@ -740,7 +768,8 @@ void MainWindow::openDatabase() {
     loadIcons();
 }
 
-void MainWindow::createDatabase() {
+void MainWindow::createDatabase()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (isChanged) {
@@ -796,7 +825,8 @@ void MainWindow::createDatabase() {
     }
 }
 
-void MainWindow::configureEntryMenu() { // This function will disable or enable actions in View menu in toolbar
+void MainWindow::configureEntryMenu()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (ui->tableView->selectionModel()->hasSelection()) {
@@ -825,7 +855,8 @@ void MainWindow::configureEntryMenu() { // This function will disable or enable 
     }
 }
 
-void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget,
+void MainWindow::loadIconsToListWidget()
+{ // This will load icons to ListWidget,
     QSqlQuery query(db); // New query to read data from database
     for(int i = 0; i < ui->listWidget_tables->count(); i++) {
         // Loading name of icon from TablesSettings
@@ -841,7 +872,8 @@ void MainWindow::loadIconsToListWidget() { // This will load icons to ListWidget
     }
 }
 
-void MainWindow::editTable() {
+void MainWindow::editTable()
+{
     qInfo() << Q_FUNC_INFO;
 
     // Creating TableEditor window where user can change name or/and icon of table
@@ -861,7 +893,8 @@ void MainWindow::editTable() {
 
 }
 
-void MainWindow::duplicateEntry() {
+void MainWindow::duplicateEntry()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (!hasSelectedRow()) // If no rows are selected
@@ -887,7 +920,8 @@ void MainWindow::duplicateEntry() {
     ui->tableView->update();
 }
 
-void MainWindow::saveAll() {
+void MainWindow::saveAll()
+{
     qInfo() << Q_FUNC_INFO;
     if (!checkIfDatabaseOpened(&db)) return;
 
@@ -896,14 +930,16 @@ void MainWindow::saveAll() {
     isChanged = false;
 }
 
-bool MainWindow::hasSelectedRow() {
+bool MainWindow::hasSelectedRow()
+{
     if (ui->tableView->selectionModel()->selectedRows().size() == 0) // If count of selected rows equals to zero
         return false;
 
     return true;
 }
 
-void MainWindow::setUkrainianLanguage() {
+void MainWindow::setUkrainianLanguage()
+{
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "uk"); // Changing value in settings
@@ -924,7 +960,8 @@ void MainWindow::setUkrainianLanguage() {
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setEnglishLanguage() {
+void MainWindow::setEnglishLanguage()
+{
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "en"); // Changing value in settings
@@ -944,7 +981,8 @@ void MainWindow::setEnglishLanguage() {
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setGermanLanguage() {
+void MainWindow::setGermanLanguage()
+{
     qInfo() << Q_FUNC_INFO;
 
     settings.setValue("Language", "ge"); // Changing value in settings
@@ -963,7 +1001,8 @@ void MainWindow::setGermanLanguage() {
     setHeaders(); // Retranslating headers in tableView
 }
 
-void MainWindow::setSystemColorTheme() {
+void MainWindow::setSystemColorTheme()
+{
     qInfo() << Q_FUNC_INFO;
 
     if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
@@ -990,7 +1029,8 @@ void MainWindow::setSystemColorTheme() {
     loadIcons(); // Updating icons
 }
 
-void MainWindow::setDarkColorTheme() {
+void MainWindow::setDarkColorTheme()
+{
     qInfo() << Q_FUNC_INFO;
 
     // Reading colorTheme from resource
@@ -1021,7 +1061,8 @@ void MainWindow::setLightColorTheme()
 }
 
 
-void MainWindow::on_searchBar_textChanged(const QString &arg1) {
+void MainWindow::on_searchBar_textChanged(const QString &arg1)
+{
     if (arg1.size() == 0) {
         if (lastUsedTable <= ui->listWidget_tables->count()) {
             ui->listWidget_tables->setCurrentRow(lastUsedTable);

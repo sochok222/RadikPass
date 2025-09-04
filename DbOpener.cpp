@@ -1,4 +1,5 @@
 #include "DbOpener.h"
+#include <QThread>
 #include "ui_DbOpener.h"
 
 DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QByteArray *resultKey, QVector<QString> *tables, Theme colorTheme)
@@ -49,11 +50,18 @@ DbOpener::DbOpener(QWidget *parent, QSqlDatabase *db, QString pathToDatabase, QB
     this->setWindowTitle(tr("Open Database"));
 }
 
-DbOpener::~DbOpener() {
+DbOpener::~DbOpener()
+{
     delete ui;
 }
 
-void DbOpener::hidePassword() {
+
+void DbOpener::hidePassword()
+{
+    WaitingSpinnerWidget *spinner = new WaitingSpinnerWidget(this, 1, 1);
+    spinner->start();
+    ui->setupUi(this);
+    QThread::sleep(1);
     if (ui->lineEdit_password->echoMode() == QLineEdit::EchoMode::Password) {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::Eye, colorTheme));
         ui->lineEdit_password->setEchoMode(QLineEdit::Normal);
@@ -61,9 +69,12 @@ void DbOpener::hidePassword() {
         action_hidePassword->setIcon(IconLoader::getIcon(Icon::EyeClosed, colorTheme));
         ui->lineEdit_password->setEchoMode(QLineEdit::Password);
     }
+    spinner->stop();
+    delete spinner;
 }
 
-void DbOpener::showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon) {
+void DbOpener::showMsgBox(const QString &title, const QString &text, const QMessageBox::Icon &icon)
+{
     QMessageBox msgBox;
     msgBox.setWindowTitle(title);
     msgBox.setText(text);
@@ -73,18 +84,30 @@ void DbOpener::showMsgBox(const QString &title, const QString &text, const QMess
 }
 
 
-void DbOpener::button_ok_clicked() {
+void DbOpener::openDb()
+{
     if (ui->lineEdit_password->text().size() > 0) {
-        this->setDisabled(true);
         QByteArray key = ui->lineEdit_password->text().toUtf8();
+
         if (!DbManager::loadDb(pathToDatabase, &key, db, tables)) { // Trying to load database
             showMsgBox(tr("Error"), tr("Password is incorrect or database file is damaged\nTry again, please"), QMessageBox::Critical);
             return;
         }
         *resultKey = key;
         this->setEnabled(true);
-        this->close();
+        QTimer::singleShot(0, this, SLOT(close()));
     } else {
         showMsgBox(tr("Warning"), tr("Password line must be not empty"), QMessageBox::Warning);
     }
+    spinner->stop();
+    delete spinner;
+}
+
+
+void DbOpener::button_ok_clicked()
+{
+    spinner = new WaitingSpinnerWidget(this, 1, 1);
+    spinner->start();
+    std::thread t([this]{openDb();});
+    t.join();
 }

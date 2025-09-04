@@ -48,6 +48,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources.qrc
         IconLoader.h
         PasswordGenerator.h PasswordGenerator.cpp PasswordGenerator.ui
+        waitingspinnerwidget.cpp waitingspinnerwidget.h
 
 
     )

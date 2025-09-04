@@ -4,6 +4,7 @@
 #include <QtSql/qsqldatabase.h>
 #include "EntryAdder.h"
 #include "ColumnsConfigurator.h"
+#include "waitingspinnerwidget.h"
 #include "PasswordGenerator.h"
 #include <QtSql/QSqlDatabase>
 #include <QContextMenuEvent>
@@ -66,6 +67,8 @@ private:
 
     // Remembering last used table
     int lastUsedTable = 0;
+
+    bool fileExists(const QString &path);
 
     // Setting up shortcuts
     void setShortcuts();
