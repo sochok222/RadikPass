@@ -1,4 +1,4 @@
-# RadiPass is a simple password manager that was written in qt and using OpenSSL for encryption.
+# RadikPass is a simple password manager that written in qt and using OpenSSL for encryption.
 
 ## Features
 
